@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全等操作符</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(1 === 2);                             //false      
+    console.log(1 === 1);                             //true         
+    console.log(1 === true);                          //false
+    console.log(0 === false);                         //false      
+    console.log("0" === false);                       //false    
+    console.log("10" === 10);                         //false     
+    console.log("" === 0);                            //false      
+    console.log(NaN === 0);                           //false     
+    console.log(NaN === NaN);                         //false     
+    console.log(null === undefined);                  //false     
+    console.log("" === null);                         //false     
+    console.log(0 === undefined);                     //false    
+    /**
+     * 原则
+     * 1.符号两边数据类型要相等
+     * 2.符号两边数据的值相同
+     * 3.NaN不参于比较，只要比较就是false
+     * 4.结果一定是布尔类型
+     */
+</script>
+
+</html>

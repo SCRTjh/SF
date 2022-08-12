@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>布尔操作符的综合应用</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(true || "" && NaN);                         //true
+    console.log(666 || !"" || false);                       //6666
+    console.log(666 && NaN || null);                        //null
+    console.log("标哥哥" || 123 && NaN);                     //"标哥哥"
+    console.log(null || 666 && undefined);                  //undefined
+    console.log(!null || 123 && undefined);                 //true
+
+    /**
+     * 总的操作原则
+     * 1.或执行“一真即真”，与执行“一假即假”，“非真即假，非假即真”
+     * 2.先非，再与，最后或
+     * 3.非boolean类型用Boolean去测试
+     * 4.弄清楚6个明确的false条件
+     * 5.短路原则
+     */
+</script>
+
+</html>

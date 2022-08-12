@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transiton1</title>
+    <style>
+        .outbox {
+            --h: 40px;
+            display: block;
+            width: 80px;
+            height: var(--h);
+            border-radius: calc(var(--h) / 2);
+        }
+
+        .outbox>input {
+            display: none;
+        }
+
+        .outbox>.s-innerbox {
+            width: 100%;
+            height: 100%;
+            background-color: #f5f5f5;
+            border-radius: inherit;
+            outline: #f5f5f5;
+            transition: all 0.3s linear;
+            outline: 5px solid #f5f5f5;
+        }
+
+        .outbox>.s-innerbox>.circle {
+            width: var(--h);
+            height: var(--h);
+            border-radius: 50%;
+            background-color: #fff;
+
+        }
+
+        .outbox>input:checked+.s-innerbox {
+            background-color: #7dc9fd;
+            outline: 5px solid #7dc9fd;
+        }
+
+        .outbox>input:checked+.s-innerbox>.circle {
+            transition: inherit;
+            margin-left: var(--h);
+            background-color: #bee3fd;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="a" class="outbox">
+        <input type="checkbox" id="a">
+        <div class="s-innerbox">
+            <div class="circle"></div>
+        </div>
+    </label>
+
+</body>
+
+</html>

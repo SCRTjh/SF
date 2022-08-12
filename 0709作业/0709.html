@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0709练习1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 400px;
+            height: 600px;
+            margin: 30px auto;
+            border: 1px solid black;
+            border-radius: 5px;
+            box-shadow: 0px 0px 14px #5c5959;
+            overflow: hidden;
+
+        }
+
+        .main>* {
+            margin: auto 5px;
+        }
+
+        .main>.head-name {
+            box-sizing: border-box;
+            margin-top: 8px;
+            padding-top: 5px;
+            font-size: 14px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        .main>.head-name>span:first-child {
+            margin-right: 215px;
+        }
+
+        .main>.head-name>span:nth-child(2) {
+            color: #808080;
+        }
+
+        /* 头像 */
+        .main>.avatar {
+            box-sizing: border-box;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .main>.avatar>img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        /* 签名 */
+
+        .main>.signal {
+            box-sizing: border-box;
+            padding: 3px;
+            font-size: 12px;
+            font-style: italic;
+            line-height: 22px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            border-bottom: 1px solid #808080;
+        }
+
+
+        /* 照片 */
+
+
+        .main>.pic-box {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .main>.pic-box>.pic {
+            display: inline-block;
+            height: 150px;
+            font-size: 14px;
+            color: #808080;
+        }
+
+        .main>.pic-box>.pic>img {
+            height: 120px;
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="head-name"><span><b>昵称：</b>二当家的</span><span>2022-7-8</span></div>
+        <div class="avatar">头像&nbsp;&nbsp;<img src="./img/2014.jpg" alt=""></div>
+        <p class="signal">这个家伙很懒，没有留下个性签名，这个家伙很懒，没有留下个性签名，
+            这个家伙很懒，没有留下个性签名，这个家伙很懒，没有留下个性签名，这个家伙很懒，没有留下个性签名，</p>
+        <div class="pic-box">
+            <div class="pic">
+                <img src="./img/2014.jpg" alt="">
+                <p>第1张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/2015.jpg" alt="">
+                <p>第2张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/2016.jpg" alt="">
+                <p>第3张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/2017.jpg" alt="">
+                <p>第4张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/2018上.jpg" alt="">
+                <p>第5张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/try1.jpg" alt="">
+                <p>第6张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/w01.jpg" alt="">
+                <p>第7张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/w02.jpg" alt="">
+                <p>第8张</p>
+            </div>
+            <div class="pic">
+                <img src="./img/w03.jpg" alt="">
+                <p>第9张</p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

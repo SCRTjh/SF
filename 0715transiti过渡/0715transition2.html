@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习2</title>
+    <style>
+        .main {
+            --h: 400px;
+            --w: 600px;
+            height: var(--h);
+            width: var(--w);
+            overflow: hidden;
+        }
+
+        [type="radio"] {
+            display: none;
+        }
+
+        .main>label {
+            box-sizing: border-box;
+            display: inline-block;
+            height: 50px;
+            width: 100px;
+            border: 1px solid #000;
+            line-height: 50px;
+            text-align: center;
+        }
+
+        .main>.inner-box {
+            width: calc(var(--w) * 3);
+            height: calc(var(--h) - 50px);
+            background-color: aqua;
+        }
+
+        .main>.inner-box>div {
+            float: left;
+            height: 100%;
+            width: var(--w);
+
+        }
+
+        .main>.inner-box {
+            transition: all 0.5s linear;
+        }
+
+        .main>.inner-box>div:nth-of-type(1) {
+            background-color: red;
+        }
+
+        .main>.inner-box>div:nth-of-type(2) {
+            background-color: aqua;
+        }
+
+        .main>.inner-box>div:nth-of-type(3) {
+            background-color: lightblue;
+        }
+
+        .main>#a1:checked~.inner-box {
+            margin-left: 0;
+        }
+
+        .main>#a2:checked~.inner-box {
+            margin-left: -600px;
+        }
+
+        .main>#a3:checked~.inner-box {
+            margin-left: -1200px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <label for="a1">选项一</label>
+        <label for="a2">选项二</label>
+        <label for="a3">选项三</label>
+        <input type="radio" name="a" id="a1">
+        <input type="radio" name="a" id="a2">
+        <input type="radio" name="a" id="a3">
+        <div class="inner-box">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

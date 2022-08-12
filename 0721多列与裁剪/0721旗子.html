@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            position: relative;
+            top: 200px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 500px;
+            height: 400px;
+            background-color: blue;
+        }
+
+        .main>.circle {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        .main>.angle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 30px;
+            height: 70px;
+            background-color: #fff;
+            transform-origin: center center;
+            clip-path: polygon(0 70px, 15px 0, 30px 70px);
+        }
+
+        .main>div:nth-of-type(2) {
+            transform: translateY(-120px);
+        }
+
+        .main>div:nth-of-type(3) {
+            transform: rotateZ(30deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(4) {
+            transform: rotateZ(60deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(5) {
+            transform: rotateZ(90deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(6) {
+            transform: rotateZ(120deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(7) {
+            transform: rotateZ(150deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(8) {
+            transform: rotateZ(180deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(9) {
+            transform: rotateZ(210deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(10) {
+            transform: rotateZ(240deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(11) {
+            transform: rotateZ(270deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(12) {
+            transform: rotateZ(300deg) translateY(-120px);
+        }
+
+        .main>div:nth-of-type(13) {
+            transform: rotateZ(330deg) translateY(-120px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="circle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+        <div class="angle"></div>
+    </div>
+</body>
+
+</html>

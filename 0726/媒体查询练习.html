@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式入门</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 100vw;
+            border: 2px solid black;
+            background-color: blue;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        @media only screen and (min-width:0px) and (max-width:768px) {
+            .box {
+                background-color: red;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .box>img {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (min-width:768px) and (max-width:991px) {
+            .box {
+                background-color: blue;
+            }
+
+            .box>img {
+                width: 50%;
+            }
+        }
+
+        @media only screen and (min-width:991px) {
+            .box {
+                background-color: deeppink;
+            }
+
+            .box>img {
+                width: 25%;
+            }
+        }
+
+        /* @media only screen and (min-width: 1200px) {
+            .box {
+                background-color: gray;
+            }
+        } */
+    </style>
+</head>
+
+
+<body>
+    <div class="box">
+        <img src="./img/item1.jpg" alt="">
+        <img src="./img/item2.jpg" alt="">
+        <img src="./img/item3.jpg" alt="">
+        <img src="./img/item4.jpg" alt="">
+    </div>
+</body>
+
+
+</html>

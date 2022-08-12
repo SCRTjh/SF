@@ -1,0 +1,125 @@
+@charset "utf-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+.container {
+    width: 1520px;
+    margin: auto;
+    /* outline: 2px solid red; */
+}
+
+.top-nav {
+    height: 60px;
+    line-height: 60px;
+    min-width: 1520px;
+    background-color: #d64e42;
+
+}
+
+
+.top-nav .logo {
+    float: left;
+    width: 48px;
+    height: 26px;
+    font-family: AdobeHeitiStd-Regular;
+    font-size: 25px;
+    color: #ffffff;
+    margin-left: -30px;
+}
+
+.top-nav .searchbox {
+    float: left;
+    margin-left: 136px;
+}
+
+
+
+.top-nav .searchbox>.search {
+    box-sizing: border-box;
+    width: 309px;
+    height: 28px;
+    background-color: #b83e39;
+    border: none;
+    border-radius: 15px 15px;
+    outline: none;
+    background-image: url("../img/首页/search.png");
+    background-repeat: no-repeat;
+    background-size: 16px 17px;
+    background-position: 16px 6px;
+    padding-left: 46px;
+}
+
+.top-nav .searchbox>.search::placeholder {
+    vertical-align: baseline;
+    width: 111px;
+    font-family: AdobeHeitiStd-Regular;
+    font-size: 16px;
+    color: #e5e5e5;
+}
+
+.top-nav .top-menu {
+    display: inline-block;
+    margin-left: 88px;
+    height: 100%;
+}
+
+.top-nav .top-menu>li {
+    float: left;
+    font-family: AdobeHeitiStd-Regular;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.top-nav .top-menu>li {
+    margin-right: 41px;
+}
+
+.top-nav .top-menu>li:last-of-type {
+    margin-left: 214px;
+}
+
+.top-nav .top-menu>li:last-of-type::after {
+    content: url("../img/首页/nav-return.png");
+    margin-left: 5px;
+}
+
+.bottom-nav .bottom-menu {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 209px;
+}
+
+.bottom-nav .bottom-menu:first-of-type {
+    margin-left: 101px;
+}
+
+.bottom-nav .bottom-menu>li:first-of-type {
+    font-size: 16px;
+    font-family: MicrosoftYaHei;
+    color: #313131;
+    font-weight: bold;
+    line-height: 28px;
+}
+
+.bottom-nav .bottom-menu>li+li>a {
+    font-size: 14px;
+    font-family: MicrosoftYaHei;
+    color: #313131;
+    line-height: 24px;
+}

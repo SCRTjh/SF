@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪玩蓝月</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .main {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 10px;
+            outline: 2px solid orange;
+            font-size: 0;
+        }
+
+        .main>.t1 {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            font-size: 150px;
+            text-align: center;
+            color: red;
+        }
+
+        .main>.cover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            animation: t1-ani 4s linear infinite forwards;
+        }
+
+        .cover>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            font-size: 0;
+            animation: t2-ani 4s linear infinite forwards;
+        }
+
+        .main>.cover>div>.t2 {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            font-size: 150px;
+            text-align: center;
+            color: white;
+        }
+
+        @keyframes t1-ani {
+            0% {
+                left: 0;
+                top: 0;
+            }
+
+            25% {
+                left: 200px;
+                top: 0;
+            }
+
+            50% {
+                left: 200px;
+                top: 200px;
+            }
+
+            75% {
+                left: 0px;
+                top: 200px;
+            }
+
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+
+        @keyframes t2-ani {
+            0% {
+                left: 0;
+                top: 0;
+            }
+
+            25% {
+                left: -200px;
+                top: 0;
+            }
+
+            50% {
+                left: -200px;
+                top: -200px;
+            }
+
+            75% {
+                left: 0px;
+                top: -200px;
+            }
+
+            100% {
+                left: 0;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="t1">贪</div>
+        <div class="t1">玩</div>
+        <div class="t1">蓝</div>
+        <div class="t1">月</div>
+        <div class="cover">
+            <div>
+                <div class="t2">贪</div>
+                <div class="t2">玩</div>
+                <div class="t2">蓝</div>
+                <div class="t2">月</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逻辑或操作符</title>
+</head>
+<body>
+    
+</body>
+<script>
+    console.log(true || 123 || false);                       //true
+    console.log(false || 123 || false);                      //123
+    console.log(666 || true || "hello");                     //666
+    console.log(NaN || false || null);                       //null
+    console.log(null || "标哥哥");                            //"标哥哥"
+    console.log(false || NaN);                               //NaN
+
+    /**
+     * 操作规则
+     * 1.它的结果不一定是Boolean类型 
+     * 2. 一真即真
+     * 3.不是Boolean的要用Boolean去测试
+     * 4.明确的false值有哪些
+     * 5.短路原则：一个表达式已经得到结果，就不会再向后面运算了
+     */
+</script>
+</html>

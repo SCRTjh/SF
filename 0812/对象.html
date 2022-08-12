@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj1 = {
+        userName: "张三"
+    }
+    //obj1上面有一个age属性，这个属性不能被删除,默认值是18
+    //obj1上面有一个sex属性，这属性不能被修改【只读】
+
+    Object.defineProperty(obj1, "age", { configurable: false, value: 18, enumerable: true });
+    Object.defineProperty(obj1, "sex", { writable: false, value: "男", enumerable: true });
+    console.log(obj1);
+    Object.defineProperties(obj1,
+        {
+            age1: {
+                configurable: false,
+                value: 18
+            },
+            sex1: {
+                writable: false,
+                value: "男"
+            }
+        })
+
+
+    for (i in obj1) {
+        console.log(i, obj1[i]);
+    }
+
+    Object.keys(obj1).forEach((i) => {
+        console.log(i);
+    });
+
+    function Person(userName, IDCard) {
+        Object.defineProperties(this, {
+            userName: {
+                configurable: false,
+                enumerable: true,
+                writable: false,
+                value: userName
+            },
+            IDCard: {
+                configurable: false,
+                enumerable: true,
+                writable: false,
+                value: IDCard,
+            },
+            sex: {
+                configurable: false,
+                enumerable: true,
+                get() {
+                    if (this.IDCard[16] % 2 === 0) {  //return ["女","男"][this.IDCard[16] % 2]
+                        return "女";
+                    } else {
+                        return "男"
+                    }
+                }
+            },
+            age: {
+                configurable: false,
+                enumerable: true,
+                get() {
+                    return ~~((Date.now() - this.birthday) / 1000 / 60 / 60 / 24 / 365);
+                }
+
+            },
+            birthday: {
+                configurable: false,
+                enumerable: true,
+                get() {
+                    return new Date(this.IDCard.slice(6, 10), this.IDCard.slice(10, 12),
+                        this.IDCard.slice(12, 14));
+                }
+
+            }
+
+        })
+    }
+
+    let p = new Person("tjh", "412131200102090016");
+    console.log(p);
+
+</script>
+
+</html>

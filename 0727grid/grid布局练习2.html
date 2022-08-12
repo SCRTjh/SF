@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .main {
+            width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(2, 300px);
+            grid-gap: 20px;
+            margin: auto;
+        }
+
+        .main>.item {
+            text-align: center;
+
+        }
+
+        .main>.item>img {
+            width: 100%;
+        }
+
+        .main>.item>p:first-of-type {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+        .main>.item>p:last-of-type {
+            text-decoration: line-through;
+        }
+
+        .main>.last {
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        .main>.last>div {
+            box-sizing: border-box;
+            border: 1px solid black;
+        }
+
+        .main>.last>div>img {
+            height: 100%;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="main">
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="item">
+            <img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+            <p>领券下单领券下单领券下单领...</p>
+            <p>2555&yen;</p>
+        </li>
+        <li class="last">
+            <div><img src="./img/41e6cfad907b6e90acad42a468497aac.png" alt="">
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+            <div>
+                <h2>浏览更多</h2>
+                <p>热门</p>
+                <span></span>
+            </div>
+        </li>
+    </ul>
+
+</body>
+
+</html>

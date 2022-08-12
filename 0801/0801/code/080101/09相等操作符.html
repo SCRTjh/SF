@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相等操作符</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(1 == 2);                                    //false
+    console.log(1 == 1);                                    //true
+    console.log(1 == true);                                 //true 第4条原则               
+    console.log(0 == false);                                //true 第4条原则
+    console.log("0" == false);                              //true 先适用于第4条原则，再适用于第3条
+    console.log("10" == 10);                                //true 第3条原则
+    console.log("" == 0);                                   //true 第3条原则
+    console.log(NaN == 0);                                  //false 第2条原则
+    console.log(NaN == NaN);                                //false 第2条原则
+    console.log(null == undefined);                         //true 第1条原则
+    console.log("" == null);                                //false 第1条原则或第5条原则
+    console.log(0 == undefined);                            //false 第1条原则或第5条原则
+    /**
+     * 原则
+     * 1.null与undefiend相等，也可以与自身相等，除此之外，不与任何值相等
+     * 2.NaN不参于比较，只要比较就是false
+     * 3.如果一个是字符串，另一个操作数是数值，则将字符串转成数值
+     * 4.如果是布尔类型 ，则通过Number去转换成数字
+     * 5.在比较之前，null与undefined不参于类型转换
+     */
+</script>
+
+</html>

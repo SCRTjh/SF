@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #000;
+        }
+
+        .out {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: repeating-conic-gradient(red, yellow, green, blue, red);
+            transform-style: preserve-3d;
+            transform: rotateX(75deg) rotateY(15deg);
+        }
+
+        .out>.in1 {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 1)
+        }
+
+        .in2 {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-image: radial-gradient(rgba(0, 0, 0, .0) 50%, red 80% 100%);
+            transform: rotateX(-90deg) rotateZ(30deg) translateZ(200px) translateY(-30px) translateX(-30px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="out">
+        <div class="in1"></div>
+        <div class="in2"></div>
+    </div>
+
+</body>
+
+</html>

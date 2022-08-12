@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>递归练习</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function sum1(sum, i) {
+        if (i === 1) {
+            return sum + i;
+        } else {
+            return sum1(sum + i, --i)
+        }
+    }
+
+    function fab(num1, num2, i) {
+        if (i < 3) {
+            return num2;
+        } else {
+            return fab(num2, num1 + num2, --i)
+        }
+    }
+
+    function fab2(i) {
+        if (i === 1 || i === 2) {
+            return 1;
+        } else {
+            return fab2(i - 1) + fab2(i - 2);
+        }
+    }
+
+    console.log(fab2(15));
+    console.log(fab(1, 1, 15)); //1+1+2+3+5+8+13+21+34+55+89+144+233+377+610
+    console.log(sum1(0, 10));
+
+
+    // function age(num, i) {
+    //     if (i <= 1) {
+    //         return num;
+    //     } else {
+    //         return age(num + 2, --i);
+    //     }
+    // }
+
+    function age(i) {
+        if (i <= 1) {
+            return 10;
+        } else {
+            return age(i - 1) + 2;
+        }
+    }
+    console.log(age(5));
+
+
+    function gbs(m, n) {
+        for (let i = m > n ? m : n; ; i++) {
+            if (i % m === 0 && i % n === 0) {
+                return i;
+            }
+        }
+    }
+
+
+    function gys(m, n) {
+        for (let i = ~~(m < n ? m : n); i >= 1; i--) {
+            if (m % i === 0 && n % i === 0) {
+
+                return i;
+            }
+        }
+    }
+
+    console.log(gbs(39, 26));
+    console.log(gys(60, 48));
+</script>
+
+</html>

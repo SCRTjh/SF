@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0715小米轮播</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        .main {
+            --h: 540px;
+            --w: 1440px;
+            width: var(--w);
+            height: var(--h);
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        .main>.menu {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
+
+        .main>.menu>.nav-box {
+            position: absolute;
+            left: 0;
+            width: 380px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .5);
+
+        }
+
+        .main>.menu>.nav-box>a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 50px;
+            padding-left: 20px;
+            color: #fff;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(1) {
+            top: 25px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(2) {
+            top: 75px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(3) {
+            top: 125px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(4) {
+            top: 175px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(5) {
+            top: 225px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(6) {
+            top: 275px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(7) {
+            top: 325px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(8) {
+            top: 375px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(9) {
+            top: 425px;
+        }
+
+        .main>.menu>.nav-box:nth-of-type(10) {
+            top: 475px;
+        }
+
+        .main>.menu>.content-box {
+            position: absolute;
+            display: none;
+            right: 0;
+            height: var(--h);
+            width: calc(var(--w) - 380px);
+        }
+
+        .main>.menu>.nav-box:hover {
+            background-color: orange;
+        }
+
+        .main>.menu>.nav-box:hover~#swiper1 {
+            display: none;
+        }
+
+        .main>.menu>.nav-box:hover~#swiper-btn1 {
+            display: none;
+        }
+
+        .main>.menu>.nav-box:hover~#swiper-btn2 {
+            display: none;
+        }
+
+        .main>.menu>.nav-box:hover~#swiper-btn3 {
+            display: none;
+        }
+
+        .main>.menu>.nav-box:hover~#swiper-btn4 {
+            display: none;
+        }
+
+        .main>.menu>#n1:hover~#c1 {
+            display: block;
+        }
+
+        .main>.menu>#n2:hover~#c2 {
+            display: block;
+        }
+
+        .main>.menu>#n3:hover~#c3 {
+            display: block;
+        }
+
+        .main>.menu>#n4:hover~#c4 {
+            display: block;
+        }
+
+        .main>.menu>#n5:hover~#c5 {
+            display: block;
+        }
+
+        .main>.menu>#n6:hover~#c6 {
+            display: block;
+        }
+
+        .main>.menu>#n7:hover~#c7 {
+            display: block;
+        }
+
+        .main>.menu>#n8:hover~#c8 {
+            display: block;
+        }
+
+        .main>.menu>#n9:hover~#c9 {
+            display: block;
+        }
+
+        .main>.menu>#n10:hover~#c10 {
+            display: block;
+        }
+
+        .main>.menu>#swiper1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: var(--w);
+            height: var(--h);
+            background-image: url("./img/1.jpg");
+            background-size: 1440px 540px;
+            z-index: -1;
+        }
+
+        .main>.menu>#swiper2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            width: var(--w);
+            height: var(--h);
+            background-image: url("./img/2.jpg");
+            background-size: 1440px 540px;
+            z-index: -1;
+        }
+
+        .main>.menu>#swiper3 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            width: var(--w);
+            height: var(--h);
+            background-image: url("./img/3.jpg");
+            background-size: 1440px 540px;
+            z-index: -1;
+        }
+
+        .main>.menu>#swiper4 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            width: var(--w);
+            height: var(--h);
+            background-image: url("./img/4.jpg");
+            background-size: 1440px 540px;
+            z-index: -1;
+        }
+
+        .main>.menu>.swiper-btn {
+            position: absolute;
+            bottom: 20px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #7f7f7f;
+        }
+
+        .main>.menu>#swiper-btn1 {
+            right: 20px;
+
+        }
+
+        .main>.menu>#swiper-btn2 {
+            right: 60px;
+        }
+
+        .main>.menu>#swiper-btn3 {
+            right: 100px;
+
+        }
+
+        .main>.menu>#swiper-btn4 {
+            right: 140px;
+        }
+
+        .main>.menu>#swiper-btn1:hover {
+            background-color: orange;
+        }
+
+        .main>.menu>#swiper-btn2:hover {
+            background-color: orange;
+        }
+
+        .main>.menu>#swiper-btn3:hover {
+            background-color: orange;
+        }
+
+        .main>.menu>#swiper-btn4:hover {
+            background-color: orange;
+        }
+
+        .main>.menu>#swiper-btn1:hover~#swiper1 {
+            display: block;
+        }
+
+        .main>.menu>#swiper-btn2:hover~#swiper2 {
+            display: block;
+        }
+
+        .main>.menu>#swiper-btn3:hover~#swiper3 {
+            display: block;
+        }
+
+        .main>.menu>#swiper-btn4:hover~#swiper4 {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <ul class="menu">
+            <li class="nav-box" id="n1"><a href="#">手机&nbsp;电话卡</a></li>
+            <li class="nav-box" id="n2"><a href="#">电视&nbsp;盒子</a></li>
+            <li class="nav-box" id="n3"><a href="#">笔记本&nbsp;显示器&nbsp;平板</a></li>
+            <li class="nav-box" id="n4"><a href="#">家电&nbsp;插线板</a></li>
+            <li class="nav-box" id="n5"><a href="#">出行&nbsp;穿戴</a></li>
+            <li class="nav-box" id="n6"><a href="#">智能&nbsp;路由器</a></li>
+            <li class="nav-box" id="n7"><a href="#">电源&nbsp;配件</a></li>
+            <li class="nav-box" id="n8"><a href="#">健康&nbsp;儿童</a></li>
+            <li class="nav-box" id="n9"><a href="#">耳机&nbsp;机箱</a></li>
+            <li class="nav-box" id="n10"><a href="#">生活&nbsp;箱包</a></li>
+            <li class="content-box" id="c1">第1盒子</li>
+            <li class="content-box" id="c2">第2盒子</li>
+            <li class="content-box" id="c3">第3盒子</li>
+            <li class="content-box" id="c4">第4盒子</li>
+            <li class="content-box" id="c5">第5盒子</li>
+            <li class="content-box" id="c6">第6盒子</li>
+            <li class="content-box" id="c7">第7盒子</li>
+            <li class="content-box" id="c8">第8盒子</li>
+            <li class="content-box" id="c9">第9盒子</li>
+            <li class="content-box" id="c10">第10盒子</li>
+            <li id="swiper-btn1" class="swiper-btn"></li>
+            <li id="swiper-btn2" class="swiper-btn"></li>
+            <li id="swiper-btn3" class="swiper-btn"></li>
+            <li id="swiper-btn4" class="swiper-btn"></li>
+            <li class="swiper" id="swiper1"></li>
+            <li class="swiper" id="swiper2"></li>
+            <li class="swiper" id="swiper3"></li>
+            <li class="swiper" id="swiper4"></li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

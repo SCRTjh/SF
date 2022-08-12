@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            --w: 104px;
+            --h: 612px;
+            width: var(--w);
+            height: calc(var(--h) / 6);
+            background-image: url("img/role_left.png");
+            background-position: 0px -1px;
+            animation: ani 1s linear infinite;
+        }
+
+        @keyframes ani {
+
+            0%,
+            16.6% {
+                background-position-y: calc(var(--h) / -6 - 1px);
+            }
+
+            16.7%,
+            33.3% {
+                background-position-y: calc(var(--h) / -6 * 2 - 1px);
+            }
+
+            33.4%,
+            50% {
+                background-position-y: calc(var(--h) / -6 * 3 - 1px);
+            }
+
+            50.1%,
+            66.6% {
+                background-position-y: calc(var(--h) / -6 * 4 - 1px);
+            }
+
+            66.7%,
+            83.3% {
+                background-position-y: calc(var(--h) / -6 * 5 - 1px);
+            }
+
+            83.4%,
+            100% {
+                background-position-y: calc(var(--h) / -6 * 6 - 1px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main"></div>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我恨算法2</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //工厂排名
+    for (let a = 1; a <= 5; a++) {
+        for (let b = 1; b <= 5; b++) {
+            for (let c = 1; c <= 5; c++) {
+                for (let d = 1; d <= 5; d++) {
+                    for (let e = 1; e <= 5; e++) {
+                        let aSay = e == 1 && (a == 1 || a == 2);
+                        let bSay = b == 2 && (b == 1 || b == 2);
+                        let cSay = a == 5 && (c == 1 || c == 2);
+                        let dSay = c != 1 && (d == 1 || d == 2);
+                        let eSay = d == 1 && (e == 1 || e == 2);
+                        if (aSay + bSay + cSay + dSay + eSay == 2 && a + b + c + d + e == 15 && e != 2 && e != 3 && a * b * c * d * e == 120) {
+                            console.log(a, b, c, d, e);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //填除法数字
+    let chushu = 10;
+    let beichu = 0;
+    for (let beichu = 1000; beichu <= 9999; beichu++) {
+        for (let chushu = 10; chushu <= 99; chushu++) {
+            if (~~(beichu / chushu) === 809 && beichu % chushu === 1 && (beichu - chushu * 8 * 100 >= 100) && 9 * chushu >= 100) {
+                let yu1 = ~~(beichu / 100) - (8 * chushu);
+                let beichu2 = yu1 * 100 + beichu % 100;
+                console.log(beichu, chushu, 8 * chushu, beichu2, 9 * chushu);
+            }
+        }
+    }
+
+    //5只猴子分桃
+
+
+    //分数
+    let fracT = 1;
+    let fracB = 1;
+    let fsum = 0;
+    for (let i = 0; i < 10; i++) {
+        let lastNum = fracT;
+        fracT += fracB;
+        fracB = lastNum;
+        fsum += fracT / fracB
+    }
+    console.log(fsum);
+
+
+    //借书表
+    for (let a = 1; a <= 5; a++) {
+        for (let b = 1; b <= 5; b++) {
+            for (let c = 1; c <= 5; c++) {
+                for (let d = 1; d <= 5; d++) {
+                    for (let e = 1; e <= 5; e++) {
+                        aWant = a === 3 || a === 4; //满足想要的书为true
+                        bWant = b === 1 || b === 2 || b === 5;
+                        cWant = c === 2 || c === 3;
+                        dWant = d === 1 || d === 2 || d === 4;
+                        eWant = e === 2 || e === 5;
+                        if (a + b + c + d + e === 15 && a * b * c * d * e === 120 && aWant + bWant + cWant + dWant + eWant === 5) { //一人只能拿一本书，不能重复
+                            console.log(a, b, c, d, e);
+                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+
+</script>
+
+</html>

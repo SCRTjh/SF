@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            --w: 639px;
+            --h: 426px;
+            position: relative;
+            width: 639px;
+            height: 426px;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+
+        .main>.inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: var(--h);
+            width: calc(var(--w) * 5);
+            animation: swiper-ani 10s linear infinite;
+        }
+
+        .main>.inner>img {
+            float: left;
+        }
+
+        @keyframes swiper-ani {
+
+            0%,
+            15% {
+                left: 0;
+            }
+
+            20%,
+            35% {
+                left: calc(var(--w) * -1);
+            }
+
+            40%,
+            65% {
+                left: calc(var(--w) * -2);
+            }
+
+            75%,
+            95% {
+                left: calc(var(--w) * -3);
+            }
+
+            100% {
+                left: calc(var(--w) * -4);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="inner">
+            <img src="./img/img/item1.jpg" alt="">
+            <img src="./img/img/item2.jpg" alt="">
+            <img src="./img/img/item3.jpg" alt="">
+            <img src="./img/img/item4.jpg" alt="">
+            <img src="./img/img/item1.jpg" alt="">
+        </div>
+    </div>
+
+</body>
+
+</html>

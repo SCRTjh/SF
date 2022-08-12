@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <defs>
+    <path d="M22 11C22 17.0751 17.0751 22 11 22L4.04133 22Q3.91635 22 3.79521 21.9692Q3.67408 21.9384 3.56426 21.8787Q3.45445 21.819 3.36272 21.7341Q3.271 21.6492 3.20302 21.5443Q3.13504 21.4395 3.09499 21.3211Q3.05495 21.2027 3.04531 21.078Q3.03567 20.9534 3.05703 20.8303Q3.07839 20.7071 3.12943 20.593L3.72849 19.254C1.44222 17.2383 0 14.2876 0 11C0 4.92487 4.92487 0 11 0C17.0751 0 22 4.92487 22 11Z" transform="matrix(-1 0 0 1 22 0)" id="path_1" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="Group-7">
+    <g id="Combined-Shape">
+      <g clip-path="url(#clip_1)">
+        <use xlink:href="#path_1" fill="none" stroke="#565C66" stroke-width="3" />
+      </g>
+    </g>
+    <path d="M3 1.5C3 2.32843 2.32843 3 1.5 3C0.671573 3 0 2.32843 0 1.5C0 0.671573 0.671573 0 1.5 0C2.32843 0 3 0.671573 3 1.5ZM6.5 3C7.32843 3 8 2.32843 8 1.5C8 0.671573 7.32843 0 6.5 0C5.67157 0 5 0.671573 5 1.5C5 2.32843 5.67157 3 6.5 3ZM13 1.5C13 2.32843 12.3284 3 11.5 3C10.6716 3 10 2.32843 10 1.5C10 0.671573 10.6716 0 11.5 0C12.3284 0 13 0.671573 13 1.5Z" transform="translate(4.5 9.5)" id="Combined-Shape" fill="#565C66" fill-rule="evenodd" stroke="none" />
+  </g>
+</svg>

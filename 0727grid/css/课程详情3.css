@@ -1,0 +1,220 @@
+@charset "utf-8";
+
+:root {
+    --primaryColor: #408cff;
+    --subColor-green: #25bc57;
+    --subColor-yellow: #ffb70f;
+    --subColor-red: #ff4d4d;
+    --subColor-blue: #538de6;
+    --titleColor: #292d33;
+    --txtColor-1: #565c66;
+    --txtColor-2: #8a9099;
+    --borderColor: #d8dde6;
+    --hrColor: #e6eaf0;
+    --bgColor: #f7f7fa;
+
+    font-size: calc(100vw / 375 * 100);
+    font-family: "PingFangSC-Regular";
+}
+
+
+body {
+    font-size: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.clearfix::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+#app {
+    /* position: relative;
+    top: 0;
+    left: 0; */
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bgColor);
+}
+
+
+/* 底部输入栏 */
+.bottom-bar {
+    /* position: fixed;
+    bottom: 0;
+    left: 0; */
+    width: 100%;
+    height: .64rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.bottom-bar>.input-box {
+    position: relative;
+}
+
+.bottom-bar>.input-box>span {
+    position: absolute;
+    left: .12rem;
+    top: .10rem;
+    font-size: .24rem;
+    color: var(--borderColor);
+}
+
+.bottom-bar>.input-box>#comment {
+    box-sizing: border-box;
+    width: 3.47rem;
+    height: .4rem;
+    outline: none;
+    border: none;
+    font-size: .16rem;
+    padding-left: .4rem;
+    background-color: #f0f2f5;
+}
+
+.bottom-bar>.input-box>#comment::placeholder {
+    font-size: .16rem;
+    color: var(--borderColor);
+}
+
+.bottom-bar>.input-box>#comment:focus-within~span {
+    display: none;
+}
+
+/* 导航栏 */
+.content-box>.bottom-content {
+    margin-top: .12rem;
+}
+
+.content-box>.bottom-content>.nav-bar {
+    display: flex;
+    height: .49rem;
+}
+
+.content-box>.bottom-content>.nav-bar>li {
+    position: relative;
+    width: 33.3%;
+}
+
+.content-box>.bottom-content>.nav-bar>li>a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "PingFangSC-Regular";
+    font-size: .16rem;
+    color: var(--txtColor-1);
+}
+
+.content-box>.bottom-content>.nav-bar>li:nth-of-type(3)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: .36rem;
+    border-bottom: .02rem solid var(--primaryColor);
+    border-radius: .01rem;
+}
+
+.content-box>.bottom-content>.nav-bar>li:nth-of-type(3)>a {
+    color: var(--primaryColor);
+}
+
+/* 交流区 */
+.content-box>.bottom-content>.body-box {
+
+    margin-left: .16rem;
+    margin-right: .16rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list {
+    width: 100%;
+    box-sizing: border-box;
+    /* border: .02rem solid #000; */
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat {
+    border-top: .02rem solid var(--borderColor);
+    margin-bottom: .12rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.head-box {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-top: .16rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.head-box>img {
+    width: .4rem;
+    height: .4rem;
+    margin-right: .08rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.head-box>.nick-box>.nick-name {
+    color: #444444;
+    font-family: "PingFangSC-Medium";
+    font-size: .16rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.head-box>.nick-box>.chat-time {
+    font-family: "PingFangSC-Medium";
+    font-size: .12rem;
+    color: var(--txtColor-2);
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.txt-box {
+    box-sizing: border-box;
+    padding-left: .4rem;
+    padding-top: .12rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.txt-box>p {
+    padding-bottom: .12rem;
+    font-family: "PingFangSC-Regular";
+    font-size: .15rem;
+    color: var(--txtColor-1);
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.txt-box>.bottom-like {
+    margin-top: .12rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.txt-box>.bottom-like>.count-box {
+    display: flex;
+    align-items: center;
+    margin-right: .27rem;
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.txt-box>.bottom-like>.count-box>span {
+    box-sizing: border-box;
+    padding: .04rem;
+    font-size: .16rem;
+    color: var(--txtColor-2);
+}
+
+.content-box>.bottom-content>.body-box>.chat-list>.chat>.txt-box>.bottom-like>.count-box>p {
+    font-family: "PingFangSC-Regular";
+    font-size: .14rem;
+    color: var(--txtColor-2);
+}

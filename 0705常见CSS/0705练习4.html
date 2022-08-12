@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0705练习4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            width: 400px;
+            height: 240px;
+            margin: 0 auto;
+            background-image: url("img/line.png");
+            background-repeat: repeat-x;
+            border: 1px solid black;
+            border-radius: 8px;
+        }
+
+        div>h3 {
+            color: white;
+            margin-left: 30px;
+            margin-top: 0px;
+
+        }
+
+        div>h3::before {
+            content: url("img/bg.gif");
+
+        }
+
+        div>ul {
+            list-style: none;
+
+        }
+
+
+
+        div>ul>li {
+            height: 24px;
+            text-indent: 1em;
+            line-height: 24px;
+            background-image: url("img/dotBg.gif");
+            background-repeat: no-repeat;
+            background-position: -7px -6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>中心开班信息</h3>
+        <ul>
+            <li>8月12日:学历+技能班</li>
+            <li>8月16日:高考特招班</li>
+            <li>8月23日:Java精英班</li>
+            <li>8月31日:学士后强化班</li>
+            <li>9月5日:大学生就业班</li>
+            <li>9月9日:企业定向委培班</li>
+            <li>9月16日:网络营销强化班</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

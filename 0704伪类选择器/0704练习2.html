@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input {
+            display: none;
+        }
+
+        label::after {
+            content: url("02.png");
+        }
+
+        input:checked+label::after {
+            content: url("02.png");
+        }
+
+        input:checked~label:nth-of-type(n)::after {
+            content: url("01.png");
+        }
+
+        a::after {
+            content: url("02.png");
+        }
+
+        a:target~a:nth-of-type(n)::after {
+            content: url("01.png");
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="radio" id="l1">
+    <label for="l1"></label>
+    <input type="radio" id="l2">
+    <label for="l2"></label>
+    <input type="radio" id="l3">
+    <label for="l3"></label>
+    <input type="radio" id="l4">
+    <label for="l4"></label>
+    <input type="radio" id="l5">
+    <label for="l5"></label>
+    <br>
+    <a href="#a" id="a"></a>
+    <a href="#b" id="b"></a>
+    <a href="#c" id="c"></a>
+    <a href="#d" id="d"></a>
+    <a href="#e" id="e"></a>
+
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微信</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        #app {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ededed;
+            flex-direction: column;
+        }
+
+        #app>.bottom-nav {
+            height: 55px;
+            border: 1px solid #000;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        #app>.bottom-nav>div {
+            display: flex;
+            width: 20vw;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        #app>.bottom-nav>div>img {
+            width: 30px;
+            height: 30px;
+        }
+
+        #app>.top-content {
+            flex: 1;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="top-content"></div>
+        <div class="bottom-nav">
+            <div><img src="./img/02.png" alt="">
+                <p>微信</p>
+            </div>
+            <div><img src="./img/03.png" alt="">
+                <p>通讯录</p>
+            </div>
+            <div><img src="./img/04.png" alt="">
+                <p>发现</p>
+            </div>
+            <div><img src="./img/01.png" alt="">
+                <p>我</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var obj1 = {
+        userName: "张珊"
+    };
+
+
+    Object.defineProperties(obj1, {
+        sex: {
+            enumerable: false,
+            value: "男"
+        },
+        age: {
+            enumerable: false,
+            get() {
+                return 19;
+            }
+        },
+        sayHello: {
+            enumerable: false,
+            value: function () {
+                console.log("大家好，我叫" + this.userName);
+            }
+        }
+    })
+
+    let arr1 = [];
+
+    console.log(Object.getOwnPropertyNames(obj1));
+
+    Object.getOwnPropertyNames(obj1).forEach((i) => {
+        if (typeof obj1[i] === "function") {
+            obj1[i]();
+        }
+        if (Object.getOwnPropertyDescriptor(obj1, i)["enumerable"] === false) {
+            arr1.push(i)
+        }
+    })
+
+    console.log(arr1);
+    console.log(arr1 instanceof Object);
+    console.log(typeof arr1);
+    console.log(arr1 instanceof Array);
+
+    //打印对象
+    function f(obj) {
+        if (obj instanceof Array) {
+            obj.forEach((i) => {
+                f(i)
+            })
+
+        } else if (obj instanceof Object) {
+            for (i in obj) {
+                f(obj[i])
+            }
+        } else {
+            console.log(obj);
+        }
+    }
+
+    let teacherInfo = {
+        teacherName: "标哥哥",
+        age: 19,
+        sex: "男",
+        money: 1000
+    }
+
+    let stu1 = {
+        userName: "张珊",
+        sex: "女",
+        age: 18,
+        aaa: teacherInfo,
+        hobby: ["看书", "睡觉"]
+    }
+
+    f(stu1);
+
+
+</script>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人物行走</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        list-style-type: none;
+    }
+
+    .main {
+        position: relative;
+        left: 0;
+        top: 0;
+        --w: 104px;
+        --h: 612px;
+        width: var(--w);
+        height: calc(var(--h) / 6);
+        background-image: url("img/人物行走img/right.png");
+        background-position: 0px 0px;
+        animation: main-ani 12s linear infinite,
+            role1-ani 1s steps(6) infinite;
+
+    }
+
+
+
+    @keyframes main-ani {
+        0% {
+            top: 0;
+            left: 0;
+            background-image: url(./img/人物行走img/right.png);
+        }
+
+        24.9% {
+            background-image: url(./img/人物行走img/right.png);
+        }
+
+        25% {
+            top: 0;
+            left: 400px;
+            background-image: url(./img/人物行走img/down.png);
+        }
+
+        49.9% {
+            background-image: url(./img/人物行走img/down.png);
+        }
+
+
+        50% {
+            left: 400px;
+            top: 400px;
+            background-image: url(./img/人物行走img/left.png);
+        }
+
+        74.9% {
+            background-image: url(./img/人物行走img/left.png);
+        }
+
+        75% {
+            left: 0px;
+            top: 400px;
+            background-image: url(./img/人物行走img/up.png);
+        }
+
+        99.9% {
+            background-image: url(./img/人物行走img/up.png);
+        }
+
+        100% {
+            left: 0;
+            background-image: url(./img/人物行走img/right.png);
+        }
+    }
+
+    @keyframes role1-ani {
+        0% {
+            background-position-y: 0px;
+        }
+
+        100% {
+            background-position-y: -612px;
+        }
+
+    }
+</style>
+
+<body>
+    <div class="main">
+    </div>
+
+</body>
+
+</html>

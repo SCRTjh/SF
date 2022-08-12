@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择器补充</title>
+    <style>
+        /* 请将box1下面的a和box2下面的a设置为红色 */
+        :where(.box1, .box2)>a {
+            color: red;
+        }
+
+        :is(.box1, .box2)>a {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <a href="#">百度一下</a>
+    </div>
+    <div class="box2">
+        <a href="#">标哥的播客</a>
+    </div>
+    <div class="box3">
+        <a href="#">软帝集团</a>
+    </div>
+</body>
+
+</html>

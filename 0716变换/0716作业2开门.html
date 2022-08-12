@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开门</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .main {
+            position: relative;
+            top: 50px;
+            margin: auto;
+            height: 600px;
+            width: 1200px;
+            outline: 2px solid black;
+        }
+
+        .main>label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 800px;
+
+        }
+
+        .main>label>[type="checkbox"] {
+            display: none;
+        }
+
+        .main>label>.left {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 600px;
+            height: 600px;
+            background-color: red;
+            transition: all 0.5s linear;
+
+        }
+
+        .main>label>.right {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 600px;
+            width: 600px;
+            background-color: blue;
+            transition: all 0.5s linear;
+        }
+
+        .main>label>[type="checkbox"]:checked~.left {
+            transform-origin: left center;
+            transform: rotateY(35deg);
+        }
+
+        .main>label>[type="checkbox"]:checked~.right {
+            transform-origin: right center;
+            transform: rotateY(-35deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <label for="a1">
+            <input type="checkbox" id="a1">
+            <div class="left"></div>
+            <div class="right"></div>
+        </label>
+    </div>
+
+</body>
+
+</html>

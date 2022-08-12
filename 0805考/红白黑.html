@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    out: for (let red = 0; red <= 31; red++) {
+        for (let white = 0; white <= 31; white++) {
+            for (let black = 0; black <= 31; black++) {
+                if (red + white === 25 && white + black === 31 && red + black === 28) {
+                    console.log(`红${red},白${white},黑${black}`);
+                    break out;
+                }
+            }
+        }
+    }
+</script>
+
+</html>

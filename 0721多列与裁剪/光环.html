@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光环</title>
+    <style>
+        .main {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 2px solid black;
+            overflow: hidden;
+        }
+
+        .main>.green {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 380px;
+            width: 380px;
+            background-color: aqua;
+        }
+
+        .main>.top {
+            position: absolute;
+            height: 10px;
+            width: 400px;
+            top: 0;
+            left: -400px;
+            background-color: #ff1493;
+            animation: top-ani 1s linear infinite;
+        }
+
+        .main>.right {
+            position: absolute;
+            height: 400px;
+            width: 10px;
+            right: 0;
+            top: -400px;
+            background-color: #ff1493;
+            animation: right-ani 1s linear 0.25s infinite;
+        }
+
+        .main>.left {
+            position: absolute;
+            height: 400px;
+            width: 10px;
+            left: 0;
+            bottom: -400px;
+            background-color: #ff1493;
+            animation: left-ani 1s linear 0.75s infinite;
+        }
+
+        .main>.bottom {
+            position: absolute;
+            height: 10px;
+            width: 400px;
+            bottom: 0px;
+            right: -400px;
+            background-color: #ff1493;
+            animation: bottom-ani 1s linear 0.5s infinite;
+        }
+
+        @keyframes top-ani {
+            0% {
+                left: -400px;
+            }
+
+            50% {
+                left: 400px
+            }
+
+            50.1%,
+            100% {
+                left: -400px;
+            }
+
+
+        }
+
+        @keyframes right-ani {
+            0% {
+                top: -400px;
+            }
+
+            50% {
+                top: 400px;
+            }
+
+            50.1%,
+            100% {
+                top: -400px;
+            }
+        }
+
+        @keyframes bottom-ani {
+            0% {
+                right: -400px;
+            }
+
+            50% {
+                right: 400px;
+            }
+
+            50.1%,
+            100% {
+                right: -400px;
+            }
+        }
+
+        @keyframes left-ani {
+            0% {
+                bottom: -400px;
+            }
+
+            50% {
+                bottom: 400px;
+            }
+
+            50.1%,
+            100% {
+                bottom: -400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="green"></div>
+        <div class="top"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+
+</html>

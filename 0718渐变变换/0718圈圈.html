@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .main {
+            height: 200px;
+            width: 200px;
+            /* border: 2px solid black; */
+            margin: 100px auto;
+            transform: rotateX(-10deg);
+            transform-style: preserve-3d;
+        }
+
+        .main>div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            background-size: 200px 200px;
+            box-shadow: 0px 0px 30px 5px #fff;
+            transform: rotateY(0deg) translateZ(0px);
+            transition: all 0.3s ease-in-out;
+            -webkit-box-reflect: below 10px linear-gradient(transparent, transparent 50%, rgba(0, 0, 0, .8));
+        }
+
+        .box1 {
+            background-image: url("img/2015.jpg");
+        }
+
+        .box2 {
+            background-image: url("img/2016.jpg");
+        }
+
+        .box3 {
+            background-image: url("img/2018上.jpg");
+
+        }
+
+        .box4 {
+            background-image: url("img/IMG_20210723_205830.jpg");
+        }
+
+        .box5 {
+            background-image: url("img/IMG_20210723_205846.jpg");
+        }
+
+        .box6 {
+            background-image: url("img/w01.jpg");
+        }
+
+        .box7 {
+            background-image: url("img/w02.jpg");
+
+        }
+
+        .box8 {
+            background-image: url("img/w03.jpg");
+        }
+
+        .box9 {
+            background-image: url("img/w04.jpg");
+        }
+
+        .box10 {
+            background-image: url("img/w05.jpg");
+        }
+
+        .box11 {
+            background-image: url("img/w06.jpg");
+        }
+
+        .box12 {
+
+            background-image: url("img/w07.jpg");
+
+        }
+
+        label {
+            display: inline-block;
+            margin-top: 100px;
+            margin-left: 40px;
+            color: #fff;
+
+        }
+
+        @keyframes startSpin {
+            0% {
+                transform: rotateX(-10deg) rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateX(-10deg) rotateY(1turn);
+            }
+        }
+
+
+
+        #spin:checked~.main {
+            animation: startSpin 6s linear infinite forwards;
+        }
+
+
+
+
+        #circle:checked~.main>.box7 {
+            transform: rotateY(180deg) translateZ(-500px);
+            transition-delay: 1.8s;
+        }
+
+        #circle:checked~.main>.box8 {
+            transform: rotateY(210deg) translateZ(-500px);
+            transition-delay: 2.1s;
+        }
+
+        #circle:checked~.main>.box9 {
+            transform: rotateY(240deg) translateZ(-500px);
+            transition-delay: 2.4s;
+        }
+
+        #circle:checked~.main>.box10 {
+            transform: rotateY(270deg) translateZ(-500px);
+            transition-delay: 2.7s;
+        }
+
+        #circle:checked~.main>.box11 {
+            transform: rotateY(300deg) translateZ(-500px);
+            transition-delay: 3s;
+        }
+
+        #circle:checked~.main>.box12 {
+            transform: rotateY(330deg) translateZ(-500px);
+            transition-delay: 3.3s;
+        }
+
+        #circle:checked~.main>.box1 {
+            transform: rotateY(0deg) translateZ(-500px);
+
+        }
+
+        #circle:checked~.main>.box2 {
+            transform: rotateY(30deg) translateZ(-500px);
+            transition-delay: 0.3s;
+        }
+
+        #circle:checked~.main>.box3 {
+            transform: rotateY(60deg) translateZ(-500px);
+            transition-delay: 0.6s;
+        }
+
+        #circle:checked~.main>.box4 {
+            transform: rotateY(90deg) translateZ(-500px);
+            transition-delay: 0.9s;
+        }
+
+        #circle:checked~.main>.box5 {
+            transform: rotateY(120deg) translateZ(-500px);
+            transition-delay: 1.2s;
+        }
+
+        #circle:checked~.main>.box6 {
+            transform: rotateY(150deg) translateZ(-500px);
+            transition-delay: 1.5s;
+        }
+
+
+        #square:checked~.main>.box1 {
+            transform: translateZ(100px);
+        }
+
+        #square:checked~.main>.box7 {
+            opacity: 0.5;
+            transform: scale(2) translateZ(200px);
+        }
+
+
+
+        #square:checked~.main>.box2 {
+            transform: translateZ(-100px);
+        }
+
+        #square:checked~.main>.box8 {
+            opacity: 0.5;
+            transform: scale(2) translateZ(-200px);
+        }
+
+
+
+        #square:checked~.main>.box3 {
+            transform: rotateY(90deg) translateZ(-100px);
+        }
+
+        #square:checked~.main>.box9 {
+            opacity: 0.5;
+            transform: rotateY(90deg) scale(2) translateZ(-200px);
+        }
+
+
+
+        #square:checked~.main>.box4 {
+            transform: rotateY(-90deg) translateZ(-100px);
+        }
+
+        #square:checked~.main>.box10 {
+            opacity: 0.5;
+            transform: rotateY(-90deg) scale(2) translateZ(-200px);
+        }
+
+
+
+        #square:checked~.main>.box5 {
+            transform: rotateX(-90deg) translateZ(-100px);
+        }
+
+        #square:checked~.main>.box11 {
+
+            opacity: 0.5;
+            transform: rotateX(-90deg) scale(2) translateZ(-200px);
+        }
+
+
+
+        #square:checked~.main>.box6 {
+            transform: rotateX(90deg) translateZ(-100px);
+        }
+
+        #square:checked~.main>.box12 {
+            opacity: 0.5;
+            transform: rotateX(90deg) scale(2) translateZ(-200px);
+        }
+
+        #square:checked~.main>div {
+            -webkit-box-reflect: below 0px linear-gradient(transparent, transparent 50%);
+        }
+
+
+        #stop:checked~.main {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body>
+    <label for="spin">旋转</label>
+    <input type="radio" name="spin" id="spin">
+    <label for="circle">圈圈</label>
+    <input type="radio" name="btn" id="circle">
+    <label for="square">方方</label>
+    <input type="radio" name="btn" id="square">
+    <label for="stop">我说停停</label>
+    <input type="radio" name="spin" id="stop">
+    <div class="main">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+        <div class="box5"></div>
+        <div class="box6"></div>
+        <div class="box7"></div>
+        <div class="box8"></div>
+        <div class="box9"></div>
+        <div class="box10"></div>
+        <div class="box11"></div>
+        <div class="box12"></div>
+    </div>
+
+</body>
+
+</html>

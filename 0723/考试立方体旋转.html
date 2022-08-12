@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立方体旋转</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        list-style-type: 0;
+    }
+
+    .main {
+        height: 100px;
+        width: 1050px;
+        margin: auto;
+        margin-top: 200px;
+    }
+
+    .main>div {
+        position: relative;
+        float: left;
+        width: 200px;
+        height: 100%;
+        margin-right: 10px;
+        line-height: 100px;
+        transform-origin: center top;
+        transform-style: preserve-3d;
+
+
+    }
+
+    .main>div>div {
+        position: absolute;
+        box-sizing: border-box;
+        padding-left: 45px;
+        font-size: 24px;
+        font-weight: 700;
+        width: 200px;
+        height: 100px;
+        top: 0;
+        left: 0;
+
+    }
+
+    .main>div>.front {
+        background-color: blueviolet;
+    }
+
+    .main>div>.middle {
+        transform-origin: center bottom;
+        transform: rotateX(-90deg) translateY(100px);
+        background-color: black;
+        color: white;
+    }
+
+    .main>.box1 {
+        animation: spin-ani 1s linear 1 1s alternate;
+    }
+
+    .main>.box2 {
+        animation: spin-ani 1s linear 1 1.75s alternate;
+    }
+
+    .main>.box3 {
+        animation: spin-ani 1s linear 1 2.5s alternate;
+    }
+
+    .main>.box4 {
+        animation: spin-ani 1s linear 1 3.25s alternate;
+    }
+
+    .main>.box5 {
+        animation: spin-ani 1s linear 1 4s alternate;
+    }
+
+
+    @keyframes spin-ani {
+        0% {
+            transform: rotateX(0deg);
+        }
+
+        50% {
+            transform: rotateX(90deg);
+        }
+
+        75% {
+            transform: rotateX(90deg);
+        }
+
+
+        100% {
+            transform: rotateX(0deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="box1">
+            <div class="front">1</div>
+            <div class="middle">1</div>
+        </div>
+        <div class="box2">
+            <div class="front">2</div>
+            <div class="middle">2</div>
+        </div>
+        <div class="box3">
+            <div class="front">3</div>
+            <div class="middle">3</div>
+        </div>
+        <div class="box4">
+            <div class="front">4</div>
+            <div class="middle">4</div>
+        </div>
+        <div class="box5">
+            <div class="front">5</div>
+            <div class="middle">5</div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

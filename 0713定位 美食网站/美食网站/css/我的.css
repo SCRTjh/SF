@@ -1,0 +1,137 @@
+.body-box {
+    margin-top: 30px;
+    margin-bottom: 185px;
+}
+
+.body-box>.personal-center-box {
+    float: left;
+    width: 284px;
+    height: 512px;
+
+}
+
+.body-box>.personal-center-box>* {
+    margin-right: 30px;
+    width: 224px;
+}
+
+
+.body-box>.personal-center-box>.personal {
+    height: 57px;
+    line-height: 57px;
+    font-family: MicrosoftYaHei;
+    font-size: 18px;
+    color: #313131;
+    border-bottom: 1px solid #000;
+}
+
+.body-box>.personal-center-box>div {
+    padding-top: 24px;
+}
+
+.body-box>.personal-center-box>div>img {
+    vertical-align: middle;
+}
+
+.body-box>.personal-center-box>div>a {
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: MicrosoftYaHei;
+    font-size: 16px;
+    color: #313131;
+    padding-left: 10px;
+
+}
+
+.body-box>.personal-center-box>div:first-of-type>a {
+    color: #e60012;
+}
+
+.order-box {
+    float: left;
+    width: 1166px;
+    margin-left: 70px;
+}
+
+.order-box>p {
+    height: 57px;
+    line-height: 57px;
+    font-size: 18px;
+    border-bottom: 1px solid #000;
+}
+
+.order-box>.order-list>.order>.order-inform {
+    height: 74px;
+    line-height: 74px;
+}
+
+.order-box>.order-list>.order>.order-inform>p {
+    display: inline-block;
+    font-family: MicrosoftYaHei;
+    font-size: 16px;
+    color: #313131;
+}
+
+.order-box>.order-list>.order>.order-inform {
+    width: 1002px;
+    text-align-last: justify;
+}
+
+.order-box>.order-list>.order>.goods-inform>img {
+    float: left;
+}
+
+.order-box>.order-list>.order>.goods-inform>p {
+    margin-left: 144px;
+}
+
+.order-box>.order-list>.order>.goods-inform>p:nth-of-type(1) {
+    height: 17px;
+    font-family: MicrosoftYaHei;
+    font-size: 16px;
+    color: #313131;
+    padding-top: 12px;
+}
+
+.order-box>.order-list>.order>.goods-inform>p:nth-of-type(2) {
+    display: inline-block;
+    height: 14px;
+    font-family: MicrosoftYaHei;
+    font-size: 18px;
+    color: #e60012;
+    padding-top: 27px;
+    padding-bottom: 26px;
+    margin-left: 30px;
+}
+
+.order-box>.order-list>.order>.goods-inform>.total-price {
+    display: inline-block;
+    margin-left: 811px;
+    width: 83px;
+    height: 15px;
+}
+
+.order-box>.order-list>.order>.goods-inform>.total-price>b {
+    font-weight: normal;
+    color: #e60012;
+}
+
+.order-box>.order-list>.order>.goods-inform>p:nth-of-type(3) {
+    display: inline-block;
+    height: 12px;
+    font-family: MicrosoftYaHei;
+    font-size: 16px;
+    color: #313131;
+    padding-bottom: 8px;
+    margin-left: 30px;
+}
+
+.order-box>.order-list>.order>.goods-inform>i {
+    width: 48px;
+    height: 15px;
+    font-family: MicrosoftYaHei;
+    font-size: 16px;
+    font-style: normal;
+    color: #313131;
+    margin-left: 833px;
+}

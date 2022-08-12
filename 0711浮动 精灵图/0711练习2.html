@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        /* .main {
+            text-align-last: justify;
+        } */
+
+        .box {
+            /* display: inline-block; */
+            height: 400px;
+            width: 900px;
+            text-align: center;
+            background-color: aqua;
+        }
+
+        .div1 {
+            float: left;
+            height: 100%;
+            width: 280px;
+
+            background-color: red;
+        }
+
+        .div2 {
+            display: inline-block;
+            height: 100%;
+            width: 280px;
+            background-color: green;
+        }
+
+
+        .div3 {
+            float: right;
+            height: 100%;
+            width: 280px;
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="main"> -->
+    <div class="box">
+        <div class="div1"></div>
+        <div class="div2"></div>
+        <div class="div3 clearfix"></div>
+    </div>
+    <!-- </div> -->
+
+</body>
+
+</html>

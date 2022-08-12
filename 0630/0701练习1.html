@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0701练习1</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .regForm {
+            box-sizing: border-box;
+            width: 450px;
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        .regForm .tip {
+            color: red;
+            margin: -10px 0 0 10px;
+            background-color: white;
+            width: 120px;
+        }
+
+        .regForm>form>table {
+            border-spacing: 10px;
+        }
+
+        .regForm>form>table>colgroup>col:first-child {
+            width: 100px;
+        }
+
+        .regForm>form>table>colgroup>col:nth-child(2) {
+            width: 300px;
+        }
+
+        .regForm>form>table>tbody>tr>td:first-child {
+            text-align: center;
+        }
+
+        .regForm>form>table>tbody>tr:nth-of-type(even) {
+            background-color: #e0e0e0;
+        }
+
+        .regForm>form>.btnBox>button {
+            font-size: 18px;
+        }
+
+        .regForm>form>.btnBox {
+            width: 160px;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+        .regForm>form>.btnBox>#regBtn {
+            color: green;
+            margin-right: 10px;
+        }
+
+
+        .regForm>form>.btnBox>#cancelBtn {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>用户信息注册</h1>
+    <div class="regForm">
+        <div class="tip">请填写用户信息</div>
+        <form action="">
+            <table>
+                <colgroup>
+                    <col>
+                    <col>
+                </colgroup>
+                <tr>
+                    <td><label for="username"><b>用户名</b></label></td>
+                    <td><input type="text" id="username" placeholder="请输入用户名"></td>
+                </tr>
+                <tr>
+                    <td align="center"><label for="psd"><b>密码</b></label></td>
+                    <td> <input type="password" name="psd" id="psd" placeholder="请输入密码">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label><b>性别</b></label></td>
+                    <td>
+                        <label> <input type="radio" name="sex">男</label>
+                        <label> <input type="radio" name="sex">女</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label><b>爱好</b></label></td>
+                    <td>
+                        <label> <input type="checkbox" name="hobby">看书 </label>
+                        <label> <input type="checkbox" name="hobby">睡觉 </label>
+                        <label> <input type="checkbox" name="hobby">购物 </label>
+                        <label> <input type="checkbox" name="hobby">吃饭 </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b>籍贯</b> </td>
+                    <td>
+                        <select>
+                            <option value="湖北" selected>湖北省</option>
+                            <option value="湖南">湖南省</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td> <b>头像</b> </td>
+                    <td>
+                        <input type="file" accept="img/png">
+                    </td>
+                </tr>
+            </table>
+            <div class="btnBox">
+                <button type="submit" id="regBtn">
+                    注册
+                </button>
+
+                <button type="reset" id="cancelBtn">
+                    取消
+                </button>
+            </div>
+        </form>
+
+
+
+
+</body>
+
+</html>

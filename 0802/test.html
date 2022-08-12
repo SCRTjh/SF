@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我恨算法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // for (let i = 5; i <= 20; i += 2) {
+    //     console.log(`搬到第${i}块`);
+    // }
+
+    // for (let i = 2; i <= 100; i += 2) {
+    //     console.log(i);
+    // }
+    // var sum = 0;
+    // for (let i = 1; i <= 10; i++) {
+    //     sum += i;
+    //     if (i === 10) {
+    //         console.log(`总和为${sum}`);
+    //     }
+    // }
+
+    // var count = 0;
+    // for (let x = 0.0001; x <= 8848; x *= 2) {
+    //     count += 1;
+    //     if (x * 2 >= 8848) {
+    //         console.log(`需要${count}次,x为${x * 2}`);
+    //     }
+    // }
+
+    // var h = 5;
+    // var c = 0;
+    // while (h > 0.1) {
+    //     h /= 3;
+    //     c++;
+    // }
+    // console.log(`次数${c},高${h}`)
+
+    for (let i = 1; i <= 9; i++) {
+        let str = "";
+        for (let j = 1; j <= i; j++) {
+            str += `${i}*${j}=${i * j}` + "\t";
+        }
+        console.log(str);
+    }
+
+    // 水仙花
+    for (let i = 111; i <= 999; i++) {
+        let ge = ~~(i % 10);  //取整
+        let shi = ~~((i / 10) % 10);
+        let bai = ~~(i / 100);
+        if ((Math.pow(ge, 3) + Math.pow(shi, 3) + Math.pow(bai, 3)) == i) {
+            console.log(i);
+        }
+    }
+    // 台阶
+    let floorCount = 7;
+    while (1) {
+        floorCount += 7;
+        if (floorCount % 2 == 1 && floorCount % 3 == 2 && floorCount % 5 == 4 && floorCount % 6 == 5 && floorCount % 7 == 0) {
+            console.log("台阶数最少为" + floorCount);
+            break;
+        }
+    }
+
+    //羽毛球拍
+    let posCount = 0;
+    for (let a = 1; a * 15 <= 195; a++) {
+        for (let b = 1; b * 3 <= 183; b++) {
+            for (let c = 1; c * 2 <= 182; c++) {
+                if (a * 15 + b * 3 + c * 2 <= 200) {
+                    posCount++;
+                }
+            }
+        }
+    }
+    console.log(`有${posCount}种可能`);
+
+    //百马百担
+    for (let big = 0; big <= 100 / 3; big++) {
+        for (let mid = 0; mid <= 100 / 2; mid++) {
+            for (let small = 0; small <= 100; small++) {
+                if ((big + mid + small == 100) && (big * 3 + mid * 2 + small / 2 == 100)) {
+                    console.log(`大马${big}个,中马${mid}个,小马${small}`);
+                }
+            }
+        }
+    }
+
+    // 100以内素数
+    let c1 = 0;
+    for (let i = 2; i <= 100; i++) {
+        c1 = 0;
+        for (let j = 2; j <= i; j++) {
+            if (i % j == 0) {
+                c1++;
+                if (c1 > 1) {
+                    break;
+                }
+            }
+        }
+        if (c1 == 1) {
+            console.log(`素数${i}`);
+        }
+    }
+
+    // 12()34()56()78()9=59
+
+    out: for (let b = -1; b <= 1; b += 2) {
+        for (let c = -1; c <= 1; c += 2) {
+            for (let d = -1; d <= 1; d += 2) {
+                for (let e = -1; e <= 1; e += 2) {
+                    let v1 = 12;
+                    let v2 = 34 * b;
+                    let v3 = 56 * c;
+                    let v4 = 78 * d;
+                    let v5 = 9 * e;
+                    if (v1 + v2 + v3 + v4 + v5 == 59) {
+                        console.log(b, c, d, e);
+                        break out;
+                    }
+                }
+            }
+        }
+    }
+
+    //找凶手
+    xs: for (let a = 0; a <= 1; a++) {
+        for (let b = 0; b <= 1; b++) {
+            for (let c = 0; c <= 1; c++) {
+                for (let d = 0; d <= 1; d++) { //假设每个人成为凶手的情况,1为凶手
+                    //假设说的真话,true为真话
+                    let aSay = a == 0;
+                    let bSay = c == 1;
+                    let cSay = d == 1;
+                    let dSay = !cSay;
+                    //真话只有三个,凶手只有一个
+                    if (aSay + bSay + cSay + dSay === 3 && a + b + c + d === 1) {
+                        console.log(a, b, c, d);
+                        break xs;
+                    }
+                }
+            }
+        }
+    }
+
+    //游泳比赛
+    swim: for (let a = 1; a <= 5; a++) {
+        for (let b = 1; b <= 5; b++) {
+            for (let c = 1; c <= 5; c++) {
+                for (let d = 1; d <= 5; d++) {
+                    for (let e = 1; e <= 5; e++) {
+                        let aSay = b == 2 ^ a == 3;
+                        let bSay = b == 2 ^ e == 4;
+                        let cSay = c == 1 ^ d == 2;
+                        let dSay = c == 5 ^ d == 3;
+                        let eSay = e == 4 ^ a == 1;
+                        if (aSay + bSay + cSay + dSay + eSay === 5 && a + b + c + d + e === 15 && a * b * c * d * e === 120) {
+                            console.log(a, b, c, d, e);
+                            break swim;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    //幼：1  小:0 成：0
+
+    let childR = 1;
+    let smallR = 0;
+    let adultR = 0;
+    for (let month = 0; month < 8; month++) {
+        let lastChild = childR;
+        let lastSmall = smallR;
+        let lastAdult = adultR;
+        adultR += lastSmall;
+        smallR += lastChild - lastSmall;
+        childR += lastAdult + lastSmall - lastChild;
+    }
+    console.log(`幼兔${childR}对,小兔${smallR}对,成兔${adultR}对`);
+
+    //猴子吃桃
+    let day = 10;
+    let peach = 1;
+    while (day > 1) {
+        peach = ((peach + 1) * 2);
+        day--;
+    }
+    console.log(`第一天${peach}个桃子`);
+
+    //1-6成圆
+    for (let a = 1; a <= 6; a++) {
+        for (let b = 1; b <= 6; b++) {
+            for (let c = 1; c <= 6; c++) {
+                for (let d = 1; d <= 6; d++) {
+                    for (let e = 1; e <= 6; e++) {
+                        for (let f = 1; f <= 6; f++) {
+                            if (a + b + c + d + e + f === 21 && a * b * c * d * e * f == 720 && a + b + c == 10 && b + e + f == 10 && c + d + e == 10) {
+                                console.log(`a:${a} b:${b} c:${c} d:${d} e:${e} f:${f}`);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+</script>
+
+</html>

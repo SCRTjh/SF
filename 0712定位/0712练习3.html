@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .main {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: cyan;
+        }
+
+        .main>.head {
+            position: absolute;
+            height: 62px;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: red;
+        }
+
+        .main>.body {
+            position: absolute;
+            top: 62px;
+            bottom: 52px;
+            left: 0;
+            right: 0;
+            background-color: blue;
+        }
+
+        .main>.bottom {
+            position: absolute;
+            height: 52px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="head">
+        </div>
+        <div class="body">
+        </div>
+        <div class="bottom"></div>
+    </div>
+
+    <script>
+        const s = [5, 7, 2];
+        function editInPlace() {
+            // 只修改这一行下面的代码
+            s.unshift(s.pop())
+
+            // 使用 s = [2, 5, 7] 将无效
+            console.log(s)
+            // 只修改这一行上面的代码
+        }
+        editInPlace();
+    </script>
+</body>
+
+</html>

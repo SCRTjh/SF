@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <desc>Created with Lunacy</desc>
+  <defs>
+    <path d="M17 7.001C17 5.95326 17 4.53325 17 4.53325C16.1812 0.920005 11.3253 0 8.5 0C5.67474 1.62821e-16 0.823683 0.926087 1.7412e-13 4.53325C2.07032e-13 4.53325 1.68317e-13 5.95286 1.42241e-13 7.001C1.28515e-13 7.55273 0.447268 8 0.999 8L16.001 8C16.5527 8 17 7.55273 17 7.001Z" transform="translate(0.5 9)" id="path_1" />
+    <path d="M5.5 11C8.53757 11 11 8.53757 11 5.5C11 2.46243 8.53757 0 5.5 0C2.46243 0 0 2.46243 0 5.5C0 8.53757 2.46243 11 5.5 11Z" transform="translate(3.5 0)" id="path_2" />
+    <clipPath id="clip_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+    <clipPath id="clip_2">
+      <use xlink:href="#path_2" />
+    </clipPath>
+  </defs>
+  <g id="个人中心">
+    <path d="M0 0L24 0L24 24L0 24L0 0Z" id="Rectangle-2" fill="none" stroke="none" />
+    <g id="Group-10" transform="translate(3 3)">
+      <g id="Oval-2">
+        <g clip-path="url(#clip_1)">
+          <use xlink:href="#path_1" fill="none" stroke="#8A9099" stroke-width="3" />
+        </g>
+      </g>
+      <g id="Combined-Shape">
+        <use stroke="none" fill="#FFFFFF" xlink:href="#path_2" />
+        <g clip-path="url(#clip_2)">
+          <use xlink:href="#path_2" fill="none" stroke="#8A9099" stroke-width="3" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关系操作符</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log("1" < 2);               //true   第2条原则
+    console.log("1" < "2");             //true   第4条原则
+    console.log("11" < 2);              //false  第2条原则
+    console.log("11" < "2");            //true   第4条原则
+    console.log(true < 2);              //true   第3条原则
+    console.log(true < "2");            //true   先适用第3条，再适用第2条
+    console.log("aa" < "b");            //true   第4条原则
+    console.log("aa" < "ab");           //true   第4条原则
+    console.log("A" < "a");             //true   第4条原则
+    console.log(null < 1);              //true   第6条原则
+    console.log(NaN <= 0);              //false  第7条原则
+    console.log(undefined < 1);         //false  先适用第6条，再适用于7条
+    console.log("我" > "你");            //true   第5条原则
+    console.log("0x12" <= 12);           //false  第2条原则，注意前面是16进制 
+    console.log("0x12"<="12");           //true   第4条原则
+
+    /**
+     * 操作原则：
+     * 1.如果2个数是数值，则直接比较大小
+     * 2.如果1个数是数值，另1个数是字符串，则字符串隐式转换成数值
+     * 3.如果有1个布尔值，则隐式转换成数值
+     * 4.如果2个操作数都是非中文的字符串，则比较ascii码
+     * 5.如果有中文字符串，则比较unicode编码【目前这一块，你们没有学，要到后面讲】
+     * 6.对于非数字类型的，则通过Number隐式类型转换一下
+     * 7.NaN不参于比较
+     */
+</script>
+
+</html>

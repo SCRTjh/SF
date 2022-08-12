@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>单选框</title>
+		<style>
+			[name="sex"] {
+				display: none;
+			}
+
+			label {
+				font-size: 32px;
+			}
+
+			[name="sex"]:checked+label {
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="radio" name="sex" id="nan">
+		<label for="nan">男</label>
+
+		<input type="radio" name="sex" id="nv">
+		<label for="nv">女</label>
+	</body>
+</html>
+<!-- 
+	checked="checked"
+	属性名与属性值相同,那就可以简写属性,这一种叫单属性
+ 
+ -->

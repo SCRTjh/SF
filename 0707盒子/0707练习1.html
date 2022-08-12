@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0707练习1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-box {
+            width: 420px;
+            height: 500px;
+            border: 2px solid black;
+        }
+
+        .login-box>.login-head {
+            height: 65px;
+            border-bottom: 2px solid #000;
+            background-color: #d0d0d5;
+        }
+
+        .login-box>.login-head>a {
+            display: inline-block;
+            height: 100%;
+            width: 207px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #333333;
+            text-align: center;
+            line-height: 65px;
+
+        }
+
+        .login-box>.login-body {
+            text-align: center;
+        }
+
+        .login-box>.login-body>.qrcode {
+            display: block;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto 4px auto;
+        }
+
+        .login-box>.login-body>.login-tip {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .login-box>.login-body>.next-login {
+            margin-bottom: 40px;
+        }
+
+
+        .login-box>.login-body>.next-login>.img-i {
+            width: 14px;
+            height: 14px;
+            vertical-align: middle;
+        }
+
+        .login-box>.login-body>.bottom-tip {
+            font-size: 14px;
+            color: #a9afb6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-box">
+        <div class="login-head">
+            <a href="#">微信登录</a>
+            <a href="#">QQ登录</a>
+        </div>
+        <div class="login-body">
+            <img src="./img/二维码.png" class="qrcode" alt="">
+            <p class="login-tip">使用微信扫一扫登录</p>
+            <div class="next-login">
+                <input type="checkbox" id="auto-login">
+                <label for="auto-login">下次自动登录</label>
+                <img src="./img/notice.png" alt="" class="img-i">
+            </div>
+            <p class="bottom-tip">微信与QQ账号的邮箱数据不互通</p>
+        </div>
+    </div>
+</body>
+
+</html>

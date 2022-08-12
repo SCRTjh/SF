@@ -1,0 +1,67 @@
+1. 如何让后代元素主动的去继承父级元素的样式【属性】
+	inherit
+2. 相对定位，绝对定位的属性值
+   relative,absolute
+3. 字体倾斜的2个单词
+	italic  oblique
+4. 块级元素让宽度适应内容
+   fit-content
+5. 背景图大小里面的覆盖 、包含
+	cover  contain
+6. 盒子模型由外向内4层分别是什么
+    margin-border-padding-content
+7. 省略号单词
+   ellipsis
+8. 英文单词进行大小写转换的属性，以及3个属性值
+    text-transform
+    uppercase
+    lowercase
+    capitalize
+9. CSS层叠性里面，一个元素最终样式是有哪几部分样式来共同决定的
+    行内样式>内部样式块>默认样式>继承样式
+10.标准流布局里面，各种元素的水平居中方案
+    块级：margin:auto
+    行内，行内块级：外层块级或行内块这样上面加text-align:center
+11.浮动脱流以后的元素居中方案
+   父级元素变inline-block，再到父级设置text-align:center
+   父级宽度设置fit-content,然后margin:auto
+12.定位脱流以后的元素水平居中方案
+   left:0;right:0;margin:auto
+13.如果恢复浮动以后的元素的父级元素高度
+   在浮动元素的后面添加块级元素clear:both;
+   在浮动元素的父级添加overflow
+   ::after
+14.什么样的元素类型不遵守标准盒子模型规范，是怎么不遵守的？
+   行内元素不遵守，margin-left/margin-right正常
+   margin-top/margin-bottom没有
+   padding-left/padding-right是正常
+   padding-top/padding-bottom只能撑开自身，撑不开父级
+15.解决margin穿透有什么办法？
+	border-top
+	BFC:overflow,float,absolute
+16.一个元素宽度丢失了会是什么原因？
+	脱流，元素类型转换为inline
+17.绝对定位元素以谁为参照物进行定位
+   以父级的除static的定位为参照物
+   或父级trasnform为参照物
+18.border-color如果将颜色设置成与内容color保持一致，使用什么属   性值？
+	currentcolor;
+19.一个元素使用定位以后，会多出哪几个CSS属性？
+   left/right/top/bottom/z-index
+20.请列出权重值为10的CSS选择器 
+   类，伪类，属性
+21.请选出fileset元素下面的除了第2个h2标签的所有标签
+   fieldset *:not(h2:nth-of-type(2))
+22.请选出ul下面的li中前3项li
+   ul>li:nth-child(-n+3)
+23.多行文本溢出省略
+   display:-webkit-box;
+   -webkit-box-orient:vertical;
+   -webkit-line-clamp:2;
+   overflow:hidden;
+24.滤镜的属性及常用的几个属性值（将页在统一调成灰色）
+	filter:blur(2px)
+	filter:alpha(opacity=50);
+	filter:hue-rotate(30deg)
+	filter:grayscale(0.5);
+25.border-radius四个或八个值分别代表什么？

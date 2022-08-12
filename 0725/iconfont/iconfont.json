@@ -1,0 +1,191 @@
+{
+  "id": "3545422",
+  "name": "湖大",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "30826119",
+      "name": "bell-fill",
+      "font_class": "bell-fill",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "30826120",
+      "name": "close-circle-fill",
+      "font_class": "close-circle-fill",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "30826121",
+      "name": "crown-fill",
+      "font_class": "crown-fill",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "30826122",
+      "name": "flag-fill",
+      "font_class": "flag-fill",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "30826123",
+      "name": "dropbox",
+      "font_class": "dropbox",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "30826124",
+      "name": "home-fill",
+      "font_class": "home-fill",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "30826125",
+      "name": "heart-fill",
+      "font_class": "heart-fill",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "30826126",
+      "name": "layout-fill",
+      "font_class": "layout-fill",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "30826127",
+      "name": "heart",
+      "font_class": "heart",
+      "unicode": "e609",
+      "unicode_decimal": 58889
+    },
+    {
+      "icon_id": "30826128",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "30826129",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "30826130",
+      "name": "plus-circle-fill",
+      "font_class": "plus-circle-fill",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "30826131",
+      "name": "right-arrow",
+      "font_class": "right-arrow",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "30826132",
+      "name": "scan",
+      "font_class": "scan",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "30826133",
+      "name": "setting-fill",
+      "font_class": "setting-fill",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "30826134",
+      "name": "tag-fill",
+      "font_class": "tag-fill",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "30826135",
+      "name": "sound-fill",
+      "font_class": "sound-fill",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "30826136",
+      "name": "user",
+      "font_class": "user",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "30826137",
+      "name": "管理",
+      "font_class": "guanli",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "30826138",
+      "name": "star",
+      "font_class": "star",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "30826139",
+      "name": "选中",
+      "font_class": "xuanzhong",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "30826140",
+      "name": "notification-fill",
+      "font_class": "notification-fill",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "30826141",
+      "name": "share",
+      "font_class": "share",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "30826142",
+      "name": "授权",
+      "font_class": "shouquan",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "30826143",
+      "name": "二维码",
+      "font_class": "erweima",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "30826144",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    }
+  ]
+}

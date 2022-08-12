@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电池动画</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .main {
+            position: relative;
+            height: 400px;
+            width: 250px;
+            left: 0;
+            right: 0;
+            top: 300px;
+            margin: auto;
+        }
+
+        .main>.head {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            height: 25px;
+            width: 100px;
+            background-color: gray;
+        }
+
+        @keyframes body-ani {
+            0% {
+                background-size: 250px 0px;
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                background-size: 250px 400px;
+                filter: hue-rotate(150deg);
+            }
+        }
+
+        .main>.body {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 375px;
+            width: 100%;
+            background-image: linear-gradient(to top, rgb(82, 200, 252) 0% 100%);
+            background-size: 250px 0px;
+            background-repeat: no-repeat;
+            animation: body-ani 5s linear infinite;
+            transform: rotateZ(180deg);
+            border: 2px solid black;
+            overflow: hidden;
+        }
+
+        @keyframes body-battery-ani {
+            0% {
+                background-size: 0px 75px;
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                background-size: 150px 75px;
+                filter: hue-rotate(150deg);
+            }
+        }
+
+        .main>.body-battery {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+            height: 75px;
+            width: 150px;
+            background-image: linear-gradient(to right, red 0% 100%);
+            background-size: 0px 75px;
+            background-repeat: no-repeat;
+            animation: body-battery-ani 5s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes ul-ani {
+            0% {
+                margin-top: 0px;
+            }
+
+            100% {
+                margin-top: -2500px;
+            }
+        }
+
+
+
+        .main>.body-battery>ul {
+            margin: auto;
+            width: 50px;
+            height: 25px;
+            margin-top: 25px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            overflow: hidden;
+
+        }
+
+        .main>.body-battery>ul>li {
+            line-height: 25px;
+
+        }
+
+        .main>.body-battery>ul>li:first-of-type {
+            animation: ul-ani 5s steps(100) infinite;
+        }
+
+        @keyframes wave-ani {
+            0% {
+                top: -40px;
+                transform: rotateZ(45deg);
+            }
+
+            100% {
+                top: 390px;
+                transform: rotateZ(500deg);
+            }
+        }
+
+        .main>.body>.wave {
+            position: absolute;
+            top: -40px;
+            left: -80px;
+            width: 450px;
+            height: 450px;
+            /* border: 2px solid black; */
+            background-color: #fff;
+            border-radius: 35%;
+            transform: rotateZ(45deg);
+            animation: wave-ani 5s 0.25s linear infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="head"></div>
+        <div class="body">
+            <div class="wave"></div>
+        </div>
+        <div class="body-battery">
+            <ul>
+                <li>1%</li>
+                <li>2%</li>
+                <li>3%</li>
+                <li>4%</li>
+                <li>5%</li>
+                <li>6%</li>
+                <li>7%</li>
+                <li>8%</li>
+                <li>9%</li>
+                <li>10%</li>
+                <li>11%</li>
+                <li>12%</li>
+                <li>13%</li>
+                <li>14%</li>
+                <li>15%</li>
+                <li>16%</li>
+                <li>17%</li>
+                <li>18%</li>
+                <li>19%</li>
+                <li>20%</li>
+                <li>21%</li>
+                <li>22%</li>
+                <li>23%</li>
+                <li>24%</li>
+                <li>25%</li>
+                <li>26%</li>
+                <li>27%</li>
+                <li>28%</li>
+                <li>29%</li>
+                <li>30%</li>
+                <li>31%</li>
+                <li>32%</li>
+                <li>33%</li>
+                <li>34%</li>
+                <li>35%</li>
+                <li>36%</li>
+                <li>37%</li>
+                <li>38%</li>
+                <li>39%</li>
+                <li>40%</li>
+                <li>41%</li>
+                <li>42%</li>
+                <li>43%</li>
+                <li>44%</li>
+                <li>45%</li>
+                <li>46%</li>
+                <li>47%</li>
+                <li>48%</li>
+                <li>49%</li>
+                <li>50%</li>
+                <li>51%</li>
+                <li>52%</li>
+                <li>53%</li>
+                <li>54%</li>
+                <li>55%</li>
+                <li>56%</li>
+                <li>57%</li>
+                <li>58%</li>
+                <li>59%</li>
+                <li>60%</li>
+                <li>61%</li>
+                <li>62%</li>
+                <li>63%</li>
+                <li>64%</li>
+                <li>65%</li>
+                <li>66%</li>
+                <li>67%</li>
+                <li>68%</li>
+                <li>69%</li>
+                <li>70%</li>
+                <li>71%</li>
+                <li>72%</li>
+                <li>73%</li>
+                <li>74%</li>
+                <li>75%</li>
+                <li>76%</li>
+                <li>77%</li>
+                <li>78%</li>
+                <li>79%</li>
+                <li>80%</li>
+                <li>81%</li>
+                <li>82%</li>
+                <li>83%</li>
+                <li>84%</li>
+                <li>85%</li>
+                <li>86%</li>
+                <li>87%</li>
+                <li>88%</li>
+                <li>89%</li>
+                <li>90%</li>
+                <li>91%</li>
+                <li>92%</li>
+                <li>93%</li>
+                <li>94%</li>
+                <li>95%</li>
+                <li>96%</li>
+                <li>97%</li>
+                <li>98%</li>
+                <li>99%</li>
+                <li>100%</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

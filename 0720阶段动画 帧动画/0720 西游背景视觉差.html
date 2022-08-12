@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西游</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .main {
+            position: relative;
+            --w: 1920px;
+            --h: 786px;
+            height: var(--h);
+            width: var(--w);
+            background-image: url("img/bg.jpg");
+            background-repeat: repeat-x;
+            background-position: 0px 0px;
+            overflow: hidden;
+            animation: bg-ani 6s linear infinite;
+        }
+
+        @keyframes bg-ani {
+            0% {
+                background-position-x: 0px;
+            }
+
+            100% {
+                background-position-x: var(--w);
+            }
+        }
+
+        .main>.role-list {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            width: 800px;
+            height: 200px;
+            /* background-color: aqua; */
+        }
+
+        .main>.role-list>div {
+            float: left;
+            height: 200px;
+            width: 160px;
+        }
+
+        .main>.role-list>div:not(div:nth-of-type(2)) {
+            margin-top: 30px;
+            background-repeat: no-repeat;
+        }
+
+        .main>.role-list>.monkey {
+
+            background-image: url("./img/西游素材img/1.png");
+            background-position: 0px 0px;
+            animation: monkey-pig-ani 1s steps(8) infinite;
+        }
+
+        .main>.role-list>.master {
+            background-image: url("./img/西游素材img/2.png");
+            background-position: 0px 0px;
+            animation: master-ani 1s steps(8) infinite;
+        }
+
+        .main>.role-list>.pig {
+            background-image: url("./img/西游素材img/3.png");
+            background-position: 0px 0px;
+            animation: monkey-pig-ani 1s steps(8) infinite;
+        }
+
+        .main>.role-list>.human {
+            margin-left: -30px;
+            width: 200px;
+            background-image: url("./img/西游素材img/4.png");
+            background-position: 0px 0px;
+            animation: human-ani 1s steps(8) infinite;
+        }
+
+        @keyframes monkey-pig-ani {
+            0% {
+                background-position-x: 0px;
+            }
+
+            100% {
+                background-position-x: -1600px;
+            }
+        }
+
+        @keyframes master-ani {
+            0% {
+                background-position-x: 0px;
+            }
+
+            100% {
+                background-position-x: -1340px;
+            }
+        }
+
+        @keyframes human-ani {
+            0% {
+                background-position-x: 0px;
+            }
+
+            100% {
+                background-position-x: -1680px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="role-list">
+            <div class="monkey"></div>
+            <div class="master"></div>
+            <div class="pig"></div>
+            <div class="human"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

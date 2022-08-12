@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0715小米轮播</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        .main {
+            position: relative;
+            --h: 540px;
+            --w: 1440px;
+            width: var(--w);
+            height: var(--h);
+            border: 1px solid black;
+            margin: auto;
+        }
+
+        .main>.swiper-box {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .main>.swiper-box>img {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+            transition: all 2s linear;
+
+        }
+
+        .main>.swiper-box>[name="r"] {
+            display: none;
+        }
+
+        .main>.swiper-box>[name="r"]:checked+img {
+            /* display: block; */
+            opacity: 1;
+
+        }
+
+        .main>.swiper-box>.btn-list {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 200px;
+            height: 30px;
+            text-align: center;
+            z-index: 999;
+
+
+        }
+
+        .main>.swiper-box>.btn-list>label {
+            display: inline-block;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, .5);
+        }
+
+        .main>.swiper-box>#r1:checked~.btn-list>[for="r1"] {
+            background-color: orange;
+        }
+
+        .main>.swiper-box>#r2:checked~.btn-list>[for="r2"] {
+            background-color: orange;
+        }
+
+        .main>.swiper-box>#r3:checked~.btn-list>[for="r3"] {
+            background-color: orange;
+        }
+
+        .main>.swiper-box>#r4:checked~.btn-list>[for="r4"] {
+            background-color: orange;
+        }
+
+        .main>.swiper-box>.btn-list>label:hover {
+            background-color: orange;
+        }
+
+        .main>.menu {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 99;
+
+        }
+
+        .main>.menu>li {
+            width: 380px;
+            height: calc(var(--h) / 10);
+            background-color: rgba(0, 0, 0, .5);
+
+        }
+
+        .main>.menu>li>a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 50px;
+            padding-left: 20px;
+            color: #fff;
+
+        }
+
+        .main>.menu>li>.content-box {
+            display: none;
+            position: absolute;
+            left: 380px;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .main>.menu>li:hover>.content-box {
+            display: block;
+            background-color: #fff;
+
+        }
+
+
+        .main>.menu>li:hover {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="swiper-box">
+            <input type="radio" name="r" id="r1">
+            <img src="./img/1.jpg" alt="">
+            <input type="radio" name="r" id="r2" checked>
+            <img src="./img/2.jpg" alt="">
+            <input type="radio" name="r" id="r3">
+            <img src="./img/3.jpg" alt="">
+            <input type="radio" name="r" id="r4">
+            <img src="./img/4.jpg" alt="">
+            <div class="btn-list">
+                <label for="r1"></label>
+                <label for="r2"></label>
+                <label for="r3"></label>
+                <label for="r4"></label>
+            </div>
+        </div>
+        <ul class="menu">
+            <li><a href="#">手机&nbsp;电话卡</a>
+                <div class="content-box">第1盒子</div>
+            </li>
+            <li><a href="#">电视&nbsp;盒子</a>
+                <div class="content-box">第2盒子</div>
+            </li>
+            <li><a href="#">笔记本&nbsp;显示器&nbsp;平板</a>
+                <div class="content-box">第3盒子</div>
+            </li>
+            <li><a href="#">家电&nbsp;插线板</a>
+                <div class="content-box">第4盒子</div>
+            </li>
+            <li><a href="#">出行&nbsp;穿戴</a>
+                <div class="content-box">第5盒子</div>
+            </li>
+            <li><a href="#">智能&nbsp;路由器</a>
+                <div class="content-box">第6盒子</div>
+            </li>
+            <li><a href="#">电源&nbsp;配件</a>
+                <div class="content-box">第7盒子</div>
+            </li>
+            <li><a href="#">健康&nbsp;儿童</a>
+                <div class="content-box">第8盒子</div>
+            </li>
+            <li><a href="#">耳机&nbsp;机箱</a>
+                <div class="content-box">第9盒子</div>
+            </li>
+            <li><a href="#">生活&nbsp;箱包</a>
+                <div class="content-box">第10盒子</div>
+            </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

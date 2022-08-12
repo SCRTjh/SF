@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .switchBox {
+            display: block;
+            height: 100px;
+            width: 200px;
+            border: 1px solid black;
+            border-radius: 25% / 50%;
+            margin: auto;
+            box-shadow: 5px 5px 8px 5px #cccccc;
+        }
+
+        .switchBox>.switch-btn {
+            display: none;
+        }
+
+        .switchBox>.switch-btn:checked+.bg-box {
+            border-bottom: 1px solid black;
+            background-color: aqua;
+            border-radius: 25% / 50%;
+        }
+
+        .switchBox>.switch-btn:checked+.bg-box>.circle {
+            margin-left: auto;
+        }
+
+        .switchBox>.bg-box>.circle {
+            box-sizing: border-box;
+            height: 100px;
+            width: 100px;
+            background-color: #20b2aa;
+            border: 1px solid black;
+            border-radius: 50%;
+        }
+    </style>
+    <title>0707练习2</title>
+</head>
+
+<body>
+    <label class="switchBox" for="switch">
+        <input type="checkbox" class="switch-btn" id="switch"></input>
+        <div class="bg-box">
+            <div class="circle"></div>
+        </div>
+    </label>
+
+</body>
+
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0708练习1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .main {
+            width: 1080px;
+            height: 500px;
+            margin: 50px auto;
+            vertical-align: middle;
+        }
+
+
+        .main>.left-box {
+            display: inline-block;
+            width: 64%;
+            height: 100%;
+            background-image: url("./img/449dbd9b7a1beaf950619f6b63bdf1d1.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: right;
+        }
+
+        .main>.right-box {
+            display: inline-block;
+            width: 35%;
+            height: 100%;
+            vertical-align: top;
+            border: 2px solid lightgray;
+            border-radius: 8px;
+            overflow: hidden;
+
+
+        }
+
+        .main>.left-box>.left-content {
+            margin-top: 50px;
+            margin-left: 10px;
+        }
+
+        .main>.left-box>.left-content>h2 {
+            font-size: 32px;
+            color: #719cce;
+            font-weight: 500;
+            margin-bottom: 10px;
+
+        }
+
+        .main>.left-box>.left-content>p {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .main>.right-box>.right-head {
+            height: 55px;
+            line-height: 55px;
+            border-bottom: 2px solid lightgray;
+            background-color: #f9fbfe;
+        }
+
+        .main>.right-box>.right-head>a {
+            display: inline-block;
+            width: 49%;
+            text-align: center;
+
+            font-size: 18px;
+            color: #a8b4c7;
+        }
+
+        .main>.right-box>.right-body>[type="text"],
+        .main>.right-box>.right-body>[type="password"] {
+            display: block;
+            width: 320px;
+            height: 50px;
+            margin: auto;
+            border: 1px solid #c1b7b1;
+            border-radius: 8px;
+        }
+
+        .main>.right-box>.right-body>[type="text"]::placeholder,
+        .main>.right-box>.right-body>[type="password"]::placeholder {
+            font-size: 18px;
+            padding-left: 8px;
+            color: #c1b7b1;
+        }
+
+        .main>.right-box>.right-body>[type="text"] {
+            margin-top: 50px;
+            margin-bottom: 10px;
+        }
+
+        .main>.right-box>.right-body>button {
+            display: block;
+            width: 320px;
+            height: 50px;
+            font-size: 20px;
+            color: #fff;
+            border: none;
+            margin: 40px auto;
+            background-color: #5a98de;
+            cursor: pointer;
+        }
+
+        /* 下次自动登录 */
+        .main>.right-box>.right-body>.auto-login {
+            text-align: center;
+            height: 20px;
+
+
+        }
+
+        .main>.right-box>.right-body>.auto-login>label {
+            display: inline-block;
+            width: 132px;
+
+
+        }
+
+        .main>.right-box>.right-body>.auto-login>label>input,
+        .main>.right-box>.right-body>.auto-login>label>img {
+            width: 16px;
+            height: 16px;
+            vertical-align: bottom;
+
+
+        }
+
+        /* 底部盒子 */
+        .main>.right-box>.right-body>.right-bottom {
+            height: 30px;
+            margin-top: 60px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .main>.right-box>.right-body>.right-bottom>a {
+            display: inline-block;
+            width: 32%;
+            color: #65a1cd;
+        }
+
+        .main>.right-box>.right-body>.right-bottom>.qrcode::before {
+            content: url("./img/二维码.png");
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="left-box">
+            <div class="left-content">
+                <h2>QQ邮箱，常联系!</h3>
+                    <p>2500年前，人们飞鸽传书</p>
+                    <p>186年前，莫尔斯发明了电报</p>
+                    <p>53年前，第一封电子邮件发出</p>
+                    <p>今天，qq邮箱联系你、我、他</p>
+            </div>
+        </div>
+        <div class="right-box">
+            <div class="right-head">
+                <a href="#">微信登录</a>
+                <a href="#">QQ登录</a>
+            </div>
+            <div class="right-body">
+                <input type="text" name="username" id="username" placeholder="支持QQ号/邮箱/手机号登录">
+                <input type="password" name="pwd" id="pwd" placeholder="QQ密码">
+                <button>登录</button>
+                <div class="auto-login">
+                    <label>
+                        <input type="checkbox">下次自动登录<img src="./img/notice.png">
+                    </label>
+                </div>
+                <div class="right-bottom">
+                    <a href="#">找回密码</a>
+                    <a href="#" class="qrcode">扫码快捷登录</a>
+                    <a href="#">注册账号</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0712作业2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .main {
+            width: 1328px;
+            height: 3024px;
+            margin: auto;
+            /* outline: 1px solid red; */
+        }
+
+        /* 顶部标题 */
+        .main>.top-title {
+            width: 124px;
+            height: 31px;
+            font-family: MicrosoftYaHei;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 30px;
+            color: #0068b7;
+            margin: auto 601px auto 603px;
+        }
+
+        /* 第一个三角 */
+
+        .main>.top-icon {
+            text-align: center;
+        }
+
+        .main>.top-icon>img {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 39px;
+            margin-bottom: 68px;
+
+        }
+
+        .main>.top-icon>.icon-triangle {
+            margin: 32px 50px 60px 55px
+        }
+
+        /* 顶部展示box */
+        .main>.top-item-box {
+            text-align: center;
+            margin-bottom: 132px;
+        }
+
+        .main>.top-item-box>.t-item {
+            /* float: left; */
+            height: 390px;
+        }
+
+        .main>.top-item-box>.t-item:nth-child(1) {
+            float: left;
+            width: 247px;
+            margin-left: 154px;
+
+        }
+
+        .main>.top-item-box>.t-item:nth-child(2) {
+            display: inline-block;
+            margin: auto;
+            width: 168px;
+            /* margin-left: 189px; */
+            /* margin-right: 201px; */
+        }
+
+        .main>.top-item-box>.t-item:nth-child(3) {
+            float: right;
+            width: 213px;
+            margin-right: 156px;
+        }
+
+        .main>.top-item-box>.t-item>p:first-of-type {
+            width: 101px;
+            height: 21px;
+            font-family: MicrosoftYaHei;
+            font-size: 20px;
+            color: #313131;
+            margin: 56px auto 28px auto;
+        }
+
+        .main>.top-item-box>.t-item>.item-info>p {
+            width: 175px;
+            height: 24px;
+            font-family: AdobeHeitiStd-Regular;
+            font-size: 14px;
+            color: #313131;
+            margin: auto;
+        }
+
+        /* 底部标题 */
+        .main>.bottom-title {
+            width: 123px;
+            height: 31px;
+            font-family: MicrosoftYaHei;
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 30px;
+            color: #0068b7;
+            margin: auto;
+        }
+
+        /* 第二个三角 */
+
+        .main>.bottom-icon {
+            text-align: center;
+        }
+
+        .main>.bottom-icon>img {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 39px;
+            margin-bottom: 68px;
+        }
+
+        .main>.bottom-icon>.icon-triangle {
+            margin: 35px 50px 60px 55px
+        }
+
+        /* 底部展示box */
+        .main>.bottom-item-box {
+            text-align: center;
+            vertical-align: middle;
+            margin-bottom: 90px;
+        }
+
+        .main>.bottom-item-box>.b-item {
+            height: 393px;
+            width: 368px;
+        }
+
+        .main>.bottom-item-box>.b-item:nth-child(1) {
+            float: left;
+        }
+
+        .main>.bottom-item-box>.b-item:nth-child(2) {
+            display: inline-block;
+            margin: auto;
+        }
+
+        .main>.bottom-item-box>.b-item:nth-child(3) {
+            float: right;
+        }
+
+        .main>.bottom-item-box>.b-item>img {
+            margin-bottom: 22px;
+        }
+
+        .main>.bottom-item-box>.b-item>p:first-of-type {
+            width: 339px;
+            height: 20px;
+            font-family: MicrosoftYaHei;
+            font-size: 18px;
+            color: #313131;
+            margin: auto;
+            margin-bottom: 18px;
+        }
+
+        .main>.bottom-item-box>.b-item>p:last-of-type {
+            width: 368px;
+            height: 100px;
+            font-family: MicrosoftYaHei;
+            font-size: 16px;
+            text-align: left;
+            text-indent: 2em;
+            color: #313131;
+        }
+
+        .main>.tab-more {
+            display: block;
+            width: 302px;
+            height: 51px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <p class="top-title">
+            产品中心
+        </p>
+        <div class="top-icon">
+            <img class="icon-line1" src="./img/tab-tiaotiao.png" alt="">
+            <img class="icon-triangle" src="./img/tab-三角箭头.png" alt="">
+            <img class="icon-line2" src="./img/tab-tiaotiao.png" alt="">
+        </div>
+        <div class="top-item-box clearfix">
+            <div class="t-item">
+                <img src="./img/b1.png" alt="">
+                <p>新媒体创意</p>
+                <div class="item-info">
+                    <p>
+                        基于定位及推广策略
+                    </p>
+                    <p>
+                        提供新媒体全局性的策略
+                    </p>
+                    <p>
+                        以及创意传播支持
+                    </p>
+                </div>
+            </div>
+            <div class="t-item">
+                <img src="./img/b4.png" alt="">
+                <p>新媒体创意</p>
+                <div class="item-info">
+                    <p>
+                        基于定位及推广策略
+                    </p>
+                    <p>
+                        提供新媒体全局性的策略
+                    </p>
+                    <p>
+                        以及创意传播支持
+                    </p>
+                </div>
+            </div>
+            <div class="t-item">
+                <img src="./img/b3.png" alt="">
+                <p>新媒体创意</p>
+                <div class="item-info">
+                    <p>
+                        基于定位及推广策略
+                    </p>
+                    <p>
+                        提供新媒体全局性的策略
+                    </p>
+                    <p>
+                        以及创意传播支持
+                    </p>
+                </div>
+            </div>
+        </div>
+        <p class="bottom-title">
+            行业动态
+        </p>
+        <div class="bottom-icon">
+            <img src="./img/tab-tiaotiao.png" alt="">
+            <img class="icon-triangle" src="./img/tab-三角箭头.png" alt="">
+            <img src="./img/tab-tiaotiao.png" alt="">
+        </div>
+        <div class="bottom-item-box clearfix">
+            <div class="b-item">
+                <img src="./img/tab-p.png" alt="">
+                <p>从中国纺织业解析网络营销的前景广阔</p>
+                <p>网络营销 怎么让中国纺织业起死回生的。 2009 年，可谓是中国纺织业发展 30 年来的最冷寒冬。据调查，全国 45% 的家纺企业可谓是中国纺织业发展...</p>
+            </div>
+            <div class="b-item">
+                <img src="./img/tab-p.png" alt="">
+                <p>汽车网络营销 是否能拉动销量</p>
+                <p>汽车 网络营销 ，能否拉动其销量，是汽车企业一直关注的问题。下面举例说明： 荣威 550 去年 6 月份进行了为期两周的网上 4S 店 550 优先提车权活动，通过...</p>
+            </div>
+            <div class="b-item">
+                <img src="./img/tab-p.png" alt="">
+                <p>5个能让产品快速成长的深度广度运营法</p>
+                <p>一、用户运营客服能力（深度推广运营） 最好的深度运营客户的利器。纵向能力中最关键的用户运营。虽然很多产品都口口声声说重视用户反馈，但其...</p>
+            </div>
+        </div>
+        <img src="./img/tab-MORE.png" alt="" class="tab-more">
+
+
+    </div>
+
+</body>
+
+</html>

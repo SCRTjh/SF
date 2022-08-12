@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习2</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .container {
+            width: 1200px;
+            margin: auto;
+            /* outline: 1px solid black; */
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container>.item {
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container>.item>img {
+            width: 100%;
+        }
+
+        @media only screen and (min-width:0px) and (max-width:768px) {
+            .container {
+                width: 100vw;
+                flex-direction: column;
+            }
+
+            .container>.item {
+                width: 100%;
+            }
+
+
+        }
+
+        @media only screen and (min-width:768px) and (max-width:991px) {
+            .container {
+                width: 970px;
+            }
+
+            .container>.item {
+                width: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item">
+            <img src="./img/left.png" alt="">
+            <h2>预处理工具</h2>
+            <p>Bootstrap 让前端开发更快速、简单。所有开发者都能快速上手、所有设备都可以适配、所有项目都适用。</p>
+        </div>
+        <div class="item">
+            <img src="./img/middle.png" alt="">
+            <h2>一个框架，多种设备</h2>
+            <p>你的网站和应用能在 Bootstrap 的帮助下通过同一份源码快速、有效地适配手机、平板和 PC 设备，这一切都是 CSS 媒体查询（Media Query）的功劳</p>
+        </div>
+        <div class="item">
+            <img src="./img/right.png" alt="">
+            <h2>功能完备</h2>
+            <p>Bootstrap 提供了全面、美观的文档，你能在这里找到关于普通 HTML 元素、HTML 和 CSS 组件以及 jQuery 插件方面的所有详细文档。</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

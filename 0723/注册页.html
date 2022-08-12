@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册页</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/注册页.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="title-bar">
+            <div class="left">&lt返回</div> 标题
+        </div>
+        <div class="content-box">
+            <form action="" class="form-box">
+                <div class="top-title">
+                    <div>请绑定学号登录</div>
+                </div>
+                <div class="input-id">
+                    <input type="number" name="sid" id="sid" placeholder="请输入学号">
+                </div>
+                <div class="input-pwd">
+                    <input type="password" name="pwd" id="pwd" placeholder="请输入密码">
+                    <div class="pwd-forget">忘记密码?</div>
+                </div>
+                <div class="input-phone">
+                    <p class="n86">+86</p>
+                    <input type="number" placeholder="手机号码">
+                </div>
+                <div class="input-confirm">
+                    <input type="text" id="confirm" placeholder="短信验证码">
+                    <button>获取验证码</button>
+                </div>
+                <div class="agreement">
+                    <label for="protocol">
+                        <input type="checkbox" checked name="protocol" id="protocol">
+                        已阅读并同意<a href="#">《相关授权》</a>
+                    </label>
+                </div>
+                <div class="submit">
+                    <button type="submit">登录</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

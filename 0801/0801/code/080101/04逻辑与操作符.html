@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逻辑与操作符</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    console.log(true && false);                         //false
+    console.log(true && 123);                           //123
+    console.log(false && 123);                          //false
+    console.log(true && "");                            //""
+    console.log(true && "" && 123);                     //""
+    console.log(NaN && false);                          //NaN
+    console.log(NaN && null);                           //NaN
+    console.log(null && "abc");                         //null
+    console.log(123 && "abc");                          //"abc"
+    console.log(0 && 123);                              //0
+</script>
+<!-- 
+    操作规则：
+    1.它的结果不一定是布尔类型
+    2.一假即假
+    3.有哪些明确的false条件
+    4.不存在隐式类型转换，但如果不是布尔类型 ，会用Boolean去测试它的结果
+    5.短路原则：当一个表达式已经能够得到结果的时候 ，就不会再向后面运算了
+ -->
+
+</html>

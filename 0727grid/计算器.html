@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-areas:
+                ". . . c"
+                ". . . c"
+                ". . . m"
+                "a0 a0 a0 p";
+            width: 600px;
+            height: 600px;
+            margin: auto;
+            border: 2px groove black;
+            box-sizing: border-box;
+
+        }
+
+        .main>div {
+            width: 150px;
+            height: 150px;
+            box-sizing: border-box;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 150px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+
+
+        .main>.C {
+            grid-area: c;
+            height: 300px;
+            line-height: 300px;
+            background-color: orange;
+        }
+
+        .main>.minus {
+            grid-area: m;
+        }
+
+        .main>div:last-of-type {
+            grid-area: a0;
+            width: 450px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div class="C">C</div>
+        <div class="minus">-</div>
+        <div class="point">.</div>
+        <div>0</div>
+    </div>
+</body>
+
+</html>

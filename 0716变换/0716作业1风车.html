@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0716作业1</title>
+    <style>
+        .main {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background-color: #ffa500;
+            border-radius: 50%;
+        }
+
+        .main>.circle {
+            position: absolute;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background-color: #fff;
+            bottom: 0;
+            right: 0;
+        }
+
+        .main>.circle>div {
+            position: absolute;
+            height: 240px;
+            width: 120px;
+            border-radius: 240px 0% 0% 240px / 240px 0% 0% 240px;
+            background-color: #0000ff;
+            left: 120px;
+            transform-origin: right bottom;
+        }
+
+        .main>.circle>div:nth-of-type(2) {
+            transform: rotate(90deg);
+            background-color: #ff1493;
+        }
+
+        .main>.circle>div:nth-of-type(3) {
+            transform: rotate(180deg);
+            background-color: #90ee90;
+        }
+
+        .main>.circle>div:nth-of-type(4) {
+            transform: rotate(270deg);
+            background-color: #20b2aa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="circle">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

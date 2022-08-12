@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            width: 545px;
+            height: 630px;
+            border: 1px solid black;
+            margin: 30px auto;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* 头部区域 */
+        .main>.head-box {
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            background-color: #fff8f0;
+            font-size: 20px;
+            color: #bebbb9;
+        }
+
+        .main>.head-box>img {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+        }
+
+        /* body区 */
+        .main>.body-box {
+            height: 485px;
+            text-align: center;
+        }
+
+        /* 扫码登录切换区 */
+        .main>.body-box>.btn-switch {
+            height: 90px;
+            line-height: 90px;
+
+        }
+
+        .main>.body-box>.btn-switch>a {
+            display: inline-block;
+            font-size: 24px;
+            height: 100%;
+            width: 49%;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .main>.body-box>.btn-switch>a:last-child {
+            color: #e4393c;
+            font-weight: 700;
+        }
+
+        /* 账号密码输入区 */
+
+        .main>.body-box>.input-box>div {
+            margin-bottom: 32px;
+        }
+
+        .main>.body-box>.input-box>div>input {
+            vertical-align: middle;
+            box-sizing: border-box;
+            display: inline-block;
+            border: 1px solid #d2d2d2;
+            width: 411px;
+            height: 64px;
+
+        }
+
+        .main>.body-box>.input-box input {
+            box-sizing: border-box;
+            outline: none;
+            padding-left: 10px;
+        }
+
+        .main>.body-box>.input-box>#username::before {
+            display: inline-block;
+            height: 64px;
+            width: 64px;
+            border: 1px solid #d2d2d2;
+            vertical-align: middle;
+            margin-right: -7px;
+            overflow: hidden;
+            background-size: 200px 300px;
+            background-position: 0px 0px;
+            background-image: url("img/lQLPDhuYQxS30fbMrniwO6IJTQV3G6UCyiOqqMBaAA_120_174.png");
+            content: "";
+        }
+
+        .main>.body-box>.input-box>#username:focus-within::before {
+
+            background-position: 0px -85px;
+        }
+
+        .main>.body-box>.input-box>#username>.inp-user::placeholder {
+            box-sizing: border-box;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+
+        .main>.body-box>.input-box>#pwd::before {
+            display: inline-block;
+            height: 64px;
+            width: 64px;
+            border: 1px solid #d2d2d2;
+            vertical-align: middle;
+            margin-right: -7px;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: 200px 300px;
+            background-position: -80px 0px;
+            background-image: url("img/lQLPDhuYQxS30fbMrniwO6IJTQV3G6UCyiOqqMBaAA_120_174.png");
+            content: "";
+        }
+
+        .main>.body-box>.input-box>#pwd:focus-within::before {
+            background-position: -80px -85px;
+        }
+
+        .main>.body-box>.input-box>#pwd>.inp-pwd::placeholder {
+            box-sizing: border-box;
+            font-size: 18px;
+            padding-left: 10px;
+        }
+
+        /* 忘记密码 */
+        .main>.body-box>.forget {
+            height: 60px;
+            line-height: 60px;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .main>.body-box>.forget>a {
+            display: inline-block;
+            width: 75px;
+            color: #b6bca9;
+            font-size: 18px;
+            margin-right: 40px;
+        }
+
+        /* 登录按钮 */
+        .main>.body-box>.btn-login {
+            width: 475px;
+            height: 64px;
+            color: #fff;
+            font-size: 28px;
+            letter-spacing: 16px;
+            border: none;
+            background-color: #e4393c;
+        }
+
+        /* 底部 */
+        .main>.bottom-box {
+            height: 84px;
+            line-height: 84px;
+        }
+
+        .main>.bottom-box>a:nth-child(-n+2) {
+            display: inline-block;
+            color: #666666;
+            width: 120px;
+            text-align: center;
+        }
+
+        .main>.bottom-box>.b-qq::before {
+            display: inline-block;
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-image: url("./img/QQ-weixin.png");
+            background-repeat: no-repeat;
+            background-size: 60px 30px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .main>.bottom-box>.b-wx::before {
+            display: inline-block;
+            content: "";
+            width: 32px;
+            height: 32px;
+            background-image: url("./img/QQ-weixin.png");
+            background-repeat: no-repeat;
+            background-position: -30px 0;
+            background-size: 60px 32px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .main>.bottom-box>.b-reg {
+            display: inline-block;
+            text-align: center;
+            width: 140px;
+            font-size: 20px;
+            color: #e4393c;
+            margin-left: 100px;
+        }
+
+        .main>.bottom-box>.b-reg::before {
+            content: "";
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background-image: url("./img/lQLPDhuYQxS30fbMrniwO6IJTQV3G6UCyiOqqMBaAA_120_174.png");
+            background-repeat: no-repeat;
+            background-size: 160px 230px;
+            background-position: -134px -89px;
+            vertical-align: baseline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="head-box">
+            <img src="./img/icon-tips.png" alt="">
+            <span>京东不会以任何理由要求您转账汇款，谨防诈骗</span>
+        </div>
+        <div class="body-box">
+            <div class="btn-switch">
+                <a href="#">扫码登录</a>
+                <a href="#">账户登录</a>
+            </div>
+            <div class="input-box">
+                <div id="username">
+                    <input class="inp-user" type="text" placeholder="邮箱/用户名/登录手机">
+                </div>
+                <div id="pwd">
+                    <input class="inp-pwd" type="password" placeholder="密码">
+                </div>
+            </div>
+            <div class="forget"> <a href="#">忘记密码</a> </div>
+            <button class="btn-login">登录</button>
+        </div>
+        <div class="bottom-box">
+            <a class="b-qq" href="#">QQ</a>|
+            <a class="b-wx" href="#">微信</a>
+            <a class="b-reg" href="#">立即注册</a>
+        </div>
+    </div>
+</body>
+
+</html>

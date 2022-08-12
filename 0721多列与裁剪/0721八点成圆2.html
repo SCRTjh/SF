@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>八点成圆</title>
+    <style>
+        .main {
+            position: relative;
+            height: 500px;
+            width: 500px;
+            margin: 200px;
+            /* border: 2px solid black; */
+        }
+
+        .main>.square>.circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: rgb(208, 208, 208);
+            transform: scale(0);
+        }
+
+        .main>.square {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+            width: 400px;
+            height: 400px;
+        }
+
+        .main>.square:nth-of-type(2) {
+            transform: rotateZ(45deg);
+        }
+
+        .main>.square:nth-of-type(1)>.circle:nth-of-type(1) {
+
+            top: 0;
+            left: 0;
+            animation: load-ani 0.8s linear infinite;
+        }
+
+        .main>.square:nth-of-type(1)>.circle:nth-of-type(2) {
+
+            top: 0;
+            right: 0;
+            animation: load-ani 0.8s linear 0.1s infinite;
+        }
+
+        .main>.square:nth-of-type(1)>.circle:nth-of-type(3) {
+
+            bottom: 0;
+            right: 0;
+            animation: load-ani 0.8s linear 0.3s infinite;
+        }
+
+        .main>.square:nth-of-type(1)>.circle:nth-of-type(4) {
+
+            bottom: 0;
+            left: 0;
+            animation: load-ani 0.8s linear 0.5s infinite;
+        }
+
+        .main>.square:nth-of-type(2)>.circle:nth-of-type(1) {
+
+            top: 0;
+            left: 0;
+            animation: load-ani 0.8s linear infinite;
+        }
+
+        .main>.square:nth-of-type(2)>.circle:nth-of-type(2) {
+
+            top: 0;
+            right: 0;
+            animation: load-ani 0.8s linear 0.2s infinite;
+        }
+
+        .main>.square:nth-of-type(2)>.circle:nth-of-type(3) {
+
+            bottom: 0;
+            right: 0;
+            animation: load-ani 0.8s linear 0.4s infinite;
+        }
+
+        .main>.square:nth-of-type(2)>.circle:nth-of-type(4) {
+
+            bottom: 0;
+            left: 0;
+            animation: load-ani 0.8s linear 0.6s infinite;
+        }
+
+
+
+        @keyframes load-ani {
+
+            0%,
+            12.5% {
+                /* background-color: rgb(63, 175, 125); */
+                transform: scale(4);
+            }
+
+            12.6%,
+            25% {
+                /* background-color: rgb(77, 77, 77); */
+                transform: scale(3);
+            }
+
+            25.1%,
+            37.5% {
+                /* background-color: rgb(128, 128, 128) */
+                transform: scale(2);
+            }
+
+            37.6%,
+            100% {
+                /* background-color: rgb(208, 208, 208) */
+                transform: scale(0);
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="square">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="square">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+</body>
+
+</html>
