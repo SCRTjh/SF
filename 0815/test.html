@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr = [
+        { age: 11, sex: "男" },
+        { age: 7, sex: "男" },
+        { age: 9, sex: "男" },
+        { age: 12, sex: "男" },
+        { age: 13, sex: "男" }
+    ]
+
+    arr.sort((a, b) => a["age"] - b["age"]);
+    console.log(arr);
+
+
+
+    //动物
+    function Animal(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    //小狗
+    function Dog(name, age, sex) {
+        this.sex = sex;
+        Animal.call(this, name, age);
+    }
+
+    //人
+    function Person(name, age, hobby) {
+        this.hobby = hobby;
+        Animal.call(this, name, age);
+    }
+
+    //学生
+    function Student(name, age, hobby, sid) {
+        this.sid = sid;
+        Person.call(this, name, age, hobby);
+    }
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    // 动物
+    function Animal(sex, age, nickname) {
+        this.sex = sex;
+        this.age = age;
+        this.nickname = nickname;
+        this.sleep = function () {
+            console.log("睡觉");
+        }
+    }
+
+    //猫猫
+    function Cat(sex, age, nickname, weight) {
+        this.weight = weight;
+        this.__proto__ = Cat.prototype = new Animal(sex, age, nickname);
+        this.miao = function () {
+            console.log("喵喵");
+        }
+    }
+
+    //狗子
+    function Dog(sex, age, nickname, height) {
+        this.height = height;
+        this.__proto__ = Dog.prototype = new Animal(sex, age, nickname);
+        this.wang = function () {
+            console.log("汪汪");
+        }
+    }
+
+    //田园犬
+    function Pastoral(sex, age, nickname, height) {
+        this.__proto__ = Pastoral.prototype = new Dog(sex, age, nickname, height);
+        this.wang = function () {
+            console.log("汪汪");
+        }
+        this.janitor = function () {
+            console.log("看家护院");
+        }
+    }
+
+    // let c1 = new Cat("母", 3, "猫猫", "10kg");
+    // c1.miao();
+    // c1.sleep();
+
+    // let p = new Pastoral("公", 3, "旺财", "10kg");
+    // p.janitor();
+    // p.sleep();
+    // p.wang();
+
+
+
+    //寄生继承(组合继承)
+    function Animal1(sex, age, nickname) {
+        this.sex = sex;
+        this.age = age;
+        this.nickname = nickname;
+        this.sleep = function () {
+            console.log("睡觉");
+        }
+        this.__proto__ = Animal1.prototype;
+    }
+
+    function Cat1(sex, age, nickname, weight) {
+        this.weight = weight;
+        this.miao = function () {
+            console.log("喵喵");
+        }
+        Animal1.call(this.__proto__, sex, age, nickname);
+        this.__proto__ = Cat1.prototype
+    }
+
+    function Dog1(sex, age, nickname, height) {
+        this.height = height;
+        this.wang = function () {
+            console.log("汪汪");
+        }
+
+        Animal.call(this.__proto__, sex, age, nickname);
+        this.__proto__ = Dog1.prototype;
+    }
+
+    function Pastoral1(sex, age, nickname, height) {
+        this.wang = function () {
+            console.log("汪汪");
+        }
+        this.janitor = function () {
+            console.log("看家护院");
+        }
+
+        Dog1.call(this.__proto__, sex, age, nickname, height);
+        this.__proto__ = Pastoral1.prototype;
+    }
+
+
+    let c1 = new Cat1("母", 3, "猫猫", "10kg");
+    c1.miao();
+    c1.sleep();
+
+    let p = new Pastoral1("公", 3, "旺财", "10kg");
+    p.janitor();
+    p.sleep();
+    p.wang();
+
+
+
+</script>
+
+</html>
