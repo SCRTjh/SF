@@ -1,0 +1,82 @@
+1. 写出下面的结果
+   console.log([] + []);
+   console.log({} + []);
+   console.log([] == ![]);
+
+2. new关键字干了什么事？
+
+3. 如果获取对象所有的属性名
+
+4. 数据属性有哪4个特征（特性）
+
+5. 构造函数与普通函数的区别
+
+6. function a(){}
+   a instanceof Function ;		//结果？
+
+
+7. 定义函数的方法有哪些？
+
+8. 解释一下什么是回调函数？
+
+9. 解释一下什么是深拷贝，什么是浅拷贝？
+
+10.列出数组所有的迭代方法
+
+11. var arr = ["a","b","c"];
+    arr.forEach(function(item,index){
+    	if(index==1){
+    		arr.push("d");
+    	}
+    	console.log(item);
+    })
+
+12. var arr = ["a","b","c","d","e","b","g","b","c"];
+	//写代码，在第二个"b"元素的后面插入一个“标哥”
+
+
+13. 在数组里面有哪些方法在执行以后不会影响原数组？
+
+
+14. 对象调用属性的方式有哪些？
+
+15. var a = "bgg";
+    var b = a;
+
+    var obj = {
+    	[a]:"hello",
+    	[b]:"world"
+    }
+
+    请说明一下obj对象里面有几个属性，属性值分别是什么？
+
+ 16.如果删除对象的某一个属性？ 
+
+ 17.通过什么方法可以获取对象属性的描述信息
+
+ 18.如果判断对象是否具备某一个属性
+
+ 19.以下代码输出什么？
+    var name = "sex"
+    var company = {
+      name: "qdywxs",
+      age: 3,
+      sex: "男"
+    }
+    console.log(company[name])
+    console.log(company.name);
+
+ 20. 对象在执行加法与减法的时候分别是怎么操作的？
+
+ 21. call/apply有什么区别，作用是什么？
+
+ 22. var arr = [];
+     arr.push===Array.prototype.push;			//结果？
+
+ 23. 如何判断一个变量是整数？
+
+ 24. 如何判断一个变量它是NaN？
+ 
+ 25. 怎么定义一个变量a，才会有下面的结果
+
+     a==1&&a==2&&a==3  结果为true

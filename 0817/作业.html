@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr = [1, 2, 3, 4, 5];
+
+    function newReverse(oldArr) {
+        if (Array.isArray(oldArr)) {
+            let newArr = [];
+            oldArr.forEach((i) => {
+                newArr.unshift(i)
+            })
+            return newArr;
+        } else {
+            return console.error("请传入一个数组");
+        }
+    }
+
+    console.log(newReverse(arr));
+
+    let arr2 = [[0, 1], [2, 3, 4], 5];
+
+    //拍平
+    function flatten(arr) {
+        if (Array.isArray(arr)) {
+            let newArr = [];
+            function flattenInner(arr1) {
+                if (Array.isArray(arr1)) {
+                    arr1.forEach((i) => {
+                        return flattenInner(i);
+                    })
+                } else {
+                    newArr.push(arr1);
+                    return arr1;
+                }
+            }
+            flattenInner(arr);
+            return newArr;
+        } else {
+            console.log("请输入数组");
+            return;
+        }
+    }
+
+    console.log(flatten(arr2));
+
+
+
+    let arr3 = [1, 2, 3, "2", true];
+    function numSum(arr) {
+        let numArr = [];
+        let result = 0;
+        arr.forEach((i) => {
+            if (typeof i === "number" && !Number.isNaN(i)) {
+                numArr.push(i);
+            }
+        })
+        if (numArr.length != 0) {
+            numArr.forEach((i) => {
+                result += i;
+            })
+        } else {
+            result = undefined;
+        }
+        return result;
+    }
+
+    console.log(numSum(arr3));
+
+    function isInteger(x) {
+        return x === ~~(x) ? true : false;
+    }
+
+    console.log(isInteger(5.5));
+
+
+
+
+
+</script>
+
+</html>
