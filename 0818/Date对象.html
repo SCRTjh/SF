@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+
+
+    var obj = {
+        num1: 117
+    }
+    var res = obj;
+    obj.child = obj = { num2: 935 };
+    var x = res.child.num2;
+    console.log(obj.child);//{num2:935}
+    console.log(res.num1);//undefined
+    console.log(x);//935
+
+    let d1 = new Date("2022-1-18");
+    let d2 = new Date("2022-6-30");
+    let d3 = new Date("2022-8-18");
+
+    console.log((d2.getTime() - d1.getTime()) / 1000 / 60 / 60 / 24);
+
+    d3.setDate(18 + 180);
+    console.log(d3.toLocaleDateString());
+
+
+
+    console.log(randomNum(3, 30));
+
+
+    function findElement(arr, func) {
+        let num = 0;
+        for (let i = 0; i < arr.length; i++) {
+            if (func(arr[i])) {
+                num = arr[i];
+                return num;
+            }
+        }
+        num = undefined;
+        return num;
+    }
+
+    console.log(
+        findElement([1, 2, 3, 4], num => num % 2 === 0)
+    );
+
+    function getFileName(oldFileName) {
+        return oldFileName.substr(0, oldFileName.lastIndexOf("."));
+    }
+
+    console.log(getFileName("123.exe.exe"));
+
+
+    //5.验证
+    function confirm() {
+        let str = "";
+        // for (let i = 0; i < 4; i++) {
+        //     str += String.fromCharCode(randomNum(48, 122));
+        // }
+        while (str.length < 4) {
+            let num = randomNum(48, 122);
+            if (num >= 48 && num <= 57 || num >= 65 && num <= 90 || num >= 97 && num <= 122) {
+                str += String.fromCharCode(num);
+            }
+        }
+        return str
+    }
+
+    console.log(confirm());
+
+
+    //6 20~100之间的随机数10个,放数组不重复
+    //随机数
+    function randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function random20() {
+        let arr = [];
+        for (let i = 0; i < 10; i++) {
+            let num = randomNum(20, 100);
+            if (arr.indexOf(num) === -1) {
+                arr.push(num);
+            }
+        }
+        return arr;
+    }
+
+    console.log(random20());
+
+    //隔离
+    function D14(d) {
+        let d1 = new Date(d)
+        d1.setDate(d1.getDate() + 14);
+        if (d1.getDay() === 0) {
+            d1.setDate(d1.getDate() + 1);
+        }
+        if (d1.getDay() === 6) {
+            d1.setDate(d1.getDate() + 2);
+        }
+
+        console.log(d1.getDay());
+        return d1.toLocaleDateString();
+    }
+
+    console.log(D14("2022-8-20"));
+
+    //驼峰
+    function change(str) {
+        let newStr = str.split("-");
+        newStr.forEach((i, index) => {
+            newStr[index] = i[0].toUpperCase() + i.slice(1, i.length);
+        })
+        return newStr.join("-");
+    }
+    console.log(change("get-element-by-id"));
+
+</script>
+
+</html>

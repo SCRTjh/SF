@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function randomNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    //随机IP
+    function randomIP() {
+        let arr = [];
+        for (let i = 0; i < 4; i++) {
+            arr.push(randomNum(0, 255));
+        }
+        return arr.join(".")
+    }
+    console.log(randomIP());
+
+    //RMB
+    function parseRMB(num) {
+        let result = [];
+        while (true) {
+            if (num % 1000 === num) {
+                result.unshift(num % 1000)
+                break
+            }
+            result.unshift(num % 1000)
+            if (num > 1000) {
+                num = ~~(num / 1000);
+            }
+        }
+        return result.join(",");
+    }
+    console.log(parseRMB(12345678));
+
+    //删除相邻
+    function removeRe(str) {
+        let arrStr = str.split("");
+        console.log(arrStr);
+        for (let i = 0; i < arrStr.length; i++) {
+            if (arrStr[i] === arrStr[i - 1]) {
+                delete arrStr[i]
+            }
+        }
+        return arrStr.join("");
+    }
+
+    console.log(removeRe("fdaffdaaklfjklja"));
+
+    //判断回文
+    function test(num) {
+        num = (num + "").split("");
+        if (num.reverse() === num) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    console.log(test(12321));
+
+    //反转
+    function reverseArr(arr) {
+        let newArr = [];
+        arr.forEach((i) => {
+            newArr.unshift(i);
+        });
+        return newArr;
+    }
+    console.log(reverseArr([1, 2, 3, 4, 5]));
+
+    function isInteger(x) {
+        return x === ~~(x);
+    }
+
+    console.log(isInteger(5));
+
+    //原数组 
+    var arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"]
+    //结果数组 
+    var newArr = [
+        ["a", "b"],
+        ["c", "d", "e"],
+        ["f", "g"],
+        ["h", "i", "j"],
+        ["k", "l"],
+        ["m", "n", "o"]
+    ]
+    let newArr2 = [];
+    newArr2.push(arr.slice(0, 2));
+    newArr2.push(arr.slice(2, 5));
+    newArr2.push(arr.slice(5, 7));
+    newArr2.push(arr.slice(7, 10));
+    newArr2.push(arr.slice(10, 12));
+    newArr2.push(arr.slice(12, 15));
+    console.log(newArr2);
+
+    // 翻转单词
+    function reverseWord(str) {
+
+        return str.split(" ").reverse().join(" ");
+    }
+    console.log(reverseWord("I am a student !"));
+
+    //有一母牛，到4岁可生育，每年一头，所生均是一样的母牛，
+    // 到15岁绝育，不再能生，20岁死亡，问20年后有多少头牛
+    let cows = [0];
+    for (let i = 0; i < 20; i++) {
+        cows.forEach((i, index) => {
+            cows[index] = ++cows[index];
+            if (i > 4 && i < 15) {
+                cows.push(0);
+            }
+        });
+    }
+    console.log(cows.filter(i => i < 20).length);
+
+
+</script>
+
+</html>

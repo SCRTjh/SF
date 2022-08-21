@@ -12,13 +12,31 @@
 
 </body>
 <script>
-    let a = {
-        x: 0,
-        valueOf() {
-            return ++this.x;
+    // let a = {
+    //     x: 0,
+    //     valueOf() {
+    //         return ++this.x;
+    //     }
+    // };
+    // console.log(a == 1 && a == 2 && a == 3);
+
+
+    debugger
+    function a() {
+        var v = 2;
+        function b() {
+            v++;
+            console.log(v);
         }
-    };
-    console.log(a == 1 && a == 2 && a == 3);
+        return b;
+    }
+
+    var result = a();
+    result();
+    result();
+
+    var result2 = a();
+    result2();
 </script>
 
 </html>

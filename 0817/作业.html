@@ -47,8 +47,7 @@
             flattenInner(arr);
             return newArr;
         } else {
-            console.log("请输入数组");
-            return;
+            console.error("请输入数组");
         }
     }
 
@@ -78,7 +77,7 @@
     console.log(numSum(arr3));
 
     function isInteger(x) {
-        return x === ~~(x) ? true : false;
+        return x === ~~(x);
     }
 
     console.log(isInteger(5.5));
