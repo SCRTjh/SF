@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插入元素</title>
+    <style>
+        .ul1{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <!-- 开始之前 -->
+    <ul class="ul1">
+    <!-- 开始之后 -->
+        <li>第一项</li>
+        <li>第二项</li>
+        <li>第三项</li>
+    </ul>
+</body>
+<script>
+    var ul1 = document.querySelector(".ul1");
+
+
+    var active = document.createElement("li");
+    active.innerHTML = "标哥哥插入";
+
+    ul1.children[0].insertAdjacentElement("afterend",active);
+
+
+    // ul1.insertAdjacentElement("beforebegin",active);
+    // ul1.insertAdjacentElement("afterbegin",active);
+    // ul1.insertAdjacentElement("beforeend",active);
+    // ul1.insertAdjacentElement("afterend",active);  
+    
+
+
+    // beforeBegin      开始之前
+    // afterBegin       开始之后
+    // beforeEnd        结束之前
+    // afterEnd         结束之后
+</script>
+</html>
+<!-- 
+    after  之后
+    before 之前
+
+
+    begin  开始
+    end    结束
+
+
+
+
+ -->

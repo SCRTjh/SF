@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习题一</title>
+    <style>
+        .table1 {
+            border: 1px solid black;
+            width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+<script>
+    var stus = [
+        {
+            stuName: "张三",
+            sex: "女",
+            age: 18,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "李四",
+            sex: "女",
+            age: 22,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "王五",
+            sex: "男",
+            age: 18,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "赵六",
+            sex: "男",
+            age: 30,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "田七",
+            sex: "女",
+            age: 19,
+            hobby: ["看书", "睡觉"]
+        },
+        {
+            stuName: "周八",
+            sex: "女",
+            age: 22,
+            hobby: ["看书", "睡觉"]
+        }
+    ]
+
+    //第一步:将上面的数组以年龄大小进行从小大到排序
+    //第二步:将排序以后的结果以table的形式渲染到页面上面
+
+
+    stus.sort((a, b) => a.age - b.age);
+    console.log(stus);
+    let box = document.querySelector("#box");
+    let table1 = document.createElement("table");
+    let tr1 = document.createElement("tr");
+    box.appendChild(table1);
+    table1.appendChild(tr1);
+    table1.classList.add("table1");
+    for (let i = 0; i < 4; i++) {
+        let th1 = document.createElement("th");
+        tr1.appendChild(th1);
+    }
+    tr1.children[0].innerHTML = "姓名";
+    tr1.children[1].innerHTML = "性别";
+    tr1.children[2].innerHTML = "年龄";
+    tr1.children[3].innerHTML = "爱好";
+
+    stus.forEach((i) => {
+        let tr2 = document.createElement("tr");
+        table1.appendChild(tr2);
+        let arr = Object.getOwnPropertyNames(i);  //对象属性名转数组
+        arr.forEach((item) => {
+            let td1 = document.createElement("td");
+            td1.innerHTML = i[item];
+            tr2.appendChild(td1);
+        })
+    })
+
+
+
+</script>
+
+</html>
+<!-- 
+    <table class="table1">
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>爱好</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>女</td>
+            <td>18</td>
+            <td>看书,睡觉</td>
+        </tr>
+    </table>
+
+ -->

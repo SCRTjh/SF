@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习题一</title>
+    <style>
+        .ul1 {
+            border: 1px solid balck;
+        }
+
+        .ul1>li {
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+<script>
+    var arr = ["张三", "李四", "王五", "赵六", "男七"];
+    // 请将arr渲染到box里面去, 用ul li的形式
+    let box = document.querySelector("#box");
+    let ul = document.createElement("ul");
+    box.append(ul);
+    ul.className = "ul1";
+    // arr.forEach((i) => {
+    //     let li = document.createElement("li");
+    //     li.innerHTML = i;
+    //     ul.append(li);
+    // })
+
+    ul.innerHTML = arr.map((i) => {
+        return "<li>" + i + "</li>"
+    }).join("");
+
+</script>
+
+</html>
+<!-- 
+    <ul class="ul1">
+        <li>张三</li>
+        <li>李四</li>
+        <li>王五</li>
+        <li>赵六</li>
+        <li>男七</li>
+    </ul>
+-->
