@@ -71,7 +71,16 @@
     let table1 = document.createElement("table");
     let tr1 = document.createElement("tr");
     box.appendChild(table1);
-    table1.appendChild(tr1);
+    table1.innerHTML = stus.map((i) => {
+        let arr = Object.getOwnPropertyNames(i);
+        return "<tr>"
+            + "<td>" + i[arr[0]] + "</td>"
+            + "<td>" + i[arr[1]] + "</td>"
+            + "<td>" + i[arr[2]] + "</td>"
+            + "<td>" + i[arr[3]] + "</td>"
+            + "</tr>"
+    }).join("");
+    table1.insertAdjacentElement("afterbegin", tr1);
     table1.classList.add("table1");
     for (let i = 0; i < 4; i++) {
         let th1 = document.createElement("th");
@@ -82,16 +91,18 @@
     tr1.children[2].innerHTML = "年龄";
     tr1.children[3].innerHTML = "爱好";
 
-    stus.forEach((i) => {
-        let tr2 = document.createElement("tr");
-        table1.appendChild(tr2);
-        let arr = Object.getOwnPropertyNames(i);  //对象属性名转数组
-        arr.forEach((item) => {
-            let td1 = document.createElement("td");
-            td1.innerHTML = i[item];
-            tr2.appendChild(td1);
-        })
-    })
+    // stus.forEach((i) => {
+    //     let tr2 = document.createElement("tr");
+    //     table1.appendChild(tr2);
+    //     let arr = Object.getOwnPropertyNames(i);  //对象属性名转数组
+    //     arr.forEach((item) => {
+    //         let td1 = document.createElement("td");
+    //         td1.innerHTML = i[item];
+    //         tr2.appendChild(td1);
+    //     })
+    // })
+
+
 
 
 
