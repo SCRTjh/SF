@@ -7,17 +7,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>练习题一</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 900px;
+            margin: auto;
+        }
+
+        .btn-list {
+            margin: 10px 0;
+        }
+
         .table1 {
             border: 1px solid black;
             width: 900px;
             margin: auto;
             text-align: center;
+            border-collapse: collapse;
+            border-spacing: 0px;
+        }
+
+        .table1>tr {
+            height: 40px;
+        }
+
+        button {
+            padding: 5px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-edit {
+            background-color: #f9a908;
+        }
+
+        .btn-remove {
+            background-color: #f60300;
+        }
+
+        .table1>tr>td,
+        .table1>tbody>tr>th {
+            border: 1px solid black;
+        }
+
+        .box-title {
+            text-align: center;
+        }
+
+
+        .btn-list>button {
+            padding: 10px 20px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        .btn-list>.box-btn-add {
+            background-color: #30a9af;
+        }
+
+        .btn-list>.box-btn-edit {
+            background-color: #f9a908;
+        }
+
+        .btn-list>.box-btn-remove {
+            background-color: #f60300;
+        }
+
+        .mask {
+            position: fixed;
+            right: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mask>.form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 400px;
+            background-color: #dee1e6;
+
+        }
+
+        .mask>.form>h2 {
+            margin-bottom: 20px;
+        }
+
+        .mask>.form>.form-item {
+            margin-bottom: 15px;
+        }
+
+
+        .visible {
+            display: flex;
+        }
+
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 
 <body>
     <div id="box">
+        <h2 class="box-title">学生信息列表</h2>
+        <div class="btn-list">
+            <button type="button" class="box-btn-add">新增</button>
+            <button type="button" class="box-btn-edit">编辑</button>
+            <button type="button" class="box-btn-remove">批量删除</button>
+        </div>
+        <table class="table1">
+            <tr>
+                <th>
+                    <label>
+                        <input type="checkbox" name="all" id="chooseAll">
+                        全选
+                    </label>
+                </th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>爱好</th>
+                <th>操作</th>
+            </tr>
+
+        </table>
+
+        <div class="mask hidden">
+            <form class="form">
+                <h2>编辑</h2>
+                <div class="form-item">
+                    <label>
+                        姓名:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        性别:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        年龄:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        爱好:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="btn-boxs">
+                    <button type="button" class="btn-edit">保存</button>
+                    <button type="button" class="btn-remove">取消</button>
+                </div>
+            </form>
+
+        </div>
+        、
 
     </div>
 </body>
@@ -27,19 +190,19 @@
             stuName: "张三",
             sex: "女",
             age: 18,
-            hobby: ["看书", "睡觉"]
+            hobby: ["看书", "睡觉", "打豆豆"]
         },
         {
             stuName: "李四",
             sex: "女",
             age: 22,
-            hobby: ["看书", "睡觉"]
+            hobby: ["看书", "睡觉", "吃"]
         },
         {
             stuName: "王五",
             sex: "男",
             age: 18,
-            hobby: ["看书", "睡觉"]
+            hobby: ["看书", "睡觉", "喝"]
         },
         {
             stuName: "赵六",
@@ -65,42 +228,111 @@
     //第二步:将排序以后的结果以table的形式渲染到页面上面
 
 
+    //排序
     stus.sort((a, b) => a.age - b.age);
     console.log(stus);
     let box = document.querySelector("#box");
-    let table1 = document.createElement("table");
-    let tr1 = document.createElement("tr");
-    box.appendChild(table1);
-    table1.innerHTML = stus.map((i) => {
-        let arr = Object.getOwnPropertyNames(i);
-        return "<tr>"
-            + "<td>" + i[arr[0]] + "</td>"
-            + "<td>" + i[arr[1]] + "</td>"
-            + "<td>" + i[arr[2]] + "</td>"
-            + "<td>" + i[arr[3]] + "</td>"
-            + "</tr>"
-    }).join("");
-    table1.insertAdjacentElement("afterbegin", tr1);
-    table1.classList.add("table1");
-    for (let i = 0; i < 4; i++) {
-        let th1 = document.createElement("th");
-        tr1.appendChild(th1);
-    }
-    tr1.children[0].innerHTML = "姓名";
-    tr1.children[1].innerHTML = "性别";
-    tr1.children[2].innerHTML = "年龄";
-    tr1.children[3].innerHTML = "爱好";
+    let table1 = document.querySelector(".table1");
+    let chooseAll = document.querySelector("#chooseAll");
+    let removeAll = document.querySelector(".box-btn-remove");
 
-    // stus.forEach((i) => {
-    //     let tr2 = document.createElement("tr");
-    //     table1.appendChild(tr2);
-    //     let arr = Object.getOwnPropertyNames(i);  //对象属性名转数组
-    //     arr.forEach((item) => {
-    //         let td1 = document.createElement("td");
-    //         td1.innerHTML = i[item];
-    //         tr2.appendChild(td1);
-    //     })
-    // })
+    let currentData = [];
+
+
+
+
+    //放入数据
+    stus.forEach((i) => {
+        let tr2 = document.createElement("tr");
+        table1.appendChild(tr2);
+        let td1 = document.createElement("td");
+        td1.innerHTML = "<input type='checkbox' name='choose' >";
+        tr2.appendChild(td1);
+        let arr = Object.getOwnPropertyNames(i);  //对象属性名转数组
+        arr.forEach((item) => {
+            let td2 = document.createElement("td");
+            td2.innerHTML = i[item];
+            tr2.appendChild(td2);
+        })
+        let td3 = document.createElement("td");
+        td3.innerHTML = "<button type='button' class='btn-edit'>编辑</button><button class='btn-remove'>删除</button>";
+        tr2.appendChild(td3);
+    })
+
+    //全选
+    chooseAll.addEventListener("change", e => {
+        let flag = chooseAll.checked;
+        let chooseBtns = document.querySelectorAll(".table1>tr>td:first-of-type>[type='checkbox']");
+        chooseBtns.forEach(i => {
+            i.checked = flag;
+        })
+    })
+
+
+    //单选判断
+    let chooseBtns = document.querySelectorAll(".table1>tr>td:first-of-type>[type='checkbox']");
+
+    chooseBtns.forEach(item => {
+        item.addEventListener("change", e => {
+            console.log(e);
+            for (let j = 0; j < chooseBtns.length; j++) {
+                if (!chooseBtns[j].checked) {
+                    chooseAll.checked = chooseBtns[j].checked;
+                    break;
+                } else {
+                    chooseAll.checked = chooseBtns[j].checked;
+                }
+            }
+        })
+    })
+
+    //批量删除
+    function removeChecked(e) {
+        chooseBtns.forEach(item => {
+            if (item.checked) {
+                item.parentElement.parentElement.remove();
+            }
+        })
+    }
+
+    removeAll.addEventListener("click", removeChecked);
+
+    //删除
+    let removeBtns = document.querySelectorAll(".table1 tr .btn-remove");
+
+    removeBtns.forEach(item => {
+        item.addEventListener("click", e => {
+            item.parentElement.parentElement.remove();
+        })
+    })
+
+    let tEdit = document.querySelectorAll(".table1>tr>td>.btn-edit"); //外部编辑
+    let innerEdit = document.querySelector(".mask>.form>.btn-box>.btn-edit"); //内部编辑
+    let innerRemove = document.querySelector(".mask>.form>.btn-boxs>.btn-remove"); //内部取消
+    let mask = document.querySelector(".mask");
+
+    innerRemove.onclick = function () {  //取消
+        mask.classList.remove("visible");
+        mask.classList.add("hidden");
+    }
+
+    tEdit.forEach((item) => {
+        item.onclick = function () {
+            let datas = item.parentElement.parentElement;
+            Array.prototype.forEach.call(datas, (item2, index) => {
+                console.log(item2);
+                if (index != 0 && index != 5) {
+                    currentData.push(item2.innerText);
+                }
+            })
+            let inDatas = document.querySelectorAll(".mask>.form>.form-item>[name='in-data']");
+            inDatas.forEach((i, index) => {
+                i.value = currentData[index];
+            })
+            mask.classList.remove("hidden");
+            mask.classList.add("visible");
+        }
+    })
 
 
 
