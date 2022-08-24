@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function titleCase(str) {
+        let arr = str.split(" ");
+        str = arr.map(i => {
+            return i[0].toUpperCase() + i.slice(1).toLowerCase();
+        }).join(" ");
+        return str
+    }
+
+    console.log(titleCase("I'm a little tea pot"));
+
+    function frankenSplice(arr1, arr2, n) {
+        let a = arr2.slice(0, n);
+        a.splice(n, arr1.length, ...arr1);
+        arr2 = a.concat(arr2.slice(n))
+        return arr2;
+    }
+
+
+    console.log(frankenSplice([1, 2, 3], [4, 5, 6], 1));
+
+    function getIndexToIns(arr, num) {
+        arr.sort((a, b) => a - b);
+        if (arr.length === 0) {
+            return 0
+        }
+        if (num > arr[arr.length - 1]) {
+            return arr.length;
+        }
+        for (let i = 0; i < arr.length; i++) {
+            if (num === arr[i]) {
+                num = i;
+                break;
+            } else if (num < arr[i]) {
+                num = i;
+                break;
+            }
+        }
+
+        return num;
+    }
+
+    console.log(
+        getIndexToIns([10, 20, 30, 40, 50], 35)
+    );
+
+
+</script>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        .box {
+            width: 400px;
+            height: 600px;
+            display: grid;
+            grid-template-columns: 100px 100px 100px 100px;
+            grid-template-rows: 100px 100px 100px 100px 100px 100px;
+            border: 1px solid black;
+            grid-template-areas: "s s s s"
+                ". . . ."
+                ". . . ."
+                ". . . ."
+                ". . . ."
+                "z z z .";
+        }
+
+
+        .box>.screen {
+            justify-content: flex-end;
+            box-sizing: border-box;
+            padding: 0 10px;
+            font-size: 48px;
+        }
+
+        .box>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        .box>div+div:active {
+            background-color: orange;
+        }
+
+        .zero {
+            grid-area: z;
+        }
+
+        .screen {
+            grid-area: s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="screen">
+        </div>
+        <div class="small-box" onclick="ac()">AC</div>
+        <div class=" small-box">+/-</div>
+        <div class="small-box">%</div>
+        <div class="small-box" onclick="append('/')">/</div>
+        <div class="small-box" onclick="append('7')">7</div>
+        <div class="small-box" onclick="append('8')">8</div>
+        <div class="small-box" onclick="append('9')">9</div>
+        <div class="small-box" onclick="append('*')">*</div>
+        <div class="small-box" onclick="append('4')">4</div>
+        <div class="small-box" onclick="append('5')">5</div>
+        <div class="small-box" onclick="append('6')">6</div>
+        <div class="small-box" onclick="append('-')">-</div>
+        <div class="small-box" onclick="append('1')">1</div>
+        <div class="small-box" onclick="append('2')">2</div>
+        <div class="small-box" onclick="append('3')">3</div>
+        <div class="small-box" onclick="append('+')">+</div>
+        <div class="zero" onclick="append('0')">0</div>
+        <div class="small-box" onclick="calc()">=</div>
+    </div>
+
+</body>
+
+<script>
+    let screen = document.querySelector(".screen");
+    // 用于存放屏幕内的内容
+    let result = '';
+
+    let ope = "";
+
+    // 输入数字与符号
+    function append(str) {
+        //判断第一个字符是否为数字
+        if (result.length == 0 && "+-*/".includes(str)) {
+            alert('请先输入数字')
+            return;
+        }
+        //判断输入的是否为符号
+        if ("+-*/".includes(str)) {
+            ope = str;
+        }
+
+        result += str;
+        screen.innerText = result;
+    }
+
+    //清楚屏幕内容归零
+    function ac() {
+        result = ""
+        screen.innerText = "0";
+    }
+
+    //计算
+    function calc() {
+        let numArr = result.split(ope)
+        switch (ope) {
+            case "+": result = +numArr[0] + +numArr[1]; break;
+            case "-": result = +numArr[0] - +numArr[1]; break;
+            case "*": result = +numArr[0] * +numArr[1]; break;
+            case "/": result = +numArr[0] / +numArr[1]; break;
+        }
+        screen.innerText = result;
+        result = "";
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习一</title>
+    <style>
+        .box {
+            display: flex;
+            justify-content: center;
+        }
+
+        .sel1,
+        .sel2 {
+            height: 400px;
+            width: 120px;
+        }
+
+        .btn-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0px 50px;
+        }
+
+        .btn-box>button {
+            width: 80px;
+            height: 35px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <select multiple class="sel1">
+            <option id="hu">胡海莹</option>
+            <option>程志超</option>
+            <option>韩宏杨</option>
+            <option>隗志文</option>
+            <option>王泽冰</option>
+        </select>
+        <div class="btn-box">
+            <button type="button" onclick="toRight()">&gt;</button>
+            <button type="button" onclick="toLeft()">&lt;</button>
+            <button type="button" onclick="toRightAll()">&gt;&gt;</button>
+            <button type="button" onclick="toLeftAll()">&lt;&lt;</button>
+        </div>
+        <select multiple class="sel2">
+
+
+        </select>
+    </div>
+</body>
+<script>
+    //去右边
+    function toRight() {
+        let checkeds = document.querySelectorAll(".sel1>option:checked");
+        let sel2 = document.querySelector(".sel2");
+        checkeds.forEach(i => {
+            sel2.appendChild(i);
+        })
+    }
+
+
+    //去左边
+    function toLeft() {
+        let checkeds = document.querySelectorAll(".sel2>option:checked");
+        let sel1 = document.querySelector(".sel1");
+        checkeds.forEach(i => {
+            sel1.appendChild(i);
+        })
+    }
+    //全部去右边
+    function toRightAll() {
+        let checkeds = document.querySelectorAll(".sel1>option");
+        let sel2 = document.querySelector(".sel2");
+        checkeds.forEach(i => {
+            sel2.appendChild(i);
+        })
+
+    }
+    //全部去左边
+    function toLeftAll() {
+        let checkeds = document.querySelectorAll(".sel2>option");
+        let sel1 = document.querySelector(".sel1");
+        checkeds.forEach(i => {
+            sel1.appendChild(i);
+        })
+    }
+</script>
+
+</html>

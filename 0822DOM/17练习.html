@@ -79,7 +79,8 @@
             background-color: #f60300;
         }
 
-        .mask {
+        .mask,
+        .mask2 {
             position: fixed;
             right: 0;
             left: 0;
@@ -91,7 +92,8 @@
             align-items: center;
         }
 
-        .mask>.form {
+        .mask>.form,
+        .mask2>.form {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -102,11 +104,13 @@
 
         }
 
-        .mask>.form>h2 {
+        .mask>.form>h2,
+        .mask2>.form>h2 {
             margin-bottom: 20px;
         }
 
-        .mask>.form>.form-item {
+        .mask>.form>.form-item,
+        .mask2>.form>.form-item {
             margin-bottom: 15px;
         }
 
@@ -178,10 +182,40 @@
                     <button type="button" class="btn-remove">取消</button>
                 </div>
             </form>
-
         </div>
-        、
-
+        <div class="mask2 hidden">
+            <form class="form">
+                <h2>新增</h2>
+                <div class="form-item">
+                    <label>
+                        姓名:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        性别:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        年龄:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="form-item">
+                    <label>
+                        爱好:
+                        <input type="text" name="in-data">
+                    </label>
+                </div>
+                <div class="btn-boxs">
+                    <button type="button" class="btn-edit">新增</button>
+                    <button type="button" class="btn-remove">取消</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 <script>
@@ -230,11 +264,10 @@
 
     //排序
     stus.sort((a, b) => a.age - b.age);
-    console.log(stus);
     let box = document.querySelector("#box");
     let table1 = document.querySelector(".table1");
-    let chooseAll = document.querySelector("#chooseAll");
-    let removeAll = document.querySelector(".box-btn-remove");
+    let chooseAll = document.querySelector("#chooseAll"); //全选的复选框
+    let removeAll = document.querySelector(".box-btn-remove"); //批量删除按钮
 
     let currentData = [];
 
@@ -269,25 +302,19 @@
     })
 
 
-    //单选判断
+    //单选判断事件
     let chooseBtns = document.querySelectorAll(".table1>tr>td:first-of-type>[type='checkbox']");
 
     chooseBtns.forEach(item => {
         item.addEventListener("change", e => {
-            console.log(e);
-            for (let j = 0; j < chooseBtns.length; j++) {
-                if (!chooseBtns[j].checked) {
-                    chooseAll.checked = chooseBtns[j].checked;
-                    break;
-                } else {
-                    chooseAll.checked = chooseBtns[j].checked;
-                }
-            }
+            let checkeds = document.querySelectorAll(".table1>tr>td:first-of-type>input:checked");
+            chooseAll.checked = chooseBtns.length === checkeds.length;
         })
     })
 
-    //批量删除
+    //批量删除事件
     function removeChecked(e) {
+        let chooseBtns = document.querySelectorAll(".table1>tr>td:first-of-type>[type='checkbox']");
         chooseBtns.forEach(item => {
             if (item.checked) {
                 item.parentElement.parentElement.remove();
@@ -297,7 +324,7 @@
 
     removeAll.addEventListener("click", removeChecked);
 
-    //删除
+    //选中删除事件
     let removeBtns = document.querySelectorAll(".table1 tr .btn-remove");
 
     removeBtns.forEach(item => {
@@ -306,34 +333,112 @@
         })
     })
 
-    let tEdit = document.querySelectorAll(".table1>tr>td>.btn-edit"); //外部编辑
-    let innerEdit = document.querySelector(".mask>.form>.btn-box>.btn-edit"); //内部编辑
-    let innerRemove = document.querySelector(".mask>.form>.btn-boxs>.btn-remove"); //内部取消
+    let tEdit = document.querySelectorAll(".table1>tr>td>.btn-edit"); //表格td编辑按钮
+    let innerEdit = document.querySelector(".mask>.form>.btn-boxs>.btn-edit"); //弹窗保存按钮
+    let innerRemove = document.querySelector(".mask>.form>.btn-boxs>.btn-remove"); //弹窗取消按钮
     let mask = document.querySelector(".mask");
+    let currentItem = null;
 
-    innerRemove.onclick = function () {  //取消
+
+
+    innerRemove.onclick = function () {  //取消按钮隐藏弹窗
         mask.classList.remove("visible");
         mask.classList.add("hidden");
     }
 
-    tEdit.forEach((item) => {
+    tEdit.forEach((item) => {  //添加编辑按钮点击事件
         item.onclick = function () {
-            let datas = item.parentElement.parentElement;
-            Array.prototype.forEach.call(datas, (item2, index) => {
-                console.log(item2);
+            currentItem = this;
+            let datas = this.parentElement.parentElement.children;  //取tds
+            new Array().forEach.call(datas, (item2, index) => { //currentData放入现在点击的数据
                 if (index != 0 && index != 5) {
-                    currentData.push(item2.innerText);
+                    currentData[index - 1] = item2.innerText;
                 }
             })
-            let inDatas = document.querySelectorAll(".mask>.form>.form-item>[name='in-data']");
-            inDatas.forEach((i, index) => {
+            let inDatas = document.querySelectorAll(".mask>.form>.form-item [name='in-data']");  //弹窗内输入框
+            inDatas.forEach((i, index) => {  //currentData放入弹窗输入框
                 i.value = currentData[index];
             })
+            //显示弹窗
             mask.classList.remove("hidden");
             mask.classList.add("visible");
         }
     })
 
+    innerEdit.onclick = function () {  //保存按钮事件
+        let inDatas = document.querySelectorAll(".mask>.form>.form-item [name='in-data']");  //弹窗内输入框
+        inDatas.forEach((i, index) => {
+            //取出数据
+            currentData[index] = i.value;
+        })
+        let datas = currentItem.parentElement.parentElement.children;  //取tds
+        new Array().forEach.call(datas, (item2, index) => { //遍历td放入数据
+            if (index != 0 && index != 5) {
+                datas[index].innerText = currentData[index - 1]
+            }
+        })
+        //隐藏弹窗
+        mask.classList.remove("visible");
+        mask.classList.add("hidden");
+    }
+
+    let addBtn = document.querySelector("#box>.btn-list>.box-btn-add"); //新增按钮
+    let innerEdit2 = document.querySelector(".mask2>.form>.btn-boxs>.btn-edit"); //弹窗2保存按钮
+    let innerRemove2 = document.querySelector(".mask2>.form>.btn-boxs>.btn-remove"); //弹窗2取消按钮
+    let mask2 = document.querySelector(".mask2");
+
+    innerRemove2.onclick = function () {  //取消按钮隐藏弹窗2
+        mask2.classList.remove("visible");
+        mask2.classList.add("hidden");
+    }
+
+
+    addBtn.onclick = function () {
+        mask2.classList.remove("hidden");
+        mask2.classList.add("visible");
+    }
+
+    innerEdit2.onclick = function () {  //新增中的保存按钮事件
+        let datas = document.querySelectorAll(".mask2>.form>.form-item [name='in-data']"); //弹窗内输入框
+        datas.forEach((i, index) => {
+            currentData[index] = i.value;  //输入框数据暂存
+        })
+        if (currentData[0] === "" || currentData[1] === "" || currentData[3] === "") {  //判断是否为空
+            alert('请输入数据');
+            return;
+        } else {
+            let tr = document.createElement("tr");
+            let str = "<td><input type='checkbox' name='choose'></td><td>"
+                + currentData[0] + "</td>" + "<td>" + currentData[1] + "</td>" + "<td>" + currentData[2] + "</td>" + "<td>" + currentData[3] + "</td>"
+                + "<td><button type='button' class='btn-edit'>编辑</button><button class='btn-remove'>删除</button></td>";
+            tr.innerHTML = str;
+            let edit = tr.children[5].children[0];            //冗余
+            let remove = tr.children[5].children[1];
+            edit.onclick = function () {
+                currentItem = this;
+                let datas = this.parentElement.parentElement.children;  //取tds
+                new Array().forEach.call(datas, (item2, index) => { //currentData放入现在点击的数据
+                    if (index != 0 && index != 5) {
+                        currentData[index - 1] = item2.innerText;
+                    }
+                })
+                let inDatas = document.querySelectorAll(".mask>.form>.form-item [name='in-data']");  //弹窗内输入框
+                inDatas.forEach((i, index) => {  //currentData放入弹窗输入框
+                    i.value = currentData[index];
+                })
+                //显示弹窗
+                mask.classList.remove("hidden");
+                mask.classList.add("visible");
+            }
+            remove.onclick = function () {  //取消按钮隐藏弹窗
+                this.parentElement.parentElement.remove();
+            }
+            table1.appendChild(tr);
+            //隐藏弹窗
+            mask2.classList.remove("visible");
+            mask2.classList.add("hidden");
+        }
+    }
 
 
 
@@ -341,20 +446,3 @@
 </script>
 
 </html>
-<!-- 
-    <table class="table1">
-        <tr>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>爱好</th>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>女</td>
-            <td>18</td>
-            <td>看书,睡觉</td>
-        </tr>
-    </table>
-
- -->
