@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button" id="confirmCode">发送验证码</button>
+
+</body>
+<script>
+    let btn = document.querySelector("#confirmCode"); //按钮
+    btn.addEventListener('click', () => {
+        let count = 5;  //秒数
+        btn.disabled = true;
+        btn.innerText = "还有" + count + "秒可以再次发送";
+        let time = setInterval(() => {
+            count--;
+            btn.innerText = "还有" + count + "秒可以再次发送";
+            if (count < 1) {
+                clearInterval(time);
+                btn.innerText = "重新发送";
+                btn.disabled = false;
+                count = 5;
+            }
+        }, 1000)
+    })
+
+
+    var name = "World!"; (function () { var name; if (typeof name === 'undefined') { name = 'Jack'; console.log('Goodbye' + name); } else { console.log('Hello' + name); } })();
+
+
+</script>
+
+</html>

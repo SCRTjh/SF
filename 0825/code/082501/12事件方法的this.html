@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 200px;
+      border: 1px solid black;
+    }
+
+    .box>h2 {
+      background-color: pink;
+    }
+
+    .box>p {
+      background-color: lightseagreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <button type="button" class="btn1">按钮1</button>
+    <button type="button" class="btn1">按钮2</button>
+    <button type="button" class="btn1">按钮3</button>
+    <button type="button" class="btn1">按钮4</button>
+    <h2>这是一个二号标题</h2>
+    <p>这是一个段落标题</p>
+  </div>
+</body>
+<script>
+  var box = document.querySelector(".box");
+  box.onclick = function (event) {
+    console.log(event.target, this, event.currentTarget);
+    if (event.target.matches(".btn1")) {
+      console.log(event.target.innerText);
+      console.log(this == event.currentTarget);
+    }
+  }
+</script>
+
+</html>

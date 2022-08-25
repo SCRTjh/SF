@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件流</title>
+  <style>
+    .big-box {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .big-box:active {
+      background-color: lightseagreen;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div class="big-box" onclick="aaa(event)">
+    <div class="box" onclick="bbb(event)"></div>
+  </div>
+</body>
+<script>
+  function aaa(event) {
+    console.log("我是大盒子里面的点击事件");
+    console.log(event);
+  }
+
+  function bbb(event) {
+    console.log("我是盒子里面的按钮的点击事件");
+    console.log(event);
+  }
+</script>
+</html>

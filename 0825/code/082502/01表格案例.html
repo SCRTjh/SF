@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格案例</title>
+  <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+  <div class="container">
+    <h2 class="title">学信信息列表</h2>
+    <div class="btn-box">
+      <button type="button" class="btn btn-add" onclick="showMask()">新增</button>
+      <button type="button" class="btn btn-del" onclick="delAll()">批量删除</button>
+    </div>
+    <table class="table1">
+      <tr>
+        <th><label><input type="checkbox" class="ckAll" onclick="ckAll(this)">全选</label></th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>爱好</th>
+        <th>操作</th>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="ck"></td>
+        <td>张三</td>
+        <td>男</td>
+        <td>18</td>
+        <td>看书,睡觉</td>
+        <td>
+          <button type="button" class="btn btn-edit">编辑</button>
+          <button type="button" class="btn btn-del">删除</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="ck"></td>
+        <td>李四</td>
+        <td>女</td>
+        <td>19</td>
+        <td>看书,打游戏</td>
+        <td>
+          <button type="button" class="btn btn-edit">编辑</button>
+          <button type="button" class="btn btn-del">删除</button>
+        </td>
+      </tr>
+      <tr>
+        <td><input type="checkbox" class="ck"></td>
+        <td>王五</td>
+        <td>男</td>
+        <td>20</td>
+        <td>看书,睡觉</td>
+        <td>
+          <button type="button" class="btn btn-edit">编辑</button>
+          <button type="button" class="btn btn-del">删除</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="mask hidden">
+    <form name="stuForm" class="stuForm">
+      <div class="form-item">
+        <span class="label">姓名</span>
+        <input type="text" id="stuName" class="aaa">
+      </div>
+      <div class="form-item">
+        <span class="label">性别</span>
+        <select id="sex" class="aaa">
+          <option value="男">男</option>
+          <option value="女">女</option>
+        </select>
+      </div>
+      <div class="form-item">
+        <span class="label">年龄</span>
+        <input type="number" id="age" class="aaa">
+      </div>
+      <div class="form-item">
+        <span class="label">爱好</span>
+        <input type="text" id="hobby" class="aaa">
+      </div>
+      <div class="form-item">
+        <button type="button" class="btn btn-add" onclick="saveData()">保存</button>
+        <button type="button" class="btn btn-del" onclick="closeMask()">取消</button>
+      </div>
+    </form>
+  </div>
+</body>
+<script src="./js/index.js"></script>
+
+</html>

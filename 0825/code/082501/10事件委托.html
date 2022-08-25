@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 200px;
+      border: 1px solid black;
+    }
+
+    .box>h2 {
+      background-color: pink;
+    }
+
+    .box>p {
+      background-color: lightseagreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box" onclick="aaa(event)">
+    <button type="button" class="btn1">按钮1</button>
+    <button type="button" class="btn1">按钮2</button>
+    <button type="button" class="btn1">按钮3</button>
+    <button type="button" class="btn1">按钮4</button>
+    <h2>这是一个二号标题</h2>
+    <p>这是一个段落标题</p>
+  </div>
+  <button class="add" onclick="add()">新增</button>
+</body>
+<script>
+  function aaa(event) {
+    if (event.target.matches(".btn1")) {
+      console.log(event.target.innerText);
+    }
+  }
+
+  function add() {
+    var btn = document.createElement("button")
+    btn.type = "button"
+    btn.className = "btn1"
+    btn.innerText = "按钮5"
+    document.querySelector('.box').appendChild(btn)
+  }
+</script>
+
+</html>

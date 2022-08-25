@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件触发响应的条件</title>
+</head>
+
+<body>
+  <a href="./10事件委托.html" id="aaa">跳转链接</a>
+
+  <a href="./09事件委托.html" onclick="return bbb()">跳转链接2</a>
+</body>
+<script>
+  var aaa = document.querySelector("#aaa")
+  aaa.onclick = function () {
+    alert("点击事件触发")
+    // 事件触发后不一定所有的响应都会执行只有当事件的返回值不为false的时候才会去触发响应
+    return false
+  }
+
+  function bbb() {
+    alert("我是方法bbb")
+    return false
+  }
+</script>
+
+</html>

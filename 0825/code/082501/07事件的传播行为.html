@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>取消事件冒泡</title>
+  <style>
+    .big-box {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .big-box:active {
+      background-color: lightseagreen;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="big-box">
+    <div class="box"></div>
+  </div>
+</body>
+<script>
+  var bigBox = document.querySelector(".big-box")
+  bigBox.addEventListener("click", function (event) {
+    event.stopPropagation();
+    event.cancelBubble = true;
+    console.log('我是大盒子的事件');
+  }, true)
+  var box = document.querySelector(".box")
+  box.addEventListener("click", function (event) {
+    event.cancelBubble = true;
+    event.stopPropagation();
+    console.log('我是小盒子的事件');
+    console.log(event);
+  }, true)
+</script>
+
+</html>

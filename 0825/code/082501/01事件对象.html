@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件对象</title>
+</head>
+
+<body>
+  <button type="button" onmousedown="aaa(event)">按钮</button>
+  <input type="text" onkeydown="bbb()">
+</body>
+<script>
+  function aaa(eve) {
+    console.log("我的一个点击事件");
+    console.log(eve);
+  }
+  function bbb() {
+    console.log("我是键盘事件");
+  }
+</script>
+
+</html>

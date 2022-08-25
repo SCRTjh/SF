@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件先于响应</title>
+</head>
+
+<body>
+  <form id="form1">
+    <input type="text" name="userName">
+    <button type="reset">重置</button>
+  </form>
+</body>
+<script>
+  var form1 = document.querySelector("#form1")
+  form1.onreset = function () {
+    alert("我是重置表单事件")
+  }
+</script>
+
+</html>

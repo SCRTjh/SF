@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+.title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.btn-add {
+  background-color: lightseagreen;
+}
+
+.btn-edit {
+  background-color: orange;
+}
+
+.btn-del {
+  background-color: red;
+}
+
+.table1 {
+  margin-top: 20px;
+  width: 100%;
+  border: 1px solid black;
+  border-spacing: 0;
+}
+
+.table1 th,
+.table1 td {
+  border: 1px dotted black;
+  height: 40px;
+  text-align: center;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stuForm {
+  width: 400px;
+  height: 200px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  transition: all 1s linear;
+}
+
+.form-item {
+  flex: 1;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.form-item>.label {
+  width: 60px;
+}
+
+
+.form-item>.aaa {
+  flex: 1;
+  height: 30px;
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.visible {
+  opacity: 1;
+  transform: scale(1);
+}

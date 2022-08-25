@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>分析事件对象</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <button type="button" onclick="aaa(event)">按钮</button>
+  <div class="box" onmousedown="bbb(event)"></div>
+  <input type="text" onkeydown="ccc(event)">
+</body>
+<script>
+  function aaa(event) {
+    // IE兼容性写法
+    event = event || window.event
+    console.log(event);
+  }
+
+  function bbb(event) {
+    // IE兼容性写法
+    event = event || window.event
+    console.log(event);
+  }
+
+  function ccc(event) {
+    // IE兼容性写法
+    event = event || window.event
+    console.log(event);
+  }
+</script>
+
+</html>

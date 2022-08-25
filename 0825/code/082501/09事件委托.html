@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 200px;
+      border: 1px solid black;
+    }
+
+    .box>h2 {
+      background-color: pink;
+    }
+
+    .box>p {
+      background-color: lightseagreen;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <button type="button" class="btn1">按钮1</button>
+    <button type="button" class="btn1">按钮2</button>
+    <button type="button" class="btn1">按钮3</button>
+    <button type="button" class="btn1">按钮4</button>
+    <h2>这是一个二号标题</h2>
+    <p>这是一个段落标题</p>
+  </div>
+  <button class="add" onclick="add()">新增</button>
+</body>
+<script>
+  var btnList = document.querySelectorAll(".btn1")
+  btnList.forEach(function (item) {
+    item.onclick = function () {
+      console.log("我是" + item.innerText);
+    }
+  })
+
+  function add() {
+    var btn = document.createElement("button")
+    btn.type = "button"
+    btn.innerText = "按钮5"
+    document.querySelector('.box').appendChild(btn)
+  }
+</script>
+
+</html>
+<!-- 存在问题
+  1. 事件的绑定非常麻烦,需要去找到所有"class='btn1'"的元素然后遍历,然后绑定事件,这么做会非常消耗我们浏览器的性能
+  2. 当我们调用add()方法新添加一个按钮后,我们发现新添加的这个按钮没有我们前面绑定的那个事件
+-->

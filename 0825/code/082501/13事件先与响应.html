@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件先于响应</title>
+</head>
+
+<body>
+  <a href="./12事件方法的this.html" id="bd">百度一下</a>
+</body>
+<script>
+  var bd = document.querySelector("#bd")
+  bd.onclick = function () {
+    alert("我是a标签的点击事件")
+  }
+</script>
+
+</html>
