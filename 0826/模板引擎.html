@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="main">
+
+    </ul>
+
+</body>
+<script src="./stus.js"></script>
+<script src="./template-web.js"></script>
+<script type="type/html" id="temp1">
+    {{each arr item index}}
+    
+        <li  style="color: {{ item.sex=="男" ? "blue": "red" }}"> 序号:{{index}}------姓名:{{item['stuName']}}-----性别:{{item.sex}} </li>
+        
+    
+    {{/each}}
+</script>
+<script>
+    let ul = document.querySelector(".main");
+    let str = template("temp1", {
+        arr: stus
+    })
+    ul.innerHTML = str;
+</script>
+
+</html>

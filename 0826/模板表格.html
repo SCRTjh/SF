@@ -30,7 +30,7 @@
             border-spacing: 0px;
         }
 
-        .table1>tr {
+        .table1>tbody>tr {
             height: 40px;
         }
 
@@ -49,7 +49,7 @@
             background-color: #f60300;
         }
 
-        .table1>tr>td,
+        .table1>tbody>tr>td,
         .table1>tbody>tr>th {
             border: 1px solid black;
         }
@@ -129,23 +129,11 @@
     <div id="box">
         <h2 class="box-title">学生信息列表</h2>
         <div class="btn-list">
-            <button type="button" class="box-btn-add" onclick="vb2()">新增</button>
+            <button type="button" class="box-btn-add" onclick="showMask2()">新增</button>
             <button type="button" class="box-btn-remove" onclick="deleteAllck()">批量删除</button>
         </div>
         <table class="table1">
-            <tr>
-                <th>
-                    <label>
-                        <input type="checkbox" name="all" id="chooseAll" onclick="checkedAll()">
-                        全选
-                    </label>
-                </th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>年龄</th>
-                <th>爱好</th>
-                <th>操作</th>
-            </tr>
+
 
         </table>
 
@@ -217,76 +205,90 @@
         </div>
     </div>
 </body>
+<script src="./template-web.js"></script>
+<script src="./stus.js"></script>
+<script type="type/html" id="temp1">
+    <tr>
+        <th>
+            <label>
+                <input type="checkbox" name="all" id="chooseAll" onclick="checkedAll()">
+                全选
+            </label>
+        </th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+        <th>爱好</th>
+        <th>操作</th>
+    </tr>
+    {{each arr item index}}
+        <tr> 
+            <td><input type='checkbox' name='choose' ></td>
+            <td>{{item.stuName}}</td>
+            <td>{{item.sex}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.hobby.toString()}}</td>
+            <td><button type='button' class='btn-edit'>编辑</button><button class='btn-remove'>删除</button></td>
+        </tr>
+    {{/each}}
+</script>
+
 <script>
-    var stus = [
-        {
-            stuName: "张三",
-            sex: "女",
-            age: 18,
-            hobby: ["看书", "睡觉", "打豆豆"]
-        },
-        {
-            stuName: "李四",
-            sex: "女",
-            age: 22,
-            hobby: ["看书", "睡觉", "吃"]
-        },
-        {
-            stuName: "王五",
-            sex: "男",
-            age: 18,
-            hobby: ["看书", "睡觉", "喝"]
-        },
-        {
-            stuName: "赵六",
-            sex: "男",
-            age: 30,
-            hobby: ["看书", "睡觉"]
-        },
-        {
-            stuName: "田七",
-            sex: "女",
-            age: 19,
-            hobby: ["看书", "睡觉"]
-        },
-        {
-            stuName: "周八",
-            sex: "女",
-            age: 22,
-            hobby: ["看书", "睡觉"]
-        }
-    ]
 
-
-    //排序
-    stus.sort((a, b) => a.age - b.age);
-    let box = document.querySelector("#box");
+    renderTable();
     let table1 = document.querySelector(".table1");
     let chooseAll = document.querySelector("#chooseAll"); //全选的复选框
     let removeAll = document.querySelector(".box-btn-remove"); //批量删除按钮
     let currentItem = null;
     let currentData = [];
 
-
-
-
-    //放入数据
-    stus.forEach((i) => {
-        let tr2 = document.createElement("tr");
-        table1.appendChild(tr2);
-        let td1 = document.createElement("td");
-        td1.innerHTML = "<input type='checkbox' name='choose' >";
-        tr2.appendChild(td1);
-        let arr = Object.getOwnPropertyNames(i);  //对象属性名转数组
-        arr.forEach((item) => {
-            let td2 = document.createElement("td");
-            td2.innerHTML = i[item];
-            tr2.appendChild(td2);
+    //渲染表格
+    function renderTable() {
+        let table1 = document.querySelector(".table1");
+        let strHTML = template("temp1", {
+            arr: stus
         })
-        let td3 = document.createElement("td");
-        td3.innerHTML = "<button type='button' class='btn-edit'>编辑</button><button class='btn-remove'>删除</button>";
-        tr2.appendChild(td3);
-    })
+        table1.innerHTML = strHTML;
+    }
+
+    //新增
+    function newAdd() {
+        let datas = document.querySelectorAll(".mask2>.form>.form-item [name='in-data']"); //弹窗内输入框
+        let arrNames = Object.keys(stus[0]);
+        let newObj = {};
+        datas.forEach((i, index) => {
+            newObj[arrNames[index]] = i.value;
+        })
+        stus.push(newObj)
+        renderTable()
+        hd2()
+    }
+
+    //隐藏1
+    function hd1() {
+        let mask = document.querySelector('.mask');
+        mask.classList.remove("visible");
+        mask.classList.add("hidden");
+    }
+    function hd2() {
+        let mask = document.querySelector('.mask2');
+        mask.classList.remove("visible");
+        mask.classList.add("hidden");
+    }
+
+    function showMask2() {
+        let mask = document.querySelector('.mask2');
+        mask.classList.remove("hidden");
+        mask.classList.add("visible");
+    }
+
+    //全选
+    function checkedAll() {
+        let checkboxs = document.querySelectorAll(".table1 tr td [name='choose']");
+        checkboxs.forEach(i => {
+            i.checked = chooseAll.checked;
+        })
+    }
 
     table1.onclick = function (e) {
         //单行删除
@@ -319,42 +321,6 @@
         }
     }
 
-    //隐藏1
-    function hd1() {
-        let mask = document.querySelector('.mask');
-        mask.classList.remove("visible");
-        mask.classList.add("hidden");
-    }
-    function hd2() {
-        let mask = document.querySelector('.mask2');
-        mask.classList.remove("visible");
-        mask.classList.add("hidden");
-    }
-
-    //显示2
-    function vb2() {
-        let mask = document.querySelector('.mask2');
-        mask.classList.remove("hidden");
-        mask.classList.add("visible");
-    }
-
-
-    //全选
-    function checkedAll() {
-        let checkboxs = document.querySelectorAll(".table1 tr td [name='choose']");
-        checkboxs.forEach(i => {
-            i.checked = chooseAll.checked;
-        })
-    }
-
-    //批量删除
-    function deleteAllck() {
-        let checkeds = document.querySelectorAll(".table1 tr td [name='choose']:checked"); //选中的复选框
-        checkeds.forEach(i => {
-            i.parentElement.parentElement.remove();
-        })
-    }
-
     //编辑保存
     function save() {
         let inputs = document.querySelectorAll(".mask .form .form-item [name='in-data']");
@@ -368,32 +334,6 @@
         })
         hd1()
     }
-
-    //新增
-    function newAdd() {
-        let datas = document.querySelectorAll(".mask2>.form>.form-item [name='in-data']"); //弹窗内输入框
-        datas.forEach((i, index) => {
-            currentData[index] = i.value;  //输入框数据暂存
-        })
-        if (currentData[0] === "" || currentData[1] === "" || currentData[3] === "") {  //判断是否为空
-            alert('请输入数据');
-            return;
-        } else {
-            let tr = document.createElement("tr");
-            let str = "<td><input type='checkbox' name='choose'></td><td>"
-                + currentData[0] + "</td>" + "<td>" + currentData[1] + "</td>" + "<td>" + currentData[2] + "</td>" + "<td>" + currentData[3] + "</td>"
-                + "<td><button type='button' class='btn-edit' onclick='save()' >编辑</button><button class='btn-remove' onclick='hd2()' >删除</button></td>";
-            currentData = [];
-            datas.forEach((i, index) => {
-                i.value = "";  //初始化
-            })
-            tr.innerHTML = str;
-            table1.appendChild(tr);
-            hd2();
-        }
-    }
-
-
-
-
 </script>
+
+</html>

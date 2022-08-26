@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            margin: 400px auto;
+            height: 200px;
+            width: 200px;
+
+        }
+
+        .box-animation {
+            background-color: aqua;
+            animation: box-ani infinite 4s linear;
+        }
+
+        .circle {
+            border-radius: 50%;
+            background-color: blueviolet;
+        }
+
+        @keyframes box-ani {
+            0% {
+                transform: rotateZ(0turn);
+            }
+
+            100% {
+                transform: rotateZ(1turn);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box box-animation">
+
+    </div>
+
+</body>
+<script>
+    let box = document.querySelector(".box");
+    let boxStyle = getComputedStyle(box);
+    let flag = true;
+    box.onclick = function () {
+        flag = !flag;
+        if (flag) {
+            box.classList.remove("circle");
+            box.classList.add("box-animation");
+        } else {
+            box.classList.add("circle");
+            box.classList.remov("box-animation");
+        }
+    }
+</script>
+
+</html>

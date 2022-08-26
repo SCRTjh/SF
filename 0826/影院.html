@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>movie</title>
+    <link rel="stylesheet" href="./css/影院.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="title-bar">
+            <h2 class="big-title">影院</h2>
+        </div>
+        <div class="content-box">
+            <div class="local-city">
+                <div class="city-name">武汉</div>
+            </div>
+            <ul class="tab-bar">
+                <li>全城</li>
+                <li>品牌</li>
+                <li>特色</li>
+            </ul>
+            <ul class="movie-list">
+                <li>
+                    <a href="#">
+                        <div class="title-price">
+                            <span class="name">汉南影城</span>
+                            <span class="price"><span class="num">23</span>元起</span>
+                        </div>
+                        <div class="address-box">
+                            <span class="address-detail">汉南区汉南大道315号武商量贩五楼</span>
+                            <span class="distance">887.5km</span>
+                        </div>
+                        <ul class="tag-box">
+                            <li>退</li>
+                            <li>改</li>
+                        </ul>
+                        <div class="promotion">开卡特惠，首单2张最高立减4元</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom-bar">
+
+        </div>
+    </div>
+
+</body>
+<script src="./template-web.js"></script>
+<script src="./cinema.js"></script>
+<script type="text/html" id="movieTemp">
+    {{each arr1 item index}}
+        <li>
+            <a href="#">
+                <div class="title-price">
+                    <span class="name">{{item.nm}}</span>
+                    <span class="price"><span class="num">{{item.sellPrice}}</span>元起</span>
+                </div>
+                <div class="address-box">
+                    <span class="address-detail">{{item.addr}}</span>
+                    <span class="distance">{{item.distance}}</span>
+                </div>
+                <ul class="tag-box">
+                    {{if item.tag.allowRefund}}
+                    <li class="red">退</li>
+                    {{/if}}
+                    {{if item.tag.endorse}}
+                    <li class="red">改</li>
+                    {{/if}}
+                    {{if item.tag.sell}}
+                    <li class="red">有票</li>
+                    {{/if}}
+                    {{if item.tag.snack}}
+                    <li class="red">小吃</li>
+                    {{/if}}
+                    {{if item.tag.vipTag}}
+                    <li class="red">折扣卡</li>
+                    {{/if}}
+                    {{if item.tag.hallType}}
+                    <li class="blue">{{item.tag.hallType[0]}}</li>
+                    {{/if}}
+                </ul>
+                {{if item.promotion }}
+            <div class="promotion">
+                {{item.promotion['cardPromotionTag']}}
+            </div>
+            {{/if}}
+            </a>
+        </li>
+    {{/each}}
+</script>
+
+<script>
+    let ul = document.querySelector(".movie-list");
+    let str = template("movieTemp", {
+        arr1: cinema
+    })
+    ul.innerHTML = str;
+</script>
+
+</html>

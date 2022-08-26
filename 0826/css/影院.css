@@ -1,0 +1,208 @@
+@charset "UTF-8";
+
+
+:root {
+    --primaryColor: #e83d4d;
+    font-size: calc(100vw / 375 * 100);
+}
+
+body {
+    font-size: 16px;
+
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content-box {
+    flex: 1;
+    overflow: auto;
+}
+
+.bottom-bar {
+    height: .64rem;
+}
+
+.title-bar {
+    background-color: var(--primaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: .64rem;
+}
+
+.title-bar>h2 {
+    color: #fff;
+    font-size: .36rem;
+}
+
+.local-city {
+    background-color: #f5f5f5;
+    height: .48rem;
+    display: flex;
+}
+
+.local-city>.city-name {
+    width: 33.33%;
+    text-align: center;
+    line-height: .48rem;
+    font-size: .14rem;
+    font-weight: bold;
+}
+
+.tab-bar {
+    height: .6rem;
+    display: flex;
+    background-color: #f8f8f8;
+}
+
+.tab-bar>li {
+    width: 33.33%;
+    font-size: .20rem;
+    text-align: center;
+    line-height: .6rem;
+}
+
+.movie-list>li {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.movie-list>li .title-price {
+    display: flex;
+    margin-left: .05rem;
+    margin-top: .15rem;
+    height: .2rem;
+    font-weight: bold;
+
+}
+
+
+
+.movie-list>li .title-price>.price {
+    display: flex;
+    color: var(--primaryColor);
+    margin-left: .08rem;
+}
+
+.movie-list>li .title-price>.price>.num {
+    font-size: .20rem;
+    margin-right: .08rem;
+    line-height: .16rem;
+}
+
+.address-box {
+    display: flex;
+    justify-content: space-between;
+    margin-left: .05rem;
+    margin-right: .05rem;
+    margin-top: .15rem;
+    font-size: .14rem;
+}
+
+.address-box>.address-detail {
+    width: 2.5rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tag-box {
+    display: flex;
+    color: var(--primaryColor);
+    font-size: .14rem;
+    margin-left: .05rem;
+}
+
+.tag-box>li {
+    border-width: 1px;
+    border-style: solid;
+    padding: .05rem;
+    border-radius: .05rem;
+    margin-right: .05rem;
+    margin-top: .05rem;
+}
+
+.tag-box>.red {
+    border-color: var(--primaryColor);
+}
+
+.tag-box>.blue {
+    border-color: aqua;
+    color: aqua;
+    max-width: .54rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.movie-list>li .promotion {
+    margin-left: .05rem;
+    margin-top: .05rem;
+    font-size: .14rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 响应 */
+@media only screen and (min-width:768px) {
+    :root {
+        font-size: calc(750px / 750 * 100);
+    }
+
+    #app {
+        width: 750px;
+        margin: auto;
+    }
+}
