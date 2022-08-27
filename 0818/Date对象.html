@@ -62,12 +62,9 @@
     console.log(getFileName("123.exe.exe"));
 
 
-    //5.验证
-    function confirm() {
+    //验证
+    function getVCode() {
         let str = "";
-        // for (let i = 0; i < 4; i++) {
-        //     str += String.fromCharCode(randomNum(48, 122));
-        // }
         while (str.length < 4) {
             let num = randomNum(48, 122);
             if (num >= 48 && num <= 57 || num >= 65 && num <= 90 || num >= 97 && num <= 122) {
@@ -77,7 +74,7 @@
         return str
     }
 
-    console.log(confirm());
+    console.log(getVCode());
 
 
     //6 20~100之间的随机数10个,放数组不重复
