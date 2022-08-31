@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反义字符</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // [^x] 匹配除“x”之外的所有字符，其中“x”可以为任意字符
+
+    var reg1 = /[^x]/;
+    reg1.test("x");
+    reg1.test("y");
+
+
+    var reg2 = /^杨[^标]$/;
+    reg2.test("杨标");
+    reg2.test("杨大");
+
+
+    //[^xyz]   匹配除“x、y、z”之外的任意字符
+
+    var reg3 = /[^abc]/;
+    reg3.test("a");
+    reg3.test("b");
+    reg3.test("c");
+    reg3.test("d");
+
+    var reg4 = /^杨[^标浩杰a]$/;
+    reg4.test("杨a");
+
+
+
+    // \W   除字母下划线或数字
+
+    var reg5 = /\W/;
+    reg5.test("a");
+    reg5.test("D");
+    reg5.test("1");
+    reg5.test("_");
+    reg5.test(" ");
+    reg5.test("\n");
+
+    // \D  除了数字
+
+    var reg6 = /\D/;
+    reg6.test("1");
+
+</script>
+
+</html>

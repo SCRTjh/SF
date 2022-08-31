@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前瞻后顾</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str = "今天是9月10日，唉呀！今天又跑到香港去玩了，买了好多东西，购物花了我￥346.77元，结果吃饭只能用美元，花了我$34.78元, 坐港铁花了￥10元。";
+    //在上面的字符串里面，我们要提取所有的金额（美元和人民币）
+    //346.77  34.78
+
+    //匹配条件是数字或小数
+    //限制条件，后面必须$或￥
+
+    var reg = /(?<=[￥\$])\d+(\.\d+)?/g;
+
+</script>
+
+</html>

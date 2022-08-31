@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>replace</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str1 = "我爱你,你爱我吗";
+    var result1 = str1.replace(/爱/g,"恨");
+
+
+    str1.replace(/爱/g,function(p){
+        //第一个参数p代表的是正则表达式匹配的内容
+        console.log(p);
+        console.log("我是回调函数"+Math.random());
+    });
+
+    var str2 = "我现在很穷,我只有19块钱,但是我的同桌是富二代,有100块钱";
+
+    str2.replace(/\d+/g,function(p){
+        console.log(p);
+        console.log("我是回调函数"+Math.random());
+    });
+</script>
+</html>

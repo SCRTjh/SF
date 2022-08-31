@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原子表</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 我希望有一个正则能够匹配  杨标 ，张标 ， 陈标
+
+    var reg1 = /^杨|张|陈标$/;
+    reg1.test("杨标");
+    reg1.test("张标");
+    reg1.test("陈标");
+
+
+    //我希望匹配 开头是大小字母，后面是数字
+    var reg2 = /^A|B|C|\d$/;
+
+    //针对上面的场景，其实我们是无法更好的实现的，怎么办呢
+
+
+    var reg3 = /^[杨张陈]标$/;
+    reg3.test("杨标");
+    reg3.test("张标");
+    reg3.test("陈标");
+
+
+    var reg4 = /^[^杨张陈]标$/;
+    reg4.test("杨标");
+    reg4.test("张标");
+    reg4.test("陈标");
+    reg4.test("王标");              //true
+
+
+    //原子表的区间范围
+    var reg5 = /[1-5]/;
+    reg5.test("1");
+    reg5.test("3");
+    reg5.test("6");
+
+    var reg6 = /[a-z]/;
+    reg6.test("c");
+    reg6.test("z");
+
+    var reg7 = /[A-Z]/;
+    reg7.test("B");
+
+
+    //正同倒着写的写法是错的
+    var reg8 = /[Z-A]/;
+</script>
+
+</html>

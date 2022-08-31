@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    删除与某个字符相邻且相同的字符，比如 `fdaffdaaklfjklja` 字符串处理之后成为 `fdafdaklfjklja`
+</body>
+<script>
+    var str = "fdaffdaakllllfjkkklja";
+    //fdafdaklfjklja
+
+    var reg = /([a-z])\1+/g;
+
+    var result = str.replace(reg,function(p,g1){
+        // console.log(p,g1);
+        return g1;
+    });
+
+    var result2 = str.replace(reg,"$1");
+</script>
+</html>

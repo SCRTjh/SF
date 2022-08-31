@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exec方法</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str = "今天是9月10日，唉呀！今天又跑到香港去玩了，买了好多东西，购物花了我￥346.77元，结果吃饭只能用美元，花了我$34.78元,坐港铁花了￥10元。";
+//在上面的字符串里面，我们要提取所有的金额（美圆和人民币）
+
+    var reg = /(?<=[￥\$])\d+(?:\.\d+)?/g;
+    var result = "";        //提取的结果放在这个里面
+
+    //第一次提取                         //346.77
+    result = reg.exec(str);            
+    console.log(result);
+
+    //第二次提取                        //34.78
+    result = reg.exec(str);
+    console.log(result);
+
+    //第三次提取                        //10
+    result = reg.exec(str);
+    console.log(result);
+
+    //第四次提取                        //null
+    result = reg.exec(str);
+    console.log(result);
+</script>
+
+</html>

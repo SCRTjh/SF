@@ -1,0 +1,175 @@
+@charset "UTf-8";
+
+
+:root {
+    --primaryColor: #e83d4d;
+    font-size: calc(100vw / 375 * 100);
+}
+
+body {
+    font-size: .16rem;
+}
+
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+.content-box {
+    flex: 1;
+    overflow: auto;
+}
+
+/* 顶部标题 */
+
+.title-bar {
+    background-color: var(--primaryColor);
+    height: .64rem;
+}
+
+.title-bar>h2 {
+    color: #fff;
+    text-align: center;
+    line-height: .64rem;
+}
+
+/* 介绍座位图标 */
+.info-bar {
+    display: flex;
+    height: .64rem;
+    text-align: center;
+    font-size: .20rem;
+    line-height: .64rem;
+    align-items: center;
+    border-bottom: 1px dotted black;
+}
+
+.info-bar>li {
+    width: 33.33%;
+}
+
+.info-bar>li>img {
+    padding-right: .1rem;
+    vertical-align: middle;
+}
+
+
+/* 座位区域 */
+.movie-area {
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* 屏幕区 */
+.movie-area>.screen-box {
+    height: .64rem;
+    overflow: hidden;
+}
+
+.movie-area>.screen-box>.screen {
+    width: 1.80rem;
+    height: .32rem;
+    background-color: #d3d3d3;
+    margin: -0.16rem auto;
+    border-radius: 25% 25% 25% 25%/75% 75% 75% 75%;
+}
+
+/* 选座区 */
+.site-list {
+    display: flex;
+    flex-direction: column;
+    margin-right: .05rem;
+}
+
+.site-list>li {
+    height: .26rem;
+    padding-top: .02rem;
+    padding-bottom: .02rem;
+}
+
+.site-list>li>.sites {
+    display: flex;
+    font-size: .2rem;
+}
+
+.site-list>li>.sites>li {
+    height: .26rem;
+    width: .3rem;
+    margin-right: .05rem;
+    margin-bottom: .02rem;
+}
+
+/* 无座位 */
+.site-list>li>.sites>.site0 {
+    background-image: none;
+}
+
+/* 未被选中单座 */
+.site-list>li>.sites>.site1 {
+    background-image: url(../img/02.png);
+    background-repeat: no-repeat;
+}
+
+/* 已经售出座位 */
+.site-list>li>.sites>.site2 {
+    background-image: url(../img/01\(2\).png);
+    background-repeat: no-repeat;
+}
+
+/* 已选中座位 */
+.site-list>li>.sites>.site3 {
+    background-image: url(../img/03.png);
+    background-repeat: no-repeat;
+}
+
+/* 情侣未选中座位 */
+.site-list>li>.sites>.site4 {
+    background-image: url(../img/04.png);
+    background-repeat: no-repeat;
+    width: .68rem;
+}
+
+/* 提交按钮区 */
+.submit-box {
+    display: flex;
+    justify-content: center;
+    height: .48rem;
+}
+
+.submit-box>.submit-btn {
+    width: 80%;
+    text-align: center;
+    background-color: var(--primaryColor);
+    border: none;
+    border-radius: .4rem/.4rem;
+    color: #fff;
+    font-size: .2rem;
+}
+
+
+/* 响应 */
+@media only screen and (min-width:768px) {
+    :root {
+        font-size: calc(750px / 750 * 100);
+    }
+
+    #app {
+        width: 750px;
+        margin: auto;
+    }
+}

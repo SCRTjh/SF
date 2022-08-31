@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        :root {
+            font-size: calc(100vw / 375 * 100);
+        }
+
+        body {
+            font-size: .16rem;
+        }
+
+        #app {
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-box {
+            position: relative;
+            flex: 1;
+            overflow: auto;
+        }
+
+        .title-bar {
+            height: .4rem;
+            background-color: #ebebeb;
+            display: flex;
+            line-height: .4rem;
+        }
+
+        .title-bar>h2 {
+            padding-left: .08rem;
+        }
+
+        .city-list {
+            position: absolute;
+        }
+
+        .city-list>li {
+            padding-left: .08rem;
+            height: .20rem;
+            padding-top: .05rem;
+            padding-bottom: .05rem;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .btn-list {
+            position: fixed;
+            top: .5rem;
+            display: flex;
+            right: 0;
+            flex-direction: column;
+            width: .15rem;
+            text-align: center;
+        }
+
+        .btn-list>li {
+            height: .1.5rem;
+            margin-right: .05rem;
+            font-size: .12rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="title-bar">
+            <h2>A</h2>
+        </div>
+        <div class="content-box">
+            <ul class="city-list">
+                <script type="text/html" id="temp1">
+                    {{each arr item index}}
+                    <li>{{item.nm}}</li>
+
+                    {{/each}}
+                </script>
+                <li>1111</li>
+            </ul>
+            <ul class="btn-list">
+                <li>A</li>
+                <li>B</li>
+                <li>C</li>
+                <li>D</li>
+                <li>E</li>
+                <li>F</li>
+                <li>G</li>
+                <li>H</li>
+                <li>I</li>
+                <li>J</li>
+                <li>K</li>
+                <li>L</li>
+                <li>M</li>
+                <li>N</li>
+                <li>O</li>
+                <li>P</li>
+                <li>Q</li>
+                <li>R</li>
+                <li>S</li>
+                <li>T</li>
+                <li>U</li>
+                <li>V</li>
+                <li>W</li>
+                <li>X</li>
+                <li>Y</li>
+                <li>Z</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+<script src="./template-web.js"></script>
+<script src="./cityList.js"></script>
+<script>
+    cityList.sort((a, b) => {  //排序
+        return a.py.charCodeAt(0) - b.py.charCodeAt(0);
+    })
+    console.log(cityList);
+    render();
+    let btnList = document.querySelector(".btn-list");
+    let title = document.querySelector(".title-bar>h2");
+    let btns = document.querySelectorAll(".btn-list>li");
+    let citys = document.querySelectorAll(".city-list>li");
+    let main = document.querySelector(".content-box");
+
+    function render() { //渲染
+        let cityL = document.querySelector(".city-list");
+        let str = template("temp1", {
+            arr: cityList
+        })
+        cityL.innerHTML = str;
+    }
+
+    btnList.onclick = function (e) {
+        title.innerText = e.target.innerText;  //标题内容字母切换
+        for (let i = 0; i < cityList.length; i++) {
+            if (e.target.innerText.toLowerCase() === cityList[i].py[0]) {
+                main.scrollTop = citys[i].offsetTop;
+                break
+            }
+        }
+
+    }
+
+
+
+
+
+</script>
+
+
+</html>

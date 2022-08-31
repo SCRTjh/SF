@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>replace</title>
+</head>
+<body>
+    给一个连字符串例如：get-element-by-id转化成驼峰形
+    （推荐使用正则表达式+replace的方式完成）
+    
+</body>
+<script>
+    var str = "get-element-by-id";
+    //getElementById
+    //-e     E
+    //-b     B
+    //-i     I
+
+
+    var reg = /-[a-z]/g;
+
+    var result = str.replace(reg,function(p){
+        //第一个参数p代表的就是正则表达式匹配的内容
+        console.log(p)
+        return p[1].toUpperCase();
+    }); 
+
+</script>
+</html>

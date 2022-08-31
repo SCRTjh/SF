@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>replace</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str = "大家好，今天是2022-08-31 14:48:30,今天天气不好，有点冷";
+
+    var reg = /(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})/g;
+
+    str.replace(reg,function(p,g1,g2){
+        //第一步参数:p代表当前正则匹配的总体内容
+        //后面的参数就代表的是原子组编号:g1就是group1  g2就是group2
+        console.log(p)
+        console.log(g1);
+        console.log(g2);
+    })
+</script>
+
+</html>

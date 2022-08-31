@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str1 = "大家好,我是人见人爱的张三，我的身高是170CM!";
+    var str2 = "大家好，我是高富帅李四，我的身高是186CM!";
+    var str3 = "大家好，我是美女西施，我的身高是169CM!";
+    var str4 = "大家好，我是古典成熟高质量男性小乐乐，我的身高是178CM!";
+    //要求：找到数字的位置
+    str1.indexOf("170");
+    str2.indexOf("186");
+    str3.indexOf("169");
+    str4.indexOf("178");
+    //这样做很麻烦 ,因为如果中间有100句话,那么,我们的数字要写100次
+    var reg = /\d+/g;
+    str1.search(reg);
+    str2.search(reg);
+    str3.search(reg);
+    str4.search(reg);
+    //这个时候的参数就固定成了一个正则表达式
+</script>
+
+</html>

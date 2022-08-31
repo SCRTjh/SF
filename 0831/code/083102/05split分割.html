@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分割</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = "get-element-by-id";
+    str.split("-");             //['get', 'element', 'by', 'id']
+
+    //除了使用字符串分割以外,我们还可以使用正则表达式来完成
+
+    var str2 = "我们H2204班的男生都很帅,身高都在180CM以上,年龄都在19岁以下,钱都有100W以上";
+    //请将上面的字符串以数字的形式分割
+
+    var reg = /\d+/;
+    str2.split(reg);
+    //结果['我们H', '班的男生都很帅,身高都在', 'CM以上,年龄都在', '岁以下,钱都有', 'W以上']
+ 
+</script>
+</html>

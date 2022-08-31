@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符中提取对比</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str = "我的身份证号是425789199011150105,张三的身份证号是12355420050405233x";
+    //写一个正则，提取身份证号，提出信息以后，快速的形成以下的数据结构
+    /*
+        [{
+            IDCard:"425789199011150105",
+            birthday:"1990-11-15",
+            sex:"女"
+        },{
+            IDCard:"12355420050405233x",
+            birthday:"2005-05-05",
+            sex:"男"
+        }]
+    */
+
+    var reg1 = /\d{17}[\dx]/gi;
+    var result1 = str.match(reg1);      //['425789199011150105', '12355420050405233x']
+
+
+    //上面的提取只是帮我们提取了身份证号,并不好形成生日,性别
+
+    var reg2 = /\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)[\dx]/gi;
+    var result2 = "";
+    var arr = [];
+    while ((result2 = reg2.exec(str)) != null) {
+        console.log(result2);
+        var obj = {
+            IDCard: result2[0],
+            birthday: result2.slice(1, 4).join("-"),
+            sex: result2[4] % 2 == 0 ? "女" : "男"
+        }
+        arr.push(obj);
+    }
+    console.log(arr);
+</script>
+
+</html>

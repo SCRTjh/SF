@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //歌词时间
+    var musicLrc = `[00:00.000]少年 - 梦然 (Miya) [00:02.020]词：梦然 [00:04.040]曲：梦然 [00:06.060]编曲：张亮 [00:08.090]制作人：张亮/徐阁 [00:10.110]和声编写：海青/梦然 [00:12.130]和声演唱：海青/梦然 [00:14.160]Rap：梦然 [00:16.180]混音工程师：赵靖 [00:18.200]母带工程师：赵靖 [00:20.230]监制：梦然 `;
+    let reg1 = /\[\d{2}:\d{2}\.\d{3}\]/g;
+    let arrTime = musicLrc.match(reg1);
+    console.log(arrTime);
+    let arrStr = musicLrc.match(/[^\[\d{2}:\d{2}\.\d{3}\]]+/g);
+    console.log(arrStr);
+    let rmbStr = "12345678";
+    let result = rmbStr.replace(/(\d{1,3})(?=(\d{3})+$)/g, (p) => {
+        return p + ",";
+    })
+    console.log(result);
+
+    let reg2 = /1[0-5]|[0-9]/;
+
+    var str3 = "今天是9月10日，唉呀！今天又跑到香港去玩了，买了好多东西，购物花了我￥346.77元， 结果吃饭只能用美元，花了我$34.78元,坐港铁花了￥10元。";
+
+    let reg3 = /(?<=[\$￥])\d+(\.\d*)?/g;
+    console.log(str3.match(reg3));
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分组不产生编号</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str = "今天又跑到香港去玩了，买了好多东西，购物花了我346.77元";
+    //我们要把钱提取出来，怎么办？
+    var reg1 = /\d+(\.\d+)?/;
+    reg1.exec(str);
+
+    var reg2  = /\d+(?:\.\d+)?/;
+    reg2.exec(str);
+</script>
+
+</html>

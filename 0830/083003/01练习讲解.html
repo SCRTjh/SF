@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            /* 在滚动的时候加一个过渡 */
+            scroll-behavior: smooth;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+            overflow: auto;
+            position: relative;
+        }
+
+        .ul1 {
+            box-sizing: border-box;
+            padding: 0 10px;
+            position: absolute;
+            width: 100%;
+        }
+
+        .ul1>li {
+            height: 45px;
+            border-bottom: 1px solid lightgray;
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .ul1>li.case {
+            height: 30px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .right-nav {
+            position: fixed;
+            right: 0px;
+            background-color: rgba(0, 0, 0, 0.6);
+            top: 0px;
+            bottom: 0px;
+            width: 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: white;
+            height: fit-content;
+            margin: auto;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .right-nav>li {
+            width: 100%;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right-nav>li:active {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul class="ul1">
+        </ul>
+        <!-- 右边的导航 -->
+        <ul class="right-nav" onclick="rightNavClick(event)">
+        </ul>
+    </div>
+    <template id="temp1">
+        {{each arr item index}}
+        <li class="case" data-case="{{item}}">{{item.toUpperCase()}}</li>
+        {{each obj[item] item2 index2}}
+        <li>{{item2.nm}}</li>
+        {{/each}}
+        {{/each}}
+    </template>
+    <template id="temp2">
+        {{each arr item index}}
+        <li>{{item}}</li>
+        {{/each}}
+    </template>
+</body>
+<script src="js/cityList.js"></script>
+<script src="js/template-web.js"></script>
+<script>
+    //第一步：按拼音进行排序
+    cityList.sort(function (a, b) {
+        if (a.py < b.py) {
+            return -1;
+        }
+        else if (a.py > b.py) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    });
+
+
+    /*
+    //第二步：取py的首字母
+    var arr = cityList.map(function(item){
+        return item.py[0]
+    });
+    //第三步：去重
+    var newArr = arr.filter(function(item,index){
+        return index === arr.indexOf(item);
+    });
+    */
+
+    //第二步：取py的首字母，去重
+    var arr = cityList.map(function (item) {
+        return item.py[0]
+    }).filter(function (item, index, _arr) {
+        return index === _arr.indexOf(item);
+    })
+
+    //第三步：构建特定的数据类型
+    var obj = {
+    }
+    cityList.forEach(function (item) {
+        var firstCase = item.py[0];
+        if (!Array.isArray(obj[firstCase])) {
+            obj[firstCase] = [];
+        }
+        obj[firstCase].push(item);
+    });
+
+    //第四步：渲染生成列表 
+    var ul1 = document.querySelector(".ul1");
+    ul1.innerHTML = template("temp1", {
+        arr: arr,
+        obj: obj
+    });
+
+
+    //第五步：渲染右边的导航
+    var rightNav = document.querySelector(".right-nav");
+    rightNav.innerHTML = template("temp2", {
+        arr: arr
+    });
+
+    //第六步：点击右边的导航
+
+    function rightNavClick(event) {
+        var event = event || window.event;
+        if (event.target.matches("li")) {
+            var text = event.target.innerText;
+            document.querySelector("#app").scrollTop = document.querySelector("[data-case='" + text + "']").offsetTop;
+
+        }
+    }
+
+</script>
+
+</html>

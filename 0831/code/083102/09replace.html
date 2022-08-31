@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>替换</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str2 = "我现在很穷,我只有19块钱,但是我的同桌是富二代,有100块钱";
+    // 想将上面的数字换成xxx
+
+    var result = str2.replace(/\d+/g, function (p) {
+        // console.log(p);
+        return "x".repeat(p.length);
+    })
+</script>
+
+</html>

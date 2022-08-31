@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>转义</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //想匹配一个字符串是"[123]"
+
+    var reg1 = /^[123]$/;
+    reg1.test("[123]");
+
+    //上面的正则就是错的，因为中括号在正则里面表示 原子表
+    var reg2 = /^\[123\]$/;
+    reg2.test("[123]");
+
+
+    //写一个正则，它是一个小数，整数位是1位或2位，小数位是1位或多位
+    var reg3 = /^\d{1,2}\.\d+$/;
+
+
+    //请写一个正则表达式，用于验证整数 或 小数
+    //3.14              //true
+    //12                //true
+    //12.3              //true
+
+    //12.               //false
+    //.14               //false
+    //23.14.15          //false
+
+    var reg4 = /^\d+$/;         //整数
+    var reg5 = /^\d+\.\d+$/;    //小数
+
+    //合并
+
+    var reg6 = /^\d+(\.\d+)?$/;
+</script>
+
+</html>

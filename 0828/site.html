@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/site.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="title-bar">
+            <h2>选座购票</h2>
+        </div>
+        <div class="contenn-box">
+            <!-- 图标介绍 -->
+            <ul class="info-bar">
+                <li> <img src="./img/02.png" alt="">可选</li>
+                <li> <img src="./img/01(2).png" alt="">可售</li>
+                <li> <img src="./img/03.png" alt="">已选</li>
+            </ul>
+            <!-- 电影选座区 -->
+            <div class="movie-area">
+                <div class="screen-box">
+                    <div class="screen"></div>
+                </div>
+                <!-- 选座区 -->
+                <ul class="site-list">
+
+                </ul>
+                <!-- 提交按钮 -->
+                <div class="submit-box">
+                    <button type="button" class="submit-btn">提交订票</button>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</body>
+<script src="./js/sites.js"></script>
+<script src="./js/template-web.js"></script>
+<script type="type/html" id="tempSite">
+    {{each arr item index1}}
+        <li>
+            <ul class="sites">
+                {{each item item2 index2}}
+                  <li class="site{{item2===3?4:item2===3?2:item2===2?0:item2===1?2:1}}" >{{}}</li>
+                {{/each}}
+            </ul>
+        </li>
+    {{/each}}
+</script>
+<script src="./js/html.js"></script>
+
+</html>

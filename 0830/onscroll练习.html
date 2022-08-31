@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scroll</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .main {
+            position: relative;
+            margin: auto;
+            width: 300px;
+            height: 100px;
+            overflow: auto;
+        }
+
+        .main>.ul1 {
+            position: absolute;
+        }
+
+        .main>.ul1>li {
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <ul class="ul1">
+            <li>第1项</li>
+            <li>第2项</li>
+            <li>第3项</li>
+            <li>第4项</li>
+            <li>第5项</li>
+            <li>第6项</li>
+            <li>第7项</li>
+            <li>第8项</li>
+            <li>第9项</li>
+            <li>第10项</li>
+            <li>第11项</li>
+            <li>第12项</li>
+            <li>第13项</li>
+            <li>第14项</li>
+            <li>第15项</li>
+            <li>第16项</li>
+            <li>第17项</li>
+            <li>第18项</li>
+            <li>第19项</li>
+            <li>第20项</li>
+        </ul>
+    </div>
+    <div class="btn-list">
+        <button type="button" onclick="jump(this)">到第10项</button>
+    </div>
+
+</body>
+<script>
+    let main = document.querySelector(".main");
+    let ul1 = document.querySelector(".ul1")
+    let li10 = document.querySelector(".ul1>li:nth-child(10)");
+
+    function jump(e) {
+        main.scrollTop = li10.offsetTop;
+    }
+</script>
+
+</html>

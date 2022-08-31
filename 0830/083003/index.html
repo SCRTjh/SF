@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市选择</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .ul1 {
+            box-sizing: border-box;
+            padding: 0px 10px;
+        }
+
+        .ul1>li {
+            height: 45px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ececec;
+            font-size: 14px;
+        }
+
+        .ul1>li.first-case {
+            height: 25px;
+            border-bottom: none;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul class="ul1">
+            <li class="first-case">A</li>
+            <li>阿拉善盟</li>
+        </ul>
+    </div>
+    <template id="temp1">
+        {{each arr item index}}
+        <li class="first-case">{{item}}</li>
+        {{each cityObj[item] item1 index1}}
+        <li>{{item1.nm}}</li>
+        {{/each}}
+        {{/each}}
+    </template>
+</body>
+<script src="./js/template-web.js"></script>
+<script src="./js/cityList.js"></script>
+<script>
+    //第一步：先对数组进行排序
+    cityList.sort(function (a, b) {
+        if (a.py < b.py) {
+            return -1;
+        }
+        else if (a.py > b.py) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    });
+
+    //第二步：提取拼音的首字母
+    var arr = [];
+    cityList.forEach(function (item) {
+        if (arr.indexOf(item.py[0].toUpperCase()) == -1) {
+            arr.push(item.py[0].toUpperCase())
+        }
+    });
+    //第三步：根据首字母来聚合城市
+    var cityObj = {};
+    cityList.forEach(function (item) {
+        var firstCase = item.py[0].toUpperCase();
+        if (cityObj[firstCase] == undefined) {
+            cityObj[firstCase] = [];
+        }
+        cityObj[firstCase].push(item);
+    });
+
+    //第四步：渲染
+    var ul1 = document.querySelector(".ul1");
+    ul1.innerHTML = template("temp1", {
+        arr: arr,
+        cityObj: cityObj
+    })
+</script>
+
+</html>
+<!-- 
+    使用知识点：
+    1.flex布局
+    2.模板引擎渲染
+    3.事件
+    4.scrollTop及offsetTop
+    
+    提示步骤：
+    1.先做静态布局
+    2.将cityList以英文名称排序
+    3.将首字母相同的放在一起
+    4.渲染模板
+    5.点击事件
+ -->

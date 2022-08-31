@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复匹配</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 我希望有一个正则，它是以杨开头，后面跟2位任意数字
+    var reg1 = /^杨\d\d$/;
+    reg1.test("杨11");
+    reg1.test("杨12");
+
+    //我希望有一个正则，它是以杨开头，后面跟10位数字
+    // var reg2 = /^杨\d\d\d\d\d\d\d\d\d\d\d/;
+    var reg2 = /^杨\d{10}$/;
+
+    //我希望有一个正则，它是杨开头，后面至少根4个数字
+    var reg3 = /^杨\d{4,}$/;
+    reg3.test("杨1234");                //true
+    reg3.test("杨12345");               //true
+    reg3.test("杨123");                 //false
+
+    //正则，它是杨开头，后面跟 4~6个数字
+    var reg4 = /^杨\d{4,6}$/;
+    reg4.test("杨1234");            //true
+    reg4.test("杨123456");          //true
+    reg4.test("杨1234567");         //false
+    reg4.test("杨123");             //false
+
+
+
+    //编写一个验证手机号的正则表达式  
+    //13，15，16，17，18，19   共11位数字
+
+    var reg5 = /^1[356789]\d{9}$/;
+
+    //重复0次或1次
+    //匹配杨标，后面有可能有0个或1个数字
+    var reg6 = /^杨标\d{0,1}$/;
+    // 上面的0次或1次的写法，一般会直接使用另一个符号 
+    var reg7 = /^杨标\d?$/;
+    reg7.test("杨标2");
+    reg7.test("杨标");
+
+
+    //重复一次或多产欠
+    //匹配杨标，后面有可能是1个或多个数字
+    var reg8 = /^杨标\d{1,}$/;
+    reg8.test("杨标1");
+    reg8.test("杨标12");
+    //上面的1次或多次我们可以使用 + 来表示
+    var reg9 = /^杨标\d+$/;
+    reg9.test("杨标1");
+    reg9.test("杨标12");
+
+    //匹配任意次数       匹配0次或多次
+    var reg10 = /^杨标\d*$/;
+    reg10.test("杨标");
+    reg10.test("杨标1");
+    reg10.test("杨标12");
+
+</script>
+
+</html>

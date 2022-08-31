@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原子组编号</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var str1 = "<div>Hello</div>";
+    var str2 = "<H2></H2>";
+    var str3 = "<p></p>";
+
+    var reg1 = /<[a-zA-Z0-9]+><\/[a-zA-Z0-9]+>/;
+
+    var str4 = "<div></p>"
+    reg1.test(str4);            //true  这就不对了
+
+    //我们怎么将前面匹配的结果拿到后面去用
+    //一旦有小括号就会有原子组，并且 会有一个编号,它从1开始
+
+
+    var reg2 =/<([a-zA-Z0-9]+)><\/\1>/;
+</script>
+
+</html>

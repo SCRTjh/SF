@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习1</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let reg = /^1[356789]\d{9}/;
+    console.log(reg.test(15172227901));
+    let reg2 = /^\d{1,2}\.\d+$/;
+    console.log(reg2.test(1.2345));
+    let str = "9月10日,$3745.11,￥2134.11";
+    let reg3 = /(?<=[￥\$])\d+\.\d+/g;
+    console.log(reg3.exec(str));
+
+
+    let str2 = "get-element-by-id";
+
+    console.log(str2.replace(/-([a-z])/g, (p, g1) => {
+        return g1.toUpperCase();
+    }));
+</script>
+
+</html>

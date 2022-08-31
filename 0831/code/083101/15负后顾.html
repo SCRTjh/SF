@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>负后顾</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //   匹配A但是 A的后面不是B
+    // 想匹配abc ,但是abc的后面不能是123
+
+    var str1 = "abc123";
+    var str2 = "456abc";
+    var str3 = "123abc";
+
+    var reg1 = /(?<!123)abc/g;
+</script>
+
+</html>
