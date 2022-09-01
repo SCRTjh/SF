@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        .main {
+            width: 639px;
+            height: 426px;
+            border: 1px solid black;
+            position: relative;
+            overflow: hidden;
+            cursor: url(./img/img/right.png), default;
+        }
+
+        .main>.swiper-list {
+            font-size: 0;
+            position: absolute;
+
+        }
+
+        .main>.swiper-list>li {
+            position: absolute;
+        }
+
+        .main>.btn-list {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            height: 30px;
+            width: 300px;
+            transform: translateX(-150px);
+            background-color: cyan;
+            display: flex;
+            justify-content: space-around;
+            z-index: 99999;
+        }
+
+        .main>.btn-list>li {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #fff;
+        }
+
+        .current {
+            z-index: 99;
+        }
+
+        .active {
+            background-color: red !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <ul class="swiper-list">
+            <li class="current"><img src="./img/img/item1.jpg" alt=""></li>
+            <li><img src="./img/img/item2.jpg" alt=""></li>
+            <li><img src="./img/img/item3.jpg" alt=""></li>
+            <li><img src="./img/img/item4.jpg" alt=""></li>
+        </ul>
+        <ul class="btn-list">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+</body>
+<script>
+    let main = document.querySelector(".main");
+    let imgs = document.querySelectorAll(".swiper-list>li>img");
+    let btns = document.querySelectorAll(".btn-list>li");
+    let imgLis = document.querySelectorAll(".swiper-list>li");
+
+
+    main.addEventListener("mousemove", (event) => {
+        if (event.offsetX > (main.offsetWidth / 2)) {
+            main.style.cursor = "url(./img/img/right.png),default"
+        } else {
+            main.style.cursor = "url(./img/img/left.png),default"
+        }
+    })
+    main.addEventListener("click", (event) => {
+        if (event.offsetX > (main.offsetWidth / 2)) {
+            console.log("right");
+            for (let i = 0; i < imgLis.length; i++) {
+                if (imgLis[i].className.indexOf("current") != -1) {
+                    console.log(i);
+                    if (i === imgLis.length - 1) {
+                        imgLis[i].classList.remove("current");
+                        imgLis[0].classList.add("current");
+                        btns[i].classList.remove("active");
+                        btns[0].classList.add("active");
+                        break
+                    } else {
+                        imgLis[i].classList.remove("current");
+                        imgLis[i + 1].classList.add("current");
+                        btns[i].classList.remove("active");
+                        btns[i + 1].classList.add("active");
+                        break
+                    }
+                }
+            }
+        } else {
+            console.log("left");
+            for (let i = 0; i < imgLis.length; i++) {
+                if (imgLis[i].className.indexOf("current") != -1) {
+                    console.log(i);
+                    if (i === 0) {
+                        imgLis[i].classList.remove("current");
+                        imgLis[imgLis.length - 1].classList.add("current");
+                        btns[i].classList.remove("active");
+                        btns[imgLis.length - 1].classList.add("active");
+                        break
+                    } else {
+                        imgLis[i].classList.remove("current");
+                        imgLis[i - 1].classList.add("current");
+                        btns[i].classList.remove("active");
+                        btns[i - 1].classList.add("active");
+                        break
+                    }
+                }
+            }
+        }
+    })
+
+
+</script>
+
+</html>

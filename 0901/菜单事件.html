@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>取消事件的默认行为</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            position: relative;
+            margin: 100px auto;
+            width: 400px;
+            height: 400px;
+            border: 5px solid black;
+        }
+
+        .menu-box {
+            display: none;
+            position: absolute;
+            width: 100px;
+            box-shadow: 0px 0px 5px 2px lightgray;
+        }
+
+        .menu-box>li {
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .menu-box>li:hover {
+            font-weight: bold;
+        }
+
+        .menu-box>li:nth-child(2n) {
+            background-color: lightcyan;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="menu-box">
+            <li>菜单一</li>
+            <li>菜单二</li>
+            <li>菜单三</li>
+        </ul>
+
+    </div>
+</body>
+<script>
+    var box = document.querySelector(".box");
+    let ul = document.querySelector(".menu-box");
+    box.addEventListener("contextmenu", function (event) {
+        console.log(event.offsetX, event.offsetY);
+        ul.style.top = event.offsetY + "px";
+        ul.style.left = event.offsetX + "px";
+        ul.style.display = "block";
+        //阻止事件的默认行为，这样默认的右键菜单就弹不出来了
+        event.preventDefault();
+        //要显示自定义的菜单
+    });
+    box.addEventListener("click", (event) => {
+        ul.style.display = "none";
+    })
+</script>
+
+</html>
