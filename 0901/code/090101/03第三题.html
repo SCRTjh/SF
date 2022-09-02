@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>千分位分隔</title>
+</head>
+<body>
+    现有数字，请将数据转换成格式（推荐使用正则表达式+replace的方式完成），如12345678转换成 12,345,678
+</body>
+<script>
+    var num =123456789;           //123,456,789
+
+    //前提条件它是数字，不是字符串
+    var result = num.toLocaleString("en-US");
+</script>
+</html>

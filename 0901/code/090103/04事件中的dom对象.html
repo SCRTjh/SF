@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button type="button" id="btn1">按钮</button>
+</body>
+<script>
+    var btn1 = document.querySelector("#btn1");
+    btn1.addEventListener("click", function (event) {
+        console.log(this);
+        //这里的this指向的是当前的事件对象
+    });
+</script>
+</html>

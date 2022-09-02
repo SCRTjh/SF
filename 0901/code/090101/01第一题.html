@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一题</title>
+</head>
+
+<body>
+    提取歌词
+</body>
+<script>
+    var musicLrc = `[00:00.000]少年 - 梦然 (Miya)
+[00:02.020]词：梦然
+[00:04.040]曲：梦然
+[00:06.060]编曲：张亮
+[00:08.090]制作人：张亮/徐阁
+[00:10.110]和声编写：海青/梦然
+[00:12.130]和声演唱：海青/梦然
+[00:14.160]Rap：梦然
+[00:16.180]混音工程师：赵靖
+[00:18.200]母带工程师：赵靖
+[00:20.230]监制：梦然
+`;
+
+
+    var reg1 = /(?<=\[)\d{2}:\d{2}\.\d{3}(?=\])/g;
+    var timeArr = musicLrc.match(reg1);
+
+
+    var reg2 = /(?<=\[\d{2}:\d{2}\.\d{3}\]).*/g;
+    var text = musicLrc.match(reg2);
+
+
+</script>
+
+</html>

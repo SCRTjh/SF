@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0级事件</title>
+
+</head>
+
+<body>
+    <button id="btn1" type="button" onclick="aaa()">按钮</button>
+</body>
+<script>
+    function aaa() {
+        console.log("我是按钮");
+    }
+
+
+    var btn1 = document.querySelector("#btn1");
+    btn1.onclick = function () {
+        console.log("我还是那个按钮");
+    }
+
+</script>
+
+</html>
+<!-- 
+    1.0级事件总是是内向外扩散
+    2.0级事件是以属性的形式存在，如果重复赋值，就会后面的覆盖前面的
+ -->

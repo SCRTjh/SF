@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件监听</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <button type="button" id="btn1">按钮</button>
+    </div>
+</body>
+<script>
+    var box = document.querySelector(".box");
+    var btn1 = document.querySelector("#btn1");
+
+    box.addEventListener("click",function(event){
+        console.log("我是盒子的2级DOM事件");
+    },true);
+
+    btn1.addEventListener("click", function (event) {
+        console.log("我是按钮的2级DOM事件");
+    },true);
+</script>
+
+</html>

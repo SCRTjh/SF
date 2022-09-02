@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0级事件</title>
+</head>
+
+<body>
+    <button onclick="sayHello(this,event)" type="button" id="btn1">按钮</button>
+    <button type="button" id="btn2">按钮</button>
+</body>
+<script>
+    // 0级事件绑定
+    function sayHello(obj,event) {
+        console.log(obj);
+        console.log(event);
+    }
+
+    var btn2 = document.querySelector("#btn2");
+    btn2.onclick = function(event){
+        console.log(this);
+        console.log(event);
+    };
+</script>
+
+</html>

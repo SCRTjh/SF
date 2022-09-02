@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>取消2级事件的默认行为</title>
+</head>
+<body>
+    <a href="http://www.baidu.com" id="btn1">百度一下</a>
+</body>
+<script>
+    var btn1 = document.querySelector("#btn1");
+    btn1.addEventListener("click",function (event){
+        console.log(event);
+        alert("我是按钮1");
+        //如果取消事件的默认行为
+        //event.defaultPrevented 代表默认行为是否被阻止了,只读
+
+        //阻止默认行为
+        event.preventDefault();
+    });
+</script>
+</html>

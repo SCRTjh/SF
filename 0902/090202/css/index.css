@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.container {
+    width: 800px;
+    margin: auto;
+    outline: 2px solid red;
+}
+
+.music-box {
+    display: flex;
+}
+
+.music-img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    /* 动画使用 */
+    animation: pic-ani 20s linear infinite;
+}
+
+.music-img[data-ani-state="0"] {
+    animation-play-state: paused;
+}
+
+.music-img[data-ani-state="1"] {
+    animation-play-state: running;
+}
+
+.right-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-left: 10px;
+}
+
+.time-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress {
+    height: 20px;
+    border-radius: 20px/20px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right, red, blue);
+    background-size: 0% 100%;
+}
+
+/* 定义旋转动画 */
+@keyframes pic-ani {
+    0% {
+        transform: rotateZ(0turn);
+    }
+
+    100% {
+        transform: rotateZ(1turn);
+    }
+}
+
+
+
+.lrc-box {
+    font-size: 46px;
+    margin-top: 50px;
+    text-align: center;
+    color: transparent;
+    font-weight: bold;
+    -webkit-background-clip: text;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(to right, deeppink, cyan);
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>播放器</title>
+    <link rel="stylesheet" href="./css/音乐播放器.css">
+</head>
+
+<body>
+    <div class="container">
+        <audio src="./data/music1.mp3" controls id="bgm"></audio>
+        <div class="text-box">
+            <ul class="text-list">
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+<script src="./data/music1lrc.js"></script>
+<script src="./js/template-web.js"></script>
+<script type="text/html" id="temp1">
+    {{each arr item index}}
+    <li>{{item}}</li>
+    {{/each}}
+</script>
+<script src="./js/音乐播放器.js"></script>
+
+</html>

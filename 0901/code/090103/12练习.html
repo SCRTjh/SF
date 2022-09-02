@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 639px;
+            height: 426px;
+            border: 2px solid black;
+            margin: auto;
+            cursor: url("img/left.png"), default;
+            /*相对定位*/
+            position: relative;
+        }
+
+        .box > img {
+            /*绝对定位*/
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            opacity: 0;
+            transition: opacity 1s linear;
+        }
+
+        .ul-index {
+            border: 2px solid red;
+            /*    绝对定位*/
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            bottom: 30px;
+            cursor: pointer;
+            height: 100px;
+        }
+
+        .ul-index > li {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: gray;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .ul-index > li.active {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="img/item1.jpg" alt="">
+    <img src="img/item2.jpg" alt="">
+    <img src="img/item3.jpg" alt="">
+    <img src="img/item4.jpg" alt="">
+    <ul class="ul-index">
+        <li data-index="0" class="active"></li>
+        <li data-index="1"></li>
+        <li data-index="2"></li>
+        <li data-index="3"></li>
+    </ul>
+</div>
+</body>
+<script>
+    var box = document.querySelector(".box");
+    var imgList = document.querySelectorAll(".box>img");
+    var ulIndex = document.querySelector(".ul-index");
+
+    box.addEventListener("mousemove", function (event) {
+        if (event.offsetX > box.offsetWidth / 2) {
+            //右
+            box.style.cursor = "url('img/right.png'),default";
+        } else {
+            //左
+            box.style.cursor = "url('img/left.png'),default";
+        }
+    });
+
+    //准备工作：默认情况下显示第1张，索引为0的会显示
+    //当前显示的图片的索引
+    var currentIndex = 0;
+
+    function showImage() {
+        imgList.forEach(function (item, index) {
+            if (currentIndex == index) {
+                item.style.opacity = "1";
+            } else {
+                item.style.opacity = "0";
+            }
+        });
+        for (var i = 0; i < ulIndex.children.length; i++) {
+            if (currentIndex == i) {
+                ulIndex.children[i].classList.add("active");
+            } else {
+                ulIndex.children[i].classList.remove("active");
+            }
+        }
+    }
+
+    showImage()
+
+
+    //第一步：box添加一个点击事件
+    box.addEventListener("click", function (event) {
+        if (event.offsetX > box.offsetWidth / 2) {
+            //右
+            currentIndex++;
+            if (currentIndex > imgList.length - 1) {
+                currentIndex = 0;
+            }
+        } else {
+            //左
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = imgList.length - 1;
+            }
+        }
+        showImage();
+    });
+
+    //第二步：做事件委托
+    ulIndex.addEventListener("click", function (event) {
+        //停止事件的冒泡传播
+        event.cancelBubble = true;
+        event.stopPropagation();
+        //判断事件的触发者
+        if (event.target.matches("li")) {
+            console.log(event.target.dataset.index);
+            currentIndex = +event.target.dataset.index;
+            showImage();
+        }
+    });
+</script>
+</html>
+<!--
+    1.二级事件
+    2.offsetX/offsetY/offsetWidth/offsetHeight
+    3.classsList的操作
+    4.阻止事件冒泡
+-->

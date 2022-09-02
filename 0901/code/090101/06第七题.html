@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第七题</title>
+</head>
+
+<body>
+    dgfhfgh254.45bhku289fgdhdy675gfh获取一个字符串中的数字字符，并按数组形式输出。输出 [254,289,675]
+</body>
+<script>
+    var str = "dgfhfgh254.45bhku289fgdhdy675gfh";
+    //[254,289,675]
+    var reg1 = /(?<!\.)\d{2,}/g;
+
+    var result1 = str.match(reg1).map(Number);
+</script>
+
+</html>

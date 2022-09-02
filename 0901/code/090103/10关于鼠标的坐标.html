@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>关于鼠标的坐标</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: lightseagreen;
+            margin: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    var box = document.querySelector(".box");
+    box.addEventListener("click",function (event){
+        //鼠标距离事件触发者的坐标位置
+        console.log(event.offsetX,event.offsetY);
+        //鼠标距离浏览器的坐标位置
+        console.log(event.clientX,event.clientY);
+        //鼠标距离页面的坐标位置
+        console.log(event.pageX,event.pageY);
+        //鼠标距离屏幕的坐标
+        console.log(event.screenX,event.screenY);
+    })
+</script>
+</html>

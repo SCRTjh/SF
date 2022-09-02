@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件多次绑定</title>
+</head>
+
+<body>
+    <button type="button" id="btn1">按钮</button>
+</body>
+<script>
+    var btn1 = document.querySelector("#btn1");
+    
+
+    btn1.addEventListener("click",function(event){
+        console.log("我是bbb");
+    })
+    btn1.onclick=function(){
+        console.log("我是0级事件");
+    }
+    btn1.addEventListener("click",function(event){
+        console.log("我是aaa");
+    })
+
+</script>
+
+</html>

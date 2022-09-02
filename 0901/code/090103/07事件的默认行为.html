@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>事件的默认行为</title>
+</head>
+<body>
+<a href="http://www.baidu.com" id="a1">百度一下</a>
+<hr>
+<a href="http://www.baidu.com" onclick="sayHello();return false;">百度一下2222</a>
+</body>
+<script>
+    //事件先于响应
+    function sayHello(){
+        alert("你好啊");
+    }
+
+    //事件先于响应
+    var a1 = document.querySelector("#a1");
+    a1.onclick=function (event){
+        alert("你点击了我一下");
+
+        //取消事件的默认行为
+        return false;
+    }
+</script>
+</html>

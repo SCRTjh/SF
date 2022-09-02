@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0级事件</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            border: 5px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" onclick="bbb()">
+        <button type="button" onclick="aaa()">按钮</button>
+    </div>
+</body>
+<script>
+    function aaa(){
+        console.log("我是按钮");
+    }
+    function bbb(){
+        console.log("我是盒子");
+    }
+</script>
+
+</html>
+<!-- 
+    1.0级事件总是是内向外扩散
+ -->

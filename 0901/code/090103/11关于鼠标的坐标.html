@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>关于鼠标坐标</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .box {
+            width: 639px;
+            height: 426px;
+            border: 2px solid black;
+            margin: auto;
+            cursor: url("img/left.png"), default;
+            position: relative;
+        }
+
+        .box > img {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            opacity: 0;
+            transition: all 0.5s linear;
+        }
+
+        .ul-index {
+            position: absolute;
+            width: 100%;
+            bottom: 20px;
+            border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            cursor: default;
+            height: 50px;
+        }
+
+        .ul-index > li {
+            width: 20px;
+            height: 20px;
+            background-color: gray;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0px 10px;
+        }
+
+        .ul-index > li.active {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <img src="img/item1.jpg" alt="">
+    <img src="img/item2.jpg" alt="">
+    <img src="img/item3.jpg" alt="">
+    <img src="img/item4.jpg" alt="">
+    <ul class="ul-index">
+        <li data-index="0"></li>
+        <li data-index="1"></li>
+        <li data-index="2"></li>
+        <li data-index="3"></li>
+    </ul>
+</div>
+</body>
+<script>
+    //第一步：获取要操作的元素
+    var box = document.querySelector(".box");
+    var imgList = document.querySelectorAll(".box>img");
+    var ulIndex = document.querySelector(".ul-index");
+    //第二步：设置一个索引，用于显示第几张图片
+    var currentIndex = 0;
+    //第三步：绑定鼠标称动事件，用于改变元素鼠标的样式
+    box.addEventListener("mousemove", function (event) {
+        if (event.offsetX > box.offsetWidth / 2) {
+            //右
+            box.style.cursor = "url('img/right.png'),default";
+        } else {
+            //左
+            box.style.cursor = "url('img/left.png'),default";
+        }
+    });
+
+    //第四步：编写一个方法，设置哪个图片显示
+    function setImageShow() {
+        imgList.forEach(function (item, index) {
+            if (index === currentIndex) {
+                item.style.opacity = 1;
+            } else {
+                item.style.opacity = 0;
+            }
+        })
+        for (var i = 0; i < ulIndex.children.length; i++) {
+            if (currentIndex != i) {
+                ulIndex.children[i].classList.remove("active");
+            }
+            ulIndex.children[currentIndex].classList.add("active");
+        }
+
+    }
+
+    setImageShow();
+    //--------------------------------------------------
+    //第五步：鼠标点击以后的事件
+    box.addEventListener("click", function (event) {
+        if (event.offsetX > box.offsetWidth / 2) {
+            //右
+            currentIndex++;
+            if (currentIndex > imgList.length - 1) {
+                currentIndex = 0;
+            }
+        } else {
+            //左
+            currentIndex--;
+            if (currentIndex < 0) {
+                currentIndex = imgList.length - 1;
+            }
+        }
+        setImageShow();
+    })
+
+
+    //第六步：绑定小圆点的点击事件，这里使用了事件委托
+    ulIndex.addEventListener("click", function (event) {
+        //取消事件冒泡 ，防止触发外边的点击事件
+        event.stopPropagation();
+        event.cancelBubble = true;
+        //判断事件的触发者
+        if (event.target.matches("li")) {
+            //找到li元素上面所设置的第定义属性
+            currentIndex = +event.target.dataset.index;
+            setImageShow();
+        }
+    });
+</script>
+</html>
