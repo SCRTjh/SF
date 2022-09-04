@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件base64</title>
+</head>
+
+<body>
+    <audio controls id="bgm"></audio>
+    <input type="file" onchange="fileChange(this)">
+</body>
+<script>
+    let BGM = document.querySelector("#bgm");
+    function fileChange(obj) {
+        if (obj.files.length > 0) {
+            let file = obj.files[0];
+            console.log(file);
+            let reg = /^audio\/(mp3|wav|mpeg)$/;
+            if (reg.test(file.type)) {
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    console.log(reader.result);
+                    BGM.src = reader.result;
+                }
+            }
+        }
+        else {
+            alert('请选择文件');
+        }
+    }
+</script>
+
+</html>

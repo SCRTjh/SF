@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钢琴</title>
+    <style>
+        .pianon {
+            position: relative;
+            display: flex;
+            width: 600px;
+            height: 400px;
+            margin: auto;
+            border: 2px solid black;
+        }
+
+        .pianon>.white {
+            box-sizing: border-box;
+            border: 1px solid black;
+            box-shadow: 10px -5px 5px 0px rgba(0, 0, 0, .3) inset;
+            height: 100%;
+            width: 80px;
+        }
+
+
+        .pianon>.black {
+            position: absolute;
+            width: 40px;
+            height: 50%;
+            background-color: black;
+            top: 0;
+        }
+
+        .pianon>.b1 {
+            left: 60px;
+        }
+
+        .pianon>.b2 {
+            left: 120px;
+        }
+
+        .pianon>.b3 {
+            left: 280px;
+        }
+
+        .pianon>.b4 {
+            left: 360px;
+        }
+
+        .pianon>.b5 {
+            left: 420px;
+        }
+
+        .audio-list {
+            display: none;
+        }
+
+        .pianon>div:active {
+            background-color: cyan;
+        }
+
+
+
+        .pianon>div[data-status="1"] {
+            background-color: cyan;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>
+        白键:S,D,F,G,H,J,K,L
+        黑键:E,R,Y,U,I
+    </h2>
+    <div class="pianon">
+        <div class="white" data-src="./assets/w1.ogv" data-status="0" data-key="s"></div>
+        <div class="white" data-src="./assets/w2.ogv" data-status="0" data-key="d"></div>
+        <div class="white" data-src="./assets/w3.ogv" data-status="0" data-key="f"></div>
+        <div class="white" data-src="./assets/w4.ogv" data-status="0" data-key="g"></div>
+        <div class="white" data-src="./assets/w5.ogv" data-status="0" data-key="h"></div>
+        <div class="white" data-src="./assets/w6.ogv" data-status="0" data-key="j"></div>
+        <div class="white" data-src="./assets/w7.ogv" data-status="0" data-key="k"></div>
+        <div class="white" data-src="./assets/w8.ogv" data-status="0" data-key="l"></div>
+        <div class="black b1" data-src="./assets/b1.ogv" data-status="0" data-key="e"></div>
+        <div class="black b2" data-src="./assets/b2.ogv" data-status="0" data-key="r"></div>
+        <div class="black b3" data-src="./assets/b3.ogv" data-status="0" data-key="y"></div>
+        <div class="black b4" data-src="./assets/b4.ogv" data-status="0" data-key="u"></div>
+        <div class="black b5" data-src="./assets/b5.ogv" data-status="0" data-key="i"></div>
+    </div>
+
+</body>
+<script src="./js/pianon.js"></script>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播案例</title>
+    <link rel="stylesheet" href="../swiper/swiper-bundle.min.css">
+    <style>
+        .swiper {
+            width: 639px;
+            height: 426px;
+            outline: 2px solid red;
+        }
+
+        .swiper-img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper" id="box">
+        <div class="swiper-wrapper">
+
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 如果需要滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+
+
+    <script type="text/html" id="temp1">
+        {{each arr item index}}
+        <div class="swiper-slide">
+            <img src="{{item}}" alt="" class="swiper-img">
+        </div>
+        {{/each}}
+    </script>
+
+</body>
+<script src="../swiper/swiper-bundle.min.js"></script>
+<script src="./js/template-web.js"></script>
+<script>
+    let imgList = [
+        "img/item1.jpg",
+        "img/item2.jpg",
+        "img/item3.jpg",
+        "img/item4.jpg",
+    ];
+
+    let swiperWrapper = document.querySelector(".swiper-wrapper");
+    swiperWrapper.innerHTML = template("temp1", {
+        arr: imgList
+    })
+
+    // 初始化
+    let mySwipper = new Swiper("#box", {
+        loop: true,
+        // 如果需要前进后退按钮
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },// 如果需要分页器
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+        },// 如果需要滚动条
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+        //垂直
+        // direction: "vertical"
+
+    });
+</script>
+
+
+
+
+</html>

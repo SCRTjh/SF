@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img1 {
+            width: 300px;
+            height: 300px;
+            border: 1px dashed gray;
+            padding: 5px;
+        }
+
+        #f1 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./cloud-upload.svg" alt="" class="img1" onclick="imgClick()">
+    <input type="file" name="" id="f1" onchange="fileChange(this)">
+
+</body>
+<script>
+    function imgClick() {
+        let f1 = document.querySelector("#f1");
+        f1.click();
+    }
+    function fileChange(obj) {
+        if (obj.files.length > 0) {
+            let file = obj.files[0];
+            console.log(file);
+            let reg = /^image\/(jpeg|jpg|webp|png|gif|svg+xml)$/;
+            if (reg.test(file.type) && file.size < 2 * 1024 * 1024) {
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    console.log(reader.result);
+                    let img1 = document.querySelector(".img1");
+                    img1.src = reader.result;
+                }
+            }
+        } else {
+            alert("请选择小于2MB的图片");
+        }
+    }
+</script>
+
+</html>

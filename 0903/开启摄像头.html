@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开启摄像头</title>
+    <style>
+        #id {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <video src="" controls id="v1"></video>
+    <button type="button" onclick="openCamera()">开启摄像头</button>
+
+</body>
+<script>
+    function openCamera() {
+        navigator.getUserMedia({
+            video: true,
+            audio: true
+        }, function (stream) {
+            // 获取设备的信息成功
+            console.log(stream);
+            let v1 = document.querySelector("#v1");
+            v1.srcObject = stream;
+        }, function (error) {
+            // 获取设备的信息失败
+            console.log(error);
+        });
+    }
+</script>
+
+</html>
