@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reduce</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr = [12, 4, 5, 98, 22, 56]
+    let sum = arr.reduce((pre, i, index) => {
+        pre += i;
+        return pre;
+    })
+
+    console.log(sum);
+
+    //sort方法
+    arr.sort((a, b) => a - b);  //负数左摆，0相等不动,正数右摆
+    console.log(arr);
+</script>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习2</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function getMax(arr) {
+        if (Array.isArray(arr)) {
+            let max = arr[0];
+            for (let i = 1; i < arr.length; i++) {
+                max = max > arr[i] ? max : arr[i];
+            }
+            return max;
+        } else {
+            return NaN;
+        }
+    }
+    // let arr = [1, 2, 7, 4, 2, 4, "a", "a", "b", "f", "a", "c", "f"];
+    // let newArr = [];
+    // for (let i = 0; i < arr.length; i++) {
+    //     if (newArr.indexOf(arr[i]) === -1) {
+    //         newArr.push(arr[i]);
+    //     }
+    // }
+    // console.log(newArr);
+
+    let arr1 = [1, 2, 7, 4, 3, "a", "d", "g"];
+    let arr2 = [7, 3, "d", "g", "h", 3, 7];
+    let newArr2 = [];
+    for (let i = 0; i < arr1.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            if (arr1[i] === arr2[j]) {
+                if (newArr2.indexOf(arr2[j]) === -1) {
+                    newArr2.push(arr2[j]);
+                }
+            }
+        }
+    }
+    console.log(newArr2);
+
+
+    var arr = ["a", "b", "c", "a", "a", "b", "d", "e", "f", "c", "g", "d", "e", "g", "a", "c", "a", "h", "a"];
+    let newArr3 = [];
+    let newArr4 = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (newArr3.indexOf(arr[i]) === -1) {
+            newArr3.push(arr[i]);
+            newArr4[newArr3.indexOf(arr[i])] = 0;
+        }
+        if (newArr3.indexOf !== -1) {
+            newArr4[newArr3.indexOf(arr[i])]++;
+        }
+    }
+
+    console.log(newArr3);
+    console.log(newArr4);
+    console.log(newArr3[newArr4.indexOf(getMax(newArr4))] + "最多");
+
+
+
+
+    //颜现在有1头母牛，母牛在长成4岁的时候生一头小母牛(3岁长成4岁的时候立即生出一头小母牛)，
+    //以后每年都生一头小母牛，每头母牛在10岁的时候就会死亡(由9岁长到10岁的时候就生一头小母牛
+    //然后这头母牛立即死亡)请问20年以后颜一共由多少头母牛?
+
+    let age = [0];
+    for (let i = 0; i < 20; i++) {
+        for (let x = age.length - 1; x >= 0; x--) {
+            age[x]++;
+            if (age[x] >= 4 && age[x] <= 10) {
+                age.push(0);
+            }
+            if (age[x] === 10) {
+                age.splice(x, 1);
+            }
+        }
+    }
+
+    let countA = 0;
+    for (let i = 0; i < age.length; i++) {
+        if (age[i] >= 4) {
+            countA++;
+        }
+    }
+    console.log(age.length + '头');
+    console.log('成年' + countA + '头');
+
+
+
+
+
+
+
+
+    //结尾
+    // function confirmEnding(str, target) {
+    //     let str1 = str.split('');
+    //     console.log(str1);
+    //     let target1 = target.split('');
+    //     console.log(target1);
+    //     console.log("m" === "g");
+    //     let flag = false;
+    //     for (let i = 1; i <= target1.length; i++) {
+    //         if (str1[str1.length - i] === target1[target1.length - i]) {
+    //             flag = true
+    //         } else {
+    //             flag = false;
+    //         }
+    //     }
+    //     return flag;
+    // }
+
+    // console.log(confirmEnding("Open sesame", "saje"));
+    // function confirmEnding(str, target) {
+    //     return str.slice(-target.length) === target
+    // }
+
+    // confirmEnding("Bastian", "n");
+
+
+
+</script>
+
+</html>
