@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02</title>
+</head>
+
+<body>
+    <select name="" id="">
+        <option value="湖北省">湖北省</option>
+        <option value="湖南省">湖南省</option>
+        <option value="广东省">广东省</option>
+        <option value="江苏省">江苏省</option>
+    </select>
+    <button type="button" class="yes">确定</button>
+
+</body>
+<script>
+
+    let btn2 = document.querySelector(".yes");
+    btn2.addEventListener("click", function () {
+        let str = document.querySelector("select>option:checked").value;
+        console.log(window.opener.document);
+        window.opener.document.querySelector("#aaa").value = str;
+        console.log(window.opener.document.querySelector("#aaa").value);
+        // close();
+    })
+</script>
+
+</html>

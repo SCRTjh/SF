@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let arr = [
+        ["颜一鸣", "李心悦", ["李康", "贺锐"]],
+        ["陈韩家", ["许才奇", "何祥宇"], "张恒"],
+        "陈韩家",
+        [10, [20, [30, 40]]]
+    ];
+
+    function f(arr) {
+        if (Array.isArray((arr))) {
+            arr.forEach((item) => {
+                f(item)
+            })
+        } else {
+            console.log(arr);
+            // return arr;
+        }
+    }
+
+    f(arr);
+
+
+    //杨辉三角
+    let arr2 = [[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+    for (i = 0; i < 10; i++) {
+        arr2.push([]);
+        for (let j = 0; j < 11; j++) {
+            if (j === 0) {
+                arr2[i + 1][j] = 1;
+            } else {
+                arr2[i + 1][j] = arr2[i][j - 1] + arr2[i][j];
+            }
+        }
+    }
+
+    //打印三角
+    arr2.forEach((i) => {
+        console.log(i.filter((j) => {
+            return j !== 0;
+        }));
+
+    });
+
+
+    //约瑟夫环
+    let arr3 = []
+    for (let i = 0; i < 100; i++) {  //100-1的数组
+        arr3[i] = 100 - i;
+    }
+    let count = 0;
+
+    for (let i = arr3.length - 1; ; i--) {
+        count++;
+        if (arr3.length === 1) { //最后1个跳出循环
+            break;
+        }
+        else if (count % 3 === 0) {  //数到3去掉
+            arr3.splice(i, 1);
+        }
+        if (i <= 0) {    //一轮完了,再来一轮
+            i = arr3.length;
+        }
+    }
+    console.log(count);
+    console.log(arr3);
+
+
+
+
+
+</script>
+
+</html>
