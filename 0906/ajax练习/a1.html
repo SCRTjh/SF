@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button type="button" onclick="getData2()">发送请求</button>
+
+</body>
+<script src="./AjaxHelper.js"></script>
+<script>
+
+    function a() {
+        let str = "http://www.softeem.xin:8888/public/musicData/musicData.json";
+        AjaxHelper.get(str, function (res) {
+            console.log(res);
+        });
+    }
+
+    // function sendR() {
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open("GET", str, true);
+    //     xhr.send();
+    //     xhr.addEventListener("readystatechange", function () {
+    //         if (xhr.readyState == 4 && xhr.status == 200) {
+    //             let result = xhr.responseText;
+    //             console.log(result);
+    //             let obj = JSON.parse(result);
+    //             console.log(obj);
+    //         } else {
+    //             console.log(xhr.readyState, xhr.status);
+    //             // console.log("请求失败");
+    //         }
+    //     })
+
+    // }
+    function getData2() {
+        var url = "http://www.softeem.xin:9999/movie-info/getPraiseMovie";
+        AjaxHelper.get(url, function (result) {
+            console.log(result);
+        })
+    }
+
+</script>
+
+</html>
