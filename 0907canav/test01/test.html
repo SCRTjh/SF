@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习测试</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="400" height="400"></canvas>
+
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+    // 文本
+    ctx.beginPath();
+    ctx.font = "30px 微软雅黑";
+    // ctx.fillText("方法坐标", 50, 50);
+    ctx.strokeText("空心文本", 50, 50);
+
+    // 线条
+    // 下笔
+    ctx.moveTo(100, 100); //起点
+    ctx.lineTo(200, 100);
+    ctx.lineTo(200, 200);
+    ctx.lineTo(100, 200);
+    ctx.lineTo(100, 100);
+    ctx.strokeStyle = "red"; //设置描边的颜色
+    // ctx.stroke();  //别忘了下笔画
+    ctx.fillStyle = "blue"; //是属性 设置填充颜色
+    ctx.fill(); //下笔填充
+
+    //一个空心矩形
+    ctx.strokeRect(0, 0, 100, 100); //x,y,w,h
+    // 不需要 ctx.stroke();
+
+    //一个实心的矩形
+    ctx.fillRect(200, 200, 100, 100);
+    // 不需要 ctx.fill();
+
+    //清除矩形区域
+    ctx.clearRect(200, 200, 100, 50);
+
+    //得到一个矩形路径
+    ctx.rect(300, 100, 50, 50);
+    ctx.stroke(); //需要stroke或fill来画
+
+    //线段
+    ctx.lineWidth = 15;
+    ctx.moveTo(50, 250);
+    ctx.lineTo(50, 350);
+    // ctx.lineCap = "round"; //线段末端圆角
+    ctx.lineCap = "square"
+    ctx.stroke();
+
+
+
+
+</script>
+
+</html>

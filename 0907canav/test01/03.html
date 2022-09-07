@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="400" height="400"></canvas>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+
+    ctx.rect(50, 50, 300, 300);
+    ctx.stroke();
+
+    let gradient3 = ctx.createConicGradient(0, 200, 200);
+    gradient3.addColorStop(0, "blue");
+    gradient3.addColorStop(0.25, "blue");
+    gradient3.addColorStop(0.25, "red");
+    gradient3.addColorStop(0.4, "lightseagreen");
+    gradient3.addColorStop(0.6, "cyan");
+    gradient3.addColorStop(1, "red");
+    ctx.fillStyle = gradient3;
+    ctx.fill();
+
+
+    // 创建渐变色
+    // let gradient2 = ctx.createRadialGradient(200, 200, 10, 200, 200, 150);
+    // gradient2.addColorStop(0, "blue");
+    // gradient2.addColorStop(0.5, "cyan");
+    // gradient2.addColorStop(1, "lightseagreen");
+    // ctx.fillStyle = gradient2;
+    // ctx.fill();
+
+    //渐变
+    // let gradient = ctx.createLinearGradient(0, 0, 300, 0);
+    // gradient.addColorStop(0, "red");
+    // gradient.addColorStop(0.5, "orange");
+    // gradient.addColorStop(1, "blue");
+    // ctx.fillStyle = gradient;
+    // ctx.fill();
+
+</script>
+
+</html>

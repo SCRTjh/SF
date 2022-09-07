@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video视频截图</title>
+    <style>
+        #v1 {
+            width: 375px;
+        }
+
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <video src="./asserts/全班一起歌唱祖国太好吃了.mp4" controls id="v1"></video>
+    <canvas id="c1" width="375" height="667"></canvas>
+    <button type="button" onclick="takePhoto()">截图</button>
+
+</body>
+<script>
+    /** @type {HTMLVideoElement}  */
+    let v1 = document.querySelector("#v1");
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+
+    let ctx = c1.getContext("2d");
+
+    v1.onloadedmetadata = function () {
+        c1.width = v1.clientWidth;
+        c1.height = v1.clientHeight;
+    }
+
+    // 截图
+    function takePhoto() {
+        ctx.drawImage(v1, 0, 0, c1.width, c1.height);
+        let b64 = c1.toDataURL("image/png");
+
+        let a = document.createElement("a");
+        a.href = b64;
+        a.download = "截图.png";
+        a.click();
+    }
+
+</script>
+
+</html>

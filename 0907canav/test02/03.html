@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拍照</title>
+    <style>
+        #v1 {
+            height: 400px;
+            width: 400px;
+            border: 1px solid black;
+        }
+
+        #c1 {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <video src="" id="v1" height="400" width="400"></video>
+    <hr>
+    <canvas id="c1" width="400" height="400"></canvas>
+    <button type="button" onclick="openCamera()">打开摄像头</button>
+    <button type="button" onclick="takePhoto()">拍照</button>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+    /** @type {HTMLVideoElement} */
+    let v1 = document.querySelector("#v1");
+    let ctx = c1.getContext("2d");
+
+
+    function openCamera() {
+        navigator.getUserMedia({
+            video: true,
+            audio: false
+        }, function (stream) {
+            console.log('成功');
+            v1.srcObject = stream;
+            v1.play();
+
+        }, function (error) {
+            console.log(error);
+        })
+    }
+
+    //拍照下载
+    function takePhoto() {
+        if (!v1.paused) {
+            //绘制在画布上
+            ctx.drawImage(v1, 0, 0, c1.width, c1.height);
+            // 将画布上面的东西转换成base64
+            let b64 = c1.toDataURL("image/png");
+            // 用a标签下载
+            let a = document.createElement("a");
+            a.href = b64;
+            a.download = "照片.png";
+            a.click();
+        } else {
+            alert("打开摄像头!");
+        }
+    }
+
+
+</script>
+
+</html>
