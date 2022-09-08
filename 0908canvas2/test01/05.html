@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画布的学习</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="400" height="400"></canvas>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    var c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+
+    let img = new Image();
+    img.src = "./img/01.png";
+    img.onload = function () {
+        c1.width = img.width;
+        c1.height = img.height;
+        ctx.drawImage(img, 0, 0, c1.width, c1.height);
+        let imgDate = ctx.getImageData(0, 0, c1.width, c1.height);
+        for (let i = 0; i < imgDate.data.length; i += 4) {
+            let r = imgDate.data[i];
+            let g = imgDate.data[i + 1];
+            let b = imgDate.data[i + 2];
+            //取平均
+            let avg = ~~((r + g + b) / 3);
+
+            imgDate.data[i] = avg;
+            imgDate.data[i + 1] = avg;
+            imgDate.data[i + 2] = avg;
+        }
+
+        ctx.putImageData(imgDate, 0, 0);
+    }
+
+</script>
+
+</html>

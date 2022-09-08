@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画布的学习</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/02.webp" alt="" width="400" height="400">
+    <canvas id="c1" width="400" height="400"></canvas>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    var c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+
+    let img = document.querySelector("img");
+    img.onload = function () {
+        c1.height = img.clientHeight;
+        c1.width = img.clientWidth;
+        ctx.drawImage(img, 0, 0, c1.width, c1.height);
+
+        let imageDate = ctx.getImageData(0, 0, c1.width, c1.height);
+
+        for (let i = 0; i < imageDate.data.length; i += 4) {
+            let r = imageDate.data[i];
+            let g = imageDate.data[i + 1];
+            let b = imageDate.data[i + 2];
+            let a = imageDate.data[i + 3];
+            if (g > 250) {
+                imageDate.data[i + 3] = 0;
+            }
+        }
+        ctx.putImageData(imageDate, 0, 0);
+    }
+
+</script>
+
+</html>

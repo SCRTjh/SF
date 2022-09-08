@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音响</title>
+    <style>
+        #c1 {
+            margin: auto;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="600" height="300"></canvas>
+
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+    function drwaBar(x, rand) {
+        ctx.beginPath();
+        let gradient = ctx.createLinearGradient(0, 0, 0, 300);
+        gradient.addColorStop(0, "red");
+        gradient.addColorStop(0.5, "lightseagreen");
+        gradient.addColorStop(1, "orange");
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = 40;
+        ctx.setLineDash([20, 5]);
+        ctx.moveTo(30 + 50 * x, 300);
+        ctx.lineTo(30 + 50 * x, 0);
+
+        ctx.stroke();
+
+        ctx.clearRect(50 * x + 10, 0, 40, rand);
+
+    }
+
+
+    function randowNum(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    setInterval(function () {
+        ctx.clearRect(0, 0, 600, 300);
+        for (let i = 0; i < 13; i++) {
+            let r = randowNum(0, 300);
+            drwaBar(i, r);
+        }
+    }, 150)
+
+
+    // drwaBar();
+
+</script>
+
+</html>

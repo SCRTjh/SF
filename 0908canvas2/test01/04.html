@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画布的学习</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="400" height="400"></canvas>
+</body>
+<script>
+    /** @type {HTMLCanvasElement} */
+    var c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+    ctx.font = "32px 微软雅黑";
+    ctx.fillStyle = "black";
+    ctx.fillText("第一次", 0, 50);
+    ctx.save();
+
+    ctx.font = "16px 宋体";
+    ctx.fillStyle = "green";
+    ctx.fillText("第二次", 0, 100);
+    ctx.save();
+
+    ctx.font = "50px 仿宋";
+    ctx.fillStyle = "blue";
+    ctx.fillText("第三次", 0, 200);
+    ctx.save();
+
+    //栈
+
+</script>
+
+</html>
