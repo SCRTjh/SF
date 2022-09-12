@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>audio测试</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="900" height="400"></canvas>
+    <audio src="./assets/24.mp3" id="bgm" controls></audio>
+
+</body>
+<script>
+
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+
+    // 创建渐变
+    let gradient = ctx.createConicGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, "red");
+    gradient.addColorStop(0.3, "yellow");
+    gradient.addColorStop(1, "green");
+
+    //通过音频得到
+    let result = [125, 220, 230, 122, 101, 106, 72, 134, 67, 103, 53, 84, 109, 150, 0, 0, 0, 0, 0, 0];
+
+    ctx.setLineDash([10, 3]);
+    // ctx.beginPath();
+    // ctx.moveTo(0 + 15, 400);
+    // ctx.lineTo(0 + 15, 400 - 400 * 125 / 255);;
+    // ctx.lineWidth = 30;
+    // ctx.stroke();
+
+    // ctx.setLineDash([10, 3]);
+    // ctx.beginPath();
+    // ctx.moveTo(35 + 15, 400);
+    // ctx.lineTo(35 + 15, 400 - 400 * 220 / 255);;
+    // ctx.lineWidth = 30;
+    // ctx.stroke();
+
+    result.forEach(function (item, index) {
+        ctx.beginPath();
+        ctx.lineWidth = 30;
+        ctx.moveTo(index * 35 + 15, 400);
+        ctx.lineTo(index * 35 + 15, 400 - 400 * item / 255);
+        ctx.strokeStyle = gradient;
+        ctx.stroke();
+    })
+
+
+
+</script>
+
+</html>

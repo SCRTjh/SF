@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>audio测试</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="900" height="400"></canvas>
+    <audio src="./assets/24.mp3" id="bgm" controls></audio>
+    <button type="button" onclick="start()">开始</button>
+
+</body>
+<script>
+
+    /** @type {HTMLCanvasElement} */
+    let c1 = document.querySelector("#c1");
+    let ctx = c1.getContext("2d");
+    let bgm = document.querySelector("#bgm");
+
+
+
+    function start() {
+
+        // 创建渐变
+        let gradient = ctx.createConicGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, "red");
+        gradient.addColorStop(0.3, "yellow");
+        gradient.addColorStop(1, "green");
+
+
+        //红色小块,x坐标
+        let redBlocks = new Array(20);
+        for (var i = 0; i < redBlocks.length; i++) {
+            redBlocks[i] = 400;
+        }
+
+        let audioCtx1 = new AudioContext();
+        let audioSource = audioCtx1.createMediaElementSource(bgm);
+        let gainNode = audioCtx1.createGain();
+        gainNode.gain.value = 1;
+        let analyser = audioCtx1.createAnalyser();
+
+        audioSource.connect(analyser);
+        analyser.connect(gainNode);
+        gainNode.connect(audioCtx1.destination);
+
+
+
+
+        setInterval(function () {
+
+            ctx.clearRect(0, 0, 900, 400);
+            let arr8 = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(arr8);
+            //通过音频得到
+            let result = [];
+            for (var i = 0; i < 30; i++) {
+                let x = ~~(1024 * i / 30);
+                result.push(arr8[x]);
+            }
+            console.log(result);
+
+            ctx.setLineDash([10, 3]);
+
+            result.forEach(function (item, index) {
+                ctx.beginPath();
+                ctx.lineWidth = 30;
+                ctx.moveTo(index * 35 + 15, 400); // 30 一列宽度 , 5 间隔 ，+15 画线位置 
+                ctx.lineTo(index * 35 + 15, 400 - 400 / 255 * item);
+                ctx.strokeStyle = gradient;
+                ctx.stroke();
+
+
+
+
+                if (redBlocks[index] < 400 - 400 / 255 * item) {
+                    if (400 - 400 / 255 * item == 400) {
+                        redBlocks[index] = 400 - 10;
+                    } else {
+                        redBlocks[index] = redBlocks[index] + 2;  //慢慢下降
+                    }
+                } else {
+                    redBlocks[index] = 400 - 400 / 255 * item - 3; //顶上去一步到位
+                }
+
+                ctx.fillStyle = "red";
+                ctx.fillRect(index * 35, redBlocks[index], 30, 10);
+            })
+
+
+        }, 50)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

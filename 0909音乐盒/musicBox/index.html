@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSIC</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./iconfont//iconfont.css">
+    <link rel="shortcut icon" href="./favicon.ico">
+</head>
+
+<body>
+    <audio id="bgm" controls crossorigin="anonymous"></audio>
+    <img src="./img/menu.png" class="menu-img" alt="">
+    <div class="left-menu" data-show="0">
+        <div class="btn-box">
+            <button type="button" class="btn">静音播放</button>
+            <button type="button" class="btn">本地打开</button>
+        </div>
+        <ul class="music-list-box">
+
+        </ul>
+    </div>
+    <div class="right-box">
+        <!-- 画布 -->
+        <canvas id="c1" width="900" height="350"></canvas>
+        <div class="mobile-record">
+            <img src="" alt="" id="record-img">
+        </div>
+
+        <div class="container lrc-box">
+            <div class="one-line">
+                <ul class="lrc-ul">
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="music-control container">
+            <div class="current-time-box">00:00</div>
+            <div class="progress"></div>
+            <div class="duration-box">04:32</div>
+        </div>
+
+        <!-- 控制器 -->
+        <div class="control-box container">
+            <span class="iconfont icon-shunxubofang" id="play-model-span"
+                onclick="musicControl.changePlayMode()"></span>
+            <span class="iconfont icon-yduishangyiqu" onclick="musicControl.data.currentIndex--"></span>
+            <span class="iconfont icon-bofang " id="iconP"
+                onclick="musicControl.dom.bgm.paused?musicControl.dom.bgm.play():musicControl.dom.bgm.pause()"></span>
+            <span class="iconfont icon-yduixiayiqu" onclick="musicControl.data.currentIndex++"></span>
+            <span class="iconfont icon-sound-fill"></span>
+            <div class="volume-box" data-hidden="1">
+                <div></div>
+            </div>
+        </div>
+
+
+    </div>
+    <template id="temp1">
+        {{each musicList item index}}
+        <li class="music-list-item" data-index={{index}}>
+            <span class="index-span">{{index+1}}</span>
+            <img src={{BASEURL+item.picPath}} class=" music-pic" alt="">
+            {{item.musicName}}
+        </li>
+        {{/each}}
+    </template>
+    <template id="temp2">
+        {{each txtArr item index}}
+        <li data-current="0">{{item}}</li>
+        {{/each}}
+    </template>
+
+</body>
+<script src="./js/template-web.js"></script>
+<script src="./js/AjaxHelper.js"></script>
+<script src="./js/index.js"></script>
+
+</html>

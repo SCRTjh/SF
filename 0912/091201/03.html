@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>audio测试</title>
+    <style>
+        #c1 {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="c1" width="900" height="400"></canvas>
+    <audio src="./assets/24.mp3" id="bgm1" controls></audio>
+    <button type="button" onclick="start()">开始分析</button>
+
+</body>
+<script>
+
+    function start() {
+        /** @type {HTMLAudioElement} */
+        let bgm = document.querySelector("#bgm1");
+        /** @type {HTMLCanvasElement} */
+        let c1 = document.querySelector("#c1");
+        let ctx = c1.getContext("2d");
+
+        // 创建音频上下文对象
+        let audioCtx = new AudioContext();
+        // 指定要分析的音频
+        let audioSource = audioCtx.createMediaElementSource(bgm);
+        // 指定要分析的内容,分析音量和音调
+        let gainNode = audioCtx.createGain();
+        //  设置音频与音量是100%
+        gainNode.gain.value = 1;
+        // 创建一个分析器
+        let analyser = audioCtx.createAnalyser();
+
+        // 用指定的分析器，取分析指定的音乐的音量与音调
+        audioSource.connect(analyser);
+        analyser.connect(gainNode);
+        gainNode.connect(audioCtx.destination);  //音量与音调输出到哪里
+
+
+        setInterval(() => {
+            let arr = new Uint8Array(analyser.frequencyBinCount); //8位无符号整数数组
+            analyser.getByteFrequencyData(arr)
+            console.log(arr);
+            // 在1024个成品里面抽取30个样品
+            let result = [];
+            for (var i = 0; i < 30; i++) {
+                let x = ~~(1024 * i / 30);
+                result.push(arr[x]);
+            }
+            console.log(result);
+        }, 5000);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

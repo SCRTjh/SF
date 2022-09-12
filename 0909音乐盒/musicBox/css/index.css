@@ -1,0 +1,327 @@
+@charset "utf-8";
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+#bgm {
+    display: none;
+}
+
+/* 定义一个容器 */
+.container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.left-menu {
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+}
+
+
+
+.btn-box {
+    background-color: #333333;
+    height: 55px;
+    text-align: center;
+    line-height: 55px;
+
+}
+
+.music-list-box {
+    position: absolute;
+    width: 100%;
+    top: 55px;
+    bottom: 0;
+    background-color: #333333;
+    overflow: auto;
+}
+
+/* 自定义滚动条 */
+.music-list-box::-webkit-scrollbar {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), cyan);
+    width: 5px;
+    border-radius: 5px;
+}
+
+/* 自定义滑块 */
+.music-list-box::-webkit-scrollbar-thumb {
+    background-color: aquamarine;
+}
+
+
+.btn {
+    width: 120px;
+    height: 35px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: #fff;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+
+.music-list-item {
+    font-size: 14px;
+    line-height: 30px;
+    box-sizing: border-box;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+
+.index-span {
+    display: inline-block;
+    font-weight: bold;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+.music-pic {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.music-list-item:hover {
+    padding-left: 10px;
+    background-color: black;
+}
+
+
+
+/* 右边的盒子 */
+.right-box {
+    position: fixed;
+    right: 0;
+    height: 100%;
+    background-color: #e78798;
+    left: 300px;
+}
+
+/* 音乐播放控制器 */
+
+.menu-img {
+    border-radius: 5px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+    box-sizing: border-box;
+    padding: 3px;
+    width: 30px;
+    display: none;
+}
+
+/* 左边列表单独样式 */
+.music-list-box>.active {
+    background-color: black;
+    padding-left: 10px;
+    color: orange;
+}
+
+.music-control {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.current-time-box,
+.duration-box {
+    color: white;
+    font-size: 14px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.progress {
+    flex: 1;
+    height: 14px;
+    background-color: lightgray;
+    background-image: linear-gradient(to right, red, red);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+}
+
+/* 歌词区域 */
+.lrc-box {
+    height: 450px;
+    overflow: hidden;
+}
+
+.one-line {
+    height: 35px;
+    margin-top: 200px;
+    position: relative;
+}
+
+.lrc-ul {
+    color: gray;
+    font-size: 14px;
+    position: absolute;
+    width: 100%;
+    transition: all 0.3s linear;
+}
+
+.lrc-ul>li {
+    line-height: 35px;
+    text-align: center;
+}
+
+.lrc-ul>li[data-current="1"] {
+    color: aqua;
+}
+
+
+
+#c1 {
+    display: block;
+    margin: 10px auto;
+    -webkit-box-reflect: below 15px linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+}
+
+
+/* 控制器样式 */
+.control-box {
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    position: relative;
+}
+
+.control-box>.iconfont {
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.control-box>.iconfont:hover {
+    color: cyan;
+}
+
+.control-box>#iconP {
+    font-size: 42px;
+}
+
+.control-box>.volume-box {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    border: 2px solid #fff;
+    right: 260px;
+    border-radius: 15px/15px;
+}
+
+.control-box>.volume-box>div {
+    background-image: linear-gradient(to right, blue, lightseagreen);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px/15px;
+    cursor: pointer;
+}
+
+.control-box>.volume-box[data-hidden="1"] {
+    display: none;
+}
+
+.control-box>.volume-box[data-hidden="0"] {
+    display: block;
+}
+
+.mobile-record {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 响应式 */
+
+@media only screen and (max-width:768px) {
+    .left-menu {
+        z-index: 1;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        top: 200px;
+        box-shadow: 0 0 15px 5px white;
+        transition: all 0.3s linear;
+    }
+
+    .left-menu[data-show="0"] {
+        transform: translateY(100%);
+    }
+
+    .left-menu[data-show="1"] {
+        transform: translateY(0);
+    }
+
+    .right-box {
+        left: 0;
+    }
+
+    .menu-img {
+        display: block;
+    }
+
+    #c1 {
+        display: none;
+    }
+
+    .mobile-record {
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 350px;
+        width: 100%;
+    }
+
+    @keyframes ani-record {
+        0% {
+            transform: rotateZ(0turn);
+        }
+
+        100% {
+            transform: rotateZ(1turn);
+        }
+    }
+
+    .mobile-record>#record-img {
+        display: none;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        animation: ani-record 10s linear infinite;
+        animation-play-state: paused;
+    }
+}
