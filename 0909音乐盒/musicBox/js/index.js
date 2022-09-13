@@ -39,9 +39,9 @@ let musicControl = {
     data: {
         APIURL: "http://www.softeem.xin:8888/public/musicData/musicData.json",
         musicList: [],
-        // BASEURL: "http://www.softeem.xin:8888/public/musicData/",
+        BASEURL: "http://www.softeem.xin:8888/public/musicData/",
         // BASEURL: "http://192.168.90.1:8080/musicData/",
-        BASEURL: "http://192.168.101.250:8889/musicData/",
+        // BASEURL: "http://192.168.101.250:8889/musicData/",
         // 代表当前播放音乐的索引
         _currentIndex: -1,
         //歌词时间

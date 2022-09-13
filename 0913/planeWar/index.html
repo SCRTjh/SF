@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞机大战</title>
+    <style>
+        #game {
+            border: 2px solid black;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="game" width="512" height="768"></canvas>
+
+</body>
+
+<script src="./js/GameObject.js"></script>
+<script src="./js/Background.js"></script>
+<script src="./js/Hero.js"></script>
+<script src="./js/Bullet.js"></script>
+<script>
+    const gameControl = {
+        dom: {
+            /**@type {HTMLCanvasElement}*/
+            game: document.querySelector("#game"),
+        },
+        data: {
+            /**存放需要加载的资源图片 */
+            assertsList: ["./img/bg1.jpg", "./img/plane_1.png", "./img/fire.png"],
+            /**
+             * 所有加载好的资源
+             * @type {HTMLImageElement[]}
+            */
+            assertsObject: [],
+            /** @type {CanvasRenderingContext2D} */
+            ctx: null,
+            bg: null,
+            h1: null,
+            /**
+             * 装玩家飞机的子弹
+            */
+            bulletList: []
+        },
+        bindEvent: function () {
+            let that = this;
+            this.dom.game.addEventListener("mousemove", function (event) {
+                console.log(event.offsetX, event.offsetY);
+                if (event.offsetX > that.data.bg.width) {
+                    that.data.h1.x = that.data.bg.width - that.data.h1.width
+                } else if (event.offsetX < that.data.h1.width) {
+                    that.data.h1.x = 0
+                }
+                else {
+                    that.data.h1.x = event.offsetX - that.data.h1.width;
+                }
+
+                if (event.offsetY > that.data.bg.height / 2) {
+                    that.data.h1.y = that.data.bg.height / 2 - that.data.h1.height
+                } else if (event.offsetY < that.data.h1.height) {
+                    that.data.h1.y = 0
+                }
+                else {
+
+                    that.data.h1.y = event.offsetY - that.data.h1.height;
+                }
+
+
+            })
+        },
+        start: function () {
+            var that = this;
+            this.bindEvent();
+            this.data.ctx = this.dom.game.getContext("2d");
+            //画背景
+            this.data.bg = new Background(0, -768, this.data.assertsObject[0]);
+
+            this.data.bg.draw(this.data.ctx);
+            //画玩家飞机
+            this.data.h1 = new Hero(100, 300, this.data.assertsObject[1]);
+            this.data.h1.draw(this.data.ctx)
+
+
+
+            setInterval(function () {
+                that.data.bg.draw(that.data.ctx);
+                that.data.h1.draw(that.data.ctx)
+                that.data.bulletList.forEach(function (item, index) {
+                    item.moveSelf();
+                    item.draw(that.data.ctx);
+                    if (item.y < 0) {
+                        delete that.data.bulletList[index];
+                    }
+                })
+            }, 50);
+            setInterval(function () {
+                that.data.h1.fire();
+            }, 250)
+
+        },
+        /** 用来加载游戏资源*/
+        loadAsserts: function () {
+            var that = this;
+            var count = 0;
+            for (var i = 0; i < this.data.assertsList.length; i++) {
+                var img = new Image();
+                img.src = this.data.assertsList[i];
+                this.data.assertsObject.push(img); //保存创建的图片对象
+                img.onload = function () {
+                    count++;
+                    if (count === that.data.assertsList.length) {
+                        console.log("资源加载完成");
+                        that.start();
+                    }
+                }
+            }
+        }
+    }
+
+    //调用加载资源得到方法
+    gameControl.loadAsserts();
+
+</script>
+
+</html>

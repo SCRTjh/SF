@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞机大战</title>
+    <style>
+        #game {
+            border: 2px solid black;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="game" width="512" height="768"></canvas>
+
+</body>
+
+<script src="./js/GameObject.js"></script>
+<script src="./js/Background.js"></script>
+<script src="./js/Hero.js"></script>
+<script src="./js/Bullet.js"></script>
+<script src="./js/EnemySmall.js"></script>
+<script src="./js/EnemyBig.js"></script>
+<script>
+    const gameControl = {
+        dom: {
+            /**@type {HTMLCanvasElement}*/
+            game: document.querySelector("#game"),
+        },
+        data: {
+            /**存放需要加载的资源图片 */
+            assertsList: ["./img/bg1.jpg", "./img/plane_1.png", "./img/fire.png", "./img/enemy_small.png", "./img/enemy_big.png"],
+            /**
+             * 所有加载好的资源
+             * @type {HTMLImageElement[]}
+            */
+            assertsObject: [],
+            /** @type {CanvasRenderingContext2D} */
+            ctx: null,
+            bg: null,
+            h1: null,
+            /**
+             * 装玩家飞机的子弹
+            */
+            bulletList: [],
+            //小型敌机
+            enemySmallList: [],
+            //大型敌机
+            enemyBigList: []
+        },
+        bindEvent: function () {
+            let that = this;
+            this.dom.game.addEventListener("mousemove", function (event) {
+                if (event.offsetX > that.data.bg.width) {
+                    that.data.h1.x = that.data.bg.width - that.data.h1.width
+                } else if (event.offsetX < that.data.h1.width) {
+                    that.data.h1.x = 0
+                }
+                else {
+                    that.data.h1.x = event.offsetX - that.data.h1.width;
+                }
+
+                if (event.offsetY > that.data.bg.height / 2) {
+                    that.data.h1.y = that.data.bg.height / 2 - that.data.h1.height
+                } else if (event.offsetY < that.data.h1.height) {
+                    that.data.h1.y = 0
+                }
+                else {
+
+                    that.data.h1.y = event.offsetY - that.data.h1.height;
+                }
+
+
+            })
+        },
+        start: function () {
+            var that = this;
+            this.bindEvent();
+            this.data.ctx = this.dom.game.getContext("2d");
+            //画背景
+            this.data.bg = new Background(0, -768, this.data.assertsObject[0]);
+
+            this.data.bg.draw(this.data.ctx);
+            //画玩家飞机
+            this.data.h1 = new Hero(100, 300, this.data.assertsObject[1]);
+            this.data.h1.draw(this.data.ctx)
+
+            //随机加入小型敌机
+            setInterval(function () {
+                let e1 = new EnemySmall(~~(Math.random() * (512 - 108 + 1)), -100, that.data.assertsObject[3]);
+                that.data.enemySmallList.push(e1);
+            }, 3000)
+
+            //随机加入大型敌机
+            setInterval(function () {
+                let e2 = new EnemyBig(~~(Math.random() * (512 - 200 + 1)), -200, that.data.assertsObject[4]);
+                that.data.enemyBigList.push(e2);
+            }, 8000)
+
+
+
+            setInterval(function () {
+                that.data.bg.draw(that.data.ctx);
+                that.data.h1.draw(that.data.ctx);
+                //画小敌机
+                if (that.data.enemySmallList.length > 0) {
+                    that.data.enemySmallList.forEach(function (item, index) {
+                        item.draw(that.data.ctx);
+                    })
+                }
+                //画大敌机
+                if (that.data.enemyBigList.length > 0) {
+                    that.data.enemyBigList.forEach(function (item, index) {
+                        item.draw(that.data.ctx);
+                    })
+                }
+                //小型敌机移动
+                that.data.enemySmallList.forEach(function (item, index) {
+                    item.moveSelf();
+                })
+                //大型敌机移动
+                that.data.enemyBigList.forEach(function (item, index) {
+                    item.moveSelf();
+                })
+                that.data.bulletList.forEach(function (item, index) {
+                    item.moveSelf();
+                    item.draw(that.data.ctx);
+                    //判断子弹碰撞小型机
+                    that.data.enemySmallList.forEach(function (item2, index2) {
+                        if (item.x + item.width / 2 < item2.x + item2.width && item.x + item.width / 2 > item2.x && item.y < item2.y + item2.height && item.y > item2.y) {
+                            delete that.data.bulletList[index];
+                            item2.hp -= 1;
+                            if (item2.hp <= 0) {
+                                that.data.enemySmallList.splice(index2, 1);
+                            }
+                        }
+                    })
+                    //判断子弹碰撞大型机
+                    that.data.enemyBigList.forEach(function (item3, index3) {
+                        if (item.x + item.width / 2 < item3.x + item3.width && item.x + item.width / 2 > item3.x && item.y < item3.y + item3.height && item.y > item3.y) {
+                            delete that.data.bulletList[index];
+                            item3.hp -= 1;
+                            if (item3.hp <= 0) {
+                                that.data.enemyBigList.splice(index3, 1);
+                            }
+                        }
+                    })
+                    //子弹到达边缘消失
+                    if (item.y < 0 - item.height) {
+                        delete that.data.bulletList[index];
+                    }
+                })
+
+            }, 50);
+            setInterval(function () {
+                that.data.h1.fire();
+            }, 500)
+
+        },
+        /** 用来加载游戏资源*/
+        loadAsserts: function () {
+            var that = this;
+            var count = 0;
+            for (var i = 0; i < this.data.assertsList.length; i++) {
+                var img = new Image();
+                img.src = this.data.assertsList[i];
+                this.data.assertsObject.push(img); //保存创建的图片对象
+                img.onload = function () {
+                    count++;
+                    if (count === that.data.assertsList.length) {
+                        console.log("资源加载完成");
+                        that.start();
+                    }
+                }
+            }
+        },
+
+    }
+
+    //调用加载资源得到方法
+    gameControl.loadAsserts();
+
+</script>
+
+</html>

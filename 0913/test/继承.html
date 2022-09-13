@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    function Person(userName, sex) {
+        this.userName = userName;
+        this.sex = sex;
+    }
+    Person.prototype.sleep = function () {
+        console.log("睡觉");
+    }
+
+    function Student(userName, sex, hobby, sid) {
+        Person.call(this, userName, sex);
+        this.hobby = hobby;
+        this.sid = sid;
+    }
+
+    Student.prototype = Object.create(Person.prototype);
+    Student.prototype.consturctor = Student;
+    Student.prototype.study = function () {
+        console.log("学习");
+    }
+
+    function Teacher(userName, sex, hobby, tid) {
+        Person.call(this, userName, sex);
+        this.hobby = hobby;
+        this.tid = tid;
+    }
+
+    Teacher.prototype = Object.create(Person.prototype);
+    Teacher.prototype.consturctor = Teacher;
+    Teacher.prototype.teaching = function () {
+        console.log("教书");
+    }
+
+    function FemaleStudent(userName, sex, hobby, sid, height) {
+        Student.call(this, userName, sex, hobby, sid);
+        this.height = height;
+    }
+
+    FemaleStudent.prototype = Object.create(Student.prototype);
+    FemaleStudent.prototype.consturctor = FemaleStudent;
+    FemaleStudent.prototype.shopping = function () {
+        console.log("购物");
+    }
+
+    let fs = new FemaleStudent("hr", "女", "购物", 12345, 170);
+    fs.shopping();
+    fs.sleep();
+    fs.study();
+
+</script>
+
+</html>
