@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小小小小小的要求</title>
+    <style>
+        #table1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 700px;
+        }
+
+        #table1 :where(td, th) {
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="table1">
+        <tr>
+            <th>姓名</th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+            <th>星期天</th>
+        </tr>
+        <tr>
+            <td>张三</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+        </tr>
+        <tr>
+            <td>李四</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>上班</td>
+        </tr>
+        <tr>
+            <td>王五</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+        </tr>
+        <tr>
+            <td>赵六</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>调休</td>
+            <td>上班</td>
+            <td>上班</td>
+        </tr>
+        <tr>
+            <td>田七</td>
+            <td>调休</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>上班</td>
+            <td>调休</td>
+        </tr>
+    </table>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<!-- 把所有调休的格式,背景颜色设置为红色,字体加粗 -->
+<script>
+    $('table>tbody>tr>td:contains("调休")').css("backgroundColor", "red");
+</script>
+
+</html>

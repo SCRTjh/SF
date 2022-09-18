@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导航栏</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .main {
+            width: 1200px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            /* align-items: center; */
+            background-color: blue;
+        }
+
+        .main>li {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        .main>li>a {
+            font-size: 32px;
+            width: 100px;
+            height: 100%;
+        }
+
+        .main>li>.subMune {
+            display: none;
+            text-align: center;
+            height: 240px;
+            line-height: 60px;
+        }
+
+        .main>li>.subMune>li {
+            height: 60px;
+            width: 100px;
+            background-color: aquamarine;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="main">
+        <li>
+            <a href="#">1</a>
+            <ul class="subMune">
+                <li>123</li>
+                <li>123</li>
+                <li>123</li>
+                <li>123</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">2</a>
+            <ul class="subMune">
+                <li>123</li>
+                <li>123</li>
+                <li>123</li>
+                <li>123</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">3</a>
+            <ul class="subMune">
+                <li>1</li>
+                <li>23</li>
+                <li>4</li>
+                <li>5</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>5</li>
+                <li>4</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+
+            <ul class="subMune">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+
+            <ul class="subMune">
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+            </ul>
+        </li>
+        <li>
+
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">4</a>
+            <ul class="subMune">
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+                <li>5</li>
+            </ul>
+        </li>
+    </ul>
+
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script>
+    $(".main>li").on("click", "a", function () {
+        $(this).next(".subMune").slideToggle().parent().siblings().children(".subMune").slideUp();
+    })
+</script>
+
+</html>

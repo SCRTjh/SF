@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery01</title>
+</head>
+
+<body>
+    <button type="button" id="btn1">按钮1</button>
+    <ul class="ul1">
+        <li>第1项</li>
+        <li class="ccc">第2项</li>
+        <li>第3项</li>
+        <li>第4项</li>
+        <li class="aaa">
+            <div>第5项</div>
+            <a id="a1" href="#">百度一下</a>
+            <p>这是段落</p>
+        </li>
+        <li>第6项</li>
+        <li>第7项</li>
+        <li>第8项</li>
+        <li class="bbb">第9项</li>
+        <li>第10项</li>
+    </ul>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script>
+    console.log($("ul>li"));
+    console.log($(".ul1").children());
+    console.log($(".ul1").children(".aaa"));
+    //后代元素
+    console.log($(ul1).find("p"));
+    //父级元素
+    console.log($("#a1").parent());
+    console.log($("#a1").parent());
+    console.log($("#a1").parentsUntil());
+
+    //向后
+    console.log($(".aaa".next()));
+    console.log($(".aaa".nextAll()));
+    console.log($(".aaa".nextUntil(".bbb")));
+
+    //向前
+    console.log($(".aaa".prev()));
+    console.log($(".aaa".prevAll()));
+    console.log($(".aaa".prevUntil(".ccc")));
+
+    //找兄弟
+    console.log($(".aaa".siblings));
+
+    //过滤
+    $(".ul1>li").filter(".ccc");
+
+    //排除
+    $(".ul1>li").not(".aaa");
+
+    //指定索引
+    $("ul1>li").first();
+    $("ul1>li").last();
+
+    $("ul1>li").eq(2); //第三项
+
+    $("ul1>li:gt(2)");
+    $("ul1>li:lt(2)");
+
+    //在父级元素的索引
+    $("ul1>li").index();
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

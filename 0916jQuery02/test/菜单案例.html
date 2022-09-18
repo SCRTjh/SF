@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竖排菜单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+
+        .menu {
+            border: 1px solid black;
+            width: 170px;
+        }
+
+
+        .menu a {
+            text-decoration: none;
+            color: black;
+            text-align: center;
+        }
+
+        .menu>li>a {
+            font-weight: bold;
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            background-color: gray;
+            color: white;
+            border-bottom: 1px solid black;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+
+        .submenu>li>a {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <ul class="menu">
+        <li>
+            <a href="#">班级管理</a>
+            <ul class="submenu">
+                <li><a href="#">新增班级</a></li>
+                <li><a href="#">班级列表</a></li>
+                <li><a href="#">班级状态</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">学生管理</a>
+            <ul class="submenu">
+                <li><a href="#">学校档案建立</a></li>
+                <li><a href="#">学生信息列表</a></li>
+                <li><a href="#">学生健康管理</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">成绩管理</a>
+            <ul class="submenu">
+                <li><a href="#">成绩录入</a></li>
+                <li><a href="#">成绩列表</a></li>
+                <li><a href="#">成绩分析</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script>
+    $(".menu>li").on("click", "a", function (event) {
+        $(this).next(".submenu").slideToggle().parent().siblings().children(".submenu").slideUp();
+    })
+
+
+</script>
+
+
+</html>

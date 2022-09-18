@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 200px;
+            border: 2px solid black;
+            background-color: deeppink;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="box"></div>
+    <button type="button" class="btn1">Ajax</button>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script>
+    $(".box").animate({
+        width: "0"
+    }, 10000).click(function () {
+        $(this).stop();
+    })
+
+    let str = "http://www.softeem.xin:8888/public/musicData/musicBox";
+    // $("btn1").click(function(){
+    //     $.ajax({
+    //         method:"GET",
+    //         url:str,
+    //         dataType:"",       //responseType
+    //         success:function(result){
+    //             console.log(result);
+    //         },
+    //         error:function(error){
+    //             console.log(error);
+    //         },
+    //         complete:function(){
+    //             console.log(请求完成);
+    //         }
+    //     })
+    // })
+
+    $("btn1").click(function () {
+        $.get(str, function () {
+
+        });
+    })
+
+</script>
+
+
+</html>

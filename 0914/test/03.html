@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件方法</title>
+    <style>
+        .btn {
+            width: 100px;
+            height: 40px;
+            border: 2px solid black;
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <button type="button" class="btn">按钮1</button>
+    <button type="button" class="btn">按钮2</button>
+    <button type="button" class="btn">按钮3</button>
+    <button type="button" class="btn">按钮4</button>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script>
+    $(".btn").click(function () {
+
+        console.log(this);
+    })
+    $(".btn").mouseover(function (event) {
+        console.log(111);
+    })
+
+</script>
+
+
+</html>

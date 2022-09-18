@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aaa {
+            height: 100vh;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: cyan;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        广告
+    </div>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script>
+    $(function () {
+        let maxWidth = $("body").width() - $(".box").width();
+        let maxHeight = $(".aaa").height() - $(".box").height();
+        let speedX = 1;
+        let speedY = 1;
+        setInterval(function () {
+            let left = parseInt($(".box").css("left"));
+            left += speedX;
+            $(".box").css("left", left + "px");
+            if (left > maxWidth || left < 0) {
+                speedX *= -1;
+            }
+
+            let top = parseInt($(".box").css("top"));
+            top += speedY;
+            $(".box").css("top", top + "px");
+            if (top > maxHeight || top < 0) {
+                speedY *= -1;
+            }
+        }, 20)
+
+        $(window).on("resize", function (event) {
+            maxWidth = $("body").width() - $(".box").width();
+            maxHeight = $(".aaa").height() - $(".box").height();
+        })
+    })
+
+
+</script>
+
+</html>

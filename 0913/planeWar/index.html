@@ -126,18 +126,22 @@
         },
         bindEvent: function () {
             let that = this;
+            //鼠标移动监听事件
             this.dom.game.addEventListener("mousemove", function (event) {
+                //飞机碰右边
                 if (event.offsetX + that.data.h1.width > that.data.bg.width) {
                     that.data.h1.x = that.data.bg.width - that.data.h1.width;
+                    //飞机碰左边
                 } else if (event.offsetX + that.data.h1.width < that.data.h1.width) {
                     that.data.h1.x = 0
                 }
                 else {
                     that.data.h1.x = event.offsetX;
                 }
-
+                //飞机碰上边
                 if (event.offsetY + that.data.h1.height > that.data.bg.height / 2) {
                     that.data.h1.y = that.data.bg.height / 2 - that.data.h1.height;
+                    //飞机碰下边
                 } else if (event.offsetY + that.data.h1.height < that.data.h1.height) {
                     that.data.h1.y = 0
                 }
@@ -150,6 +154,7 @@
             })
         },
         start: function () {
+            //重置得分
             this.data.score = 0;
             //隐藏按钮
             this.dom.btnStart.style.display = "none";
@@ -269,6 +274,7 @@
                 }
             }
         },
+        /** 添加敌机方法 */
         addEnemy: function () {
             //假设屏幕上面最多有6架
             if (this.data.enemyList.length < 6) {
