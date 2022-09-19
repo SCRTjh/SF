@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/cinema.css">
+
+
+</head>
+
+<body>
+    <div id="app" class="flex-col">
+        <div class="nav-bar flex-row j-c a-c">
+            影厅
+        </div>
+
+
+        <div class="content-box flex-1">
+            <ul class="cinema-list">
+                <template id="cinema-list-temp">
+                    {{each list item index}}
+                    <li class="cinema-item flex-col">
+                        <p class="top-title">{{item.hall_name}}</p>
+                        <p class="address">{{item.address}}</p>
+                        <div class="tag-list flex-row">
+                            {{each item.tags2 item2 index2}}
+                            <span class="tag">{{item2}}</span>
+                            {{/each}}
+                        </div>
+                    </li>
+                    {{/each}}
+                </template>
+
+
+            </ul>
+
+
+        </div>
+        <ul class="tab-bar flex-row j-s-a">
+            <li><span class="iconfont icon-yingpian"></span>影片</li>
+            <li class="active"><span class="iconfont icon-yingyuan"></span>影院</li>
+            <li><span class="iconfont icon-RectangleCopy"></span>排片</li>
+            <li><span class="iconfont icon-wode"></span>我的</li>
+
+        </ul>
+
+    </div>
+
+
+
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script>
+    $(function () {
+        // var baseURL = "http://192.168.103.253:9999";
+        var baseURL = "http://www.softeem.xin:9999"
+        $.get(baseURL + "/hall-info/getAllList", function (result) {
+            if (result.status == "success") {
+
+                result.data.forEach(function (item, index) {
+                    item.tags2 = item.tags.split(",");
+                    console.log(item.tags2);
+                })
+                var cinemaList = result.data;
+                console.log(result);
+                var htmlStr = template("cinema-list-temp", {
+                    list: cinemaList
+                })
+                $(".cinema-list").html(htmlStr);
+            }
+        })
+
+    })
+</script>
+
+</html>

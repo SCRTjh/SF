@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/index.css">
+
+</head>
+
+<body>
+    <div id="app" class="flex-col">
+        <div class="nav-bar flex-row j-c a-c">
+            华夏影院
+            <span class="iconfont icon-caidan">
+            </span>
+        </div>
+        <div class="movie-type-box">
+            <ul class="movie-type-ul flex-row">
+                <li class="active">热映</li>
+                <li>待映</li>
+                <li>经典电影</li>
+            </ul>
+            <span class="iconfont icon-sousuo"></span>
+        </div>
+
+        <div class="content-box flex-1">
+            <!-- 最受欢迎的电影区域 -->
+            <div class="popular-box">
+                <div class="popular-title">
+                    最受好评的电影
+                </div>
+                <ul class="popular-list flex-row popular-move">
+                    <template type="text/html" id="popular-temp">
+                        {{each arr item index}}
+                        <li class="popular-item">
+                            <div class="post-box">
+                                <img src={{baseURL+item.movie_pc}} alt="">
+                                <p class="evalu-score">观众评分{{item.movie_score}}</p>
+                            </div>
+                            <div class="p-name">{{item.movie_name}}</div>
+                        </li>
+                        {{/each}}
+                    </template>
+
+                </ul>
+            </div>
+            <!-- 售票区 -->
+            <ul class="movie-list flex-col">
+                <!-- {{baseURL+item.movie_pc}} -->
+                <template id="movie-item-temp">
+                    {{each list item index}}
+                    <li class="sell-item flex-row">
+                        <img src="./img/edu.jpg" alt="" class="left-post">
+                        <div class="middle-info flex-col">
+                            <p class="top-name">{{item.movie_name}}</p>
+                            <p class="score">观众评分:<span>{{item.movie_score}}</span> </p>
+                            <p class="actor">主演：{{item.role}} </p>
+                            <p class="release-time">上映时间：{{item.formatPublicTime}}</p>
+                        </div>
+                        <div class="button-box">
+                            {{if item.isPreSale}}
+                            <button type="button" class="btn btn-presale">预售</button>
+                            {{else}}
+                            <button type="button" class="btn btn-sale">购买</button>
+                            {{/if}}
+                        </div>
+                    </li>
+                    {{/each}}
+                </template>
+                <div class="next-page-tips">
+                    加载下一页...
+                </div>
+
+            </ul>
+
+        </div>
+        <ul class="tab-bar flex-row j-s-a">
+            <li class="active"><span class="iconfont icon-yingpian"></span>影片</li>
+            <li><span class="iconfont icon-yingyuan"></span>影院</li>
+            <li><span class="iconfont icon-RectangleCopy"></span>排片</li>
+            <li><span class="iconfont icon-wode"></span>我的</li>
+
+        </ul>
+
+    </div>
+
+    <!-- 预览图片的swiper -->
+    <div class="swiper image-view-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="./img/edu.jpg" id="preview-image" alt="">
+            </div>
+        </div>
+
+    </div>
+
+</body>
+<script src="./swiper/swiper-bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script>
+    $(function () {
+        var baseURL = "http://192.168.103.253:9999";
+        $(".movie-type-ul>li").click(function (event) {
+            $(this).addClass("active").siblings().removeClass("active")
+        })
+        $(".tab-bar>li").click(function (event) {
+            $(this).addClass("active").siblings().removeClass("active")
+        })
+
+        $.get(baseURL + "/movie-info/getPraiseMovie", function (result) {
+            console.log(result);
+            if (result.status == "success") {
+                var arr = result.data;
+                var htmlStr = template("popular-temp", {
+                    arr: arr,
+                    baseURL: baseURL
+                })
+            }
+            $(".popular-list").html(htmlStr);
+        })
+
+        var pageIndex = 1; //当前页码
+        var pageCount = 0; //代表总页面
+
+
+        /** 
+         * 根据页码获取电影信息列表，并渲染
+         * 
+        */
+        function getMovieListPage(pageIndex) {
+            // 请求电影信息列表
+            $.get(baseURL + "/movie-info/getListByPage?pageIndex=" + pageIndex, function (result) {
+                if (result.status == "success") {
+                    // 记录总的页数
+                    pageCount = result.data.pageCount;
+                    console.log(result);
+                    result.data.listData.forEach(function (item, index) {
+                        item.formatPublicTime = formatDataTime(item.publicTime);
+                        item.isPreSale = new Date() - new Date(item.publicTime) < 0;
+                    });
+
+                    var htmlStr = template("movie-item-temp", {
+                        list: result.data.listData,
+                        baseURL: baseURL
+                    })
+                    // $(".movie-list").html(htmlStr);
+                    $(".next-page-tips").before(htmlStr);
+
+
+                    //点击渲染下一页
+                    $(".next-page-tips").one("click", function () {
+                        if (pageIndex < pageCount) {
+                            pageIndex++;
+                            getMovieListPage(pageIndex);
+                        }
+                    });
+
+                }
+            });
+        }
+        getMovieListPage(1);
+
+        //初始化
+        var imageViewSwiper = new Swiper(".image-view-swiper");
+
+        $(".movie-list").on("click", ".sell-item .left-post", function (event) {
+            // 换掉图片
+            var src = $(this).attr("src");
+            $("#preview-image").attr("src", src);
+            $(".image-view-swiper").fadeIn();
+        });
+
+        $(".image-view-swiper").click(function (event) {
+            $(this).fadeOut();
+        });
+
+        function formatDataTime(oldTime) {
+            var d = new Date(oldTime);
+
+            var year = d.getFullYear();
+            var month = (d.getMonth() + 1).toString().padStart(2, "0");
+            var day = d.getDay().toString().padStart(2, "0");
+
+            var hour = d.getHours().toString().padStart(2, "0");
+            var minue = d.getMinutes().toString().padStart(2, "0");
+            var second = d.getSeconds().toString().padStart(2, "0");
+
+            return [year, month, day].join("-") + " " + [hour, minue, second].join(":");
+        }
+
+
+        setInterval(function () {
+            let li0 = document.querySelector(".popular-list");
+            console.log(li0.scrollLeft);
+            li0.scrollLeft += 95;
+            if (li0.scrollLeft >= 580) {
+                li0.scrollLeft = 0;
+            }
+        }, 4000)
+
+    })
+</script>
+
+</html>

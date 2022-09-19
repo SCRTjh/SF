@@ -1,0 +1,40 @@
+.cinema-list>.cinema-item {
+    border-bottom: 1px solid gray;
+    padding: .1rem;
+}
+
+.cinema-item>.top-title {
+    font-size: .18rem;
+    box-sizing: border-box;
+    padding-bottom: .05rem;
+}
+
+.cinema-item>.address {
+    font-size: .12rem;
+    color: gray;
+    box-sizing: border-box;
+    padding-bottom: .05rem;
+}
+
+
+
+.cinema-item>.tag-list>span {
+    font-size: .12rem;
+    padding: .03rem;
+}
+
+.cinema-item>.tag-list>span+span {
+    /* box-sizing: border-box; */
+    margin: 0 .05rem;
+
+}
+
+.cinema-item>.tag-list>.tag:nth-child(2n+1) {
+    border: 1px solid #ffa129;
+    color: #ffa129;
+}
+
+.cinema-item>.tag-list>.tag:nth-child(2n) {
+    border: 1px solid var(--successColor);
+    color: var(--successColor);
+}

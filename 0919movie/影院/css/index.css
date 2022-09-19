@@ -1,0 +1,232 @@
+.movie-type-ul {
+    font-size: .14rem;
+    height: .45rem;
+
+}
+
+.movie-type-ul>li {
+    height: 100%;
+    color: black;
+    box-sizing: border-box;
+    padding: 0 .2rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+
+.movie-type-ul>li.active {
+    font-size: .22rem;
+    font-weight: bold;
+}
+
+.movie-type-ul>li.active::after {
+    content: "";
+    position: absolute;
+    width: .2rem;
+    height: .02rem;
+    background-color: var(--primaryColor);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+.movie-type-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--splitColor);
+}
+
+.movie-type-box>.icon-sousuo {
+    position: absolute;
+    right: .1rem;
+    color: var(--primaryColor);
+    font-size: .22rem;
+    font-weight: bold;
+}
+
+
+/* 最受好评的电影 */
+.popular-box {
+    box-sizing: border-box;
+    padding: 0 .1rem;
+}
+
+.popular-box>.popular-move {
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.popular-box>.popular-move::-webkit-scrollbar {
+    display: none;
+}
+
+.popular-title {
+    font-size: .14rem;
+    box-sizing: border-box;
+    padding: .05rem;
+    color: gray;
+}
+
+
+
+.popular-list>.popular-item {
+    width: .9rem;
+    box-sizing: border-box;
+    padding: 5px;
+    /* 防止盒子被压缩 */
+    flex-shrink: 0;
+}
+
+.popular-list>.popular-item+.popular-item {
+    margin-left: .05rem;
+}
+
+.post-box {
+    width: 100%;
+    height: 1.3rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-box>img {
+    height: 100%;
+    width: 100%;
+}
+
+.post-box>p {
+    position: absolute;
+    bottom: 0;
+    color: #ffa129;
+    font-weight: bold;
+    font-size: .14rem;
+}
+
+.popular-list>.popular-item>.p-name {
+    font-size: .14rem;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 售票区 */
+
+.movie-list {
+    margin-top: .1rem;
+    box-sizing: border-box;
+    padding: .1rem;
+}
+
+.sell-item {
+    height: 1.2rem;
+    box-sizing: border-box;
+    padding-bottom: .05rem;
+}
+
+.sell-item>.left-post {
+    width: .9rem;
+    height: 100%;
+    box-sizing: border-box;
+    padding-right: .1rem;
+}
+
+.sell-item>.middle-info {
+    width: 2rem;
+    height: 100%;
+}
+
+.sell-item>.middle-info>p+p {
+    box-sizing: border-box;
+    padding-top: .05rem;
+    font-size: .14rem;
+}
+
+.sell-item>.middle-info>.top-name {
+    font-size: .20rem;
+    font-weight: bold;
+}
+
+.sell-item>.middle-info>.score>span {
+    font-size: .225rem;
+    color: #ffa129;
+    box-sizing: border-box;
+    padding: 0 .08rem;
+}
+
+.sell-item>.middle-info>.actor {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sell-item>.middle-info>.release-time {
+    font-size: .12rem;
+}
+
+.sell-item>.button-box {
+    width: .6rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sell-item>.button-box>.btn {
+    width: 100%;
+    height: .4rem;
+    color: #fff;
+    border-radius: .4rem/.4rem;
+    border: none;
+}
+
+.sell-item>.button-box>.btn-presale {
+    background-color: #4791ff;
+}
+
+.sell-item>.button-box>.btn-sale {
+    background-color: var(--primaryColor);
+}
+
+
+/* 加载下一页 */
+
+.next-page-tips {
+    height: .03rem;
+    font-size: .12rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+/* 预览图片 */
+.image-view-swiper {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .9);
+}
+
+.image-view-swiper .swiper-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-view-swiper .swiper-slide>img {
+    object-fit: contain;
+    width: 100%;
+    max-height: 100%;
+
+}
