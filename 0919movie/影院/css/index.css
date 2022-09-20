@@ -183,6 +183,7 @@
     color: #fff;
     border-radius: .4rem/.4rem;
     border: none;
+    font-size: 14px;
 }
 
 .sell-item>.button-box>.btn-presale {

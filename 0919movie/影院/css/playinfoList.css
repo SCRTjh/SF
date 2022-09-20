@@ -1,0 +1,100 @@
+@charset "utf-8";
+
+.nav-bar>.back {
+    position: absolute;
+    left: .1rem;
+    font-size: .14rem;
+}
+
+.swiper-box {
+    height: 1.6rem;
+    background-image: linear-gradient(45deg, #676e7c, #121928);
+}
+
+.swiper-movie-pic {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide-pic {
+    height: 100%;
+    object-fit: contain;
+}
+
+.swiper-movie-pic .swiper-slide {
+    transition: all 0.3s linear;
+    transform: scale(0.8);
+}
+
+.swiper-movie-pic .swiper-slide-active {
+    transform: scale(1);
+}
+
+
+.name-score {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: flex-end;
+    padding: .1rem;
+}
+
+.movie-score {
+    color: #ffa129;
+    font-size: .16rem;
+    margin-left: .1rem;
+}
+
+.movie-score>span {
+    font-size: .12rem;
+}
+
+.movie-info {
+    display: flex;
+    font-size: .12rem;
+    justify-content: center;
+    color: #9ca3af
+}
+
+/* 排片列表 */
+.plan-ul>li {
+    border-bottom: 1px dashed gray;
+    display: flex;
+    margin: 0 .1rem;
+    padding: .1rem 0;
+    font-size: .14rem;
+    align-items: center;
+}
+
+.time-box {
+    width: .9rem;
+
+}
+
+.plan-ul>li>.tags {
+    width: 1.3rem;
+    font-size: .12rem;
+}
+
+.plan-ul>li>.money {
+    flex: 1;
+    color: #ffa129;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding-left: .05rem;
+}
+
+.btn-box {
+    width: .6rem;
+
+}
+
+.btn-buy {
+    width: .5rem;
+    border: 1px solid #ffa129;
+    color: #ffa129;
+    background-color: #fff;
+    height: .28rem;
+    border-radius: 0.15rem;
+    font-size: .12rem;
+}

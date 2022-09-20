@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影片详情</title>
+    <link rel="stylesheet" href="./layer-v3.5.1/layer-v3.5.1/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/movieDetail.css">
+</head>
+
+<body>
+    <div id="app" class="flex-col">
+        <div class="nav-bar flex-row j-c a-c">
+            影片详情
+            <span class="back">返回</span>
+        </div>
+
+
+        <div class="content-box flex-1">
+            <div class="render-box">
+                <div class="loading-box" text="正在加载中...">
+                    <!-- <img src="./img/profile_loading.gif" alt=""> -->
+                </div>
+                <template id="movie-detail-temp">
+                    <div class="info-box flex-row">
+                        <img src="./img/edu.jpg" alt="" class="bg-img">
+                        <img src="./img/edu.jpg" alt="" class="info-post">
+                        <ul class="info-text">
+                            <li class="movie-name">{{datas.movie_name}}</li>
+                            <li><span class="movie-score">{{datas.movie_score}}</span>分</li>
+                            <li>{{datas.tags}}</li>
+                            <li>{{datas.duration}}分钟</li>
+                            <li>{{datas.formatTime}}</li>
+                        </ul>
+                    </div>
+                    <div class="btn-box">
+                        <button type="button" class="btn-buy">特惠购票</button>
+                    </div>
+                    <p class="detail-text">
+                        {{datas.movie_desc}}
+                    </p>
+
+
+                </template>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+<script src="./js/template-web.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./layer-v3.5.1/layer-v3.5.1/layer/layer.js"></script>
+<script src="./js/common.js"></script>
+<script>
+
+
+    $(function () {
+        var u = new URL(location.href);
+        var id = u.searchParams.get("id");
+        if (id) {
+            $.get(baseURL + "/movie-info/findById/" + id, function (result) {
+                if (result.status == "success") {
+                    console.log(result.data);
+                    result.data.formatTime = formatDataTime(result.data.publicTime);
+                    var datas = result.data;
+                    var htmlStr = template("movie-detail-temp", {
+                        datas: datas,
+                        baseURL: baseURL
+                    })
+
+                    $(".render-box").html(htmlStr);
+                }
+            })
+
+            $(".back").click(function () {
+                history.back();
+            })
+
+
+
+        } else {
+            layer.alert("没有获取到ID!!!");
+        }
+
+        $(".render-box").on("click", ".btn-buy", function (event) {
+            location.href = "./playinfoList.html?id=" + id;
+        })
+
+
+
+    })
+
+
+</script>
+
+</html>

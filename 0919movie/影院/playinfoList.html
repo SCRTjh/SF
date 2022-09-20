@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影排片</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./layer-v3.5.1/layer-v3.5.1/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="./css/playinfoList.css">
+</head>
+
+<body>
+    <div id="app" class="flex-col">
+        <div class="nav-bar flex-row j-c a-c">
+            电影排片
+            <span class="back">返回</span>
+        </div>
+        <div class="content-box flex-1">
+            <div class="swiper-box">
+                <div class="swiper swiper-movie-pic">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img src="./img/edu.jpg" class="swiper-slide-pic" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/edu.jpg" class="swiper-slide-pic" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/edu.jpg" class="swiper-slide-pic" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/edu.jpg" class="swiper-slide-pic" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/edu.jpg" class="swiper-slide-pic" alt="">
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="./img/edu.jpg" class="swiper-slide-pic" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="render-box">
+                <div class="loading-box" text="正在加载排片信息"></div>
+                <template id="playinfoList-temp">
+                    <div class="name-score">
+                        <div>{{list[0].movieInfo.movie_name}}</div>
+                        <div class="movie-score">
+                            {{list[0].movieInfo.f_movie_score}}<span>分</span>
+                        </div>
+                    </div>
+                    <div class="movie-info">
+                        {{list[0].movieInfo.duration}}分钟|{{list[0].movieInfo.tags}}|{{list[0].movieInfo.role}}
+                    </div>
+                    <!-- 排片列表 -->
+                    <ul class="plan-ul">
+                        {{each list item index}}
+                        <li>
+                            <div class="time-box">
+                                {{item.f_plan_time}}
+                            </div>
+                            <div class="tags">{{item.hallInfo.tags}}</div>
+                            <div class="money">￥{{item.price}}</div>
+                            <div class="btn-box">
+                                <button type="button" class="btn-buy">购票</button>
+                            </div>
+                        </li>
+                        {{/each}}
+                    </ul>
+            </div>
+
+
+            </template>
+        </div>
+
+
+
+    </div>
+
+    </div>
+
+</body>
+<script src="./swiper/swiper-bundle.min.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./layer-v3.5.1/layer-v3.5.1/layer/layer.js"></script>
+<script src="./js/common.js"></script>
+<script>
+    $(function () {
+        //初始化swiper
+        var swiperMoviePic = new Swiper(".swiper-movie-pic", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            centeredSlides: true,
+        });
+
+        var u = new URL(location.href);
+        var id = u.searchParams.get("id");
+        if (id) {
+            // 获取数据
+            $.get(baseURL + "/plan-info/getListByMid/" + id, function (result) {
+                if (result.status == "success") {
+                    console.log(result);
+                    result.data.forEach(function (item, index) {
+                        item.f_plan_time = formatDataTime(item.plan_time);
+                        item.movieInfo.f_movie_score = item.movieInfo.movie_score.toString().padEnd(3, ".0");
+                    })
+                    console.log(result.data);
+                    //有数据则渲染，没有则警告
+                    if (result.data.toString()) {
+                        var htmlStr = template("playinfoList-temp", {
+                            list: result.data,
+                            baseURL: baseURL
+                        })
+                        $(".render-box").html(htmlStr);
+                    } else {
+                        layer.alert("当前影片无排片", function () {
+                            history.back();
+                        });
+                    }
+                }
+
+                $(".back").click(function () {
+                    history.back();
+                })
+
+            })
+        } else {
+            layer.alert("你在干甚么？");
+        }
+
+
+    })
+</script>
+
+</html>

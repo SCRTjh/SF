@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./swiper/swiper-bundle.min.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./iconfont/iconfont.css">
     <link rel="stylesheet" href="./css/cinema.css">
@@ -57,10 +56,9 @@
 </body>
 <script src="./js/jquery-3.6.1.js"></script>
 <script src="./js/template-web.js"></script>
+<script src="./js/common.js"></script>
 <script>
     $(function () {
-        // var baseURL = "http://192.168.103.253:9999";
-        var baseURL = "http://www.softeem.xin:9999"
         $.get(baseURL + "/hall-info/getAllList", function (result) {
             if (result.status == "success") {
 
