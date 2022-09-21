@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影排片</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <link rel="stylesheet" href="./layer-v3.5.1/layer-v3.5.1/layer/theme/default/layer.css">
+    <link rel="stylesheet" href="./css/chooseSite.css">
+</head>
+
+<body>
+    <div id="app" class="flex-col">
+        <div class="nav-bar flex-row j-c a-c">
+            选座购票
+            <span class="back" onclick="history.back()">返回</span>
+        </div>
+        <div class="content-box flex-1">
+            <div class="render-box1">
+                <template id="choose-site-temp">
+                    <ul class="movie-info">
+                        <li class="movie-name">{{list.movieInfo.movie_name}} <span
+                                class="movie-price">￥{{list.price}}</span></li>
+                        <li class="movie-time">{{formatDataTime(list.plan_time)}}</li>
+                    </ul>
+                    <ul class="site-ul">
+                        <li>
+                            <div class="site-item" site-type="0"></div>
+                            可选
+                        </li>
+                        <li>
+                            <div class="site-item" site-type="2"></div>
+                            已售
+                        </li>
+                        <li>
+                            <div class="site-item" site-type="3"></div>
+                            已选
+                        </li>
+                    </ul>
+                    <!-- 屏幕 -->
+                    <div class="screen-box">
+                    </div>
+                    <!-- 座位 -->
+                    <ul class="site-list">
+                        {{each list.choose_site row index}}
+                        <li>
+                            {{each row item index2}}
+                            <div class="site-item" site-type={{item}} data-site-info="第{{index+1}}排 第{{index2+1}}座">
+                            </div>
+                            {{/each}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                    <!-- 提交按钮 -->
+                    <div class="btn-box">
+                        <button data-money="0" type="button" class="btn-submit-ticket" disabled>选座购票</button>
+                    </div>
+
+                </template>
+            </div>
+            <div class="choose-list">
+                <template id="choose-list-temp">
+                    {{each arr item index}}
+                    <div class="choose-item">
+                        {{item}}
+                    </div>
+                    {{/each}}
+                </template>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</body>
+<script src="./js/template-web.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./layer-v3.5.1/layer-v3.5.1/layer/layer.js"></script>
+<script src="./js/common.js"></script>
+<script>
+    $(function () {
+        var u = new URL(location.href);
+        var id = u.searchParams.get("id");
+        console.log(id);
+        if (id) {
+            $.get(baseURL + "/plan-info/findById/" + id, function (result) {
+                console.log(result);
+                if (result.status == "success") {
+                    result.data.choose_site = JSON.parse(result.data.choose_site);
+                    var price = result.data.price;
+                    // 渲染模板
+                    var htmlStr = template("choose-site-temp", {
+                        list: result.data,
+                        formatDataTime: formatDataTime
+                    })
+
+                    $(".render-box1").html(htmlStr);
+
+                    $(".content-box").on("click", ".site-list .site-item[site-type='0']", function (event) {
+                        $(this).attr("site-type", "3")
+                    }).on("click", ".site-list .site-item[site-type='3']", function (event) {
+                        $(this).attr("site-type", "0")
+                    }).on("click", ".site-list .site-item", function (event) {
+                        var Money = $(".site-list [site-type='3']").length * price;
+                        console.log(Money);
+                        $(".btn-submit-ticket").attr("data-money", Money);
+                        var chooseArr = $(".site-list [site-type='3']").map(function (index, item) {
+                            return $(item).attr("data-site-info");
+                        }).toArray();
+
+                        var htmlStr2 = template("choose-list-temp", {
+                            arr: chooseArr
+                        });
+                        $(".choose-list").html(htmlStr2);
+
+                        //按钮的启用与禁用
+                        $(".btn-submit-ticket").prop("disabled", $(".site-list [site-type='3']").length == 0)
+
+                    })
+
+
+                } else {
+                    layer.msg("请求数据失败")
+                }
+            })
+        } else {
+            layer.alert("没有获取到id")
+        }
+
+
+
+
+    })
+</script>
+
+</html>

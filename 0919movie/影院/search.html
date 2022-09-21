@@ -24,42 +24,19 @@
         </div>
         <div class="content-box flex-1">
             <ul class="movie-list">
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
-                <li class="movie-item">
-                    <img src="./img/edu.jpg" class="post-img" alt="">
-                    <p class="movie-name">飞哥的诱惑</p>
-                </li>
+                <template id="grid-item-temp">
+                    {{each list item index}}
+                    <li class="movie-item" data-id={{item.id}}>
+                        <img src="./img/edu.jpg" class="post-img" alt="">
+                        <p class="movie-name">{{item.movie_name}}</p>
+                    </li>
+                    {{/each}}
+                </template>
+                <div class="grid-item loading-next-page">
+                    加载下一页
+                </div>
+
+
             </ul>
 
         </div>
@@ -72,6 +49,65 @@
 </body>
 <script src="./js/jquery-3.6.1.js"></script>
 <script src="./js/common.js"></script>
+<script src="./js/template-web.js"></script>
 <script src="./layer-v3.5.1/layer-v3.5.1/layer/layer.js"></script>
+<script>
+    $(function () {
+        $(".text-search").on({
+            click: function () {
+                pageIndex = 1;
+                $(".movie-item").remove();
+                getListByPage(pageIndex, $("#inp-search").val());
+
+            },
+        });
+
+        $(document).keydown(function (event) {
+            if (event.keyCode == 13) {
+                document.querySelector(".text-search").click();
+            }
+        })
+
+        $(".movie-list").on("click", ".movie-item", function (event) {
+            location.assign("./movieDetail.html?id=" + $(this).attr("data-id"));
+        })
+
+
+
+        var pageIndex = 1;
+        var pageCount = 0;
+        function getListByPage(pageIndex, keyword) {
+            $.get(baseURL + "/movie-info/search", {
+                pageIndex: pageIndex,
+                keyword: keyword
+            }, function (result) {
+                console.log(result);
+                if (result.status == "success") {
+                    pageCount = result.data.pageCount;
+                    var htmlStr = template("grid-item-temp", {
+                        list: result.data.listData,
+                        baseURL: baseURL
+                    })
+                    // $(".movie-list").append(htmlStr);
+                    $(".loading-next-page").show().before(htmlStr);
+                } else {
+                    layer.msg("请求失败");
+                }
+            });
+        }
+
+        $(".loading-next-page").click(function () {
+            if (pageIndex < pageCount) {
+                pageIndex++;
+                getListByPage(pageIndex, $("#inp-search").val());
+            } else {
+                layer.msg("已经是最后一页了");
+            }
+        })
+
+
+
+    })
+</script>
 
 </html>
