@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单验证</title>
+    <style>
+        .form-item {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="registerForm">
+        <div class="form-item">
+            用户名：<input type="text" name="userName" data-rule-required="true" data-rule-rangelength="[6,10]"
+                data-msg-required="必须填写用户名">
+        </div>
+        <div class="form-item">
+            密码：<input type="text" name="pwd">
+        </div>
+        <div class="form-item">
+            确认密码：<input type="text" name="pwd2" id="pwd2">
+        </div>
+        <div class="form-item">
+            年龄：<input type="text" name="age">
+        </div>
+        <div class="form-item">
+            身份证号：<input type="text" name="IDCard">
+        </div>
+        <div class="form-item">
+            爱好：<input type="text" name="hobby">
+        </div>
+        <div class="form-item">
+            <button type="button" id="btn-register">注册信息</button>
+        </div>
+    </form>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script>
+    $(function () {
+        var registerForm = $("#registerForm").validate({
+            rules: {
+                // userName: {
+                //     rangelength: [6, 10],
+                //     required: true
+                // },
+                pwd: {
+                    required: true
+                },
+                pwd2: {
+                    equalTo: ".form-item [name='pwd'] ",
+                    required: true
+                },
+                age: {
+                    min: 0
+                },
+                hobby: {
+                    required: true
+                },
+                message: {
+                    pwd2: {
+                        equalTo: "密码必须相同"
+                    }
+                }
+            }
+        });
+
+        $("#btn-register").click(function () {
+            var result = registerForm.form();
+            if (result) {
+                console.log(1);
+            } else {
+                console.log(2);
+            }
+        })
+
+    })
+</script>
+
+</html>
+<!-- 
+    用户名：长度必须是6-10位
+    密码：不能为空
+    确认密码：必须与密码相同，也不能为空
+    年龄：正数
+    身份证：必须填入身份证号
+    爱好：不能为空
+
+
+    要求：点击按钮以后去完成上面的验证，怎么办
+ -->

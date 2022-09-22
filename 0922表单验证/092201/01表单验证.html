@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单验证</title>
+</head>
+
+<body>
+    <form id="loginForm">
+        <div>
+            用户名：<input type="text" placeholder="请输入用户名" name="userName">
+        </div>
+        <div>
+            密码：<input type="text" placeholder="请输入密码" name="pwd">
+        </div>
+        <div>
+            <button type="button" id="btn1">登录</button>
+        </div>
+    </form>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script>
+    $(function () {
+        //选中表单id
+        // 表单元素name
+        //验证规则
+        //返回当前表单对象
+        var loginForm = $("#loginForm").validate({
+            rules: {
+                userName: {
+                    required: true
+                },
+                pwd: {
+                    required: true
+                }
+            },
+            messages: {
+                userName: {
+                    required: "用户名不能为空"
+                },
+                pwd: {
+                    required: "捏妈妈滴,密码呢"
+                }
+            }
+        });
+
+        $("#btn1").click(function () {
+            // 调用form()方法进行验证
+            var result = loginForm.form();
+            if (result) {
+                console.log("验证通过");
+            } else {
+                console.log("表单验证不通过");
+            }
+        })
+    })
+</script>
+
+</html>

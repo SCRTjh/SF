@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业</title>
+    <style>
+        .main {
+            height: 400px;
+            width: 820px;
+            margin: 100px auto;
+            /* border: 1px solid black; */
+        }
+
+        .title {
+            text-align: center;
+            color: #487db7;
+        }
+
+        #stuForm>.form-item {
+            display: flex;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        #stuForm>.form-item>label:first-child {
+            box-sizing: border-box;
+            padding: 8px;
+            margin-right: 10px;
+            text-align: right;
+            width: 80px;
+            font-weight: bold;
+        }
+
+        #stuForm>.form-item .inp {
+            width: 550px;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid gray;
+            outline-color: gray;
+        }
+
+
+
+        .hobby-box {
+            display: flex;
+            width: 550px;
+            align-items: center;
+        }
+
+        #stuForm .btn-box {
+            width: 568px;
+            margin-left: 100px;
+        }
+
+        .btn-box>button {
+            height: 30px;
+            width: 70px;
+            margin-right: 10px;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-box>.btn-save {
+            background-color: #275f8f;
+        }
+
+        .btn-box>.btn-back {
+            background-color: #eeab4c;
+        }
+
+        .error-text {
+            color: red;
+            font-size: 12px;
+            font-weight: bold;
+            box-sizing: border-box;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h2 class="title">新增学生信息</h2>
+        <form action="" id="stuForm">
+            <div class="form-item">
+                <label for="stuName">学生姓名</label>
+                <input type="text" class="inp" name="stuName" id="stuName" placeholder="请输入学生的姓名">
+            </div>
+            <div class="form-item">
+                <label for="stuGender">学生性别</label>
+                <select name="stuGender" id="stuGender" class="inp sel">
+                    <option value="男" selected>男</option>
+                    <option value="女">女</option>
+                </select>
+
+            </div>
+            <div class="form-item">
+                <label for="stuAge">学生年龄</label>
+                <input type="text" class="inp" name="stuAge" id="stuAge" placeholder="请输入学生的年龄">
+            </div>
+            <div class="form-item">
+                <label for="stuPho">手机号码</label>
+                <input type="text" class="inp" name="stuPho" id="stuPho" placeholder="请输入手机号码">
+            </div>
+            <div class="form-item">
+                <label for="stuClass">所属班级</label>
+                <input type="text" class="inp" name="stuClass" id="stuClass" placeholder="请输入班级名称">
+            </div>
+            <div class="form-item">
+                <label for="stuAddress">家庭地址</label>
+                <input type="text" class="inp" name="stuAddress" id="stuAddress" placeholder="请输入家庭地址">
+            </div>
+            <div class="form-item">
+                <label for="stuHobby" class="hobby-label">爱好</label>
+                <div class="hobby-box">
+                    <label>
+                        <input type="checkbox" name="stuHobby" value="看书">
+                        看书
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stuHobby" value="睡觉">
+                        睡觉
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stuHobby" value="玩游戏">
+                        玩游戏
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stuHobby" value="逛街">
+                        逛街
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stuHobby" value="写代码">
+                        写代码
+                    </label>
+                </div>
+
+            </div>
+            <div class="btn-box">
+                <button class="btn-save">保存数据</button>
+                <button class="btn-back">返回列表</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script>
+    $(function () {
+        $.validator.addMethod("regexp", function (value, element, params) {
+            var reg = new RegExp(params);
+            return reg.test(value);
+        })
+
+        var stuForm = $("#stuForm").validate({
+            rules: {
+                stuName: {
+                    required: true
+                },
+                stuAge: {
+                    required: true,
+                    digits: true,
+                    range: [18, 45]
+                },
+                stuPho: {
+                    required: true
+                },
+                stuClass: {
+                    required: true,
+                    regexp: "^[HJ]210[1-9]$"
+
+                },
+                stuHobby: {
+                    required: true
+                },
+                stuAddress: {
+                    required: true,
+                    maxlength: 100
+                }
+            },
+            messages: {
+                stuName: "学生姓名不能为空",
+                stuAge: "学生年龄不能为空",
+                stuPho: "手机号不能为空",
+                stuClass: "班级名称不能为空",
+                stuAddress: "地址不能为空",
+                stuHobby: "请至少选择一个爱好"
+            },
+            errorClass: "error-text",
+            errorPlacement: function (error, element) {
+                element.parents(".form-item").append(error);
+            }
+        });
+
+        $(".btn-save").click(function () {
+            var result = stuForm.form();
+            if (result) {
+                console.log(1);
+            } else {
+                console.log(0);
+            }
+        })
+
+    })
+</script>
+
+</html>

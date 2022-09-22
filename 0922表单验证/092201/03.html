@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义校验</title>
+    <style>
+        .error-text {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="testForm">
+        <div>
+            用户名：<input type="text" name="userName">
+        </div>
+        <div>
+            身份证号：<input type="text" name="IDCard" data-rule-regexp="^\d{18}$">
+        </div>
+        <div>
+            <button type="button" id="btn1">我要添加</button>
+        </div>
+        <div class="box"></div>
+    </form>
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script>
+    $(function () {
+        $.validator.addMethod("regexp", function (value, element, params) {
+            //element当前验证元素
+            //value验证元素的值
+            //params自定义属性的值
+            var reg = new RegExp(params);
+            return reg.test(value);
+
+        }, "错哩");
+
+        var testForm = $("#testForm").validate({
+            errorClass: "error-text",
+            errorPlacement: function (error, element) {
+                $(".box").append(error);
+            }
+        });
+        $("#btn1").click(function () {
+            var result = testForm.form();
+            if (result) {
+                console.log(1);
+            } else {
+                console.log(0);
+            }
+        })
+
+    })
+</script>
+
+</html>
