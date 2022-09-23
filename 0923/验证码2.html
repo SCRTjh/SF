@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证码</title>
+</head>
+
+<body>
+    <button type="button" id="btn">发送</button>
+</body>
+<script>
+    var btn = document.querySelector("#btn");
+
+    btn.addEventListener("click", function () {
+        btn.disabled = true;
+        var i = 9;
+        var re = setInterval(function () {
+            btn.innerText = i + "秒后重新发送";
+            if (i < 1) {
+                btn.innerText = "发送";
+                btn.disabled = false;
+                clearInterval(re);
+            }
+            i--;
+        }, 1000)
+    })
+
+    function quchong(arr) {
+        var arr2 = [];
+        arr.forEach(function (item, index, arr1) {
+            if (arr2.indexOf(item) == -1) {
+                arr2.push(item);
+            }
+        })
+        return arr2;
+    }
+
+    let arr = [1, 2, 3, 4, 5, 3, 3, 2];
+    console.log(quchong(arr));
+
+</script>
+
+</html>

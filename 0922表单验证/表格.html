@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>表格</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap-icons/font/bootstrap-icons.css">
     <style>
-        .search-box {
+        /* .search-box {
             margin-bottom: 10px;
-        }
+        } */
     </style>
 </head>
 
@@ -18,17 +19,22 @@
     <div class="container-fluid">
         <h2 class="text-center text-info">学生信息列表</h2>
         <hr>
-        <div class="row search-box">
-            <label for="stuName" class="col-form-label col-md-1"> 姓名:</label>
-            <div class=" col-md-2">
+        <div class="d-flex search-box my-3">
+            <label for="stuName" class="col-form-label px-1"> 姓名:</label>
+            <div class="px-1">
                 <input type="text" name="stuName" id="stuName" class="form-control">
-
             </div>
-            <div class="col-md-1">
-                <button class="btn btn-primary">搜索</button>
+            <div class="px-1">
+                <button class="btn btn-info text-white">
+                    <i class="bi bi-search"></i>
+                    搜索
+                </button>
             </div>
-            <div class="col-md-1">
-                <button class="btn btn-success">新建学生</button>
+            <div>
+                <button class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i>
+                    新建学生
+                </button>
             </div>
 
         </div>
@@ -112,7 +118,7 @@
                 </ul>
             </div>
         </div>
-        
+
 
     </div>
 

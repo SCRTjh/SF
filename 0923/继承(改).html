@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Animal(sex, age, nickName) {
+        this.sex = sex;
+        this.age = age;
+        this.nickName = nickName;
+    }
+    Animal.prototype.sleep = function () {
+        console.log("睡觉");
+    }
+
+    function Cat(sex, age, nickName, weight) {
+        this.weight = weight;
+        Animal.call(this, sex, age, nickName)
+    }
+    Cat.prototype.miao = function () {
+        console.log("喵");
+    }
+
+    Cat.prototype = Object.create(Animal.prototype);
+    Cat.prototype.constructor = Cat;
+
+    function Dog(sex, age, nickName, height) {
+        this.height = height;
+        Animal.call(this, sex, age, nickName)
+    }
+    Dog.prototype.wang = function () {
+        console.log("汪");
+    }
+
+    Dog.prototype = Object.create(Animal.prototype);
+    Dog.prototype.constructor = Dog;
+
+    function Peastoral(sex, age, nickName, height) {
+        this.height = height;
+        Dog.call(this, sex, age, nickName)
+    }
+    Peastoral.prototype.janitor = function () {
+        console.log("看门");
+    }
+
+    Peastoral.prototype = Object.create(Dog.prototype);
+    Peastoral.prototype.constructor = Peastoral;
+
+    let d = new Peastoral(1, 2, 3, 4);
+    d.sleep();
+
+</script>
+
+</html>

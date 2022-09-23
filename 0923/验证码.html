@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证码</title>
+</head>
+
+<body>
+    <button type="button" id="btn">发送</button>
+</body>
+<script>
+    var btn = document.querySelector("#btn");
+
+    btn.addEventListener("click", function () {
+        btn.disabled = true;
+        setTimeout(function () {
+            btn.innerText = 9 + "秒后重新发送";
+        }, 1000)
+        setTimeout(function () {
+            btn.innerText = 8 + "秒后重新发送";
+        }, 2000)
+        setTimeout(function () {
+            btn.innerText = 7 + "秒后重新发送";
+        }, 3000)
+        setTimeout(function () {
+            btn.innerText = 6 + "秒后重新发送";
+        }, 4000)
+        setTimeout(function () {
+            btn.innerText = 5 + "秒后重新发送";
+        }, 5000)
+        setTimeout(function () {
+            btn.innerText = 4 + "秒后重新发送";
+        }, 6000)
+        setTimeout(function () {
+            btn.innerText = 3 + "秒后重新发送";
+        }, 7000)
+        setTimeout(function () {
+            btn.innerText = 2 + "秒后重新发送";
+        }, 8000)
+        setTimeout(function () {
+            btn.innerText = 1 + "秒后重新发送";
+        }, 9000)
+        setTimeout(function () {
+            btn.innerText = "发送";
+            btn.disabled = false;
+        }, 10000)
+    })
+
+</script>
+
+</html>

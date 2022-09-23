@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    let str = "1235213423412312";
+
+    wordNum(str);
+
+    function wordNum(str) {
+        var str2 = str.split("");
+        console.log(str2);
+        str3 = {};
+        str2.forEach(function (item, index) {
+            if (item in str3 == false) {
+                str3[item] = 0;
+            } else {
+                str3[item]++;
+            }
+        })
+        let arr = Object.keys(str3);
+        var maxstr;
+        var max = 0;
+        arr.reduce(function (pre, cur) {
+            if (str3[cur] > str3[pre]) {
+                maxstr = cur;
+                max = str3[cur];
+                return cur;
+            } else {
+                return pre;
+            }
+        }, arr[0])
+        console.log(maxstr + "字最多");
+        console.log("字数:", max);
+    }
+</script>
+
+</html>
