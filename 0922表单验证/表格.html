@@ -8,32 +8,36 @@
     <title>表格</title>
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="./bootstrap-icons/font/bootstrap-icons.css">
-    <style>
-        /* .search-box {
-            margin-bottom: 10px;
-        } */
-    </style>
+
 </head>
 
 <body>
     <div class="container-fluid">
-        <h2 class="text-center text-info">学生信息列表</h2>
+        <h2 class="text-center text-info">用户信息列表</h2>
         <hr>
         <div class="d-flex search-box my-3">
-            <label for="stuName" class="col-form-label px-1"> 姓名:</label>
+            <label for="cusName" class="col-form-label px-1"> 姓名:</label>
             <div class="px-1">
-                <input type="text" name="stuName" id="stuName" class="form-control">
+                <input type="text" name="cusName" id="cusName" class="form-control">
+            </div>
+            <label for="cusSex" class="col-form-label px-1"> 性别:</label>
+            <div class="px-1">
+                <select name="cusSex" id="cusSex" class="form-select">
+                    <option selected value="">-请选择-</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
             </div>
             <div class="px-1">
-                <button class="btn btn-info text-white">
+                <button class="btn btn-info text-white" id="btn-search">
                     <i class="bi bi-search"></i>
                     搜索
                 </button>
             </div>
             <div>
-                <button class="btn btn-success">
+                <button class="btn btn-success " data-bs-toggle="modal" data-bs-target="#addModal">
                     <i class="bi bi-plus-circle"></i>
-                    新建学生
+                    新建用户
                 </button>
             </div>
 
@@ -43,86 +47,271 @@
                 <tr class="table-info">
                     <th> <input type="checkbox" name="" id="">全选 </th>
                     <th>编号</th>
-                    <th>姓名</th>
+                    <th>昵称</th>
+                    <th>密码</th>
                     <th>性别</th>
-                    <th>年龄</th>
                     <th>手机号</th>
-                    <th>爱好</th>
-                    <th>所属班级</th>
+                    <th>邮箱</th>
+                    <th>生日</th>
                     <th>地址</th>
+                    <th>头像</th>
                     <th>操作</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td> <input type="checkbox" name="" id=""></td>
-                    <td>1</td>
-                    <td>张三</td>
-                    <td>男</td>
-                    <td>19</td>
-                    <td>15172227901</td>
-                    <td>读书，睡觉</td>
-                    <td>H2103</td>
-                    <td>湖北省武汉市</td>
-                    <td><button class="btn btn-warning text-white">编辑</button> <button
-                            class="btn btn-danger">删除</button></td>
-                </tr>
-                <tr>
-                    <td> <input type="checkbox" name="" id=""></td>
-                    <td>1</td>
-                    <td>张三</td>
-                    <td>男</td>
-                    <td>19</td>
-                    <td>15172227901</td>
-                    <td>读书，睡觉</td>
-                    <td>H2103</td>
-                    <td>湖北省武汉市</td>
-                    <td><button class="btn btn-warning text-white">编辑</button> <button
-                            class="btn btn-danger">删除</button></td>
-                </tr>
-                <tr>
-                    <td> <input type="checkbox" name="" id=""></td>
-                    <td>1</td>
-                    <td>张三</td>
-                    <td>男</td>
-                    <td>19</td>
-                    <td>15172227901</td>
-                    <td>读书，睡觉</td>
-                    <td>H2103</td>
-                    <td>湖北省武汉市</td>
-                    <td><button class="btn btn-warning text-white">编辑</button> <button
-                            class="btn btn-danger">删除</button></td>
-                </tr>
-                <tr>
-                    <td> <input type="checkbox" name="" id=""></td>
-                    <td>1</td>
-                    <td>张三</td>
-                    <td>男</td>
-                    <td>19</td>
-                    <td>15172227901</td>
-                    <td>读书，睡觉</td>
-                    <td>H2103</td>
-                    <td>湖北省武汉市</td>
-                    <td><button class="btn btn-warning text-white">编辑</button> <button
-                            class="btn btn-danger">删除</button></td>
-                </tr>
+            <tbody class="temp-body">
+                <template id="cusForm-item-temp">
+                    {{each list item index}}
+                    <tr>
+                        <td> <input type="checkbox" name="" id=""></td>
+                        <td>{{item.id}}</td>
+                        <td>{{item.custom_name}}</td>
+                        <td>{{item.custom_pwd}}</td>
+                        <td>{{item.custom_sex}}</td>
+                        <td>{{item.custom_tel}}</td>
+                        <td>{{item.custom_email}}</td>
+                        <td>{{item.custom_birthday}}</td>
+                        <td>{{item.custom_address}}</td>
+                        <td><img src="./img/edu.jpg" class="img-fluid" width="30px" alt="恶毒"></td>
+                        <td><button class="btn btn-warning text-white">编辑</button> <button
+                                class="btn btn-danger">删除</button></td>
+                    </tr>
+
+                    {{/each}}
+                </template>
+
+
             </tbody>
         </table>
         <div class="row">
-            <div class="col-md-10"></div>
-            <div class="col-md-2">
-                <ul class="pagination">
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                </ul>
+            <ul class="pagination justify-content-end">
+                <li class="page-item"><a class="page-link" href="#" id="prePage">上一页</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="1">1</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="2">2</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="3">3</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="4">4</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="5">5</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="6">6</a></li>
+                <li class="page-item"><a class="page-link" href="#" data-page="7">7</a></li>
+                <li class="page-item"><a class="page-link" href="#" id="nextPage">下一页</a></li>
+
+            </ul>
+        </div>
+        <!-- 模态框 -->
+        <div class="modal fade" id="addModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header  justify-content-center">
+                        <h2 class="modal-title text-info">新增用户</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" id="addForm1">
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" name="nickName" id="nickName" placeholder="昵称">
+                                <label for="nickName">昵称</label>
+                            </div>
+                            <select class="form-select mb-2" id="cusSex" placeholder="男">
+                                <option value="男" selected>男</option>
+                                <option value="女">女</option>
+                            </select>
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" name="cusBirth" id="cusBirth" placeholder="生日">
+                                <label for="cusBirth">生日</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" name="cusTel" id="cusTel" placeholder="手机号码">
+                                <label for="cusTel">手机号码</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" name="cusEmail" id="cusEmail" placeholder="邮箱">
+                                <label for="cusEmail">邮箱</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" name="cusPwd" id="cusPwd" placeholder="密码">
+                                <label for="cusEmail">密码</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" name="cusAddress" id="cusAddress"
+                                    placeholder="地址">
+                                <label for="cusAddress">地址</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn-save">保存数据</button>
+                        <button type="button" class="btn btn-warning" id="btn-reset">重置表单</button>
+                    </div>
+
+                </div>
             </div>
         </div>
+    </div>
 
 
     </div>
 
 </body>
 <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/template-web.js"></script>
+<script>
+    $(function () {
+
+
+        var curIndex = 1; //当前页
+        var curTotal = 0; //最大页码
+
+
+        //页码点击事件
+        $(".pagination").on("click", " .page-item a[data-page]", function (event) {
+            var pageCur = $(this).attr("data-page");
+            curIndex = pageCur;
+            GetAndRender(curIndex);
+        }).on("click", "#prePage", function (event) {  //上一页
+            curIndex--;
+            console.log(curIndex);
+            if (curIndex >= 1) {
+                GetAndRender(curIndex);
+            } else {
+                alert("已经没有上一页了")
+            }
+        }).on("click", "#nextPage", function (event) {  //下一页
+            curIndex++;
+            console.log(curIndex);
+            if (curIndex <= curTotal) {
+                GetAndRender(curIndex);
+            } else {
+                alert("已经没有下一页了")
+            }
+        })
+        document.querySelector(".page-item a[data-page='1']").click();  //初始化页面
+
+        //搜索点击事件
+        $("#btn-search").on("click", function (event) {
+            var cusName = $("#cusName").val();
+            var cusSex = $("#cusSex").val();
+            //根据cusName，cusSex发送数据请求
+            // ?custom_name=" + cusName + "&custom_sex=" + cusSex
+            $.get(baseURL + "/custom-info/getListByPage", {
+                custom_name: cusName,
+                custom_sex: cusSex
+            }, function (result) {
+                if (result.status == "success") {    //请求成功渲染页面
+                    console.log(result);
+                    var datalist = result.data.listData;
+                    var htmlStr = template("cusForm-item-temp", {
+                        list: datalist
+                    });
+                    $(".temp-body").html(htmlStr);
+
+
+                } else {
+                    console.log("失败");
+                }
+            })
+        })
+
+
+        //保存数据 验证
+        $("#btn-save").on("click", function (event) {
+            //表单验证
+            var addFr = $("#addForm1").validate({
+                rules: {
+                    nickName: {
+                        required: true
+                    },
+                    cusBirth: {
+                        required: true,
+                        dateISO: true
+                    },
+                    cusTel: {
+                        required: true
+                    },
+                    cusEmail: {
+                        required: true,
+                        email: true
+                    },
+                    cusAddress: {
+                        required: true
+                    },
+                    cusPwd: {
+                        required: true
+                    },
+                },
+                messages: {
+                    nickName: "请填写昵称",
+                    cusBirth: "请填写生日",
+                    cusTel: "请填写电话",
+                    cusEmail: "请填写邮箱",
+                    cusAddress: "请填写地址",
+                    cusPwd: "请填写密码"
+                },
+                errorClass: "text-danger",
+                errorPlacement: function (error, element) {
+                    element.parents(".form-floating").after(error);
+                }
+            });
+
+            var oc = addFr.form();
+            if (oc) {
+                console.log("表单验证成功");
+                //表单验证成功，发送post请求
+                $.post(baseURL + "/custom-info/add", {
+                    custom_name: $("#nickName").val(),
+                    custom_sex: $("#cusSex").val(),
+                    custom_birthday: $("#cusBirth").val(),
+                    custom_tel: $("#cusTel").val(),
+                    custom_email: $("#cusEmail").val(),
+                    custom_address: $("#cusAddress").val(),
+                    custom_pwd: $("#cusPwd").val(),
+
+                }, function (result) {
+                    console.log(result);
+                    //数据请求成功关闭模态框
+                    $("#addModal").modal("hide");
+                })
+
+            } else {
+                console.log("表单验证不通过");
+            }
+
+        })
+
+        //重置按钮
+        $("#btn-reset").on("click", function (event) {
+            $("#nickName").val("");
+            $("#cusSex").val("");
+            $("#cusBirth").val("");
+            $("#cusTel").val("");
+            $("#cusEmail").val("");
+            $("#cusAddress").val("");
+            $("#cusPwd").val("");
+
+        })
+
+        //获取数据并渲染页面
+        function GetAndRender(index) {
+
+            $.get(baseURL + "/custom-info/getListByPage", { pageIndex: index }, function (result) {
+                if (result.status == "success") {
+                    console.log(result);
+                    curTotal = result.data.pageCount;
+                    var datalist = result.data.listData;
+                    var htmlStr = template("cusForm-item-temp", {
+                        list: datalist
+                    });
+                    $(".temp-body").html(htmlStr);
+
+                } else {
+                    console.log("获取数据失败");
+                }
+            })
+        }
+
+    })
+
+</script>
 
 </html>
