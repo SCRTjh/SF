@@ -72,8 +72,14 @@
                         <td>{{item.custom_birthday}}</td>
                         <td>{{item.custom_address}}</td>
                         <td><img src="./img/edu.jpg" class="img-fluid" width="30px" alt="恶毒"></td>
-                        <td><button class="btn btn-warning text-white">编辑</button> <button
-                                class="btn btn-danger">删除</button></td>
+                        <td>
+                            <span class="badge bg-warning text-white">
+                                <i class="b bi-pencil"></i>编辑</span>
+                            <span class="badge bg-danger">
+                                <i class="bi bi-trash"></i>
+                                删除
+                            </span>
+                        </td>
                     </tr>
 
                     {{/each}}
@@ -159,7 +165,7 @@
 <script>
     $(function () {
 
-
+        var pageIndex = 1;
         var curIndex = 1; //当前页
         var curTotal = 0; //最大页码
 
@@ -195,6 +201,7 @@
             //根据cusName，cusSex发送数据请求
             // ?custom_name=" + cusName + "&custom_sex=" + cusSex
             $.get(baseURL + "/custom-info/getListByPage", {
+                pageIndex: curIndex,
                 custom_name: cusName,
                 custom_sex: cusSex
             }, function (result) {
@@ -297,6 +304,7 @@
             $.get(baseURL + "/custom-info/getListByPage", { pageIndex: index }, function (result) {
                 if (result.status == "success") {
                     console.log(result);
+                    pageIndex = result.data.pageIndex;
                     curTotal = result.data.pageCount;
                     var datalist = result.data.listData;
                     var htmlStr = template("cusForm-item-temp", {
