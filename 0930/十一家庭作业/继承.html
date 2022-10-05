@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Person(name, sex) {
+        // 补全
+        this.name = name;
+        this.sex = sex;
+
+    };
+    Person.prototype.getName = function () {
+        // 补全
+        return this.name;
+    };
+    function Male(name, sex, age) {
+        // 补全
+        this.age = age;
+        Person.call(this, name, sex);
+    };
+    Male.property = Object.create(Person.property);
+    Male.property.constructor = Male;
+    // 补全
+    Male.prototype.getAge = function () {
+        // 补全
+        return this.age;
+    };
+    var catcher = new Male("Oli", "男", 2);
+    console.log(catcher.getName());
+</script>
+
+</html>

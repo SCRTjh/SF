@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="test">
+        <li>这是第一条</li>
+        <li>这是第二条</li>
+        <li>这是第三条</li>
+    </ul>
+</body>
+<script>
+    let ul1 = document.querySelector("#test");
+    let lis = document.querySelectorAll("#test>li");
+    console.log(lis);
+    ul1.addEventListener("click", function (event) {
+        for (let i = 0; i < lis.length; i++) {
+            if (event.target === lis[i]) {
+                alert(i);
+            }
+        }
+    })
+
+    sayName("world");
+    sayAge(10);
+    function sayName(name) {
+        console.log("hello ", name);
+    }
+    var sayAge = function (age) {
+        console.log(age);
+    };
+
+</script>
+
+</html>

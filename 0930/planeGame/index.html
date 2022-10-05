@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标哥哥飞机大战</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <canvas id="game"></canvas>
+</body>
+<script src="./js/index.js" type="module"></script>
+</html>
+<!-- 
+使用了什么技术
+    1. ES6模块化
+    2. class构造函数
+    3. extends
+    4. 箭头函数
+    5. Promise异步
+    6. async,await
+    7. 访问器属性set/set
+    8. canvas
+    9. Reflect反射
+    10.解构的取值与赋值
+    11.let 与 const
+    12.对象继承里面方法的重写 super关键字的使用
+
+完成了什么功能
+    1. 背景模块 
+    2. 玩家飞栅
+    3. 玩家飞机发射子弹
+    4. 敌机模块 
+    5. 击中敌机
+    6. 爆炸
+
+遇到了什么问题
+    1. 鼠标指针与玩家飞机不对称
+    2.飞机会跑到屏幕的外边
+    3. assetsConfig的imgList里面采用是有序集合，如果顺序发生变化，则整个游戏序号都改变
+
+
+怎么解决的
+    1.cursor:none  隐藏鼠标指针
+    2.在hero.js里面的move当中判断x,y的坐标，实现限制条件
+    3.待完成
+
+还有什么没有完成
+    1. 敌机血条
+    2. 游戏的开始，点击按钮选择游戏难度 ，再开始游戏 
+    3. 游戏的音效
+    4. 游戏的计分
+    5. 游戏结束
+    6. 游戏排行榜
+    7. 道具的添加
+-->

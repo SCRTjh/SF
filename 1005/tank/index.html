@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坦克大战</title>
+    <link rel="shortcut icon" href="./favicon.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .page-title {
+            height: 55px;
+            background-color: lightseagreen;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-family: "华文行楷";
+            color: white;
+        }
+
+        .content-box {
+            position: fixed;
+            border: 1px solid red;
+            left: 0;
+            right: 0;
+            top: 55px;
+            bottom: 0;
+
+        }
+
+        #game {
+            background-color: #000000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-title">个人写个人的名字的坦克大战</div>
+    <div class="content-box">
+        <canvas id="game"></canvas>
+    </div>
+</body>
+<script src="./js/index.js" type="module"></script>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video src="" id="v1"></video>
+    <hr>
+    <img src="./img/01.png" alt="" id="img1">
+    <hr>
+    <canvas id="c1"></canvas>
+    <hr>
+    <button id="#btn1">打开摄像头</button>
+
+</body>
+<script>
+
+    let v1 = document.querySelector("#v1");
+    /** 
+     * @type {HTMLCanvasElement}
+     **/
+    let c1 = document.querySelector("#c1");
+
+    let img1 = document.querySelector("#img1");
+
+    /** 
+     * @type {CanvasRenderingContext2D}
+     * **/
+    let ctx = c1.getContext("2d");
+
+
+    img1.onload = function () {
+        c1.height = img1.clientHeight;
+        c1.width = img1.clientWidth;
+        ctx.drawImage(img1, 0, 0, c1.width, c1.height);
+        let alpha = 255;
+        let imageDate = ctx.getImageData(0, 0, c1.width, c1.height)
+        console.log(imageDate);
+        for (let i = 0; i < imageDate.data.length; i += 4) {
+            imageDate.data[i + 3] = alpha;
+            alpha -= 0.7;
+
+            if (i % img1.clientWidth == 0) { //因为+=4,i即为最后一个像素点
+                alpha = 255;
+            }
+        }
+        ctx.putImageData(imageDate, 0, 0);
+    }
+
+
+</script>
+
+</html>
