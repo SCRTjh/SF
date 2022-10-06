@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .page-title {
+            height: 55px;
+            background-color: #469a47;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #fff;
+            font-family: "仿宋";
+        }
+
+        .content-box {
+            position: fixed;
+            border: 1px dashed red;
+            left: 0;
+            top: 55px;
+            right: 0;
+            bottom: 0;
+        }
+
+        #game {
+            background-color: #000;
+        }
+
+        #btn-start {
+            position: absolute;
+            width: 220px;
+            height: 40px;
+            left: 0;
+            top: 600px;
+            right: 0;
+            margin: auto;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid blue;
+        }
+
+        #btn-start:active {
+            background-color: rgb(107, 115, 122);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-title">lxy坦克大战</div>
+    <div class="content-box">
+        <canvas id="game"></canvas>
+        <button type="button" id="btn-start">开始游戏</button>
+    </div>
+    <audio id="bgm" src="./gameMusic/game_music.mp3" loop></audio>
+    <audio id="bgmDie" src="./gameMusic/plain1_die.mp3"></audio>
+</body>
+<script src="./js/index.js" type="module"></script>
+
+</html>

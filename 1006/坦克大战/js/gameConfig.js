@@ -1,6 +1,5 @@
-
 /**
- * 游戏的基本配置
+ * 游戏的基本配置信息
  */
 const gameConfig = {
     get gameWidth() {
@@ -9,18 +8,18 @@ const gameConfig = {
     get gameHeight() {
         return document.querySelector("#game").clientHeight;
     },
-
     /**
      * 玩家子弹的集合
      */
     bulletSet: new Set(),
-    bulletSet2: new Set(),
+    //最大敌人数量
+    // maxEnemyCount: 10,
+    // //敌人坦克的集合
+    // enemySet: new Set(),
 
-    enemeyBulletSet: new Set(),
-
-    fireAudioList: [],
-
-
+    bulletEnemySet: new Set(),
+    bullet2Set: new Set(),
+    audioList: new Array(),
 }
 
 export default gameConfig;

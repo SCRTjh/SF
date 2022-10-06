@@ -39,7 +39,7 @@ const gameControl = {
          */
         p2: null,
         /**
-         * 定时器
+         * 游戏定时器
          */
         gameInterval: null
     },
@@ -57,6 +57,7 @@ const gameControl = {
             keySet.delete(event.keyCode);
         })
     },
+    //检测两个对象是否碰撞
     checkCrash(a, b) {
         if (a.x + a.width < b.x ||
             b.x + b.width < a.x ||
@@ -68,17 +69,36 @@ const gameControl = {
             return true;
         }
     },
+    /**
+     * 玩家子弹击中敌人
+     */
     checkBulletAndEnemyCrash() {
+        //玩家1子弹击中敌人
         for (let item1 of Enemy.enemySet) {
             for (let item2 of gameConfig.bulletSet) {
                 if (this.checkCrash(item1, item2)) {
                     Enemy.enemySet.delete(item1);
                     gameConfig.bulletSet.delete(item2);
+                    this.data.p1.score++;
+                    break
+                }
+            }
+        }
+        //玩家2子弹击中敌人
+        for (let item1 of Enemy.enemySet) {
+            for (let item2 of gameConfig.bulletSet2) {
+                if (this.checkCrash(item1, item2)) {
+                    Enemy.enemySet.delete(item1);
+                    gameConfig.bulletSet2.delete(item2);
+                    this.data.p2.score++;
                     break
                 }
             }
         }
     },
+    /**
+     * 玩家被敌人子弹击中
+     */
     checkPlayerAndEnemyBulletCrash() {
         for (let item1 of gameConfig.enemeyBulletSet) {
             for (let item2 of [this.data.p1, this.data.p2]) {
@@ -94,6 +114,7 @@ const gameControl = {
         }
     },
     checkBulletAndEnemyBulletCrash() {
+        //玩家1子弹与敌人子弹碰撞
         for (let item1 of gameConfig.enemeyBulletSet) {
             for (let item2 of gameConfig.bulletSet) {
                 if (this.checkCrash(item1, item2)) {
@@ -103,11 +124,21 @@ const gameControl = {
                 }
             }
         }
+        //玩家2子弹与敌人子弹碰撞
+        for (let item1 of gameConfig.enemeyBulletSet) {
+            for (let item2 of gameConfig.bulletSet2) {
+                if (this.checkCrash(item1, item2)) {
+                    gameConfig.enemeyBulletSet.delete(item1);
+                    gameConfig.bulletSet2.delete(item2);
+                    break;
+                }
+            }
+        }
     },
+    /**
+     * 游戏开始
+     */
     async start() {
-        let ad = new Audio();
-        ad.src = gameAsserts.audioMap.get("start.wav");
-        ad.play();
         let that = this;
         this.dom.game.width = this.dom.contentBox.clientWidth;
         this.dom.game.height = this.dom.contentBox.clientHeight;
@@ -121,6 +152,10 @@ const gameControl = {
         await gameAsserts.loadAsserts();
         //调用绑定事件的方法
         this.bindEvent();
+        //开始bgm
+        let ad = new Audio();
+        ad.src = gameAsserts.audioMap.get("start.wav");
+        ad.play();
 
         //初始化p1
         this.data.p1 = new Tank();
@@ -128,13 +163,14 @@ const gameControl = {
         this.data.p2 = new Tank2();
 
         this.data.gameInterval = setInterval(() => {
-            this.checkBulletAndEnemyCrash();
-            this.checkBulletAndEnemyBulletCrash();
-            this.checkPlayerAndEnemyBulletCrash();
             this.data.ctx.clearRect(0, 0, this.dom.game.width, this.dom.game.height);
+
             this.data.p1.draw(this.data.ctx);
             this.data.p2.draw(this.data.ctx);
             for (let item of gameConfig.bulletSet) {
+                item.draw(this.data.ctx);
+            }
+            for (let item of gameConfig.bulletSet2) {
                 item.draw(this.data.ctx);
             }
 
@@ -150,15 +186,23 @@ const gameControl = {
                 item.draw(this.data.ctx)
             }
 
+            //添加碰撞检测
+            this.checkBulletAndEnemyCrash();
+            this.checkBulletAndEnemyBulletCrash();
+            this.checkPlayerAndEnemyBulletCrash();
 
         }, 20)
     },
+    /**
+     * 游戏结束
+     */
     gameOver() {
         clearInterval(this.data.gameInterval);
-
         this.data.ctx.clearRect(0, 0, this.dom.game.width, this.dom.game.height);
-        this.data.ctx.drawImage(gameAsserts.imgObjMap.get("over.gif"), 0, 0, this.dom.game.width, this.dom.game.height);
-
+        this.data.ctx.drawImage(gameAsserts.imgObjMap.get("over.gif"), this.dom.game.width / 2 - 100, this.dom.game.height / 2 - 75, 200, 150);
+        this.data.ctx.font = "36px 微软雅黑";
+        this.data.ctx.style = "#ff0000"
+        this.data.ctx.fillText(`玩家1得分：${this.data.p1.score}       玩家2得分：${this.data.p2.score}`, this.dom.game.width / 2 - 260, this.dom.game.height / 2 - 110);
 
     }
 

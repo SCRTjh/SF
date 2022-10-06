@@ -40,7 +40,7 @@ class Enemy extends GameObject {
      * 坦克移动
      */
     move() {
-        if (~~(Math.random() * 100) < 5) {
+        if (~~(Math.random() * 100) < 80) {
             this.adjustDirec();
         }
         if (this.direc == direction.LEFT) {

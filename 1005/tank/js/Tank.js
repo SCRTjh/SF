@@ -21,7 +21,7 @@ class Tank extends GameObject {
         this.totalHp = 100;
         this.score = 0;
         this.isFire = false;
-
+        //初始化音频资源池
         while (gameConfig.fireAudioList.length < 10) {
             let audio = new Audio();
             audio.src = gameAsserts.audioMap.get("fire.wav");
@@ -51,6 +51,7 @@ class Tank extends GameObject {
             this.img = gameAsserts.imgObjMap.get("p1tankD.gif");
             this.y += this.speed;
         }
+        //边界停止
         if (this.x < 0) {
             this.x = 0;
         }
@@ -97,8 +98,8 @@ class Tank extends GameObject {
             if (this.isFire === false) {
 
                 let b = new Bullet(this.x, this.y, this.direc);
-                b.x = this.x + this.width / 2 - b.width / 2;
-                b.y = this.y + this.height / 2 - b.height / 2;
+                b.x = this.x; //+ this.width / 2 - b.width / 2
+                b.y = this.y; //+ this.height / 2 - b.height / 2
                 gameConfig.bulletSet.add(b);
                 let audioF = gameConfig.fireAudioList.shift();
                 audioF.play();

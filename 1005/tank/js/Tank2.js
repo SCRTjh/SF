@@ -17,10 +17,16 @@ class Tank2 extends GameObject {
         super(300, 100, direc, img);
         this.speed = 5;
         this.headImg = gameAsserts.imgObjMap.get("home-bak.jpg");
-        this.hp = 100;
+        this.hp = 10;
         this.totalHp = 100;
         this.score = 0;
         this.isFire = false;
+        //初始化音频资源池
+        while (gameConfig.fireAudioList.length < 10) {
+            let audio = new Audio();
+            audio.src = gameAsserts.audioMap.get("fire.wav");
+            gameConfig.fireAudioList.push(audio);
+        }
     }
 
     move() {
@@ -92,7 +98,10 @@ class Tank2 extends GameObject {
                 let b = new Bullet(this.x, this.y, this.direc);
                 b.x = this.x + this.width / 2 - b.width / 2;
                 b.y = this.y + this.height / 2 - b.height / 2;
-                gameConfig.bulletSet.add(b);
+                gameConfig.bulletSet2.add(b);
+                let audioF = gameConfig.fireAudioList.shift();
+                audioF.play();
+                gameConfig.fireAudioList.push(audioF);
                 this.isFire = true;
                 setTimeout(() => {
                     this.isFire = false;
