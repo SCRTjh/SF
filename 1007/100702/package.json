@@ -1,0 +1,18 @@
+{
+  "name": "100702",
+  "version": "1.0.0",
+  "description": "111",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tjh1"
+  ],
+  "author": "tjh",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.1.2",
+    "cheerio": "^1.0.0-rc.12"
+  }
+}
