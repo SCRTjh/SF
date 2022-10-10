@@ -111,7 +111,7 @@ catchFirst = async () => {
         port: 465,
         auth: {
             user: "1277662732@qq.com",
-            pass: "npvceziouxvfgech"
+            pass: 
         }
     });
     try {
