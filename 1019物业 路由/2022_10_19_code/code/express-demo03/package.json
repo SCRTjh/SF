@@ -1,0 +1,15 @@
+{
+    "name": "express-demo03",
+    "version": "1.0.0",
+    "description": "express demo案例",
+    "main": "app.js",
+    "scripts": {
+        "start":"node app.js"
+    },
+    "keywords": [],
+    "author": "杨标",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}

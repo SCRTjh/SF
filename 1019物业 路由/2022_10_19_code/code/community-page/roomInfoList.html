@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房间信息列表</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container">
+        <div class="display-5 text-center text-primary border-bottom py-3">房间信息列表</div>
+        <div class="row my-2">
+            <div class="col-auto">
+                <label class="col-form-label">房主姓名</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="输入姓名">
+            </div>
+            <div class="col-auto">
+                <label class="col-form-label">房主编号</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="输入编号">
+            </div>
+            <div class="col-auto">
+                <label class="col-form-label">手机号码</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" class="form-control" placeholder="手机号码">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary">
+                    <span class="bi bi-search"></span>
+                    查询
+                </button>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                新增
+            </button>
+            <button type="button" class="btn btn-warning">
+                <i class="bi bi-plus-circle"></i>
+                编辑
+            </button>
+            <button type="button" class="btn btn-danger">
+                <i class="bi bi-plus-circle"></i>
+                删除
+            </button>
+            <button type="button" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i>
+                导出为excel
+            </button>
+        </div>
+        <div class="table-responsive my-2">
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox">全选
+                            </label>
+                        </th>
+                        <th>业主姓名</th>
+                        <th>性别</th>
+                        <th>房间编号</th>
+                        <th>房间面积</th>
+                        <th>房间状态</th>
+                        <th>业主账号</th>
+                        <th>身份证号</th>
+                        <th>手机号码</th>
+                        <th>业主邮箱</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 大家都知道 ，这个界面写起来很方便，关系就在于这个界面要从后台服务器请求数据
+    //之前我们给同学们讲解的东西，只是把数据库里面的内容读取出来了，在操作数据库
+    //并不能将这些数据发送给网页，这怎么办呢？
+    //这个时候我们就要学习服务器器的搭建
+</script>
+</html>

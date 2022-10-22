@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房间信息列表</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-5 text-center  text-primary border-bottom py-3">房间信息列表</div>
+        <div class="row my-2">
+            <div class="col-auto">
+                <label class="col-form-lable">房主姓名</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="ownername" class="form-control" placeholder="输入姓名">
+            </div>
+            <div class="col-auto">
+                <label for="col-form-lable">房间编号</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="roomname" class="form-control" placeholder="输入编号">
+            </div>
+            <div class="col-auto">
+                <label class="col-form-label">手机号码</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="telephone" class="form-control" placeholder="手机号码">
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-primary" id="btn-query">
+                    <i class="bi bi-search"></i>
+                    查询
+                </button>
+            </div>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                新增
+            </button>
+            <button type="button" class="btn btn-warning">
+                <i class="bi bi-plus-circle"></i>
+                编辑
+            </button>
+            <button type="button" class="btn btn-danger">
+                <i class="bi bi-plus-circle"></i>
+                删除
+            </button>
+            <button type="button" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i>
+                导出为excel
+            </button>
+        </div>
+        <div class="table-responsive my-2">
+            <table id="table1" class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox">全选
+                            </label>
+                        </th>
+                        <th>业主姓名</th>
+                        <th>性别</th>
+                        <th>房间编号</th>
+                        <th>房间面积</th>
+                        <th>房间状态</th>
+                        <th>业主账号</th>
+                        <th>身份账号</th>
+                        <th>手机号码</th>
+                        <th>业主邮箱</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <template id="temp1">
+        {{each roomInfoList item index}}
+        <tr>
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>{{item.ownername}}</td>
+            <td>{{item.ownersex}}</td>
+            <td>{{item.roomname}}</td>
+            <td>{{item.roomarea}}</td>
+            <td>{{item.roomstatus}}</td>
+            <td>{{item.id}}</td>
+            <td>{{item.IDCard}}</td>
+            <td>{{item.telphone}}</td>
+            <td>{{item.email}}</td>
+        </tr>
+
+        {{/each}}
+    </template>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script>
+    $(function () {
+        let url = "http://127.0.0.1:16888/roomInfo/getList";
+
+        const getRoomInfoList = () => {
+            $.get(url,
+                {
+                    roomname: $("#roomname").val(),
+                    ownername: $("#ownername").val(),
+                    telephone: $("#telephone").val()
+                },
+                (result) => {
+                    if (result.status === "success") {
+                        let htmlStr = template("temp1", {
+                            roomInfoList: result.data
+                        });
+                        $("#table1 tbody").html(htmlStr);
+                    } else {
+                        console.log(result);
+                        alert("请求失败");
+                    }
+                });
+        }
+        getRoomInfoList();
+
+        $("#btn-query").click(() => {
+            getRoomInfoList();
+        })
+    })
+</script>
+
+</html>
