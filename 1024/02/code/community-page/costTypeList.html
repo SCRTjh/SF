@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>费用类型列表</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class=" text-left h2 py-3">费用类型列表</div>
+        <div class="row my-2">
+            <div class="col-auto">
+                <label class="col-form-label">费用名称</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" id="costname" class="form-control" placeholder="输入姓名">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary"> <i class="bi bi-search"></i> 查询</button>
+            </div>
+        </div>
+        <div class="table-responsive my-2">
+            <table id="table1" class="table table-hover table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <label>
+                                <input type="checkbox">全选
+                            </label>
+                        </th>
+                        <th>费用编号</th>
+                        <th>费用单价</th>
+                        <th>费用描述</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <!-- 页码 -->
+        <div class="d-flex justify-content-between" id="bottom-bar">
+        </div>
+    </div>
+
+    <script type="text/html" id="temp1">
+        {{each costTypeList item index}}
+        <tr>
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>{{item.id}}</td>
+            <td>{{item.costname}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.description}}</td>
+    
+            <td>
+                <a href="editCostTypefo.html?id={{item.id}}" class="btn btn-primary btn-sm" title="编辑">
+                    编辑
+                </a>
+                <span class="btn btn-danger btn-sm btn-delete" title="删除" data-id="{{item.id}}">
+                    删除
+                </span>
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <script type="text/html" id="temp2">
+        <p>当前第{{pageIndex}}共，页{{pageCount}}页，共{{totalCount}}条数据</p>
+        <ul class="pagination" id="bottom-pagination">
+            <li class="page-item"><a data-index="1" class="page-link" href="#">首页</a></li>
+            <%for(var i=pageStart;i<=pageEnd;i++){%>
+            <li class="page-item"><a data-index="{{i}}" class="page-link {{i==pageIndex?'active':null}}" href="#">{{i}}</a>
+            </li>
+            <%}%>
+            <li class="page-item"><a data-index="{{pageCount}}" class="page-link" href="#">尾页</a></li>
+        </ul>
+    </script>
+
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/base.js"></script>
+<script>
+    $(function () {
+        let pageIndex = 1;
+
+        async function getCostTypeList() {
+            // 添加一个加载动画
+            layer.load();
+            try {
+                let result = await request.get(`${baseURL}/costType/getListByPage`, {
+                    costname: $("#costname").val(),
+                    pageIndex
+                });
+                console.log(result);
+                // 开始模糊引擎的渲染
+                let htmlStr = template("temp1", {
+                    costTypeList: result.data.listData,
+                });
+                $("#table1>tbody").html(htmlStr);
+
+                //渲染页码
+                let htmlStr2 = template("temp2", {
+                    pageStart: result.data.pageStart,
+                    pageEnd: result.data.pageEnd,
+                    pageIndex: result.data.pageIndex,
+                    pageCount: result.data.pageCount,
+                    totalCount: result.data.totalCount
+                })
+                $("#bottom-bar").html(htmlStr2);
+
+            } catch (error) {
+                console.log(error);
+            } finally {
+                // 关闭加载的动画
+                layer.closeAll();
+            }
+        }
+
+        getCostTypeList();
+
+        $("#btn-query").click(function () {
+            getCostTypeList();
+        })
+
+
+
+        $("#bottom-bar").on("click", "a", function () {
+            pageIndex = $(this).attr("data-index");
+            getCostTypeList();
+            // 防止触发href的操作
+            return false;
+        });
+
+        //删除
+        $("#table1").on("click", ".btn-delete", async function () {
+            let id = $(this).attr("data-id");
+            console.log(id);
+            // 现在我们就要通过ajax把这个id传递到后台去
+            let index = layer.load();
+            try {
+                let result = await request.get(`${baseURL}/costType/deleteById`, {
+                    id
+                });
+                layer.msg("删除成功", function () {
+                    //刷新数据  重新请求数据，重新渲染页面
+                    getCostTypeList();
+                });
+
+            } catch (error) {
+                layer.alert("删除失败");
+            } finally {
+                layer.close(index);
+            }
+        });
+    });
+</script>
+
+</html>

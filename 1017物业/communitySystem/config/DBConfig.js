@@ -10,10 +10,8 @@ const localDBConfig = {
 }
 
 const remoteDBConfig = {
-    host: "www.softeem.xin",
     port: 3306,
     user: "dev",
-    password: "123456",
     database: "community"
 }
 

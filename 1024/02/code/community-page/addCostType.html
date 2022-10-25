@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增费用类别</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-5 text-center  border-bottom py-3">新增费用类别</div>
+        <form id="addCostTypeForm">
+            <div class="row my-2">
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <label class="form-control-label text-center">费用类型</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" id="costname" class="form-control" data-rule-required="true"
+                        data-msg-required="费用类别不能为空">
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <label class="form-control-label text-center">费用单价</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" id="price" class="form-control" data-rule-required="true"
+                        data-msg-required="费用单价不能为空" data-rule-regexp="^\d+(\.\d+)?$" data-msg-regexp="单价必须是数值">
+                </div>
+            </div>
+            <div class="row my-2">
+                <div class="col-2 d-flex justify-content-center align-items-center">
+                    <label class="form-control-label text-center">费用说明</label>
+                </div>
+                <div class="col-10">
+                    <textarea id="description" cols="30" rows="3" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row my-2">
+                <button type="button" class="btn btn-primary col-auto offset-2" id="btn-save">保存数据</button>
+                <button type="button" class="btn btn-danger col-auto mx-2" id="btn-reset">重置表单</button>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script src="./js/base.js"></script>
+<script>
+    $(function () {
+        $.validator.addMethod("regexp", function (value, element, params) {
+            var reg = new RegExp(params);
+            return reg.test(value);
+        });
+        //表单验证
+        var addCostTypeFormResult = $("#addCostTypeForm").validate({
+            errorPlacement: function (error, element) {
+                // error代表的就是这个错误提示的消息
+                // element代表你当前正在验证的这个元素
+                element.parent().parent().parent().after(error);
+            },
+            errorClass: "text-danger"
+        });
+        $("#btn-save").click(async function () {
+            //第一步：表单验证
+            if (addCostTypeFormResult.form()) {
+                //第二步，我们要将数提交到服务器保存
+                //提交--->请求，现在要通过ajax请求后台
+                try {
+                    let result = await request.post(`${baseURL}/costtype/addCostType`, {
+                        costname: $("#costname").val(),
+                        price: $("#price").val(),
+                        description: $("#description").val(),
+
+                    });
+                    layer.alert("新增成功", function () {
+                        location.replace("manager.html");
+                    });
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+                layer.alert("请输入正确的内容再保存");
+            }
+
+        });
+    });
+</script>
+
+</html>
