@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增管理员</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+</head>
+
+<body>
+<div class="container-fluid">
+    <ul class="breadcrumb my-2">
+        <li class="breadcrumb-item"><a href="dataView.html">首页</a></li>
+        <li class="breadcrumb-item active">新增管理员</li>
+    </ul>
+</div>
+<div class="container">
+    <div class="h4 text-center text-primary border-bottom py-3">新增管理员</div>
+    <form id="addAdminInfoForm">
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="管理员姓名" id="adminname" name="adminname"
+                   data-rule-required="true" data-msg-required="管理员姓名不能为空">
+            <label for="adminname">管理员姓名</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="管理员密码" id="adminpwd" name="adminpwd"
+                   data-rule-required="true" data-msg-required="管理员密码不能为空">
+            <label for="adminpwd">管理员密码</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入确认密码" id="confirmPwd" name="confirmPwd"
+                   data-rule-required="true" data-msg-required="确认密码不能为空"
+                   data-rule-equalTo="#adminpwd" data-msg-equalTo="两次密码必须相同">
+            <label for="confirmPwd">确认密码</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="管理员邮箱" id="adminemail" name="adminemail"
+                   data-rule-required="true" data-msg-required="管理员邮箱不能为空"
+                   data-rule-regexp="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" data-msg-regexp="请输入正确的邮箱格式">
+            <label for="adminemail">管理员邮箱</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入手机号码" id="admintel" name="admintel"
+                   data-rule-required="true" data-msg-required="手机号不能为空"
+                   data-rule-regexp="^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$"
+                   data-msg-regexp="请输入正确的手机号">
+            <label for="admintel">手机号码</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <select class="form-select" name="adminstatus" id="adminstatus">
+                <option value="0">正常</option>
+                <option value="1">禁用</option>
+            </select>
+            <label for="adminstatus">管理员状态</label>
+        </div>
+        <div class=" d-flex">
+            <button type="button" class="btn btn-primary" id="btn-save">
+                <i class="bi bi-file-pdf"></i>
+                保存
+            </button>
+            <button type="button" class="btn btn-warning mx-3">
+                <i class="bi bi-arrow-90deg-down"></i>
+                重置
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script src="./js/base.js"></script>
+<script>
+    $(function () {
+        $.validator.addMethod("regexp", function (value, element, params) {
+            var reg = new RegExp(params);
+            return reg.test(value);
+        });
+        //表单验证
+        var addAdminInfoFormResult = $("#addAdminInfoForm").validate({
+            errorPlacement: function (error, element) {
+                // error代表的就是这个错误提示的消息
+                // element代表你当前正在验证的这个元素
+                element.parent().after(error);
+            },
+            errorClass: "text-danger"
+        });
+
+        $("#btn-save").click(async function () {
+            //第一步:做表单验证
+            if (addAdminInfoFormResult.form()) {
+                //验证通过,我们就将数据通过ajax发送到后台
+                try {
+                    let result = await request.post(`${baseURL}/adminInfo/addAdminInfo`, {
+                        adminname: $("#adminname").val(),
+                        adminpwd: $("#adminpwd").val(),
+                        adminemail: $("#adminemail").val(),
+                        admintel: $("#admintel").val(),
+                        adminstatus: $("#adminstatus").val()
+                    });
+                    layer.alert("新增成功");
+                } catch (error) {
+                    layer.alert("服务器错误");
+                    console.log(error);
+                }
+
+
+            } else {
+                layer.alert("请检测你的输入信息...");
+            }
+        })
+    })
+</script>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>数据展示</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+    <style>
+        .card ,.card-header{
+            border-radius: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <!--总计信息的展示-->
+    <div class="card mt-2">
+        <div class="card-header">
+            <i class="bi bi-flag-fill"></i>
+            信息统计
+        </div>
+        <div class="card-body d-flex">
+            <div class="flex-fill d-flex align-items-center justify-content-center">
+                <div>
+                    <i class="bi bi-shield-lock-fill text-info" style="font-size: 42px"></i>
+                </div>
+                <div class="ms-2 d-flex flex-column align-items-center">
+                    <div class="text-secondary">管理员人数</div>
+                    <div><b id="adminCount">100</b>人</div>
+                </div>
+            </div>
+            <div class="flex-fill d-flex align-items-center justify-content-center">
+                <div>
+                    <i class="bi bi-house-fill text-warning" style="font-size: 42px"></i>
+                </div>
+                <div class="ms-2 d-flex flex-column align-items-center">
+                    <div class="text-secondary">房间人数</div>
+                    <div><b id="roomCount">100</b>套</div>
+                </div>
+            </div>
+            <div class="flex-fill d-flex align-items-center justify-content-center">
+                <div>
+                    <i class="bi bi-calculator-fill text-success" style="font-size: 42px"></i>
+                </div>
+                <div class="ms-2 d-flex flex-column align-items-center">
+                    <div class="text-secondary">费用总数</div>
+                    <div><b id="moneyCount">1000</b>元</div>
+                </div>
+            </div>
+            <div class="flex-fill d-flex align-items-center justify-content-center">
+                <div>
+                    <i class="bi bi-info-circle-fill text-primary" style="font-size: 42px"></i>
+                </div>
+                <div class="ms-2 d-flex flex-column align-items-center">
+                    <div class="text-secondary">费用类别数</div>
+                    <div><b id="costTypeCount">23</b>项</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--图形图表的展示-->
+    <div class="card mt-1">
+        <div class="card-header">
+            <i class="bi bi-flag-fill"></i>
+            数据展示
+        </div>
+        <div class="card-body">
+            <div class="d-flex">
+                <div id="chart1" class="w-50 border" style="height: 450px">1</div>
+                <div id="chart2" class="w-50 border">2</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/base.js"></script>
+<script src="./js/echarts.min.js"></script>
+<script>
+    $(function () {
+        //获取总的记录信息
+        async function getCalcData() {
+            try {
+                let result = await request.get(`${baseURL}/dataView/getCalcData`);
+                $("#adminCount").text(result.data.adminCount);
+                $("#costTypeCount").text(result.data.costTypeCount);
+                $("#moneyCount").text(result.data.moneyCount);
+                $("#roomCount").text(result.data.roomCount);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        getCalcData();
+
+        //初始化第一个图形图表
+        async function initChart() {
+            // 第一步： 基于准备好的dom，初始化echarts实例  将id="chart1"的这个区域初始化为图表的展示区域
+            let myChart1 = echarts.init(document.getElementById('chart1'));
+            // 指定图表的配置项和数据
+            let option1 = {
+                title: {
+                    text: '费用类别'
+                },
+                tooltip: {},
+                legend: {
+                    data: ['费用总数']
+                },
+                xAxis: {
+                    // data: ['电费', '水费', '保护费', '清洁费', '煤气费', '物业费']
+                    data: []
+                },
+                yAxis: {},
+                series: [
+                    {
+                        name: '费用总数',
+                        type: 'bar',
+                        // data: [50, 20, 36, 10, 10, 20]
+                        data: [],
+                    }
+                ],
+                color: "#c23531"
+            };
+
+            //---------------------------------------------------------
+            //第一步：初始化
+            let myChart2 = echarts.init(document.getElementById('chart2'));
+            //第二步：配置option
+            let option2 = {
+                title: {
+                    text: '费用类别',
+                    subtext: '各费用类别的总数',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'right'
+                },
+                series: [
+                    {
+                        name: 'Access From',
+                        type: 'pie',
+                        radius: '50%',
+                        data: [
+                            // {value: 1048, name: 'Search Engine'},
+                            // {value: 735, name: 'Direct'},
+                            // {value: 580, name: 'Email'},
+                            // {value: 484, name: 'Union Ads'},
+                            // {value: 300, name: 'Video Ads'}
+                        ],
+                        emphasis: {
+                            itemStyle: {
+                                shadowBlur: 20,
+                                shadowOffsetX: 20,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+
+            //第三步：请求后台的数据
+            try {
+                let result = await request.get(`${baseURL}/dataView/getCostTypeTotalMoney`);
+                result.data.forEach(item => {
+                    option1.xAxis.data.push(item.costname);
+                    option1.series[0].data.push(item.totalMoney);
+
+                    //处理第二个表格的数据
+                    option2.series[0].data.push({
+                        value:item.totalMoney,
+                        name:item.costname
+                    })
+                });
+                // 使用刚指定的配置项和数据显示图表。  这个方法就是用于设置，怎么样去展示图形图表
+                // 第四步:设置这一个option
+                myChart1.setOption(option1);
+                myChart2.setOption(option2);
+
+            } catch (error) {
+                console.log(result);
+            }
+
+
+        }
+
+        initChart();
+
+
+    });
+</script>
+</html>

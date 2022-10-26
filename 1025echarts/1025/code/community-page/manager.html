@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>社区后台管理系统</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+    <style>
+        .main {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .header {
+            height: 70px;
+            border-bottom: 1px solid lightgray;
+            background-color: #07c3ab;
+        }
+
+        .left-menu {
+            width: 270px;
+            position: fixed;
+            left: 0;
+            top: 70px;
+            bottom: 0;
+            border-right: 1px solid lightgray;
+
+        }
+
+        .right-box {
+            position: fixed;
+            left: 270px;
+            top: 70px;
+            right: 0;
+            bottom: 0;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .right-ul {
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        .right-ul a {
+            text-decoration: none;
+        }
+
+        .right-ul a:hover {
+            color: orangered !important;
+        }
+
+        .left-menu .card {
+            border-radius: 0 !important;
+        }
+
+        .left-menu .card .card-header {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
+
+        .left-menu .card .card-body {
+            padding: 0;
+        }
+
+        .sub-menu-list {
+            margin: 0;
+        }
+
+        .sub-menu-list a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            box-sizing: border-box;
+            padding-left: 20px;
+        }
+
+        .sub-menu-list a:hover {
+            background-color: #ececec;
+        }
+        .mainFrame{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="header d-flex justify-content-between align-items-center">
+        <div class="d-flex mx-3 align-items-center">
+            <img src="img/logo.jpg" class="logo-img" alt="">
+            <p class="h2 text-white ms-2">欢迎使用社区物业管理系统</p>
+        </div>
+        <ul class="list-unstyled d-flex align-items-center right-ul">
+            <li><a href="#" class="text-white">欢迎登录：杨标</a></li>
+            <li class="mx-5"><a href="#" class="text-white">退出系统</a></li>
+        </ul>
+    </div>
+    <div class="left-menu" id="left-menu">
+        <div class="card">
+            <div class="card-header" data-bs-target="#roomInfoManager" data-bs-toggle="collapse">
+                <i class="bi bi-person-lines-fill"></i>
+                房间信息管理
+            </div>
+            <div class="collapse show" id="roomInfoManager" data-bs-parent="#left-menu">
+                <div class="card-body">
+                    <ul class="list-unstyled sub-menu-list">
+                        <li><a href="roomInfoList.html" target="mainFrame">房间信息列表</a></li>
+                        <li><a href="addRoomInfo.html" target="mainFrame">新增房间</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" data-bs-target="#costTypeManager" data-bs-toggle="collapse">
+                <i class="bi bi-megaphone-fill"></i>
+                费用类别管理
+            </div>
+            <div class="collapse " id="costTypeManager" data-bs-parent="#left-menu">
+                <div class="card-body">
+                    <ul class="list-unstyled sub-menu-list">
+                        <li><a href="#">费用类别列表</a></li>
+                        <li><a href="#">新增费用类别</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" data-bs-target="#costInfoManager" data-bs-toggle="collapse">
+                <i class="bi bi-calculator-fill"></i>
+                缴费信息管理
+            </div>
+            <div class="collapse " id="costInfoManager" data-bs-parent="#left-menu">
+                <div class="card-body">
+                    <ul class="list-unstyled sub-menu-list">
+                        <li><a href="#">缴费信息列表</a></li>
+                        <li><a href="#">新增缴费信息</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" data-bs-target="#adminInfoManager" data-bs-toggle="collapse">
+                <i class="bi bi-shield-lock-fill"></i>
+                管理员信息
+            </div>
+            <div class="collapse " id="adminInfoManager" data-bs-parent="#left-menu">
+                <div class="card-body">
+                    <ul class="list-unstyled sub-menu-list">
+                        <li><a href="#">管理员列表</a></li>
+                        <li><a href="#">新增管理员</a></li>
+                        <li><a href="#">修改密码</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-box">
+        <iframe class="mainFrame" name="mainFrame" src="dataView.html"></iframe>
+    </div>
+</div>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/base.js"></script>
+</html>
