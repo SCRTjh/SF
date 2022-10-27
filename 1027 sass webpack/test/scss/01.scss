@@ -1,0 +1,53 @@
+$w:100px;
+$h:100px;
+$h:200px !default;
+.div1{
+    width: $w;
+    height: 100px;
+    $c:white;
+    @at-root{
+        .div1{
+            color: $c;
+        }
+    }
+    .div2{
+        height: 300px;
+    }
+    .div21{
+        width: 200px;
+    }
+    &+.div3{
+        color: white;
+    }
+}
+
+@mixin xs{
+    @media only screen and (max-width:768px){
+        @content;
+    }
+}
+
+@mixin sm {
+    @media only screen and (min-width:769px) and (max-width:991px){
+        @content;
+    }
+}
+
+@mixin md{
+    @media only screen and (min-width:992px) and (max-width:1200px){
+        @content;
+    }
+}
+
+@mixin lg{
+    @media only screen and (min-width:1201px){
+        @content;
+    }
+}
+
+@include xs(){
+    .tab-bar{
+        background-color: red;
+    }
+}
+
