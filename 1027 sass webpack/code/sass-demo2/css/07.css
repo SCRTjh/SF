@@ -1,0 +1,117 @@
+@charset "UTF-8";
+/**
+希望有一个样式，从box1~box9，里面的样式分别是width:100px 到  width:900px
+ */
+.div1 {
+  width: 100px;
+}
+
+.div2 {
+  width: 200px;
+}
+
+.div3 {
+  width: 300px;
+}
+
+.div4 {
+  width: 400px;
+}
+
+.div5 {
+  width: 500px;
+}
+
+.div6 {
+  width: 600px;
+}
+
+.div7 {
+  width: 700px;
+}
+
+.div8 {
+  width: 800px;
+}
+
+.box5 {
+  height: 500px;
+}
+
+.box10 {
+  height: 1000px;
+}
+
+.box15 {
+  height: 1500px;
+}
+
+.box20 {
+  height: 2000px;
+}
+
+.box25 {
+  height: 2500px;
+}
+
+.box30 {
+  height: 3000px;
+}
+
+.box35 {
+  height: 3500px;
+}
+
+.box40 {
+  height: 4000px;
+}
+
+.box45 {
+  height: 4500px;
+}
+
+.box50 {
+  height: 5000px;
+}
+
+.box55 {
+  height: 5500px;
+}
+
+.box60 {
+  height: 6000px;
+}
+
+.box65 {
+  height: 6500px;
+}
+
+.box70 {
+  height: 7000px;
+}
+
+.box75 {
+  height: 7500px;
+}
+
+.box80 {
+  height: 8000px;
+}
+
+.box85 {
+  height: 8500px;
+}
+
+.box90 {
+  height: 9000px;
+}
+
+.box95 {
+  height: 9500px;
+}
+
+.box100 {
+  height: 10000px;
+}
+
+/*# sourceMappingURL=07.css.map */

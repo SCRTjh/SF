@@ -1,0 +1,16 @@
+//混合器与占位符的结合 
+
+@mixin circle {
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    // 占位符
+    @content;
+    border-radius: 50%;
+}
+
+.box1{
+    @include circle(){
+        background-color: red;
+    }
+}

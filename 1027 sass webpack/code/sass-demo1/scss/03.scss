@@ -1,0 +1,25 @@
+//嵌套
+.box{
+    width: 100px;
+    height: 100px;
+    >a{
+        color: red;
+    }
+    span{
+        display: block;
+    }
+    +div{
+        font-size: 32px;
+    }
+    ~.aaa{
+        border-radius: 50%;
+        .bbb{
+            border: 2px solid black;
+        }
+    }
+    
+    // 正常情况下，这里写的东西应该是后代
+    &:hover{
+        background-color: deeppink;
+    }
+}

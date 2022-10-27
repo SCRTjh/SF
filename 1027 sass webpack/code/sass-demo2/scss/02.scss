@@ -1,0 +1,22 @@
+//混合
+@mixin sm {
+  @media only screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@include sm() {
+  .box {
+    width: 100px;
+    height: 100px;
+    $primaryColor: lightseagreen;
+
+    @at-root(without: media) {
+      @at-root {
+        .nav {
+          background-color: $primaryColor;
+        }
+      }
+    }
+  }
+}

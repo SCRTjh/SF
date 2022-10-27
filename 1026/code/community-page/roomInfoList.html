@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>房间信息列表</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+    <script src="./js/base.js" async></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <ul class="breadcrumb my-2">
+        <li class="breadcrumb-item"><a href="dataView.html">首页</a></li>
+        <li class="breadcrumb-item active">房间信息列表</li>
+    </ul>
+    <div class="h4 text-center text-primary border-bottom py-3">房间信息列表</div>
+    <div class="row my-2">
+        <div class="col-auto">
+            <label class="col-form-label">房主姓名</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="ownername" class="form-control" placeholder="输入姓名">
+        </div>
+        <div class="col-auto">
+            <label class="col-form-label">房间编号</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="roomname" class="form-control" placeholder="输入编号">
+        </div>
+        <div class="col-auto">
+            <label class="col-form-label">手机号码</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" id="telephone" class="form-control" placeholder="手机号码">
+        </div>
+        <div class="col-auto">
+            <button type="button" class="btn btn-primary" id="btn-query">
+                <span class="bi bi-search"></span>
+                查询
+            </button>
+        </div>
+    </div>
+    <div class="btn-group">
+        <a href="addRoomInfo.html" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i>
+            新增
+        </a>
+        <button type="button" class="btn btn-success" id="btn-export-excel">
+            <i class="bi bi-plus-circle"></i>
+            导出为excel
+        </button>
+    </div>
+    <div class="table-responsive my-2">
+        <table id="table1" class="table table-hover table-bordered table-striped">
+            <thead>
+            <tr>
+                <th class="text-center">
+                    <label>
+                        <input type="checkbox">全选
+                    </label>
+                </th>
+                <th>房间编号</th>
+                <th>业主姓名</th>
+                <th>性别</th>
+                <th>房间面积</th>
+                <th>房间状态</th>
+                <th>业主账号</th>
+                <th>身份证号</th>
+                <th>手机号码</th>
+                <th>业主邮箱</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <!-- 页码 -->
+    <div class="d-flex justify-content-between" id="bottom-bar">
+    </div>
+</div>
+<script type="text/html" id="temp1">
+    {{each roomInfoList item index}}
+    <tr>
+        <td class="text-center">
+            <input type="checkbox">
+        </td>
+        <td>{{item.roomname}}</td>
+        <td>{{item.ownername}}</td>
+        <td>{{item.ownersex}}</td>
+        <td>{{item.roomarea}}</td>
+
+        <td>
+            <%if(item.roomstatus>3){%>
+            <span class="text-danger">{{getRoomStatusType(item.roomstatus)}}</span>
+            <%}else{%>
+            <span>{{getRoomStatusType(item.roomstatus)}}</span>
+            <%}%>
+        </td>
+        <td>{{item.id}}</td>
+        <td>{{item.IDCard}}</td>
+        <td>
+            <span>{{getMaskTelephone(item.telephone)}}</span>
+            <i data-telephone="{{item.telephone}}" class="bi bi-eye-fill text-primary"></i>
+        </td>
+        <td>{{item.email}}</td>
+        <td>
+            <a href="editRoomInfo.html?id={{item.id}}" class="btn btn-warning btn-sm" title="编辑">
+                <i class="bi bi-pencil"></i>
+            </a>
+            <span class="btn btn-danger btn-sm btn-delete" title="删除" data-id="{{item.id}}">
+                <i class="bi bi-trash"></i>
+            </span>
+        </td>
+    </tr>
+    {{/each}}
+</script>
+<script type="text/html" id="temp2">
+    <p>当前第{{pageIndex}}共，页{{pageCount}}页，共{{totalCount}}条数据</p>
+    <ul class="pagination" id="bottom-pagination">
+        <li class="page-item"><a data-index="1" class="page-link" href="#">首页</a></li>
+        <%for(var i=pageStart;i<=pageEnd;i++){%>
+        <li class="page-item"><a data-index="{{i}}" class="page-link {{i==pageIndex?'active':null}}" href="#">{{i}}</a>
+        </li>
+        <%}%>
+        <li class="page-item"><a data-index="{{pageCount}}" class="page-link" href="#">尾页</a></li>
+    </ul>
+</script>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+
+<script>
+    $(function () {
+        let pageIndex = 1;
+
+        async function getRoomInfoList() {
+            // 添加一个加载动画
+            layer.load();
+            try {
+                let result = await request.get(`${baseURL}/roomInfo/getListByPage`, {
+                    roomname: $("#roomname").val(),
+                    ownername: $("#ownername").val(),
+                    telephone: $("#telephone").val(),
+                    pageIndex
+                });
+                console.log(result);
+                // 开始模糊引擎的渲染
+                let htmlStr = template("temp1", {
+                    roomInfoList: result.data.listData,
+                    getRoomStatusType,
+                    getMaskTelephone
+                });
+                $("#table1>tbody").html(htmlStr);
+
+                //渲染页码
+                let htmlStr2 = template("temp2", {
+                    pageStart: result.data.pageStart,
+                    pageEnd: result.data.pageEnd,
+                    pageIndex: result.data.pageIndex,
+                    pageCount: result.data.pageCount,
+                    totalCount: result.data.totalCount
+                })
+                $("#bottom-bar").html(htmlStr2);
+
+            } catch (error) {
+                console.log(error);
+            } finally {
+                // 关闭加载的动画
+                layer.closeAll();
+            }
+        }
+
+        getRoomInfoList();
+
+        $("#btn-query").click(function () {
+            getRoomInfoList();
+        })
+
+        $("#table1").on("click", "[data-telephone]", function () {
+            let telephone = $(this).attr("data-telephone");
+            // console.log(telephone);
+            $(this).prev("span").text(telephone);
+        });
+
+        $("#bottom-bar").on("click", "a", function () {
+            pageIndex = $(this).attr("data-index");
+            getRoomInfoList();
+            // 防止触发href的操作
+            return false;
+        });
+
+        //删除
+        $("#table1").on("click", ".btn-delete", async function () {
+            let id = $(this).attr("data-id");
+            console.log(id);
+            // 现在我们就要通过ajax把这个id传递到后台去
+            let index = layer.load();
+            try {
+                let result = await request.get(`${baseURL}/roomInfo/deleteById`, {
+                    id
+                });
+                layer.msg("删除成功", function () {
+                    //刷新数据  重新请求数据，重新渲染页面
+                    getRoomInfoList();
+                });
+
+            } catch (error) {
+                layer.alert("删除失败");
+            } finally {
+                layer.close(index);
+            }
+        });
+
+        //点击导出excel的按钮以后
+        $("#btn-export-excel").click(function () {
+            //现在我们教一下大家快速的生成search参数
+            let urlSearchParams = new URLSearchParams();
+            urlSearchParams.append("roomname", $("#roomname").val());
+            urlSearchParams.append("ownername", $("#ownername").val());
+            urlSearchParams.append("telephone", $("#telephone").val());
+            let adminInfoStr = sessionStorage.getItem("adminInfo");
+            if (adminInfoStr) {
+                let adminInfo = JSON.parse(adminInfoStr);
+                urlSearchParams.append("authorization", adminInfo.token);
+            }
+            //这个时候无非就是向后台发送请求，查询数据库的结果，然后将这个结果转换成excel,然后下载这个文件
+            let str = `${baseURL}/roomInfo/exportToExcel?${urlSearchParams.toString()}`;
+            //我们其它的请求都是ajax请求，唯独导出excel的时候使用的是window.open()
+            //ajax的请求已经被我们设置了`token`，但是`window.open`没有设置token啊
+            window.open(str);
+        });
+
+    });
+</script>
+
+
+</html>

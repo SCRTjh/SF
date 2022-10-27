@@ -1,0 +1,41 @@
+@charset "UTF-8";
+/*0~768px*/
+/*769~991*/
+/*992~1200*/
+/*1200以下*/
+@media only screen and (max-width: 768px) {
+  .tab-bar {
+    background-color: red;
+  }
+}
+@media only screen and (min-width: 1201px) {
+  .nav-bar {
+    font-size: 32px;
+  }
+}
+@keyframes ani1 {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 200px;
+  }
+}
+@-webkit-keyframes ani1 {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 200px;
+  }
+}
+@-moz-keyframes ani1 {
+  from {
+    width: 100px;
+  }
+  to {
+    width: 200px;
+  }
+}
+
+/*# sourceMappingURL=10.css.map */

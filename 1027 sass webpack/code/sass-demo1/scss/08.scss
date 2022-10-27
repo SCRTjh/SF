@@ -1,0 +1,18 @@
+//混合器的参数
+@mixin circle($r:200px) {
+    width: $r;
+    height: $r;
+    border: 2px solid black;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, red, blue);
+}
+
+.box1{
+    display: flex;
+    @include circle(100px);
+}
+
+.box2{
+    font-size: 32px;
+    @include circle();
+}

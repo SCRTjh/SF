@@ -1,0 +1,11 @@
+.div1 {
+    width: 300px;
+
+    &.a {
+        width: 200px;
+    }
+
+    &+& {
+        width: 100px;
+    }
+}

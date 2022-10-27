@@ -1,0 +1,22 @@
+//sass当中数组的定义
+$a: 100;
+$b: 200;
+$c: 300;
+
+//是否可以直接定义一个数组
+//js语法
+//var arr = [100,200,300];
+
+$arr: (100, 200, 300);
+
+.box {
+  width: nth($arr,1)+px;
+}
+
+
+@each $item in $arr {
+  .w-#{$item} {
+    width: $item + px;
+  }
+}
+

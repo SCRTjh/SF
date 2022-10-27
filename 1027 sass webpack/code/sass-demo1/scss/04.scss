@@ -1,0 +1,14 @@
+//父级选择器的标识是&
+.div1 {
+    width: 200px;
+    &.aaa{
+        width: 300px;
+    }
+    &+&{
+        width: 400px;
+    }
+    &:not(:first-child){
+        font-size: 32px;
+    }
+}
+

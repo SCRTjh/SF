@@ -1,0 +1,27 @@
+$colorMap: (
+        primary:lightseagreen,
+        success:green,
+        danger:red,
+        info:gray,
+        warn:orange
+);
+$lineType: (
+        solid:solid,
+        dashed:dashed,
+        double:double,
+        groove:groove,
+        dotted:dotted
+);
+//1-5的线条粗细，并且 颜色是primary~wan
+
+@for $i from 1 through 5 {
+  @each $key, $value in $lineType {
+    @each $key1, $value1 in $colorMap {
+      .border-#{$key}-#{$key1}-#{$i} {
+        border: $i + px $value $value1;
+      }
+    }
+  }
+}
+
+

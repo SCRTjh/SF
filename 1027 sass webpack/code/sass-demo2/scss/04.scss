@@ -1,0 +1,26 @@
+//运算符
+
+$x: 100px;
+$y: 50px;
+$z: 2;
+
+.div1 {
+  width: $x + $y;
+}
+
+.div2{
+  //单位除以单位以后就没有单位了
+  line-height: $x / $y;
+}
+
+.div3{
+  height: $x - $y;
+}
+
+.div4{
+  width: $x * $z;
+}
+
+.div5{
+  width: $x % $z;
+}

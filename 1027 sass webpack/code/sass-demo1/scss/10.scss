@@ -1,0 +1,69 @@
+// 混合器的作用就是将原来的CSS混合到现在的CSS里面
+/*0~768px*/
+@mixin xs {
+    @media only screen and (max-width:768px) {
+        @content;
+    }
+}
+/*769~991*/
+@mixin sm {
+    @media only screen and (min-width:769px) and (max-width:991px) {
+        @content;
+    }
+}
+/*992~1200*/
+@mixin md {
+    @media only screen and (min-width:992px) and (max-width:1200px) {
+        @content;
+    }
+}
+/*1200以下*/
+@mixin lg {
+    @media only screen and (min-width:1201px) {
+        @content;
+    }
+}
+
+
+
+//------------------------------------------------
+
+
+
+
+@include xs(){
+    .tab-bar{
+        background-color: red;
+    }
+}
+
+@include lg(){
+    .nav-bar{
+        font-size: 32px;
+    }
+}
+
+
+//$确实是变量，但是如果变量当成属性使用则可以直接引用 
+//如果变量想实现拼接，应该调用插值语法#{}
+
+@mixin kframes($aaa) {
+    @keyframes #{$aaa} {
+        @content;
+    }
+    @-webkit-keyframes #{$aaa}{
+        @content;
+    }
+    @-moz-keyframes #{$aaa}{
+        @content;
+    }
+}
+
+@include kframes(ani1){
+    from{
+        width: 100px;
+    }
+    to{
+        width: 200px;
+    }
+}

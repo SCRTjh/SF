@@ -1,0 +1,20 @@
+//@at-root
+@media only screen and (max-width:768px) {
+  .box{
+    width: 100px;
+    height: 100px;
+    .aaa{
+      background-color: red;
+    }
+    @at-root {
+      .bbb{
+        color: blue;
+      }
+    }
+    @at-root(without: media) {
+      .ccc{
+        font-size: 32px;
+      }
+    }
+  }
+}

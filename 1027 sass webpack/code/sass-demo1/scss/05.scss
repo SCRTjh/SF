@@ -1,0 +1,16 @@
+.div1 {
+    $x: 100px;
+
+    .abc {
+        width: $x;
+        $y:200px;
+        .def{
+            height: $y;
+        }
+    }
+
+    .box{
+        //报错
+        width: $y;
+    }
+}

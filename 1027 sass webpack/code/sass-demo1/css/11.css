@@ -1,0 +1,10 @@
+.btn1 {
+  width: 100px;
+  height: 100px;
+  background-color: deeppink;
+}
+.btn1 .aaa, .btn1 .bbb {
+  border: 2px solid black;
+}
+
+/*# sourceMappingURL=11.css.map */

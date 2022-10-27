@@ -1,0 +1,14 @@
+.btn1{
+    width: 100px;
+    height: 100px;
+    background-color: deeppink;
+    .aaa{
+        border: 2px solid black;
+    }
+    
+}
+
+.bbb{
+    @extend .aaa;    
+}
+

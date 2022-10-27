@@ -1,0 +1,61 @@
+.bg-primary {
+  background-color: lightseagreen;
+}
+
+.text-primary {
+  color: lightseagreen;
+}
+
+.btn-primary {
+  background-color: lightseagreen;
+}
+
+.bg-success {
+  background-color: green;
+}
+
+.text-success {
+  color: green;
+}
+
+.btn-success {
+  background-color: green;
+}
+
+.bg-danger {
+  background-color: red;
+}
+
+.text-danger {
+  color: red;
+}
+
+.btn-danger {
+  background-color: red;
+}
+
+.bg-info {
+  background-color: gray;
+}
+
+.text-info {
+  color: gray;
+}
+
+.btn-info {
+  background-color: gray;
+}
+
+.bg-warn {
+  background-color: orange;
+}
+
+.text-warn {
+  color: orange;
+}
+
+.btn-warn {
+  background-color: orange;
+}
+
+/*# sourceMappingURL=09.css.map */

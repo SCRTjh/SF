@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>登录社区物业管理系统</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+    <script src="./js/base.js" async></script>
+    <style>
+        .box {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("./img/admin-login-bg.pg.jpg");
+            background-size: 100% 100%;
+            /*这个就是让背景图片固定,不要随着滚动条去滚动*/
+            background-attachment: fixed;
+        }
+
+        .login-form {
+            width: 420px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.6);
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0 0 15px 5px white;
+            box-sizing: border-box;
+            padding: 20px;
+            transition: all 0.5s linear;
+            transform: scale(0) rotateY(-180deg);
+        }
+
+        .login-form.show {
+            transform: scale(1) rotateY(0deg);
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <form class="login-form" id="login-form">
+        <h3 class="text-center text-primary py-3 border-bottom border-primary">社区物业管理系统</h3>
+        <div class=" my-3">
+            <div class="input-group">
+                <span class="input-group-text">
+                    账号
+                </span>
+                <input type="text" class="form-control" id="adminname" name="adminname" placeholder="请输入账号"
+                       data-rule-required="true" data-msg-required="账号不能为空">
+            </div>
+        </div>
+        <div>
+            <div class="input-group">
+                <span class="input-group-text">密码</span>
+                <input type="text" class="form-control" id="adminpwd" name="adminpwd" placeholder="请输入密码"
+                       data-rule-required="true" data-msg-required="密码不能为空">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-around my-3">
+            <button type="button" class="btn btn-primary" id="btn-login">登录系统</button>
+            <button type="button" class="btn btn-danger">重置表单</button>
+        </div>
+    </form>
+</div>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+
+<script>
+    $(function () {
+        //表单验证
+        var loginFormResult = $("#login-form").validate({
+            errorPlacement: function (error, element) {
+                element.parent().after(error);
+            },
+            errorClass: "text-danger"
+        });
+
+        $(".login-form").addClass("show");
+
+        //登录系统
+        $("#btn-login").click(async function () {
+            //第一步:表单验证
+            if (loginFormResult.form()) {
+                //第二步:应该将用户名与密码发送到后台 ,然后去进行验证
+                //发送请求,我们肯定是用ajax来进行的
+                try {
+                    let result = await request.post(`${baseURL}/adminInfo/checkLogin`, {
+                        adminname: $("#adminname").val(),
+                        adminpwd: $("#adminpwd").val()
+                    });
+                    console.log(result.data);
+                    sessionStorage.setItem("adminInfo",JSON.stringify(result.data));
+                    //登录以后的信息要保存
+                    location.replace("manager.html");
+                } catch (error) {
+                    console.log(error);
+                    layer.alert("服务器错误");
+                }
+            } else {
+                layer.alert("请检查你输入的内容");
+            }
+        });
+    })
+</script>
+</html>

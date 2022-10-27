@@ -1,0 +1,19 @@
+//变量的声明与引用
+//在scss里面所有的变量都以$开头，它的变量可以理解为js里面的变量
+
+$w:100px; //定义了一个变量
+$x:red;
+
+.box {
+    width: $w;
+    color: $x;
+}
+
+
+$w:200px;
+$x:blue !default;
+
+.box2 {
+    height: $w;
+    color: $x;
+}

@@ -1,0 +1,29 @@
+//三目运算符
+//以@的叫命令，如之前的css @font-face,@import @media,@keyframes @chartset
+//在SASS里面的 以@也是命令
+
+$a: 60;
+
+.box {
+  width: 100px;
+  height: 100px;
+  //$a大于50就是黑色，否则就是蓝色
+  background-color: if($a>50, black, blue);
+}
+
+//if本质上面是一个函数，我可以模拟去实现
+
+@function bggif($a,$b,$c){
+  @if($a){
+    @return $b;
+  }
+  @else {
+    @return $c;
+  }
+}
+
+.box1{
+  width: 100px;
+  height: 100px;
+  background-color: bggif($a>50,black,blue);
+}

@@ -1,0 +1,17 @@
+//条件运算符
+
+$a:50;
+.div1{
+  width: 100px;
+  height: 100px;
+  //a<30就是红色，小于70就是蓝色，否则就是黑色
+  @if($a<30){
+    background-color: red;
+  }
+  @else if($a<70){
+    background-color: blue;
+  }
+  @else{
+    background-color: black;
+  }
+}

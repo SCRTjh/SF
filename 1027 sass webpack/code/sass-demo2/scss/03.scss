@@ -1,0 +1,14 @@
+//函数
+//js函数的作用是为了完成某一个功能而存在的
+//sass里面的函数也是一样的
+
+//写了一个函数 ，将px转换成rem
+$baseSize: 16px !default;
+
+@function pxToRem($px) {
+  @return $px / $baseSize + rem;
+}
+
+.box1{
+  width: pxToRem(100px);
+}

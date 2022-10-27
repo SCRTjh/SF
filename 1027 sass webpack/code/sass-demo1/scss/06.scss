@@ -1,0 +1,12 @@
+.box {
+    width: 100px;
+    .aaa {
+        height: 200px;
+        $r: red;
+        @at-root{
+            .bbb{
+               color: $r; 
+            }
+        }
+    }
+}

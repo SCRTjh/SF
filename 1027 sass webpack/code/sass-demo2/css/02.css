@@ -1,0 +1,11 @@
+@media only screen and (max-width: 768px) {
+  .box {
+    width: 100px;
+    height: 100px;
+  }
+}
+.nav {
+  background-color: lightseagreen;
+}
+
+/*# sourceMappingURL=02.css.map */

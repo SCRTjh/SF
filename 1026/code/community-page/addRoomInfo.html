@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新增房间信息</title>
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./js/layer/theme/default/layer.css">
+    <script src="./js/base.js" async></script>
+
+</head>
+
+<body>
+<div class="container-fluid">
+    <ul class="breadcrumb my-2">
+        <li class="breadcrumb-item"><a href="dataView.html">首页</a></li>
+        <li class="breadcrumb-item active">新增房间信息</li>
+    </ul>
+</div>
+<div class="container">
+    <div class="h4 text-center text-primary border-bottom py-3">新增房间信息</div>
+    <form id="addRoomInfoForm">
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入房间编号" id="roomname" name="roomname"
+                   data-rule-required="true" data-msg-required="房间编号不能为空" ，
+                   data-rule-regexp="^\d-\d-\d{3}$" data-msg-regexp="房间编号必须符合规则">
+            <label for="pwd">房间编号</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入房间面积" id="roomarea" name="roomarea"
+                   data-rule-required="true" data-msg-required="房间面积不能为空"
+                   data-rule-regexp="^\d+(\.\d+)?$" data-msg-regexp="房间面积必须是数值">
+            <label for="pwd">房间面积</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入业主姓名" id="ownername" name="ownername"
+                   data-rule-required="true" data-msg-required="业主姓名不能为空">
+            <label for="pwd">业主姓名</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <select class="form-select" name="ownersex" id="ownersex">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+            <label for="pwd">业主姓名</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入身份证号" id="IDCard" name="IDCard"
+                   data-rule-required="true" data-msg-required="身份证号不能为空"
+                   data-rule-regexp="^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$"
+                   data-msg-regexp="请输入正确的身份证号">
+            <label for="pwd">身份证号</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入手机号码" id="telephone" name="telephone"
+                   data-rule-required="true" data-msg-required="手机号不能为空"
+                   data-rule-regexp="^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$"
+                   data-msg-regexp="请输入正确的手机号">
+            <label for="pwd">手机号码</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <input type="text" class="form-control"
+                   placeholder="请输入邮箱" id="email" name="email"
+                   data-rule-required="true" data-msg-required="邮箱不能为空"
+                   data-rule-regexp="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" data-msg-regexp="请输入正确的邮箱格式">
+            <label for="pwd">邮箱</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+            <select class="form-select" name="roomstatus" id="roomstatus">
+                <option value="0">自住</option>
+                <option value="1">出租</option>
+                <option value="2">未售</option>
+                <option value="3">其它</option>
+            </select>
+            <label for="pwd">房间状态</label>
+        </div>
+        <div class=" d-flex">
+            <button type="button" class="btn btn-primary" id="btn-save">
+                <i class="bi bi-file-pdf"></i>
+                保存
+            </button>
+            <button type="button" class="btn btn-warning mx-3">
+                <i class="bi bi-arrow-90deg-down"></i>
+                重置
+            </button>
+        </div>
+    </form>
+</div>
+</body>
+<script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="./js/jquery-3.6.1.js"></script>
+<script src="./js/template-web.js"></script>
+<script src="./js/layer/layer.js"></script>
+<script src="./js/jquery.validate.js"></script>
+<script src="./js/messages_zh.js"></script>
+<script>
+    $(function () {
+        $.validator.addMethod("regexp", function (value, element, params) {
+            var reg = new RegExp(params);
+            return reg.test(value);
+        });
+        //表单验证
+        var addRoomInfoFormResult = $("#addRoomInfoForm").validate({
+            errorPlacement: function (error, element) {
+                // error代表的就是这个错误提示的消息
+                // element代表你当前正在验证的这个元素
+                element.parent().after(error);
+            },
+            errorClass: "text-danger"
+        });
+        $("#btn-save").click(async function () {
+            //第一步：表单验证
+            if (addRoomInfoFormResult.form()) {
+                //第二步，我们要将数提交到服务器保存
+                //提交--->请求，现在要通过ajax请求后台
+                try {
+                    let result = await request.post(`${baseURL}/roomInfo/addRoomInfo`, {
+                        roomname: $("#roomname").val(),
+                        roomarea: $("#roomarea").val(),
+                        ownername: $("#ownername").val(),
+                        ownersex: $("#ownersex").val(),
+                        IDCard: $("#IDCard").val(),
+                        telephone: $("#telephone").val(),
+                        email: $("#email").val(),
+                        roomstatus: $("#roomstatus").val()
+                    });
+                    layer.alert("新增成功", function () {
+                        location.replace("roomInfoList.html");
+                    });
+                } catch (error) {
+
+                }
+            } else {
+                layer.alert("请输入正确的内容再保存");
+            }
+
+        });
+    });
+</script>
+
+</html>

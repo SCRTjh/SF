@@ -1,0 +1,29 @@
+//bootstrap
+//bg-primary bg-danger bg-info bg-success bg-warning
+//text-primary text-danger text-info text-success text-warning
+//btn-primary btn-danger btn-info btn-success btn-warning
+
+//每个颜色和代表一个值
+
+$colorMap: (
+        primary:lightseagreen,
+        success:green,
+        danger:red,
+        info:gray,
+        warn:orange
+);
+
+
+@each $key,$value in $colorMap{
+  .bg-#{$key}{
+    background-color: $value;
+  }
+  .text-#{$key}{
+    color: $value;
+  }
+  .btn-#{$key}{
+    background-color: $value;
+  }
+}
+
+

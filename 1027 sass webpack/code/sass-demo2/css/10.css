@@ -1,0 +1,501 @@
+.border-solid-primary-1 {
+  border: 1px solid lightseagreen;
+}
+
+.border-solid-success-1 {
+  border: 1px solid green;
+}
+
+.border-solid-danger-1 {
+  border: 1px solid red;
+}
+
+.border-solid-info-1 {
+  border: 1px solid gray;
+}
+
+.border-solid-warn-1 {
+  border: 1px solid orange;
+}
+
+.border-dashed-primary-1 {
+  border: 1px dashed lightseagreen;
+}
+
+.border-dashed-success-1 {
+  border: 1px dashed green;
+}
+
+.border-dashed-danger-1 {
+  border: 1px dashed red;
+}
+
+.border-dashed-info-1 {
+  border: 1px dashed gray;
+}
+
+.border-dashed-warn-1 {
+  border: 1px dashed orange;
+}
+
+.border-double-primary-1 {
+  border: 1px double lightseagreen;
+}
+
+.border-double-success-1 {
+  border: 1px double green;
+}
+
+.border-double-danger-1 {
+  border: 1px double red;
+}
+
+.border-double-info-1 {
+  border: 1px double gray;
+}
+
+.border-double-warn-1 {
+  border: 1px double orange;
+}
+
+.border-groove-primary-1 {
+  border: 1px groove lightseagreen;
+}
+
+.border-groove-success-1 {
+  border: 1px groove green;
+}
+
+.border-groove-danger-1 {
+  border: 1px groove red;
+}
+
+.border-groove-info-1 {
+  border: 1px groove gray;
+}
+
+.border-groove-warn-1 {
+  border: 1px groove orange;
+}
+
+.border-dotted-primary-1 {
+  border: 1px dotted lightseagreen;
+}
+
+.border-dotted-success-1 {
+  border: 1px dotted green;
+}
+
+.border-dotted-danger-1 {
+  border: 1px dotted red;
+}
+
+.border-dotted-info-1 {
+  border: 1px dotted gray;
+}
+
+.border-dotted-warn-1 {
+  border: 1px dotted orange;
+}
+
+.border-solid-primary-2 {
+  border: 2px solid lightseagreen;
+}
+
+.border-solid-success-2 {
+  border: 2px solid green;
+}
+
+.border-solid-danger-2 {
+  border: 2px solid red;
+}
+
+.border-solid-info-2 {
+  border: 2px solid gray;
+}
+
+.border-solid-warn-2 {
+  border: 2px solid orange;
+}
+
+.border-dashed-primary-2 {
+  border: 2px dashed lightseagreen;
+}
+
+.border-dashed-success-2 {
+  border: 2px dashed green;
+}
+
+.border-dashed-danger-2 {
+  border: 2px dashed red;
+}
+
+.border-dashed-info-2 {
+  border: 2px dashed gray;
+}
+
+.border-dashed-warn-2 {
+  border: 2px dashed orange;
+}
+
+.border-double-primary-2 {
+  border: 2px double lightseagreen;
+}
+
+.border-double-success-2 {
+  border: 2px double green;
+}
+
+.border-double-danger-2 {
+  border: 2px double red;
+}
+
+.border-double-info-2 {
+  border: 2px double gray;
+}
+
+.border-double-warn-2 {
+  border: 2px double orange;
+}
+
+.border-groove-primary-2 {
+  border: 2px groove lightseagreen;
+}
+
+.border-groove-success-2 {
+  border: 2px groove green;
+}
+
+.border-groove-danger-2 {
+  border: 2px groove red;
+}
+
+.border-groove-info-2 {
+  border: 2px groove gray;
+}
+
+.border-groove-warn-2 {
+  border: 2px groove orange;
+}
+
+.border-dotted-primary-2 {
+  border: 2px dotted lightseagreen;
+}
+
+.border-dotted-success-2 {
+  border: 2px dotted green;
+}
+
+.border-dotted-danger-2 {
+  border: 2px dotted red;
+}
+
+.border-dotted-info-2 {
+  border: 2px dotted gray;
+}
+
+.border-dotted-warn-2 {
+  border: 2px dotted orange;
+}
+
+.border-solid-primary-3 {
+  border: 3px solid lightseagreen;
+}
+
+.border-solid-success-3 {
+  border: 3px solid green;
+}
+
+.border-solid-danger-3 {
+  border: 3px solid red;
+}
+
+.border-solid-info-3 {
+  border: 3px solid gray;
+}
+
+.border-solid-warn-3 {
+  border: 3px solid orange;
+}
+
+.border-dashed-primary-3 {
+  border: 3px dashed lightseagreen;
+}
+
+.border-dashed-success-3 {
+  border: 3px dashed green;
+}
+
+.border-dashed-danger-3 {
+  border: 3px dashed red;
+}
+
+.border-dashed-info-3 {
+  border: 3px dashed gray;
+}
+
+.border-dashed-warn-3 {
+  border: 3px dashed orange;
+}
+
+.border-double-primary-3 {
+  border: 3px double lightseagreen;
+}
+
+.border-double-success-3 {
+  border: 3px double green;
+}
+
+.border-double-danger-3 {
+  border: 3px double red;
+}
+
+.border-double-info-3 {
+  border: 3px double gray;
+}
+
+.border-double-warn-3 {
+  border: 3px double orange;
+}
+
+.border-groove-primary-3 {
+  border: 3px groove lightseagreen;
+}
+
+.border-groove-success-3 {
+  border: 3px groove green;
+}
+
+.border-groove-danger-3 {
+  border: 3px groove red;
+}
+
+.border-groove-info-3 {
+  border: 3px groove gray;
+}
+
+.border-groove-warn-3 {
+  border: 3px groove orange;
+}
+
+.border-dotted-primary-3 {
+  border: 3px dotted lightseagreen;
+}
+
+.border-dotted-success-3 {
+  border: 3px dotted green;
+}
+
+.border-dotted-danger-3 {
+  border: 3px dotted red;
+}
+
+.border-dotted-info-3 {
+  border: 3px dotted gray;
+}
+
+.border-dotted-warn-3 {
+  border: 3px dotted orange;
+}
+
+.border-solid-primary-4 {
+  border: 4px solid lightseagreen;
+}
+
+.border-solid-success-4 {
+  border: 4px solid green;
+}
+
+.border-solid-danger-4 {
+  border: 4px solid red;
+}
+
+.border-solid-info-4 {
+  border: 4px solid gray;
+}
+
+.border-solid-warn-4 {
+  border: 4px solid orange;
+}
+
+.border-dashed-primary-4 {
+  border: 4px dashed lightseagreen;
+}
+
+.border-dashed-success-4 {
+  border: 4px dashed green;
+}
+
+.border-dashed-danger-4 {
+  border: 4px dashed red;
+}
+
+.border-dashed-info-4 {
+  border: 4px dashed gray;
+}
+
+.border-dashed-warn-4 {
+  border: 4px dashed orange;
+}
+
+.border-double-primary-4 {
+  border: 4px double lightseagreen;
+}
+
+.border-double-success-4 {
+  border: 4px double green;
+}
+
+.border-double-danger-4 {
+  border: 4px double red;
+}
+
+.border-double-info-4 {
+  border: 4px double gray;
+}
+
+.border-double-warn-4 {
+  border: 4px double orange;
+}
+
+.border-groove-primary-4 {
+  border: 4px groove lightseagreen;
+}
+
+.border-groove-success-4 {
+  border: 4px groove green;
+}
+
+.border-groove-danger-4 {
+  border: 4px groove red;
+}
+
+.border-groove-info-4 {
+  border: 4px groove gray;
+}
+
+.border-groove-warn-4 {
+  border: 4px groove orange;
+}
+
+.border-dotted-primary-4 {
+  border: 4px dotted lightseagreen;
+}
+
+.border-dotted-success-4 {
+  border: 4px dotted green;
+}
+
+.border-dotted-danger-4 {
+  border: 4px dotted red;
+}
+
+.border-dotted-info-4 {
+  border: 4px dotted gray;
+}
+
+.border-dotted-warn-4 {
+  border: 4px dotted orange;
+}
+
+.border-solid-primary-5 {
+  border: 5px solid lightseagreen;
+}
+
+.border-solid-success-5 {
+  border: 5px solid green;
+}
+
+.border-solid-danger-5 {
+  border: 5px solid red;
+}
+
+.border-solid-info-5 {
+  border: 5px solid gray;
+}
+
+.border-solid-warn-5 {
+  border: 5px solid orange;
+}
+
+.border-dashed-primary-5 {
+  border: 5px dashed lightseagreen;
+}
+
+.border-dashed-success-5 {
+  border: 5px dashed green;
+}
+
+.border-dashed-danger-5 {
+  border: 5px dashed red;
+}
+
+.border-dashed-info-5 {
+  border: 5px dashed gray;
+}
+
+.border-dashed-warn-5 {
+  border: 5px dashed orange;
+}
+
+.border-double-primary-5 {
+  border: 5px double lightseagreen;
+}
+
+.border-double-success-5 {
+  border: 5px double green;
+}
+
+.border-double-danger-5 {
+  border: 5px double red;
+}
+
+.border-double-info-5 {
+  border: 5px double gray;
+}
+
+.border-double-warn-5 {
+  border: 5px double orange;
+}
+
+.border-groove-primary-5 {
+  border: 5px groove lightseagreen;
+}
+
+.border-groove-success-5 {
+  border: 5px groove green;
+}
+
+.border-groove-danger-5 {
+  border: 5px groove red;
+}
+
+.border-groove-info-5 {
+  border: 5px groove gray;
+}
+
+.border-groove-warn-5 {
+  border: 5px groove orange;
+}
+
+.border-dotted-primary-5 {
+  border: 5px dotted lightseagreen;
+}
+
+.border-dotted-success-5 {
+  border: 5px dotted green;
+}
+
+.border-dotted-danger-5 {
+  border: 5px dotted red;
+}
+
+.border-dotted-info-5 {
+  border: 5px dotted gray;
+}
+
+.border-dotted-warn-5 {
+  border: 5px dotted orange;
+}
+
+/*# sourceMappingURL=10.css.map */
