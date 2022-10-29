@@ -56,6 +56,35 @@ const config = {
                     "postcss-loader",
                     "sass-loader"
                 ]
+            },
+            // {
+            //     test: /\.(jpe?g|png|svg|bmp|gif|ico|tif$)/,
+            //     use: [{
+            //         loader: "url-loader",
+            //         options: {
+            //             limit: 8 * 1024,
+            //             name: "[name].[hash:8].[ext]",
+            //             outputPath: "/img",
+            //             publicPath: "./"
+            //         }
+            //     }]
+            // },
+            // {
+            //     test: /.(ttf|eot|woff|woff2)$/,
+            //     use: [{
+            //         loader: "url-loader",
+            //         options: {
+            //             limit: 10,
+            //             name: "[name].[hash:8].[ext]",
+            //             outputPath: "/fonts",
+            //             publicPath: "../fonts"
+            //         }
+            //     }
+            //     ]
+            // },
+            {
+                test: /\.html$/,
+                loader: "html-loader"
             }
         ]
     },

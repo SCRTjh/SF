@@ -1,9 +1,8 @@
-.box {
-    width: 200px;
-    height: 200px;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotate(45deg);
+.box2 {
+  width: 200px;
+  height: 300px;
+  border: 2px solid cyan;
+  background-image: url("../img/leimu.gif");
 }
+
+/*# sourceMappingURL=index.css.map */
