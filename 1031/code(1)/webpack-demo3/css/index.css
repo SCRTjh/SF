@@ -1,0 +1,9 @@
+.page-title {
+    height: 100px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../img/dijia.jpg");
+}

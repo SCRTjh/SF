@@ -1,0 +1,18 @@
+@font-face {
+    font-family: bgg;
+    src: url("../fonts/hksn.ttf");
+}
+
+.box {
+    font-family: bgg;
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateZ(45deg);
+    opacity: 0.4;
+    background-color: deeppink;
+    background-image: url("../img/dijia.jpg");
+}

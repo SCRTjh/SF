@@ -1,0 +1,7 @@
+.box1 {
+    width: 200px;
+    height: 200px;
+    transform: rotate(45deg);
+    background-color: aqua;
+    background-image: url("../img/leishen.jpg");
+}

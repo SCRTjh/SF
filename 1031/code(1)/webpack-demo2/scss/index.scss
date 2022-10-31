@@ -1,0 +1,13 @@
+$primaryColor:lightseagreen;
+
+.box2 {
+    width: 100px * 2;
+    height: 200px + 100px;
+    border: 2px solid red;
+    background-color: $primaryColor;
+    background-image: url("../img/01.png");
+
+    a {
+        font-size: 22px;
+    }
+}
