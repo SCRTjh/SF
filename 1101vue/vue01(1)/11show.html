@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="range" v-model="age">{{age}}
+        <h2 v-show="age<18">你的年龄没有达到18岁,所以你不能进网吧</h2>
+        <hr>
+        <input type="text" v-model="userName" placeholder="请输入用户名">
+        <span v-show="userName.length==0" style="color: red;">用户名不能为空</span>
+        <hr>
+        <input type="text" v-model="money">
+        <span v-show="!/^\d+(\.\d+)?$/.test(money)" style="color: red;">必须是数字</span>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                age: 22,
+                userName: "",
+                money: 0
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

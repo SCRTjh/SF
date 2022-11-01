@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的第一课</title>
+</head>
+
+<body>
+    <!-- Vue要去管理这个区域 -->
+    <div id="app">
+        <h2>大家好，这是一个标题</h2>
+        <input type="text" v-model="userName">
+        <h1>{{userName}}</h1>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        //vue是接管页面的数据的，那页面的数据应该来源于什么地方呢？
+        data() {
+            //返回的这个对象就是页面要接管的区域的数据
+            return {
+                userName:"标哥哥"
+            }
+        }
+    }).mount("#app"); //创建的vue的对象要接管id为box的区域
+</script>
+
+</html>

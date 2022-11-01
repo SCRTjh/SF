@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <style>
+        
+            
+      .table1{
+        width: 1200px;
+        margin: auto;
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding:5px
+      }
+
+      .table1 :is(td,th){
+        border: 1px solid black;
+        padding: 5px;
+      }
+
+      .footbox{
+        width: 1200px;
+        margin: auto;
+      }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <table class="table1">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>商品名</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>总价</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item,index) in goodsList">
+                    <td>{{index+1}}</td>
+                    <td>{{item.goodsName}}</td>
+                    <td>{{item.price}}</td>
+                    <td>
+                        <button @click="item.count>1&&item.count--"  :disabled="item.count<=1">-</button>
+                        <span v-text="item.count"></span>
+                        <button @click="item.count++">+</button>
+                    </td>
+                    <td>{{item.count*item.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footbox">
+            <p>总件数：{{totalInfo.totalCount}}</p>
+            <p>总价：{{totalInfo.totalMoney}}元</p>
+        </div>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                // 商品数据
+                goodsList: [{
+                    goodsName: "iphone 14",
+                    price: 4999,
+                    count: 1
+                }, {
+                    goodsName: "充电宝",
+                    price: 129,
+                    count: 3
+                }, {
+                    goodsName: "数据线",
+                    price: 13,
+                    count: 2
+                }, {
+                    goodsName: "红米手机",
+                    price: 1999,
+                    count: 2
+                }],
+            }
+        },
+        computed:{
+            // totalCount(){
+            //     return this.goodsList.reduce((pre,{count},index) => {
+            //         return pre+=count;
+            //     },0);
+            // },
+            // sum(){
+            //     return this.goodsList.reduce((pre,cur,index) => {
+            //         return pre+=cur.count*cur.price;
+            //     },0);
+            // }
+            totalInfo(){
+                let totalCount = 0;
+                let totalMoney = 0;
+                this.goodsList.forEach(({count,price})=>{
+                    totalCount += count;
+                    totalMoney += count * price;
+                })
+                return {
+                    totalCount,
+                    totalMoney
+                }
+            }
+        }
+        
+    }).mount("#app");
+</script>
+
+
+</html>

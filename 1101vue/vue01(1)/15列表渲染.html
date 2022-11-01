@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>v-for</h2>
+        <!-- 把这些东西渲染在ul下面的li里面,怎么办 -->
+        <!-- 现在只想显示偶数项 -->
+        <ul>
+            <li v-for="(item,index) in stuList">
+                <span v-if="index%2==0">{{item}}--{{index}}</span>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                stuList: ["张珊", "李四", "王五", "赵六", "田七"]
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

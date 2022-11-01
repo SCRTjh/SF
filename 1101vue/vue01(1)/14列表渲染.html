@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>列表渲染</h1>
+        <!-- item代表的就是遍历的这一项,这个名子可以更改 -->
+        <h2 v-for="(item,index) in stuList">{{item}}----{{index}}</h2>
+        <hr>
+        <h2 v-for="(item,index) in teachers">{{item}}---{{index}}</h2>
+        <hr>
+        <h2 v-for="(item,index) in obj">{{item}}---{{index}}</h2>
+        <hr>
+        <h2 v-for="(item,index)  in obj2">{{item}}---{{index}}</h2>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                //数组
+                stuList: ["张珊", "李四", "王五", "赵六"],
+                //集合
+                teachers: new Set(["标哥", "桃哥", "柴哥"]),
+                //类数组
+                obj: {
+                    0: "陈润福",
+                    1: "肖中",
+                    2: "隗成勇",
+                },
+                //对象
+                obj2: {
+                    userName: "小白",
+                    sex: "女"
+                }
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

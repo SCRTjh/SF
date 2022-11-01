@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件修饰符</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="box" @click="aaa">
+            <button type="button" @click="bbb($event)">按钮</button>
+        </div>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        methods: {
+            aaa(){
+                console.log("我是aaa的事件")
+                
+            },
+            bbb(event){
+                console.log("我是bbb的事件")
+                event.stopPropagation();
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
+
+<!-- 
+    dom的重点就2个,dom对象的与属性
+    DOM的事件
+        事件的绑件方式
+        事件的对象,或由事件对象引伸出的事件特性
+ -->

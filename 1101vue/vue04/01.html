@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试vue2</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userInfo.userName}}</h2>
+        <h2>{{userInfo.sex}}</h2>
+        <button type="button" @click="aaa">按钮1</button>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            userInfo: {
+                userName: "张三"
+            }
+        },
+        methods: {
+            aaa() {
+                // 第一种方式 
+                // this.userInfo.sex = "男";
+                // 强制更新,强制重新渲染页面,这个非常消耗性能
+                // this.$forceUpdate();
+
+                //第二种方法
+                this.$set(this.userInfo, "sex", "男");
+            }
+        }
+    })
+</script>
+
+</html>
+
+
+<!-- 
+    vue2核心是Object.defineProperty
+    vue3的核心是代理 ,代理可以实现全局的set/set/等很多操作
+
+
+
+ -->

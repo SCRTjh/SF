@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userName}}</h2>
+        <button type="button" @click="aaa">按钮1</button>
+        <button type="button" @click="userName = '王五'">按钮2</button>
+        <!-- 下面的写法是报错的 -->
+        <button type="button" @click="window.console.log(12312312)">按钮3</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userName: "张三"
+            }
+        },
+        methods: {
+            aaa() {
+                this.userName = "李四";
+            }
+        }
+
+    }).mount("#app");
+</script>
+
+</html>

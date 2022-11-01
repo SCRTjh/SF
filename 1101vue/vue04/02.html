@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试vue2</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2 v-show="!userInfo.flag">{{userInfo.userName}}</h2>
+        <button type="button" @click="aaa">按钮</button>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            userInfo: {
+                userName: "张三",
+                flag: 123
+            }
+        },
+        methods: {
+            aaa() {
+                //第一种情况
+                // delete this.userInfo.flag;
+                // this.$forceUpdate();
+
+                this.$delete(this.userInfo, "flag");
+            }
+        }
+    })
+</script>
+
+</html>
+
+
+<!-- 
+    vue2核心是Object.defineProperty
+    vue3的核心是代理 ,代理可以实现全局的set/set/等很多操作
+
+
+
+ -->

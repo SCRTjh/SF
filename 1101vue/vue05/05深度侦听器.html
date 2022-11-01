@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userInfo.userName}}</h2>
+        <button type="button" @click="userInfo.userName  = '小姐姐'">我要变化</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userInfo: {
+                    userName: "张珊"
+                }
+            }
+        },
+        watch: {
+            // userInfo(newValue,oldValue){
+            //     console.log("你发生变化了")
+            // }
+            userInfo: {
+                deep: true,
+                handler(newValue, oldValue) {
+                    console.log(newValue)
+                    console.log("我看你发生了变化了");
+                }
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

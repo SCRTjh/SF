@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userName}}</h2>
+        <button type="button" v-on:click="aaa">按钮1</button>
+        <!-- 因为事件绑定也是一个比较频繁的,所以也有简写的方法 -->
+        <button type="button" @click="aaa">按钮2</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userName: "张三"
+            }
+        },
+        // 负责接管页面的方法
+        methods: {
+            aaa() {
+                console.log(this.userName);
+            }
+        }
+
+    }).mount("#app");
+</script>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{girlName}}</h2>
+        <!-- 在接管区域里面，如果要做事件绑定，非常简单 -->
+        <button type="button" v-on:click="sayHello">按钮1</button>
+        <button type="button" v-on:click="abc(18)">按钮2</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        // 负责接管页面的数据
+        data() {
+            return {
+                girlName: "小红"
+            }
+        },
+        // 接管页面的事件方法
+        methods: {
+            sayHello() {
+                alert("你好啊，我在弹窗");
+            },
+            abc(age) {
+                alert(`我今年${age}岁了`)
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

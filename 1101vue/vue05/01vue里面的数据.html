@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue里面的数据</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userName}}</h2>
+        <hr>
+        <h2>男生：{{boyCount}}</h2>
+        <h2>女生：{{girlCount}}</h2>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        // 接管区域里面的数据来源于data
+        data() {
+            return {
+                userName: "张三",
+                stuList: [{
+                    stuName: "岳圣哲",
+                    sex: "男"
+                }, {
+                    stuName: "黄相立",
+                    sex: "男"
+                }, {
+                    stuName: "王杜娉",
+                    sex: "女"
+                }, {
+                    stuName: "马淑圆",
+                    sex: "女"
+                }, {
+                    stuName: "兰宏宇",
+                    sex: "男"
+                }]
+            }
+        },
+        computed: {
+            // 男生数量 
+            boyCount() {
+                let count = this.stuList.filter(item => item.sex === "男").length;
+                return count;
+            },
+            //女生数量 
+            girlCount() {
+                return this.stuList.filter(item => item.sex === "女").length;
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

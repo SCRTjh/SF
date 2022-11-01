@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for的遍历</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in stuList">{{item.stuName}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="({stuName,sex},index) in stuList">{{stuName}}---{{sex}}</li>
+        </ul>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                stuList: [{
+                    stuName: "张珊",
+                    sex: "女"
+                }, {
+                    stuName: "李四",
+                    sex: "男"
+                }, {
+                    stuName: "王五",
+                    sex: "男"
+                }]
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

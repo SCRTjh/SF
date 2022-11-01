@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的案例</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 在输入框里面输入内容以后,回车,添加在下面的列表里面 -->
+        <input type="text" v-model="txt">
+        <hr>
+        <ul>
+            <li v-for="(item,index) in stuList">{{item}}</li>
+        </ul>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                txt: "",
+                stuList: ["张三", "李四"]
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

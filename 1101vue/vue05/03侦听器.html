@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>侦听器</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userName}}</h2>
+        <button type="button" @click="userName='小姐姐'">改变userName的值</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userName: "张三",
+            }
+        },
+        // 监听器
+        watch: {
+            //你要监听谁，你就哪个数据的同名函数
+            userName(newValue, oldValue) {
+                console.log("你发生了变化");
+                // newValue代表更改之后的值  ，oldValue更改之前的值
+                console.log(newValue, oldValue);
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

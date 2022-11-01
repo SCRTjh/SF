@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>什么是计算属性</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userName}}</h2>
+        <hr>
+        <h2>{{aaa}}</h2>
+        <h2>{{bbb}}</h2>
+        <h2>{{ccc}}</h2>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userName: "张三",
+                age: 19
+            }
+        },
+        // 计算属性
+        computed: {
+            //每一个计算属性本质上面就是一个方法，只是这个方法有返回值了
+            aaa() {
+                return "hello world";
+            },
+            bbb() {
+                return ~~(Math.random() * 100)
+            },
+            ccc() {
+                return this.age + 20;
+            }
+
+        }
+    }).mount("#app");
+</script>
+
+</html>

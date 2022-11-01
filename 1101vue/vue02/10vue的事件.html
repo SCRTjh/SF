@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <button type="button" @click="aaa($event)">按钮</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        methods: {
+            aaa(event) {
+                console.log("你好");
+                console.log(event);
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
+
+<!-- 
+    dom的重点就2个,dom对象的与属性
+    DOM的事件
+        事件的绑件方式
+        事件的对象,或由事件对象引伸出的事件特性
+ -->

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1 v-show="0">这是网页的标题</h1>
+
+
+
+        <h2 v-show="true">今天是11月的第1天</h2>
+        <h2 v-show="false">天气也还不错</h2>
+        <h2 v-show="1>2">气温好像也不低,比较暖和</h2>
+        <h2 v-show="123">大家都在教室里面认真的听课</h2>
+        <h2 v-show="0">马淑圆很聪明</h2>
+        <!-- 大家要知道 6 个false的值是什么 -->
+        <h2 v-show="'0'">马淑圆很聪明,回答得非常好</h2>
+
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+
+    }).mount("#app")
+</script>
+
+</html>

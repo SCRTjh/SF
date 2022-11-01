@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for的遍历</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(item,index) in stus">{{item}}----{{index}}</li>
+        </ul>
+        <hr>
+        <ul>
+            <template v-for="(item,index) in stus">
+                <li v-if="index%2==0">{{item}}----{{index}}</li>
+            </template>
+        </ul>
+        <hr>
+        <ul>
+            <template v-for="(item,index)>
+                <li  in stus" v-if="item!='李四'">{{item}}---{{index}}</li>
+            </template>
+        </ul>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                stus: ["张三", "李四", "王五", "赵六", "田七"]
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

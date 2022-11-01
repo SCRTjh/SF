@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{girlName}}</h2>
+        <button type="button" v-on:click="test1">按钮1</button>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        // 负责接管页面的数据
+        data() {
+            return {
+                girlName: "小红"
+            }
+        },
+        // 接管页面的事件方法
+        methods: {
+            test1() {
+                //如果在事件方法里面,想拿到自己的data里面的数据 ，可以直接通过自己的对象来完成
+                // 完整的写法
+                console.log(this.$data.girlName);
+                console.log(this.girlName);  //它是一个代理
+                //当面试官问你，为什么this.girlName可以取到this.$data.girlName
+                //因为this[vue]对象它是一个proxy代理对象 ，内部的handler代理方法代理了
+                //$data的取值操作
+                console.log(this);
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

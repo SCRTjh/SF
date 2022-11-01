@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-for的遍历</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2 v-for="(value,key,index) in obj">{{value}}---{{key}}---{{index}}</h2>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                obj: {
+                    userName: "张三",
+                    sex: "男"
+                }
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

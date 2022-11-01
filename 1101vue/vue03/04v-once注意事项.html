@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-once</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="userName"> <button type="button" @click="flag=true">按钮</button>
+        <h2>{{userName}}---{{flag}}</h2>
+        <h2 v-once v-show="flag">{{userName}}</h2>
+    </div>
+    <!-- 当我们把输入的框的值改变 张珊123以后，再去点击按钮的时候 ，这个时候下面的h2的结果应该是A -->
+    <!-- 
+        把张珊改成张珊123以后，点击按钮，flag变为true下的h2标签 会出现什么结果 
+        A：不会做任何变化
+        B：会显示，显示内容是第一次的 张珊
+        C: 会显示，显示张珊123
+        D：程序报错
+    -->
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userName: "张珊",
+                flag: false
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

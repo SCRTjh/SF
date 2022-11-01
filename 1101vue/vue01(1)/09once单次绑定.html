@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单次绑定</title>
+</head>
+
+<body>
+    <!-- 创建接管区域 -->
+    <div id="app">
+        <input type="text" v-model="userName">
+        <h2>{{userName}}</h2>
+        <h2 v-once v-text="userName"></h2>
+        <h2  v-html="userName"></h2>
+        <hr>
+        <h1 v-once>{{userName}}</h1>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    // const app = Vue.createApp()
+    // app.mount("#app");
+    Vue.createApp({
+        data() {
+            return {
+                userName: "张珊"
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

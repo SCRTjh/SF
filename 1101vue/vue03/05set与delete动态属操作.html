@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态属性操作</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>{{userInfo.userName}}</h2>
+        <h2>{{userInfo.age}}</h2>
+        <h2>{{userInfo.sex}}</h2>
+        <button type="button" @click="aaa">设置sex为男</button>
+        <h2>{{x}}</h2>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                userInfo: {
+                    userName: "张三",
+                    age: 18
+                }
+            }
+        },
+        methods: {
+            aaa() {
+                this.userInfo.sex = "男";
+                this.x = 100;
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

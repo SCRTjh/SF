@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选座购票</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #app {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .title-bar {
+            background-color: tomato;
+            height: 45px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .content-box {
+            flex: 1;
+            overflow: auto;
+        }
+
+        .site-demo {
+            height: 50px;
+            border-bottom: 1px solid gray;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .site {
+            width: 30px;
+            height: 26px;
+            margin-right: 5px;
+        }
+
+        .site-1 {
+            background-image: url(img/01.png);
+        }
+
+        .site-2 {
+            background-image: url(img/02.png);
+        }
+
+        .site-3 {
+            background-image: url(img/03.png);
+        }
+
+        .row {
+            display: flex;
+            height: 50px;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="title-bar">选座购票</div>
+        <div class="content-box">
+            <div class="site-demo">
+                <!-- 30*26 -->
+                <div class="box">
+                    <div class="site site-2"></div>
+                    可选
+                </div>
+                <div class="box">
+                    <div class="site site-1"></div>
+                    已售
+                </div>
+                <div class="box">
+                    <div class="site site-3"></div>
+                    已选
+                </div>
+            </div>
+            <!-- 如何在这里 动态渲染二维数组，形成坐位信息-->
+            <div class="row">
+                <div class="site"></div>
+                <div class="site site-2"></div>
+                <div class="site site-2"></div>
+                <div class="site site-2"></div>
+                <div class="site"></div>
+                <div class="site site-1"></div>
+                <div class="site site-1"></div>
+                <div class="site site-1"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/sites.js"></script>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                sites: sites
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
+<!-- 
+    0 代表空的，这里没有坐倚
+    1,代表这个位置还没有卖，可选
+    2.代表当前这个位子 已经被卖了，已售，你不能选 
+
+
+ -->

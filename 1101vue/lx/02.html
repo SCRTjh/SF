@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>练习</title>
+    <style>
+        .page-title {
+            text-align: center;
+        }
+
+        .table1 {
+            border: 1px solid black;
+            width: 1200px;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        .table1 :is(td, th) {
+            border: 1px dotted black;
+            height: 35px;
+            padding: 5px;
+        }
+
+        .total-info {
+            font-weight: bold;
+            font-size: 22px;
+            width: 1200px;
+            margin: auto;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h2 class="page-title">购物车列表 </h2>
+        <table class="table1">
+            <tr>
+                <th>序号</th>
+                <th>商品名称</th>
+                <th>价格</th>
+                <th>数量</th>
+                <th>总价</th>
+            </tr>
+            <tr v-for="(item,index) in goodsList">
+                <td>{{index+1}}</td>
+                <td>{{item.goodsName}}</td>
+                <td>{{item.price}}</td>
+                <td>
+                    <!-- <button type="button" @click="item.count>1&&item.count--">-</button> -->
+                    <!-- <button type="button" @click="item.count--" v-if="item.count>1">-</button> -->
+                    <button type="button" @click="item.count--" :disabled="item.count<=1">-</button>
+                    {{item.count}}
+                    <button type="button" @click="item.count++">+</button>
+                </td>
+                <td>{{item.count*item.price}}</td>
+            </tr>
+        </table>
+        <div class="total-info">
+            商品总数：{{totalCount}}件，商品总金额{{totalMoney}}元
+        </div>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                // 商品数据
+                goodsList: [{
+                    goodsName: "iphone 14",
+                    price: 4999,
+                    count: 1
+                }, {
+                    goodsName: "充电宝",
+                    price: 129,
+                    count: 3
+                }, {
+                    goodsName: "数据线",
+                    price: 13,
+                    count: 2
+                }, {
+                    goodsName: "红米手机",
+                    price: 1999,
+                    count: 2
+                }]
+            }
+        },
+        computed: {
+            totalCount() {
+                let totalCount = this.goodsList.reduce((prev, {count}, index, _arr) => {
+                    return prev + count;
+                }, 0);
+                return totalCount;
+            },
+            totalMoney() {
+                let totalMoney = this.goodsList.reduce((prev, {price,count}, index, _arr) => {
+                    return prev + count * price
+                }, 0);
+                return totalMoney;
+            }
+        }
+    }).mount("#app");
+</script>
+
+</html>

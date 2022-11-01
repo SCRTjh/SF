@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旧版本的方式开发</title>
+</head>
+<body>
+    <h2>大家好，我是旧版本</h2>
+    <input type="text" id="txt">
+    <h1 id="aaa"></h1>
+</body>
+<script>
+    let aaa = document.querySelector("#aaa");
+    let txt = document.querySelector("#txt");
+    txt.addEventListener("input",function(){
+        aaa.innerHTML = txt.value;
+    })
+</script>
+</html>

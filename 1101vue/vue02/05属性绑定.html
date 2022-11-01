@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>属性绑定</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- {{}}相当于innerText -->
+        <!-- 如果要绑定一个属性 -->
+        <a v-bind:href="y">{{x}}</a>
+        <hr>
+        <a :href="y">{{x}}</a>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data(){
+            return {
+                x:"百度一下",
+                y:"https://www.baidu.com"
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>
