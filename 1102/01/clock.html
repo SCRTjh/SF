@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水晶管</title>
+    <style>
+        .box {
+            display: inline-block;
+            position: relative;
+            width: 150px;
+            height: 300px;
+            margin-right: 25px;
+        }
+
+        .colon {
+            display: inline-block;
+            height: 300px;
+            width: 30px;
+            margin: 20px;
+        }
+
+        .colon .circle {
+            margin-top: 100px;
+            background-color: black;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+        }
+
+        .bar {
+            position: absolute;
+            width: 150px;
+            height: 20px;
+            background-color: black;
+            /* border-radius: 10px; */
+            clip-path: polygon(0 0, 10px 0, 5px 10px, 10px 20px, 140px 20px, 145px 10px, 140px 0px, 0 0);
+        }
+
+        .bar-l1 {
+            transform-origin: left center;
+            transform: rotateZ(90deg);
+        }
+
+        .bar-l2 {
+            transform-origin: left center;
+            transform: translateY(150px) rotateZ(90deg);
+        }
+
+        .bar-r1 {
+            transform-origin: left center;
+            transform: translateX(150px) rotateZ(90deg);
+        }
+
+        .bar-r2 {
+            transform-origin: left center;
+            transform: translate(150px, 150px) rotateZ(90deg);
+        }
+
+        .bar-m {
+            transform: translateY(150px);
+        }
+
+        .bar-b {
+            transform: translateY(300px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main">
+            <crystalbar-num :timenum="num1"></crystalbar-num>
+            <crystalbar-num :timenum="num2"></crystalbar-num>
+            <div class="colon" v-show="curTime">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <crystalbar-num :timenum="num3"></crystalbar-num>
+            <crystalbar-num :timenum="num4"></crystalbar-num>
+            <div class="colon" v-show="curTime">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <crystalbar-num :timenum="num5"></crystalbar-num>
+            <crystalbar-num :timenum="num6"></crystalbar-num>
+        </div>
+        <button type="button" @click="timestart">开始</button>
+
+    </div>
+
+
+
+    <template id="temp1">
+        <div class="box">
+            <div class="bar bar-t" v-show="['0','2','3','5','6','7','8','9'].includes(timenum)"></div>
+            <div class="bar bar-m" v-show="['2','3','4','5','6','8','9'].includes(timenum)"></div>
+            <div class="bar bar-b" v-show="['0','2','3','5','6','8'].includes(timenum)"></div>
+            <div class="bar bar-l1" v-show="['0','4','5','6','8','9'].includes(timenum)"></div>
+            <div class="bar bar-l2" v-show="['0','2','6','8'].includes(timenum)"></div>
+            <div class="bar bar-r1" v-show="['0','1','2','3','4','7','8','9'].includes(timenum)"></div>
+            <div class="bar bar-r2" v-show="['0','1','3','4','5','6','7','8','9'].includes(timenum)"></div>
+        </div>
+    </template>
+
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                curTime: "",
+                num1: "",
+                num2: "",
+                num3: "",
+                num4: "",
+                num5: "",
+                num6: ""
+            }
+        },
+        methods: {
+            timestart() {
+                setInterval(() => {
+                    this.curTime = new Date().toLocaleTimeString();
+                }, 1000)
+            }
+        },
+        watch: {
+            curTime(newN, oldN) {
+                this.num1 = String(this.curTime).charAt(this.curTime.length - 8)
+                this.num2 = String(this.curTime).charAt(this.curTime.length - 7)
+                this.num3 = String(this.curTime).charAt(this.curTime.length - 5)
+                this.num4 = String(this.curTime).charAt(this.curTime.length - 4)
+                this.num5 = String(this.curTime).charAt(this.curTime.length - 2)
+                this.num6 = String(this.curTime).charAt(this.curTime.length - 1)
+            }
+        }
+    })
+
+    app.component("crystalbarNum", {
+        template: "#temp1",
+        props: ["timenum"]
+    });
+    app.mount("#app");
+
+</script>
+
+</html>

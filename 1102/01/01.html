@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue的classs样式绑定</title>
+    <style>
+        .ul1>li {
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid black;
+        }
+
+
+        .ul1>li.selected {
+            background-color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <ul class="ul1">
+            <li v-for="(item,index) in list" :class="[currentIndex==index?'selected':null]" @click="currentIndex=index">
+                {{item}}</li>
+        </ul>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                list: ["第一项", "第二项", "第三项"],
+                currentIndex: -1
+            }
+        }
+    }).mount("#app")
+</script>
+
+
+</html>
