@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/chooseSite.css">
+</head>
+
+<body>
+    <div id="app" class="flex-col">
+        <div class="nav-bar flex-row j-c a-c">
+            选座购票
+            <span class="back">返回</span>
+        </div>
+        <div class="content-box flex-1">
+            <div class="render-box1">
+
+                    <ul class="movie-info">
+                        <li class="movie-name">{{siteData.movieInfo.movie_name}} <span
+                                class="movie-price">￥{{siteData.price}}</span></li>
+                        <li class="movie-time">{{formatDataTime(siteData.plan_time)}}</li>
+                    </ul>
+                    <ul class="site-ul">
+                        <li>
+                            <div class="site-item site-0"></div>
+                            可选
+                        </li>
+                        <li>
+                            <div class="site-item site-2"></div>
+                            已售
+                        </li>
+                        <li>
+                            <div class="site-item site-3"></div>
+                            已选
+                        </li>
+                    </ul>
+                    <!-- 屏幕 -->
+                    <div class="screen-box">
+                    </div>
+                    <!-- 座位 -->
+                    <ul class="site-list">
+                        <li v-for="(rowi,index) in siteData.choose_site">
+                            <div class="site-item" v-for="(coli,index2) in rowi"  :class="[coli==0?'site-0':null,coli==2?'site-2':null],coli==3?'site-3':null" @click="choosesite(index,index2)" >
+                            </div>
+                        </li>
+
+                    </ul>
+                    <!-- 提交按钮 -->
+                    <div class="btn-box">
+                        <button :data-money="siteData.price*choosedsites.length" type="button" class="btn-submit-ticket" :disabled="!(choosedsites.length>=1)">选座购票</button>
+                    </div>
+
+                
+            </div>
+            <div class="choose-list">   
+                    <div class="choose-item" v-for="(item,index) in choosedsites">
+                        {{item}}
+                    </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+<script src="./js/jquery-3.6.1.js"></script>
+<!-- <script src="./js/choosesite.js"></script> -->
+<script src="./js/vue.global.js"></script>
+<script>
+
+    $.get("http://www.softeem.xin:9999" + "/plan-info/findById/" + 133, function (result) {
+        console.log(result);
+        if (result.status == "success") {
+            result.data.choose_site = JSON.parse(result.data.choose_site);
+            console.log(result.data);
+            var price = result.data.price;
+
+            const app = Vue.createApp({
+                data() {
+                    return {
+                        siteData: result.data,
+                        choosedsites:[]
+                        
+                    }
+                },
+                methods: {
+                    formatDataTime(oldTime) {
+                        var d = new Date(oldTime);
+
+                        var year = d.getFullYear();
+                        var month = (d.getMonth() + 1).toString().padStart(2, "0");
+                        var day = d.getDay().toString().padStart(2, "0");
+
+                        var hour = d.getHours().toString().padStart(2, "0");
+                        var minue = d.getMinutes().toString().padStart(2, "0");
+                        var second = d.getSeconds().toString().padStart(2, "0");
+
+                        return [year, month, day].join("-") + " " + [hour, minue, second].join(":");
+                    },
+                    choosesite(rowindex,colindex){
+                        if(this.choosedsites.length>=6&&this.siteData.choose_site[rowindex][colindex]==0){
+                            alert("最多买6张票")
+                        }else{
+                            let siteType=[0,3,0];
+                        console.log(this.siteData.choose_site[rowindex][colindex]);
+                            if(String(siteType.indexOf(this.siteData.choose_site[rowindex][colindex]))){
+                            this.siteData.choose_site[rowindex][colindex] =siteType[siteType.indexOf(this.siteData.choose_site[rowindex][colindex])+1];
+                            console.log(this.siteData.choose_site[rowindex][colindex]);
+                            if(this.siteData.choose_site[rowindex][colindex]==3){
+                                this.choosedsites.push(`第${rowindex+1}排第${colindex+1}座`);
+                            }else if(this.siteData.choose_site[rowindex][colindex]==0){
+                                this.choosedsites.splice(this.choosedsites.indexOf(`第${rowindex+1}排第${colindex+1}座`),1)
+                            }
+                        }
+                        }
+                        
+                        
+                    }
+                }
+
+            });
+            app.mount("#app");
+
+
+        } else {
+            console.log("请求数据失败")
+        }
+    })
+
+
+</script>
+
+</html>

@@ -1,0 +1,150 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+:root {
+    font-size: calc(100vw / 375 * 100);
+}
+
+body {
+    font-size: 16px;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+}
+
+
+/* 弹性盒子进行封装 */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.j-c {
+    justify-content: center;
+}
+
+.a-c {
+    align-items: center;
+}
+
+.j-s-a {
+    justify-content: space-around;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+
+
+
+
+
+#app {
+    --primaryColor: #f7504d;
+    --secondColor: #4791ff;
+    --successColor: #01bb84;
+    --splitColor: #e1e1e1;
+}
+
+
+
+
+
+.tab-bar {
+    height: .55rem;
+    box-shadow: 0px 0px .15rem .05rem lightgray;
+}
+
+.tab-bar>li {
+    height: 100%;
+    aspect-ratio: 1/1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: .14rem;
+}
+
+.tab-bar>li>.iconfont {
+    font-size: .28rem;
+}
+
+.tab-bar>li.active {
+    color: var(--primaryColor);
+}
+
+
+.nav-bar {
+    height: .45rem;
+    background-color: var(--primaryColor);
+    font-size: .18rem;
+    color: #fff;
+    position: relative;
+}
+
+.nav-bar>.icon-caidan {
+    font-size: .22rem;
+    position: absolute;
+    right: .1rem;
+    font-weight: normal;
+}
+
+
+
+
+/* 加载动画的样式 */
+
+.loading-box {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .14rem;
+    padding: .05rem;
+}
+
+.loading-box::before {
+    content: url("../img/profile_loading.gif");
+    margin-right: .1rem;
+}
+
+.loading-box::after {
+    content: "正在加载中...";
+}
+
+.loading-box[text]::after {
+    content: attr(text);
+}
+
+
+
+
+
+
+
+
+/* 媒体查询 */
+
+@media only screen and (min-width:768px) {
+    #app {
+        width: 750px;
+        margin: auto;
+    }
+
+    :root {
+        font-size: calc(768px / 375 * 100);
+    }
+
+}
