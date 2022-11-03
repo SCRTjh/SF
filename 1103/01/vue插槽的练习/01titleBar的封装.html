@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>titleBar的封装</title>
+    <link rel="stylesheet" href="./iconfont//iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .title-bar {
+            background-color: #008de1;
+            height: 45px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .left-back {
+            position: absolute;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .left-back>.icon-fanhui {
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .right-menu {
+            position: absolute;
+            right: 10px;
+        }
+
+        .right-menu .iconfont {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <title-bar :show-back="true">
+            点餐
+            <template #right>
+                <span class="iconfont icon-user"></span>
+            </template>
+        </title-bar>
+
+    </div>
+    <template id="temp1">
+        <div class="title-bar">
+            <div class="left-back" v-if="showBack">
+                <span class="iconfont icon-fanhui"></span>
+                返回
+            </div>
+            <slot></slot>
+            <div class="right-menu">
+                <slot name="right"></slot>
+            </div>
+        </div>
+    </template>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    const app = Vue.createApp({
+
+    });
+
+    app.component("title-bar", {
+        template: "#temp1",
+        props: {
+            showBack: {
+                type: Boolean,
+                default: false
+            }
+        }
+    });
+
+    app.mount("#app")
+</script>
+
+</html>

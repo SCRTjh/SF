@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电影列表</title>
+    <link rel="stylesheet" href="./js/element-plus/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-card>
+            <template #header>
+                <b>影片列表</b>
+            </template>
+            <el-form :inline="true">
+                <el-form-item label="影片名称">
+                    <el-input placeholder="影片名称" />
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary">查询</el-button>
+                    <el-button>新增影片</el-button>
+                </el-form-item>
+            </el-form>
+            <el-table border :data="listData" :height="600" :fit="true" :stripe="true"
+                :cell-style="{'text-align':'center'}">
+                <el-table-column label="ID" prop="id"></el-table-column>
+                <el-table-column label="电影名称" prop="movie_name"></el-table-column>
+                <el-table-column label="电影时长" prop="duration"></el-table-column>
+                <el-table-column label="电影图片">
+                    <template #default="{row,column,$index}">
+                        <el-image :src="baseURL+row.movie_pc" fit="cover" style="height:70px"
+                            :hide-on-click-modal="true" :preview-src-list="[baseURL+row.movie_pc]"
+                            :preview-teleported="true"></el-image>
+                    </template>
+                </el-table-column>
+                <el-table-column label="描述信息">
+                    <template #default="{row,column,$index}">
+                        {{txtEllipsis(row.movie_desc)}}
+                    </template>
+                </el-table-column>
+                <el-table-column label="上映时间">
+                    <template #default="{row,column,$index}">
+                        {{formatDataTime(row.publicTime)}}
+                    </template>
+                </el-table-column>
+                <el-table-column label="电影标签" prop="tags"></el-table-column>
+                <el-table-column label="主演人员" prop="role"></el-table-column>
+                <el-table-column label="电影评分" prop="movie_score"></el-table-column>
+                <el-table-column label="操作">
+                    <el-button type="warning">编辑</el-button>
+                    <el-button type="danger">删除</el-button>
+                </el-table-column>
+            </el-table>
+            <el-pagination background @current-change="handleCurrentChange" :current-page="pageIndex"
+                layout="prev, pager, next" :total="pageTotalCount" style="display:flex;justify-content: flex-end;">
+            </el-pagination>
+        </el-card>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<!-- 这个插件必须在vue的后面去导入 -->
+<script src="./js/element-plus/index.full.js"></script>
+<script src="./js/axios.js"></script>
+<script>
+    //18627104906
+    const app = Vue.createApp({
+
+        data() {
+            return {
+                baseURL: "http://www.softeem.xin:9999",
+                listData: [],
+                pageCount: 0,
+                pageEnd: 0,
+                pageIndex: 1,
+                pageStart: 1,
+                pageTotalCount: 0,
+            }
+        },
+        methods: {
+            async getByPageId() {
+                let res = await axios.get("http://www.softeem.xin:9999/movie-info/getClassicMovieByPage?pageIndex=1")
+                if (res.status == 200) {
+                    console.log(res);
+                    this.listData = res.data.data.listData;
+                    this.padStart = res.data.data.padStart;
+                    this.pageCount = res.data.data.pageCount;
+                    this.pageIndex = res.data.data.pageIndex;
+                    this.pageEnd = res.data.data.pageEnd;
+                    this.pageTotalCount = res.data.data.totalCount;
+                } else {
+                    console.log(res.status);
+                }
+
+            },
+            txtEllipsis(str, maxLength = 20) {
+                return str.substr(0, maxLength) + "...";
+            },
+            formatDataTime(oldTime) {
+                var d = new Date(oldTime);
+
+                var year = d.getFullYear();
+                var month = (d.getMonth() + 1).toString().padStart(2, "0");
+                var day = d.getDay().toString().padStart(2, "0");
+
+                var hour = d.getHours().toString().padStart(2, "0");
+                var minue = d.getMinutes().toString().padStart(2, "0");
+                var second = d.getSeconds().toString().padStart(2, "0");
+
+                return [year, month, day].join("-") + " " + [hour, minue, second].join(":");
+            },
+            handleCurrentChange(cur) {
+                this.pageIndex = cur;
+            }
+        },
+        created() {
+            this.getByPageId();
+        },
+    });
+
+    //加载ElementPlus框架
+    app.use(ElementPlus);
+    app.mount("#app");
+</script>
+
+</html>

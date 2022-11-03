@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>影厅列表</title>
+    <link rel="stylesheet" href="./js/element-plus/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-card>
+            <template #header>
+                <b>影厅列表</b>
+            </template>
+            <el-form :inline="true">
+                <el-form-item label="影厅名称">
+                    <el-input placeholder="请输入影厅名称" />
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary">查询</el-button>
+                </el-form-item>
+            </el-form>
+            <el-table border :data="listData" :height="600" :fit="true" :cell-style="{'text-align':'center'}">
+                <el-table-column label="ID" prop="id"></el-table-column>
+                <el-table-column label="影厅名称" prop="hall_name"></el-table-column>
+                <el-table-column label="电影标签">
+                    <template #default="{row,col,$index}">
+                        <el-tag v-for="(item,index) in parseArr(row.tags)" :type="index%2==0?'':'danger'"
+                            style="margin-right: 5px;">{{item}}
+                        </el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column label="总座位数">
+                    <template #default="{row,col,$index}">
+                        {{countSite(JSON.parse(row.sites).flat())}}
+                    </template>
+                </el-table-column>
+                <el-table-column label="地址" prop="address"></el-table-column>
+
+            </el-table>
+            <el-pagination background @current-change="handleCurrentChange" :current-page="pageIndex"
+                layout="prev, pager, next" :total="pageTotalCount" style="display:flex;justify-content: flex-end;">
+            </el-pagination>
+        </el-card>
+    </div>
+
+</body>
+<script src="./js/vue.global.js"></script>
+<!-- 这个插件必须在vue的后面去导入 -->
+<script src="./js/element-plus/index.full.js"></script>
+<script src="./js/axios.js"></script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                baseURL: "http://www.softeem.xin:9999",
+                listData: [],
+                pageCount: 0,
+                pageEnd: 0,
+                pageIndex: 1,
+                pageStart: 1,
+                pageTotalCount: 0,
+            }
+        },
+        methods: {
+            async getByPageId(pageindex = 1, hall_name = '') {
+                let res = await axios.get(`http://www.softeem.xin:9999/hall-info/getListByPage?pageIndex=${pageindex}&hall_name=${hall_name}`);
+                if (res.status == 200) {
+                    console.log(res);
+                    this.listData = res.data.data.listData;
+                    this.padStart = res.data.data.padStart;
+                    this.pageCount = res.data.data.pageCount;
+                    this.pageIndex = res.data.data.pageIndex;
+                    this.pageEnd = res.data.data.pageEnd;
+                    this.pageTotalCount = res.data.data.totalCount;
+                } else {
+                    console.log(res.status);
+                }
+            },
+            parseArr(str) {
+                return str.split(",");
+            },
+            countSite(arr) {
+                let count = 0;
+                arr.forEach(element => {
+                    if (element == 0) {
+                        count++;
+                    }
+                });
+                return count
+            },
+            handleCurrentChange(cur) {
+                this.pageIndex = cur;
+            }
+        },
+        watch: {
+            pageIndex(newN, oldN) {
+                this.getByPageId(this.pageIndex);
+            }
+        },
+        created() {
+            this.getByPageId();
+
+        },
+
+    });
+
+    app.use(ElementPlus);
+    app.mount("#app");
+
+</script>
+
+</html>

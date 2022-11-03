@@ -7,9 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水晶管</title>
     <style>
+        .main {
+            display: flex;
+        }
+
         .box {
-            display: inline-block;
-            position: relative;
+            /* display: inline-block; */
+            /* position: relative; */
             width: 150px;
             height: 300px;
             margin-right: 25px;
@@ -97,7 +101,7 @@
         <div class="box">
             <div class="bar bar-t" v-show="['0','2','3','5','6','7','8','9'].includes(timenum)"></div>
             <div class="bar bar-m" v-show="['2','3','4','5','6','8','9'].includes(timenum)"></div>
-            <div class="bar bar-b" v-show="['0','2','3','5','6','8'].includes(timenum)"></div>
+            <div class="bar bar-b" v-show="['0','2','3','5','6','8','9'].includes(timenum)"></div>
             <div class="bar bar-l1" v-show="['0','4','5','6','8','9'].includes(timenum)"></div>
             <div class="bar bar-l2" v-show="['0','2','6','8'].includes(timenum)"></div>
             <div class="bar bar-r1" v-show="['0','1','2','3','4','7','8','9'].includes(timenum)"></div>
