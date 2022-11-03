@@ -80,8 +80,8 @@
             }
         },
         methods: {
-            async getByPageId() {
-                let res = await axios.get("http://www.softeem.xin:9999/movie-info/getClassicMovieByPage?pageIndex=1")
+            async getByPageId(pageindex=1) {
+                let res = await axios.get(`http://www.softeem.xin:9999/movie-info/getClassicMovieByPage?pageIndex=${pageindex}`)
                 if (res.status == 200) {
                     console.log(res);
                     this.listData = res.data.data.listData;
@@ -100,19 +100,21 @@
             },
             formatDataTime(oldTime) {
                 var d = new Date(oldTime);
-
                 var year = d.getFullYear();
                 var month = (d.getMonth() + 1).toString().padStart(2, "0");
                 var day = d.getDay().toString().padStart(2, "0");
-
                 var hour = d.getHours().toString().padStart(2, "0");
                 var minue = d.getMinutes().toString().padStart(2, "0");
                 var second = d.getSeconds().toString().padStart(2, "0");
-
                 return [year, month, day].join("-") + " " + [hour, minue, second].join(":");
             },
             handleCurrentChange(cur) {
                 this.pageIndex = cur;
+            }
+        },
+        watch:{
+            pageIndex(newN,oldN){
+                this.getByPageId(newN);
             }
         },
         created() {
