@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .img-box {
+            width: 639px;
+            height: 426px;
+            border: 5px solid red;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-box>img {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .swiper-enter-from {
+            transform: translateX(100%);
+        }
+
+        .swiper-enter-to {
+            transform: translateX(0%);
+        }
+
+        .swiper-leave-from {
+            transform: translateX(0%);
+        }
+
+        .swiper-leave-to {
+            transform: translateX(-100%);
+        }
+
+        .swiper-enter-active,
+        .swiper-leave-active {
+            transition: all 0.5s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button type="button" @click="currentIndex--">上一张</button>
+        <button type="button" @click="currentIndex++">下一张</button>
+        <div class="img-box">
+            <transition-group name="swiper">
+                <img v-for="(item,index) in imglist" :src="item" v-show="currentIndex==index" :key="item">
+
+            </transition-group>
+        </div>
+    </div>
+
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                currentIndex: 0,
+                imglist: [
+                    "./img/item1.jpg"
+                    , "./img/item2.jpg"
+                    , "./img/item3.jpg"
+                    , "./img/item4.jpg"
+                ]
+            }
+        },
+        watch: {
+            currentIndex(newV, oldV) {
+                if (newV < 0) {
+                    this.currentIndex = 3;
+                } else if (newV > 3) {
+                    this.currentIndex = 0;
+                }
+            }
+        }
+    }).mount("#app")
+</script>
+
+</html>

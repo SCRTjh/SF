@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue内置过滤动画组件</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: deeppink;
+        }
+
+        .box-enter-from {
+            opacity: 0;
+        }
+
+        .box-enter-to {
+            opacity: 1;
+        }
+
+        .box-enter-active {
+            transition: all 2s linear;
+        }
+
+        .box-leave-from {
+            transform: scale(1);
+        }
+
+        .box-leave-to {
+            transform: scale(0);
+        }
+
+        .box-leave-active {
+            transition: all 5s linear;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <button type="button" @click="flag=!flag">切换</button>
+        <transition name="box">
+            <div class="box" v-show="flag"></div>
+            <div class="box2" v-show=""></div>
+        </transition>
+
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                flag: true
+            }
+        }
+    }).mount("#app")
+</script>
+
+
+</html>

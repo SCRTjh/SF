@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transition钩子函数</title>
+    <link rel="stylesheet" href="./css/animate.css">
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: deeppink;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="app">
+        <button type="button" @click="flag=!flag">切换</button>
+        <transition enter-active-class="animate__animated animate__bounceIn"
+            leave-active-class="animate__animated animate__rotateOut">
+            <div class="box" v-show="flag"></div>
+        </transition>
+    </div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                flag: true
+            }
+        },
+
+    }).mount("#app")
+</script>
+
+
+</html>

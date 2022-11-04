@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="button" @click="addItem" value="Add">
+        <ul>
+            <li v-for="(item, index) in list" :key="index"><input type="checkbox"> {{item}}</li>
+        </ul>
+    </div>
+
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                list: ['张三', '李四', '王五']
+            }
+        },
+        methods: {
+            addItem() {
+                this.list.unshift('tjh')
+            }
+        },
+    });
+
+    app.mount("#app");
+</script>
+
+</html>
