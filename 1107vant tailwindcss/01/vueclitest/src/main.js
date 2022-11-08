@@ -13,6 +13,7 @@ import "animate.css"
 
 import PageView from "./components/PageView.vue";
 import TitleBar from "./components/TitleBar.vue";
+import MyLoading from "./components/MyLoading.vue";
 
 
 
@@ -20,6 +21,7 @@ const app = createApp(App);
 
 app.component("page-view", PageView);
 app.component("title-bar", TitleBar);
+app.component("my-loading", MyLoading);
 
 app.provide("baseURL", "http://www.softeem.xin:9544")
 

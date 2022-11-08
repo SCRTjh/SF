@@ -51,7 +51,7 @@ const router = createRouter({
       component: Login
     },
     {
-      path: "/FoodDetail",
+      path: "/FoodDetail/:id",
       name: "FoodDetail",
       component: FoodDetail
     }

@@ -1,6 +1,6 @@
 <template>
     <div class="title-bar">
-        <div class="left-back" v-if="showBack">
+        <div class="left-back" v-if="showBack" @click="this.$router.back()">
             返回
         </div>
         <slot></slot>
