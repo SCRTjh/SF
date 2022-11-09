@@ -7,6 +7,7 @@ import Order from "../views/Order.vue"
 import Category from "../views/Category.vue"
 import ChooseFood from "../views/ChooseFood.vue"
 import FoodDetail from "../views/FoodDetail.vue"
+import Register from "../views/Register.vue"
 
 
 const router = createRouter({
@@ -54,7 +55,12 @@ const router = createRouter({
       path: "/FoodDetail/:id",
       name: "FoodDetail",
       component: FoodDetail
-    }
+    },
+    {
+      path: "/Register",
+      name: "Register",
+      component: Register
+    },
 
   ]
 })

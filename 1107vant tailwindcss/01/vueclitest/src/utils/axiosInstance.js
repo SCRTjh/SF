@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
     timeout: 5000
 })
 
-//添加拦截器
+//添加拦截器，取出data
 axiosInstance.interceptors.response.use(resp => {
     console.log("拦截");
     if (resp.data.status === "success") {
