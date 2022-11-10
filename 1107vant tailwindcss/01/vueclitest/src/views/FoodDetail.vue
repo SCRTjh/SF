@@ -280,7 +280,6 @@ export default {
         },
         //跳转购物车
         toShopCartList() {
-            console.log(111);
             if (this.loginUserInfo) {
                 this.$router.push({ name: "ShopCartList" })
             } else
