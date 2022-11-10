@@ -11,8 +11,8 @@
             <!-- 根据底边栏预留空位 -->
             <div class="flex-1 overflow-auto pb-[var(--van-action-bar-height)]" ref="foodDetailContent">
                 <!-- 运用List组件设置上拉加载 -->
-                <List v-model:loading="isLoading" :finished="finished" finished-text="没有更多了"
-                    @load="loadNextPageComment">
+                <List v-model:loading="isLoading" :finished="finished" finished-text="没有更多了" @load="loadNextPageComment"
+                    loading-text="正在加载...">
                     <div class="w-full h-[230px]">
                         <!-- 设置crossorigin来使html2canvas有效 -->
                         <img crossorigin="anonymous" v-lazy="baseURL + foodDetail.food_img"
@@ -58,11 +58,12 @@
 
             </div>
             <ActionBar>
-                <ActionBarIcon icon="cart-o" text="购物车" badge="0"></ActionBarIcon>
-                <ActionBarIcon icon="balance-o" text="金额" badge="0"></ActionBarIcon>
+                <ActionBarIcon icon="cart-o" text="购物车" :badge="totalCount"></ActionBarIcon>
+                <ActionBarIcon icon="balance-o" text="金额" :badge="totalPrice"></ActionBarIcon>
                 <ActionBarIcon icon="star" text="已收藏" color="#ff5500"></ActionBarIcon>
-                <ActionBarButton type="warning" text="加入购物车"></ActionBarButton>
-                <ActionBarButton type="danger" text="立即购买"></ActionBarButton>
+                <ActionBarButton :loading="isAddingShopCart" @click="addToShopCart" type="warning" text="加入购物车">
+                </ActionBarButton>
+                <ActionBarButton @click="toShopCartList" type="danger" text="立即购买"></ActionBarButton>
             </ActionBar>
         </my-loading>
     </page-view>
@@ -73,6 +74,7 @@
 <script>
 import { ActionBar, ActionBarIcon, ActionBarButton, Rate, List, Icon, ShareSheet, Toast, ImagePreview, Dialog } from 'vant';
 import API from '@/utils/API';
+import { mapGetters } from 'vuex';
 import { formatDateTime } from "@/utils/DateTimeUtils.js";
 //导入剪贴板插件
 import useClipboard from "vue-clipboard3";
@@ -94,6 +96,7 @@ export default {
             pageCount: null,
             //累计下一页
             commentInfoList: [],
+            //分享栏
             shareOptions: [
                 { name: "微信", icon: "wechat" },
                 { name: "微博", icon: "weibo" },
@@ -101,7 +104,13 @@ export default {
                 { name: "分享海报", icon: "poster" },
                 { name: "二维码", icon: "qrcode" },
             ],
-            showShare: false
+            showShare: false,
+            //购物车总计信息
+            totalPrice: 0,
+            totalCount: 0,
+            // 是否正在加入购物车
+            isAddingShopCart: false
+
         }
     },
     async created() {
@@ -110,18 +119,24 @@ export default {
         await this.findById(id);
         await this.getCommentInfoListByFid({ fid: id, pageIndex: this.pageIndex });
         console.log(this.$route.params.id);
+        if (this.loginUserInfo) {
+            await this.getMyShopCartTotalInfo()
+        }
     },
     computed: {
+        ...mapGetters(["loginUserInfo"]),
         //计算是否显示“没有更多了“
         finished() {
             return this.pageIndex >= this.pageCount;
         }
     },
     methods: {
+        //根据id请求数据
         async findById(id) {
             let result = await API.foodInfo.findById(id);
             this.foodDetail = result;
         },
+        //根据菜品id与页码获取评论数据
         async getCommentInfoListByFid({ fid, pageIndex }) {
             this.isLoading = true;
             let result = await API.commentInfo.getCommentInfoListByFid({ fid, pageIndex });
@@ -137,6 +152,7 @@ export default {
             this.pageIndex++;
             this.getCommentInfoListByFid({ fid: this.id, pageIndex: this.pageIndex });
         },
+        //分享栏选择事件
         shareOptionSelect(option, index) {
             if (index == 2) {
                 //点了复制链接
@@ -152,6 +168,7 @@ export default {
                 this.shareQRCode();
             }
         },
+        //分享二维码
         shareQRCode() {
             //url转base64转二维码
             QRCode.toDataURL(location.href).then((b64) => {
@@ -173,6 +190,7 @@ export default {
                 })
             });
         },
+        //分享海报
         async showFoodPost() {
             //播放音效
             // let audio = new Audio();
@@ -233,7 +251,48 @@ export default {
             }
 
         },
-        formatDateTime
+        formatDateTime,
+        //获取我的购物车的统计信息
+        async getMyShopCartTotalInfo() {
+            let result = await API.shopCart.getMyshopCartTotalInfo();
+            console.log(result);
+            this.totalCount = result.totalCount;
+            this.totalPrice = result.totalPrice;
+        },
+        //添加到购物车
+        async addToShopCart() {
+            if (this.loginUserInfo) {
+                this.isAddingShopCart = true;
+                await API.shopCart.addToShopCart({ fid: this.foodDetail.id, count: 1 })
+                Toast.success("加入购物车成功");
+                this.getMyShopCartTotalInfo();
+                this.isAddingShopCart = false;
+            } else {
+                Dialog.confirm({
+                    title: "提示",
+                    message: "你还没有登录，要去登录吗"
+                }).then(() => {
+                    this.$router.push({ name: "login" });
+                }).catch(() => {
+
+                })
+            }
+        },
+        //跳转购物车
+        toShopCartList() {
+            console.log(111);
+            if (this.loginUserInfo) {
+                this.$router.push({ name: "ShopCartList" })
+            } else
+                Dialog.confirm({
+                    title: "提示",
+                    message: "你还没有登录，要去登录吗"
+                }).then(() => {
+                    this.$router.push({ name: "login" });
+                }).catch(() => {
+
+                })
+        }
 
     },
     components: {

@@ -8,6 +8,7 @@ import Category from "../views/Category.vue"
 import ChooseFood from "../views/ChooseFood.vue"
 import FoodDetail from "../views/FoodDetail.vue"
 import Register from "../views/Register.vue"
+import ShopCartList from "../views/ShopCartList.vue";
 
 
 const router = createRouter({
@@ -16,7 +17,7 @@ const router = createRouter({
     {
       path: "/",
       redirect: {
-        name: "Home"
+        name: "ChooseFood"
       }
     },
     {
@@ -60,6 +61,11 @@ const router = createRouter({
       path: "/Register",
       name: "Register",
       component: Register
+    },
+    {
+      path: "/ShopCartList",
+      name: "ShopCartList",
+      component: ShopCartList
     },
 
   ]

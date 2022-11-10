@@ -10,7 +10,8 @@
                     <Field label="密码" type="password" v-model="loginUser.password" placeholder="请输入密码"
                         :rules="[{ required: true, message: '密码不能为空', trigger: 'onBlur' }]"></Field>
                     <div class="p-5">
-                        <Button type="primary" @click="checkLogin" round block size="small">登录</Button>
+                        <Button loading-text="正在登录" :loading="isSubmiting" loading-type="spinner" type="primary"
+                            @click="checkLogin" round block size="small">登录</Button>
                     </div>
                     <div class="text-center text-[12px] py-4">
                         还没有账号，去<router-link :to="{ name: 'Register' }" class="text-primaryColor">注册</router-link>
@@ -21,25 +22,49 @@
     </page-view>
 </template>
 <script>
-import { CellGroup, Form, Field, Button } from 'vant';
+import { CellGroup, Form, Field, Button, Toast } from 'vant';
+import API from '@/utils/API';
+import { mapActions } from "vuex"
+
 export default {
     name: "Login",
     data() {
         return {
             loginUser: {
-                zh: "",
-                password: ""
-            }
+                zh: '15172222222',
+                password: '123456',
+            },
+            isSubmiting: false
         }
     },
+    computed: {
+
+    },
     methods: {
+        ...mapActions(["setLoginUserInfo", "setToken"]),
         checkLogin() {
             //验证表单
             this.$refs.loginFormEL.validate().then(() => {
                 console.log('验证通过');
+                this.submitLoginForm()
             }).catch((error) => {
                 console.log('验证没通过');
             })
+        },
+        async submitLoginForm() {
+            this.isSubmiting = true;
+            try {
+                let result = await API.userInfo.checkLogin(this.loginUser);
+                Toast.success("登录成功");
+                console.log(result);
+                //设置全局状态（数据）
+                this.setLoginUserInfo(result.loginUserInfo);
+                this.setToken(result.token);
+                this.$router.back();
+            } catch (error) {
+                Toast.fail("登录失败");
+            }
+            this.isSubmiting = false;
         }
     },
     components: {

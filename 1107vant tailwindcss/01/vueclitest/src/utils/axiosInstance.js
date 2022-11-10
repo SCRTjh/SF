@@ -1,11 +1,21 @@
 import axios from "axios";
+import store from "@/store";
 
 const axiosInstance = axios.create({
     baseURL: "http://www.softeem.xin:9544",
     timeout: 5000
 })
 
-//添加拦截器，取出data
+
+// 添加请求拦截器
+axiosInstance.interceptors.request.use(config => {
+    console.log('请求拦截器');
+    config.headers["softeem_ele_client_token"] = store.getters.token;
+    return config;
+})
+
+
+//添加响应拦截器，取出data
 axiosInstance.interceptors.response.use(resp => {
     console.log("拦截");
     if (resp.data.status === "success") {
