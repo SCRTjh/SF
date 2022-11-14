@@ -1,5 +1,6 @@
 import axios from "axios";
 import store from "@/store";
+import router from "@/router";
 
 const axiosInstance = axios.create({
     baseURL: "http://www.softeem.xin:9544",
@@ -26,8 +27,12 @@ axiosInstance.interceptors.response.use(resp => {
         return Promise.reject(resp.data);
     }
 },
-    error => {
+    (error) => {
         //服务器错误
+        console.log(error);
+        // if (error.response.status == 403) {
+        //     router.replace({ name: 'Login' });
+        // }
         return Promise.reject(error);
     })
 

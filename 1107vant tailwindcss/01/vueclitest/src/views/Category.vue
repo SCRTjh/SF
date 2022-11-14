@@ -7,19 +7,20 @@
         <div class="flex-1 overflow-auto flex flex-row">
             <!-- 左侧导航栏 -->
             <div class="w-[90px] h-full overflow-auto">
-                <Sidebar class="w-full" v-model="selectedIndex" @change="slideBarChange">
+                <Sidebar class="w-full" v-model="selectedIndex" @change="sideBarChange">
                     <SidebarItem :title="item.category_name" v-for="item in allCategoryList" :key="item.id">
                     </SidebarItem>
                 </Sidebar>
             </div>
             <!-- 右侧菜品栏 -->
             <div class="flex-1 overflow-auto">
-                <IndexBar :index-list="[]" ref="rightIndexBar" :sticky="false">
+                <IndexBar :index-list="indexList" :sticky="false" ref="rightIndexBar" @change="indexBarChange">
                     <template v-for="(item, index) in allCategoryList" :key="item.id">
                         <IndexAnchor :index="index">
                             <div class="text-primaryColor py-[3px] text-[24px]">{{ item.category_name }}</div>
                         </IndexAnchor>
                         <div v-for="f_item in  item.foodInfoList" :key="f_item.id"
+                            @click="$router.push({ name: 'FoodDetail', params: { id: f_item.id } })"
                             class="h-[90px]  flex flex-row relative p-[4px] border-0 border-b border-solid border-gray-200">
                             <img v-lazy="baseURL + f_item.food_img" class="w-[110px] h-full" />
                             <ul class="flex-1 overflow-auto text-[12px] flex flex-col justify-between ml-[4px]">
@@ -50,19 +51,28 @@ export default {
             allCategoryList: []
         }
     },
+    computed: {
+        indexList() {
+            return this.allCategoryList.map((item, index) => {
+                return index
+            })
+        }
+    },
     created() {
         this.getAllCategory();
     },
     methods: {
         async getAllCategory() {
             let result = await API.categoryInfo.getAllList();
-            console.log(result);
             this.allCategoryList = result;
             this.isLoading = false;
         },
-        slideBarChange(index) {
-            this.$refs.rightIndexBar.scrollTo(index);
+        indexBarChange(index) {
+            this.selectedIndex = index;
         },
+        sideBarChange(index) {
+            this.$refs.rightIndexBar.scrollTo(index);
+        }
     },
     components: {
         Sidebar,
@@ -74,6 +84,8 @@ export default {
     }
 }
 </script>
-<style>
-
+<style scoped lang="scss">
+:deep(.van-index-bar__sidebar) {
+    display: none;
+}
 </style>

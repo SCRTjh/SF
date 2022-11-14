@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
-import Cookie from 'js-cookie';
 // 导入vuex持久化插件
 import createPersistedState from "vuex-persistedstate";
+import Cookie from 'js-cookie';
 
 export default createStore({
   // 声明全局状态(数据)
@@ -43,8 +43,6 @@ export default createStore({
       commit("setToken", null);
 
     }
-  },
-  modules: {
   },
   plugins: [
     // 使用vuex持久化插件,存储于sessionStorage

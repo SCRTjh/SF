@@ -1,7 +1,11 @@
 <template>
     <page-view class="home-page">
         <div class="content-box">
-            <router-view></router-view>
+            <router-view #default="{ Component }">
+                <keep-alive :include="keepAliveList">
+                    <component :is="Component"></component>
+                </keep-alive>
+            </router-view>
         </div>
         <ul class="tab-bar">
             <router-link :to="{ name: 'ChooseFood' }" custom #default="{ navigate, isActive }">
@@ -28,8 +32,14 @@
     </page-view>
 </template>
 <script>
+import keepAliveList from "../router/keepAliveList"
 export default {
-    name: "Home"
+    name: "Home",
+    data() {
+        return {
+            keepAliveList
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

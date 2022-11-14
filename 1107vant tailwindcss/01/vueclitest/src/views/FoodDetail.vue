@@ -118,7 +118,6 @@ export default {
         let id = this.$route.params.id;
         await this.findById(id);
         await this.getCommentInfoListByFid({ fid: id, pageIndex: this.pageIndex });
-        console.log(this.$route.params.id);
         if (this.loginUserInfo) {
             await this.getMyShopCartTotalInfo()
         }
@@ -140,7 +139,6 @@ export default {
         async getCommentInfoListByFid({ fid, pageIndex }) {
             this.isLoading = true;
             let result = await API.commentInfo.getCommentInfoListByFid({ fid, pageIndex });
-            console.log(result);
             this.pageIndex = result.pageIndex;
             this.pageCount = result.pageCount;
             //加载下一页
@@ -255,7 +253,6 @@ export default {
         //获取我的购物车的统计信息
         async getMyShopCartTotalInfo() {
             let result = await API.shopCart.getMyshopCartTotalInfo();
-            console.log(result);
             this.totalCount = result.totalCount;
             this.totalPrice = result.totalPrice;
         },
@@ -272,7 +269,7 @@ export default {
                     title: "提示",
                     message: "你还没有登录，要去登录吗"
                 }).then(() => {
-                    this.$router.push({ name: "login" });
+                    this.$router.push({ name: "Login" });
                 }).catch(() => {
 
                 })

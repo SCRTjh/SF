@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import store from "@/store";
 
 import Home from "../views/Home.vue"
 import Login from "../views/Login.vue"
@@ -9,6 +10,9 @@ import ChooseFood from "../views/ChooseFood.vue"
 import FoodDetail from "../views/FoodDetail.vue"
 import Register from "../views/Register.vue"
 import ShopCartList from "../views/ShopCartList.vue";
+import AddressInfoList from "../views/AddressInfoList.vue"
+import AddAddressInfo from "../views/AddAddressInfo.vue"
+import EditAddressInfo from "../views/EditAddressInfo.vue"
 
 
 const router = createRouter({
@@ -65,10 +69,51 @@ const router = createRouter({
     {
       path: "/ShopCartList",
       name: "ShopCartList",
-      component: ShopCartList
+      component: ShopCartList,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/AddressInfoList",
+      name: "AddressInfoList",
+      component: AddressInfoList,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/AddAddressInfo",
+      name: "AddAddressInfo",
+      component: AddAddressInfo,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: "/EditAddressInfo/:id",
+      name: "EditAddressInfo",
+      component: EditAddressInfo,
+      meta: {
+        requireAuth: true
+      }
     },
 
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  console.log("我是beforeEach");
+  if (to.meta.requireAuth == true) {
+    if (store.getters.loginUserInfo) {
+      next();
+    } else {
+
+      next({ name: 'Login' })
+    }
+  } else {
+    next();
+  }
+});
 
 export default router

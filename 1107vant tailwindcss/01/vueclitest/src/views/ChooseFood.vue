@@ -46,7 +46,6 @@ export default {
             this.isLoading = true;
             try {
                 let result = await API.foodInfo.getListByPage({ pageIndex });
-                console.log(result);
                 this.pageIndex = result.pageIndex;
                 this.listData.push(...result.listData);
                 this.pageCount = result.pageCount
