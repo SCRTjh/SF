@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ref数据</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>
+            {{nickName}}
+        </h2>
+        <button type="button" @click="nickName='bgg'">改变nickName</button>
+        <button type="button" @click="changeNickName">通过函数改变nickName</button>
+    </div>
+</body>
+<script type="module">
+    import { createApp, ref } from "./js/vue.esm-browser.js";
+    const app = createApp({
+        setup() {
+
+            const nickName = ref("张三");
+
+            const changeNickName = () => {
+                console.log(nickName);
+                nickName.value = "桃子";
+            }
+
+            return {
+                nickName,
+                changeNickName
+            }
+        }
+    })
+
+    app.mount("#app");
+</script>
+
+</html>

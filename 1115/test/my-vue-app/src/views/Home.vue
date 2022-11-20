@@ -1,49 +1,44 @@
 <template>
     <page-view class="home-page">
         <div class="content-box">
-            <router-view #default="{ Component }">
-                <keep-alive :include="keepAliveList">
-                    <component :is="Component"></component>
-                </keep-alive>
-            </router-view>
+            <router-view></router-view>
         </div>
-        <!-- 底边导航栏 -->
-        <ul class="tab-bar">
+        <div class="tab-bar">
             <router-link :to="{ name: 'ChooseFood' }" custom #default="{ navigate, isActive }">
                 <li @click="navigate" :class="{ selected: isActive }">点餐
-                    <span class="iconfont icon-dropbox"></span>
+
                 </li>
             </router-link>
             <router-link :to="{ name: 'Order' }" custom #default="{ navigate, isActive }">
                 <li @click="navigate" :class="{ selected: isActive }">订单
-                    <span class="iconfont icon-layout-fill"></span>
+
                 </li>
             </router-link>
             <router-link :to="{ name: 'Category' }" custom #default="{ navigate, isActive }">
                 <li @click="navigate" :class="{ selected: isActive }">分类
-                    <span class="iconfont icon-tag-fill"></span>
+
                 </li>
             </router-link>
             <router-link :to="{ name: 'My' }" custom #default="{ navigate, isActive }">
                 <li @click="navigate" :class="{ selected: isActive }">我的
-                    <span class="iconfont icon-user"></span>
+
                 </li>
             </router-link>
-        </ul>
+        </div>
+
     </page-view>
+
 </template>
-<script>
-import keepAliveList from "../router/keepAliveList"
-export default {
-    name: "Home",
-    data() {
-        return {
-            keepAliveList
-        }
-    }
-}
+<script setup>
+import pageView from "../components/PageView.vue";
+
+
+
+
+
+
 </script>
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "../assets/scss/comm.scss";
 
 .home-page {
@@ -75,7 +70,7 @@ export default {
     }
 
     & .selected {
-        color: $primaryColor;
+        color: skyblue;
     }
 
     & .iconfont {

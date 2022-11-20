@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ref数据</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2 @click="userInfo.userName='橘子'">昵称：{{userInfo.userName}}</h2>
+        <h2 @click="userInfo.age=12">年龄：{{userInfo.age}}</h2>
+        <button type="button" @click="changeUserInfo">按钮</button>
+    </div>
+</body>
+<script type="module">
+    import { createApp, ref } from "./js/vue.esm-browser.js";
+    const app = createApp({
+        setup() {
+            const userInfo = ref({
+                userName: 'zs',
+                age: 18
+            })
+
+            const changeUserInfo = () => {
+                userInfo.value.userName = {
+                    userName: "改栈",
+                    age: 22
+                }
+            }
+
+            return {
+                userInfo,
+                changeUserInfo
+            }
+        }
+    })
+
+    app.mount("#app");
+</script>
+
+</html>

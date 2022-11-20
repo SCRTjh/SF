@@ -102,6 +102,8 @@ const router = createRouter({
   ]
 })
 
+
+//导航拦截
 router.beforeEach((to, from, next) => {
   console.log("我是beforeEach");
   if (to.meta.requireAuth == true) {

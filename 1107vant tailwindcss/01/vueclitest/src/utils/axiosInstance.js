@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 })
 
 
-// 添加请求拦截器
+// 添加请求拦截器,给请求头添加token
 axiosInstance.interceptors.request.use(config => {
     console.log('请求拦截器');
     config.headers["softeem_ele_client_token"] = store.getters.token;
