@@ -13,8 +13,9 @@ export const mainStore = defineStore("main", {
     state() {
         return {
             token: null,
-            loginUserinfo: null,
-            isCollapse: false
+            loginUserInfo: null,
+            isCollapse: false,
+            historyList: []
         }
     },
     //没有mutation,省略了
@@ -22,11 +23,27 @@ export const mainStore = defineStore("main", {
         setToken(token) {
             this.token = token;
         },
-        setLoginUserInfo(loginUserinfo) {
-            this.loginUserinfo = loginUserinfo;
+        setLoginUserInfo(loginUserInfo) {
+            this.loginUserInfo = loginUserInfo;
         },
         setIsCollapse(flag) {
             this.isCollapse = flag;
+        },
+        logOut() {
+            this.token = null,
+                this.loginUserInfo = null;
+        },
+        addHistory(item) {
+            let index = this.historyList.findIndex(_item => _item.routerName === item.routerName);
+            if (index === -1) {
+                this.historyList.push(item)
+            }
+        },
+        removeHistoryByRouterName(routeName) {
+            let index = this.historyList.findIndex(item => item.routerName === routeName);
+            if (index != -1) {
+                this.historyList.splice(index, 1);
+            }
         }
     },
     persist: {
@@ -36,6 +53,7 @@ export const mainStore = defineStore("main", {
             setItem: (key, value) => cache.set(key, value, { exp: 60 * 60 * 24 }),
             removeItem: key => cache.delete(key),
             clear: () => cache.clear()
-        }
+        },
+        paths: ["token", "loginUserInfo"]
     }
 })

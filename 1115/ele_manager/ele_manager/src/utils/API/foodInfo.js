@@ -26,6 +26,30 @@ const foodInfo = {
             }
 
         })
+    },
+    add({ food_name, price, cid, food_desc, food_img, weight }) {
+        return axiosInstance.post("/foodInfo/add", {
+            food_name, price, cid, food_desc, food_img, weight
+        })
+    },
+    deleteById({ id }) {
+        return axiosInstance.get("foodInfo/deleteById", {
+            params: {
+                id
+            }
+        })
+    },
+    findById(id) {
+        return axiosInstance.get("/foodInfo/findById", {
+            params: {
+                id
+            }
+        })
+    },
+    update({ id, food_name, price, cid, food_desc, food_img, weight }) {
+        return axiosInstance.post("foodInfo/update", {
+            id, food_name, price, cid, food_desc, food_img, weight
+        })
     }
 }
 

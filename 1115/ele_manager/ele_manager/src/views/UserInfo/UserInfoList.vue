@@ -40,15 +40,19 @@
                             </div>
                         </template>
                     </el-table-column>
-                    <el-table-column label="id" prop="id" width="50"></el-table-column>
-                    <el-table-column label="昵称" prop="nickName" width="70"></el-table-column>
+                    <el-table-column label="id" prop="id" width="80" align="center"></el-table-column>
+                    <el-table-column label="昵称" prop="nickName" align="center"></el-table-column>
                     <el-table-column label="性别" prop="user_sex" width="70" align="center">
                     </el-table-column>
                     <el-table-column label="手机号" align="center" prop="user_phone"></el-table-column>
                     <el-table-column label="邮箱" prop="user_email" align="center"></el-table-column>
-                    <el-table-column label="操作" width="150">
+                    <el-table-column label="操作" width="100">
                         <template #default="{ row }">
-                            <el-button type="danger" size="small" @click="deleteUserInfo(row.id)">删除</el-button>
+                            <el-popconfirm title="你确定要删除" @confirm="deleteUserInfo(row.id)">
+                                <template #reference>
+                                    <el-button type="danger" size="small">删除</el-button>
+                                </template>
+                            </el-popconfirm>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -70,6 +74,7 @@
 import { reactive, onMounted, inject, ref } from "vue"
 import { Search } from "@element-plus/icons-vue";
 import API from "../../utils/API";
+import { ElMessage } from "element-plus";
 
 
 
@@ -115,8 +120,14 @@ const queryData = () => {
 }
 
 const deleteUserInfo = (id) => {
-    API.userInfo.deleteUserInfoItem({ id });
-    queryData();
+    API.userInfo.deleteUserInfoItem({ id })
+        .then(() => {
+            ElMessage.success("删除成功");
+            queryData();
+        }).catch(error => {
+            ElMessage.fail("删除失败")
+            console.log(error);
+        })
 
 }
 

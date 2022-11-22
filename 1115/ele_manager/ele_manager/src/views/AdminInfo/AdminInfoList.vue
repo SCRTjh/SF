@@ -54,7 +54,8 @@
                     </el-table-column>
                     <el-table-column label="操作" width="150">
                         <template #default="{ row }">
-                            <el-button type="info" size="small">编辑</el-button>
+                            <el-button type="info" size="small"
+                                @click="$router.push({ name: 'EditAdminInfo', params: { id: row.id } })">编辑</el-button>
                             <el-button type="danger" size="small" @click="deleteAdminInfo(row.id)">删除</el-button>
                         </template>
                     </el-table-column>

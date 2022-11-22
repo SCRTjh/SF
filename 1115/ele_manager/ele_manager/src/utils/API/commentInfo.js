@@ -14,6 +14,20 @@ const commentInfo = {
                 id
             }
         })
+    },
+    getById({ fid, pageIndex = 1 }) {
+        return axiosInstance.get("/commentInfo/getCommentInfoListByFid", {
+            params: {
+                fid, pageIndex
+            }
+        })
+    },
+    setCommentShowById({ id }) {
+        return axiosInstance.get("/commentInfo/setCommentShowById", {
+            params: {
+                id
+            }
+        })
     }
 }
 

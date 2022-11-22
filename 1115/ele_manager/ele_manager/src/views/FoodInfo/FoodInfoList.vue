@@ -20,7 +20,8 @@
                         </el-icon>
                         查询
                     </el-button>
-                    <el-button plain type="info" :icon="CirclePlus">新增菜品</el-button>
+                    <el-button plain @click="$router.push({ name: 'AddFoodInfo' })" type="info" :icon="CirclePlus">新增菜品
+                    </el-button>
                 </el-form-item>
             </el-form>
             <div v-loading="isLoading">
@@ -60,9 +61,16 @@
                         </template>
                     </el-table-column>
                     <el-table-column label="操作" width="150">
-                        <template #default>
-                            <el-button type="warning" size="small">编辑</el-button>
-                            <el-button type="danger" size="small">删除</el-button>
+                        <template #default="{ row }">
+                            <el-button type="warning" size="small"
+                                @click="$router.push({ name: 'EditFoodInfo', params: { id: row.id } })">编辑
+                            </el-button>
+                            <el-popconfirm title="你确定要删除吗" @confirm="deleteCurrentItem(row.id)">
+                                <template #reference>
+                                    <el-button :loading="isLoading" type="danger" size="small">删除
+                                    </el-button>
+                                </template>
+                            </el-popconfirm>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -85,7 +93,7 @@ import { reactive, onMounted, inject, ref } from "vue"
 import { Search, CirclePlus } from "@element-plus/icons-vue";
 import API from "../../utils/API";
 import { txtEllipsis } from "@/utils/StringUtils.js"
-
+import { ElNotification } from "element-plus";
 
 const baseURL = inject("baseURL");
 
@@ -132,6 +140,25 @@ const currentChange = (index) => {
 const weightChange = (weight, id) => {
     console.log('设置权重');
     API.foodInfo.setFoodInfoWeight({ weight, id });
+}
+
+const deleteCurrentItem = (id) => {
+    isLoading.value = true;
+    API.foodInfo.deleteById({ id })
+        .then(result => {
+            ElNotification({
+                type: "success",
+                title: "提示",
+                message: "删除成功"
+            })
+            console.log('删除成功');
+            queryData();
+
+        }).catch(error => {
+            console.log(error);
+        }).finally(() => {
+            isLoading.value = false;
+        })
 }
 
 

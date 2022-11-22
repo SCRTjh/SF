@@ -12,6 +12,13 @@ const orderInfo = {
                 order_status
             }
         })
+    },
+    updateToDeliver({ id }) {
+        return axiosInstance.get("/orderInfo/updateOrderToDeliver?id=454", {
+            params: {
+                id
+            }
+        })
     }
 
 }

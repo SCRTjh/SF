@@ -32,6 +32,40 @@
             <div v-loading="isLoading">
                 <!-- 展示数据 -->
                 <el-table max-height="500" :data="resultData.listData" class="border stripe">
+                    <el-table-column type="expand" align="center">
+                        <template #default="{ row }">
+                            <el-descriptions label-class-name="my-label" style="color:#409eff" :column="3" border>
+                                <template #title>
+                                    <h3 class="text-primaryColor ml-[10px]">客户信息</h3>
+                                </template>
+                                <el-descriptions-item label="用户昵称">{{ row.userInfo.nickName }}
+                                </el-descriptions-item>
+                                <el-descriptions-item label="性别">{{ row.userInfo.user_sex }}
+                                </el-descriptions-item>
+                                <el-descriptions-item label="手机号">{{ row.userInfo.user_phone }}
+                                </el-descriptions-item>
+                                <el-descriptions-item label="邮箱">
+                                    {{ row.userInfo.user_email }}
+                                </el-descriptions-item>
+                                <el-descriptions-item label="本次收获地址">{{ row.addressInfo.address }}
+                                </el-descriptions-item>
+                            </el-descriptions>
+                            <el-descriptions label-class-name="my-label" style="color:#409eff" :column="3" border>
+                                <template #title>
+                                    <h3 class="text-primaryColor ml-[10px]">订单详情</h3>
+                                </template>
+                                <template v-for="item in row.orderDetailList" :key="item.id">
+                                    <el-descriptions-item label="菜品名称">{{ item.foodInfo.food_name }}
+                                    </el-descriptions-item>
+                                    <el-descriptions-item label="单价">{{ item.foodInfo.price }}
+                                    </el-descriptions-item>
+                                    <el-descriptions-item label="数量">{{ item.count }}
+                                    </el-descriptions-item>
+                                </template>
+
+                            </el-descriptions>
+                        </template>
+                    </el-table-column>
                     <el-table-column label="id" prop="id" width="80"></el-table-column>
                     <el-table-column label="用户编号" prop="userInfo.id" width="80"></el-table-column>
                     <el-table-column label="订单生成时间" align="center">
@@ -57,7 +91,9 @@
                     </el-table-column>
                     <el-table-column label="操作" width="150">
                         <template #default="{ row }">
-                            <el-button type="primary" size="small" :disabled="true">发货</el-button>
+                            <el-button type="primary" size="small" :loading="isLoading"
+                                @click="updateOderToDeliver({ id: row.id })" :disabled="row.order_status != '已付款'">发货
+                            </el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -80,6 +116,7 @@ import { reactive, onMounted, ref } from "vue"
 import { Search } from "@element-plus/icons-vue";
 import API from "../../utils/API";
 import { formatDateTime } from "../../utils/DateTimeUtils";
+import { ElNotification } from "element-plus";
 
 
 
@@ -120,6 +157,29 @@ const queryData = () => {
             resultData.pageEnd = result.pageEnd;
 
         }).catch(error => {
+            console.log(error);
+        }).finally(() => {
+            isLoading.value = false;
+        })
+}
+
+const updateOderToDeliver = ({ id }) => {
+    isLoading.value = true;
+    API.orderInfo.updateToDeliver({ id })
+        .then(result => {
+            console.log(result);
+            ElNotification({
+                type: "success",
+                title: "提示",
+                message: "发货成功"
+            })
+            queryData();
+        }).catch(error => {
+            ElNotification({
+                type: "error",
+                title: "提示",
+                message: "发货失败"
+            })
             console.log(error);
         }).finally(() => {
             isLoading.value = false;

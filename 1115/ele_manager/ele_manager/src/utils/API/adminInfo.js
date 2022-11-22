@@ -25,6 +25,23 @@ const adminInfo = {
                 id
             }
         })
+    },
+    add({ admin_name, admin_pwd, admin_sex, admin_tel, admin_email, admin_photo, admin_type }) {
+        return axiosInstance.post("/adminInfo/add", {
+            admin_name, admin_pwd, admin_sex, admin_tel, admin_email, admin_photo, admin_type
+        })
+    },
+    findById({ id }) {
+        return axiosInstance.get("/adminInfo/findById", {
+            params: {
+                id
+            }
+        })
+    },
+    update({ admin_name, admin_pwd, admin_sex, admin_tel, admin_email, admin_photo, admin_type, id }) {
+        return axiosInstance.post("/adminInfo/update", {
+            admin_name, admin_pwd, admin_sex, admin_tel, admin_email, admin_photo, admin_type, id
+        })
     }
 }
 

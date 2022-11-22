@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "../router";
 import { mainStore } from "../store";
 
 const axiosInstance = axios.create({
@@ -10,7 +11,6 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(config => {
     const store = mainStore();
-    console.log(store.token);
     config.headers["softeem_ele_admin_token"] = store.token;
     return config
 })
@@ -30,6 +30,11 @@ axiosInstance.interceptors.response.use(resp => {
 },
     error => {
         console.log(error);
+        if (error.response.status === 403) {
+            router.replace({
+                name: 'Login'
+            })
+        }
         return Promise.reject(error);
     }
 

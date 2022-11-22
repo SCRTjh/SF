@@ -1,6 +1,6 @@
 <template>
     <el-menu background-color="#304156" text-color="#ffffff" class="el-menu-vertical-demo" :unique-opened="true"
-        :router="true" :collapse="isCollapse">
+        :router="true" :collapse="isCollapse" :default-active="$router.fullPath">
         <el-menu-item class="bg-[#222e3d] font-bold">
             <el-icon size="28px" class="is-loading">
                 <Loading />
@@ -34,7 +34,7 @@
                 </el-icon>
                 <span>菜品名称</span>
             </template>
-            <el-menu-item index="3">
+            <el-menu-item index="/Manager/AddFoodInfo">
                 <el-icon>
                     <Menu />
                 </el-icon>
@@ -111,7 +111,7 @@
                 </el-icon>
                 <span>管理员信息</span>
             </template>
-            <el-menu-item index="9">
+            <el-menu-item index="/Manager/AddAdminInfo">
                 <el-icon>
                     <Menu />
                 </el-icon>
@@ -145,8 +145,8 @@ import {
     Tools,
     Loading
 } from '@element-plus/icons-vue';
-
 import { mainStore, } from "../store";
+
 const store = mainStore();
 
 

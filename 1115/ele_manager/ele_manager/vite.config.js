@@ -11,5 +11,6 @@ export default defineConfig({
       find: '@',
       replacement: path.join(__dirname, "./src")
     }]
-  }
+  },
+  base: "./"
 })

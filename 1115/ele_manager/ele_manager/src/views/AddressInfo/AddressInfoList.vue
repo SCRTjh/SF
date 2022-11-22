@@ -25,15 +25,20 @@
             <div v-loading="isLoading">
                 <!-- 展示数据 -->
                 <el-table max-height="500" :data="resultData.listData" class="border stripe">
-                    <el-table-column label="id" prop="id" width="50"></el-table-column>
-                    <el-table-column label="所属用户" prop="userInfo.nickName" width="70"></el-table-column>
-                    <el-table-column label="手机号" prop="phone"></el-table-column>
+
+                    <el-table-column label="id" prop="id" width="80" align="center"></el-table-column>
+                    <el-table-column label="所属用户" prop="userInfo.nickName" width="100" align="center"></el-table-column>
+                    <el-table-column label="手机号" prop="phone" align="center"></el-table-column>
                     <el-table-column label="地址" prop="address" align="center"></el-table-column>
                     <el-table-column label="联系人" prop="person_name" align="center"></el-table-column>
                     <el-table-column label="标签" prop="tag" align="center"></el-table-column>
                     <el-table-column label="操作" width="150">
                         <template #default="{ row }">
-                            <el-button type="danger" size="small" @click="deleteAddressInfo(row.id)">删除</el-button>
+                            <el-popconfirm @confirm="deleteAddressInfo(row.id)" title="你确定要删除?">
+                                <template #reference>
+                                    <el-button type="danger" size="small">删除</el-button>
+                                </template>
+                            </el-popconfirm>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -52,9 +57,11 @@
     </page-view>
 </template>
 <script setup>
-import { reactive, onMounted, inject, ref } from "vue"
+import { reactive, onMounted, ref } from "vue"
 import { Search } from "@element-plus/icons-vue";
 import API from "../../utils/API";
+import { ElMessage } from "element-plus";
+import userInfo from "../../utils/API/userInfo";
 
 
 
@@ -98,13 +105,17 @@ const queryData = () => {
 }
 
 const deleteAddressInfo = (id) => {
-    API.addressInfo.deleteById({ id });
-    queryData();
+    API.addressInfo.deleteById({ id })
+        .then(() => {
+            ElMessage.success("删除成功");
+            queryData();
+        }).catch((error) => {
+            ElMessage.fail("删除失败");
+        })
 
 }
 
 const currentChange = (index) => {
-    console.log(index);
     queryFormData.pageIndex = index;
     queryData();
 }

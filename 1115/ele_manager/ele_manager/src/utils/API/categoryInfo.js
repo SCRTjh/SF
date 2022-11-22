@@ -22,6 +22,21 @@ const categoryInfo = {
                 category_name
             }
         })
+    },
+    getAllList() {
+        return axiosInstance.get("/categoryInfo/getAllList")
+    },
+    update({ id, category_name }) {
+        return axiosInstance.post("/categoryInfo/update", {
+            id, category_name
+        })
+    },
+    getById({ id }) {
+        return axiosInstance.get("categoryInfo/findById", {
+            params: {
+                id
+            }
+        })
     }
 }
 
