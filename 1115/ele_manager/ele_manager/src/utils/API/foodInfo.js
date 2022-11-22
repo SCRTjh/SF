@@ -27,11 +27,21 @@ const foodInfo = {
 
         })
     },
+    /**
+     * 新增菜品信息
+     * @param {{ food_name, price, cid, food_desc, food_img, weight }} param0 
+     * @returns {Promise<Object>}
+     */
     add({ food_name, price, cid, food_desc, food_img, weight }) {
         return axiosInstance.post("/foodInfo/add", {
             food_name, price, cid, food_desc, food_img, weight
         })
     },
+    /**
+     * 根据id删除菜品信息
+     * @param {{id}} param0 
+     * @returns {Promise<Object>}
+     */
     deleteById({ id }) {
         return axiosInstance.get("foodInfo/deleteById", {
             params: {
@@ -39,6 +49,11 @@ const foodInfo = {
             }
         })
     },
+    /**
+     * 根据id获取菜品信息
+     * @param {{id}} id 
+     * @returns {Promise<Object>}
+     */
     findById(id) {
         return axiosInstance.get("/foodInfo/findById", {
             params: {
@@ -46,6 +61,11 @@ const foodInfo = {
             }
         })
     },
+    /**
+     * 新增菜品信息
+     * @param {{ id, food_name, price, cid, food_desc, food_img, weight }} param0 
+     * @returns {Promise<Object>}
+     */
     update({ id, food_name, price, cid, food_desc, food_img, weight }) {
         return axiosInstance.post("foodInfo/update", {
             id, food_name, price, cid, food_desc, food_img, weight

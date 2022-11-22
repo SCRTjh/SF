@@ -16,7 +16,7 @@
             </template>
             <el-menu-item index="/Manager/AddCategoryInfo">
                 <el-icon>
-                    <Menu />
+                    <Plus />
                 </el-icon>
                 <template #title>新增分类</template>
             </el-menu-item>
@@ -36,7 +36,7 @@
             </template>
             <el-menu-item index="/Manager/AddFoodInfo">
                 <el-icon>
-                    <Menu />
+                    <Plus />
                 </el-icon>
                 <template #title>新增菜品</template>
             </el-menu-item>
@@ -117,12 +117,12 @@
                 </el-icon>
                 <template #title>新增管理员</template>
             </el-menu-item>
-            <el-menu-item index="10">
+            <!-- <el-menu-item index="10">
                 <el-icon>
                     <Menu />
                 </el-icon>
                 <template #title>修改密码</template>
-            </el-menu-item>
+            </el-menu-item> -->
             <el-menu-item index="/Manager/AdminInfoList">
                 <el-icon>
                     <Menu />
@@ -143,7 +143,8 @@ import {
     Comment,
     Platform,
     Tools,
-    Loading
+    Loading,
+    Plus
 } from '@element-plus/icons-vue';
 import { mainStore, } from "../store";
 

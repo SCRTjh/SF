@@ -12,17 +12,13 @@ import "animate.css";
 import "element-plus/dist/index.css"
 
 
-
-
-
-
 import PageView from "./components/PageView.vue";
 
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(PiniaPluginPersistedState);
-
 app.use(pinia);
+
 
 app.component("page-view", PageView);
 app.provide("baseURL", baseURL);

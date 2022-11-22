@@ -5,6 +5,7 @@ import categoryInfo from "./categoryInfo";
 import addressInfo from "./addressInfo";
 import orderInfo from "./orderInfo";
 import commentInfo from "./commentInfo";
+import dataView from "./dataView";
 
 
 
@@ -21,5 +22,6 @@ export default {
     categoryInfo,
     addressInfo,
     orderInfo,
-    commentInfo
+    commentInfo,
+    dataView
 }

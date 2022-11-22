@@ -27,7 +27,7 @@
                     <template #dropdown>
                         <el-dropdown-menu>
                             <el-dropdown-item>我的信息</el-dropdown-item>
-                            <el-dropdown-item>修改密码</el-dropdown-item>
+                            <!-- <el-dropdown-item>修改密码</el-dropdown-item> -->
                             <el-dropdown-item command="logOut" divided>退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
@@ -71,7 +71,7 @@ const logOut = () => {
         cancelButtonText: "我点错了",
         type: "warning"
     }).then(() => {
-        store.logout();
+        store.logOut();
         router.replace({
             name: "Login"
         })

@@ -46,8 +46,8 @@ const store = mainStore();
 console.log(store);
 
 const adminInfo = reactive({
-    zh: "13811111111",
-    admin_pwd: "123456"
+    zh: "",
+    admin_pwd: ""
 })
 
 
@@ -90,7 +90,7 @@ const checkLogin = () => {
 
         //跳转路由
         router.replace({
-            name: "Manager"
+            name: "DataView"
         })
 
     }).catch(error => {
