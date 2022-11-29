@@ -1,5 +1,4 @@
-import { ElNotification, ElStep } from "element-plus";
-import { nextTick } from "vue";
+import { ElNotification } from "element-plus";
 import { createWebHashHistory, createRouter } from "vue-router";
 import { mainStore } from "../store";
 

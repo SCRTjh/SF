@@ -18,7 +18,6 @@ export const mainStore = defineStore("main", {
             historyList: []
         }
     },
-    //没有mutation,省略了
     actions: {
         setToken(token) {
             this.token = token;
