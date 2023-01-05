@@ -1,0 +1,19 @@
+{
+  "name": "mock-test",
+  "version": "1.0.0",
+  "description": "mockjs test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon mockjs生成混杂数据.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mockjs": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
