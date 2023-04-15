@@ -1,0 +1,41 @@
+export default [
+    [
+        {index:"/Manager/AddClubInfo",title:"新增社团"},
+        {index:"/Manager/addUserInfo",title:"新增用户"},
+        {index:"/Manager/AddActivityInfo",title:"新增活动"},
+        {index:"/Manager/ActivityShow",title:"活动展示"},
+        {index:"/Manager/ClubInfoList",title:"社团列表"},
+        {index:"/Manager/ActivityInfoList",title:"活动申请信息列表"},
+        {index:"/Manager/JoinApplyInfoList",title:"入部申请信息列表"},
+        {index:"/Manager/ClubApplyInfoList",title:"社团入部申请信息列表"},
+        {index:"/Manager/UserInfoList",title:"用户信息列表"},
+        {index:"/Manager/CommentInfoList",title:"活动评论信息列表"},
+        {index:"/Manager/UpdateUserPwd",title:"修改密码"},
+    ],
+    [
+        {index:"/Manager/AddClubInfo",title:"新增社团"},
+        {index:"/Manager/AddActivityInfo",title:"新增活动"},
+        {index:"/Manager/ActivityShow",title:"活动展示"},
+        {index:"/Manager/ClubInfoList",title:"社团列表"},
+        {index:"/Manager/ActivityInfoList",title:"活动申请信息列表"},
+        {index:"/Manager/JoinApplyInfoList",title:"入部申请信息列表"},
+        {index:"/Manager/UserInfoList",title:"用户信息列表"},
+        {index:"/Manager/CommentInfoList",title:"活动评论信息列表"},
+        {index:"/Manager/UpdateUserPwd",title:"修改密码"},
+    ],
+    [
+        {index:"/Manager/ClubInfoList",title:"社团列表"},
+        {index:"/Manager/ClubApplyInfoList",title:"社团入部申请信息列表"},
+        {index:"/Manager/ClubMemberInfoList",title:"社团成员信息列表"},
+        {index:"/Manager/ActivityShow",title:"活动展示"},
+        {index:"/Manager/AddActivityInfo",title:"新增活动申请"},
+        {index:"/Manager/UpdateUserPwd",title:"修改密码"},
+    ],    
+    [
+        {index:"/Manager/ClubInfoList",title:"社团列表"},
+        {index:"/Manager/ClubMemberInfoList",title:"社团成员信息列表"},
+        {index:"/Manager/ActivityShow",title:"活动展示"},
+        {index:"/Manager/UpdateUserPwd",title:"修改密码"},
+    ],
+
+]

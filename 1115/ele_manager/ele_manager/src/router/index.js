@@ -162,6 +162,7 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
+    console.log(mainStore);
     const store = mainStore();
     if (to.meta.requireAuth) {
         if (store.token) {
