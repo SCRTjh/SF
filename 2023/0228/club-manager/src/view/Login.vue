@@ -7,7 +7,7 @@
               <el-icon style="font-size: 50px" class="is-loading mr-2.5">
                 <loading/>
               </el-icon>
-              高校学生社团管理后台
+              高校学生社团管理系统
             </h2>
             <div class="outer-login-box flex-1 relative">
               <!--登录的表单的盒子-->
@@ -62,7 +62,7 @@
   
   const userInfo = reactive({
     user_tel: "15172227901",
-    user_pwd: "1234567"
+    user_pwd: "123456"
   });
   
   //这里就是验证规则

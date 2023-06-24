@@ -16,7 +16,7 @@
              token: null,
              userInfo: null,
              isCollapse: false,
-             historyList: []
+            //  historyList: []
          }
      },
      //pinia没有mutations,省略了这个操作
@@ -33,20 +33,21 @@
          logOut() {
              this.token = null;
              this.userInfo = null;
+             
          },
-         addHistory(item) {
-             //我们希望在添加的时候不要重复
-             let index = this.historyList.findIndex(_item => _item.routeName === item.routeName);
-             if (index === -1) {
-                 this.historyList.push(item);
-             }
-         },
-         removeHisotryByRouteName(routeName) {
-             let index = this.historyList.findIndex(item => item.routeName === routeName);
-             if (index != -1) {
-                 this.historyList.splice(index, 1);
-             }
-         }
+        //  addHistory(item) {
+        //      //我们希望在添加的时候不要重复
+        //      let index = this.historyList.findIndex(_item => _item.routeName === item.routeName);
+        //      if (index === -1) {
+        //          this.historyList.push(item);
+        //      }
+        //  },
+        //  removeHisotryByRouteName(routeName) {
+        //      let index = this.historyList.findIndex(item => item.routeName === routeName);
+        //      if (index != -1) {
+        //          this.historyList.splice(index, 1);
+        //      }
+        //  }
      },
      // 配置状态的持久化
      persist: {

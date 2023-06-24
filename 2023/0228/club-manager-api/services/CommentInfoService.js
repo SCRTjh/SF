@@ -59,6 +59,33 @@ class CommentInfoService extends BaseService {
         return pageResult;
     }
 
+    async getListByPage1({ pageIndex, activity_id, user_id, startTime, endTime }) {
+        let strSql = ` select * from ${this.tableMap.commentinfo} where isDel = false `;
+        let countSql = `select count(*) totalCount from ${this.tableMap.commentinfo} where isDel = false `;
+
+        let { strWhere, ps } = this.paramsInit()
+            .equal(activity_id, "activity_id")
+            .gte(startTime, "create_time")
+            .lte(endTime, "create_time")
+
+        strSql += strWhere + ` limit ${(pageIndex - 1) * 10} , 10 ;`;
+        countSql += strWhere;
+
+        let [listData, [{ totalCount }]] = await this.executeSql(strSql + countSql, [...ps, ...ps]);
+        if(listData.length){
+            let activity_ids = listData.map(item => item.activity_id);
+            let user_ids = listData.map(item => item.user_id);
+            let activityInfoMap = this.resultToMap(await ServiceFactory.createActivityInfoService().findByIds(activity_ids));
+            let userInfoMap = this.resultToMap(await ServiceFactory.createUserInfoService().findByIds(user_ids));
+            listData.forEach(item => {
+                item.activityInfo = activityInfoMap.get(item.activity_id);
+                item.userInfo = userInfoMap.get(item.user_id);
+            })
+        }
+        let pageResult = new PageResult(pageIndex, totalCount, listData);
+        return pageResult;
+    }
+
 
     async findById(id) {
         let result = await super.findById(id);

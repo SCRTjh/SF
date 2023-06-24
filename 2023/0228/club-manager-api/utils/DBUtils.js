@@ -1,5 +1,5 @@
 /**
- * @author 杨标
+ * @author 汤俊豪
  * @Date 2022-10-19
  * @desc mysql数据为操作的相关内容
  */
@@ -119,6 +119,12 @@ class DBUtils {
                 if (value) {
                     this.strWhere += ` and ${name} <= ? `;
                     this.ps.push(value);
+                }
+                return this;
+            },
+            ob(value,type){
+                if(value){
+                    this.strWhere += ` order by ${value} ${type}`
                 }
                 return this;
             }

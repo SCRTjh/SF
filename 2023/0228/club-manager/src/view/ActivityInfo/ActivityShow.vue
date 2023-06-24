@@ -7,7 +7,7 @@
             <!-- 搜索表单 -->
             <el-form :model="queryFormData" :inline="true">
                 <el-form-item label="活动名称">
-                    <el-input placeholder="输入用户名称查询" v-model="queryFormData.activity_name" />
+                    <el-input placeholder="输入活动名称查询" v-model="queryFormData.activity_name" />
                 </el-form-item>
                 <el-form-item label="举办社团">
                     <el-select v-model="queryFormData.club_id" clearable>
@@ -29,7 +29,6 @@
                 <el-card>
                     <div class="flex flex-wrap justify-evenly">
                         <activity-cell v-for="(item, index) of resultData.listData" :key="item.id" :info="item"></activity-cell>
-    
                     </div>
                 </el-card>
                 <!-- 页码 -->
@@ -78,6 +77,7 @@ const isLoading = ref(false);
 const queryData = () => {
     isLoading.value = true;
     API.activityInfo.getListByPage1(queryFormData).then(result => {
+        console.log(result);
         resultData.listData = result.listData;
         resultData.pageCount = result.pageCount;
         resultData.totalCount = result.totalCount;

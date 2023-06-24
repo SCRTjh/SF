@@ -32,9 +32,9 @@
                         <el-table-column label="用户性别" prop="user_sex" width="100"></el-table-column>
                         <el-table-column label="用户头像" width="120">
                             <template #default="{ row }">
-                                <el-image  v-if="row.user_photo" :src="baseURL + row.user_photo" lazy fit="contain"
-                                    class="w-[100px] h-[100px]"></el-image>
-                            </template>
+                            <el-image   :src="row?.user_photo?baseURL + row.user_photo:'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'" lazy fit="contain"
+                                class="w-[100px] h-[100px]"></el-image>
+                        </template>
                         </el-table-column>
                         <el-table-column label="所在学院" prop="user_institute" width="150"></el-table-column>
                         <el-table-column label="所在社团" prop="user_club" width="150"></el-table-column>

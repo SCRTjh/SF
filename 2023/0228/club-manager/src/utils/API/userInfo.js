@@ -16,9 +16,9 @@ const userInfo = {
      * @param {{user_name,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id}} param0 
      * @returns 
      */
-    add({user_name,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id}){
+    add({id,user_name,user_photo,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id}){
         return axiosInstance.post(`/userInfo/add`,{
-            user_name,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id
+            id,user_name,user_photo,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id
         })
     },
     /**

@@ -33,8 +33,11 @@
             </el-icon>
           </el-upload>
         </el-form-item>
+        <el-form-item label="用户学号" prop="id">
+            <el-input placeholder="请输入用户学号" v-model="formInfoData.id"/>
+          </el-form-item>
           <el-form-item label="用户名称" prop="user_name">
-            <el-input placeholder="请输入管理员名称" v-model="formInfoData.user_name"/>
+            <el-input placeholder="请输入用户名称" v-model="formInfoData.user_name"/>
           </el-form-item>
           <el-form-item label="用户密码" prop="user_pwd">
             <el-input placeholder="请输入密码" v-model="formInfoData.user_pwd" show-password/>
@@ -99,6 +102,7 @@
   const router = useRouter();
   
   const formInfoData = reactive({
+    id:"",
     user_name: "",
     user_photo:"",
     user_pwd: "",
@@ -111,6 +115,17 @@
     role_id:""
   });
   const formInfoDataRules = {
+    id:[{required: true, message: "用户学号不能为空", trigger: "blur"},{
+      validator(rule, value, callBack) {
+        let reg = /^[0-9]{0,11}$/;
+        if (reg.test(value)) {
+          callBack();
+        } else {
+          callBack(new Error("请输入正确的学号"));
+        }
+      },
+      trigger: "blur"
+    }],
     user_name: [{required: true, message: "用户名称不能为空", trigger: "blur"}],
     user_pwd: [{required: true, message: "用户密码不能为空", trigger: "blur"}],
     confirm_pwd: [{required: true, message: "确认密码不能为空", trigger: "blur"}, {
@@ -200,6 +215,7 @@ const beforeUpload = (rawFile) => {
 const uploadSuccess = (result) => {
   console.log(result);
   formInfoData.user_photo = result.data;
+  console.log(formInfoData.user_photo);
   isUploadingImg.value = false;
 }
   

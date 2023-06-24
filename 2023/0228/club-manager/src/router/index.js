@@ -206,20 +206,20 @@ router.beforeEach((to, from, next) => {
 })
 
 
-router.afterEach((to, from) => {
-    const store = mainStore();
-    if (to.meta.title) {
-        store.addHistory({
-            title: to.meta.title,
-            routerName: to.name
-        });
-    }
+// router.afterEach((to, from) => {
+//     const store = mainStore();
+//     // if (to.meta.title) {
+//     //     store.addHistory({
+//     //         title: to.meta.title,
+//     //         routerName: to.name
+//     //     });
+//     // }
 
-    if (from.meta.autoClose) {
-        store.removeHistoryByRouterName(from.name)
-    }
+//     // if (from.meta.autoClose) {
+//     //     store.removeHistoryByRouterName(from.name)
+//     // }
 
-})
+// })
 
 
 export default router;

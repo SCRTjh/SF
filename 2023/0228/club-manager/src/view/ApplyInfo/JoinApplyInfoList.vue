@@ -35,7 +35,7 @@
                 <el-table :data="resultData.listData" border stripe max-height="550">
                     <el-table-column label="id" prop="id" align="center" width="150"></el-table-column>
                     <el-table-column label="用户名称" prop="userInfo.user_name" width="150"></el-table-column>
-                    <el-table-column label="社团名称" prop="clubInfo.club_name" width="150"></el-table-column>
+                    <el-table-column label="申请加入社团名称" prop="clubInfo.club_name" width="150"></el-table-column>
                     <el-table-column label="上次更新时间" prop="create_time" width="200">
                         <template #default="{ row }">
                             {{ formatDateTime(row.create_time) }}

@@ -27,6 +27,11 @@ router.get("/getListByPage", async (req, resp) => {
     resp.json(new ResultJson(true, "获取数据成功", pageResult));
 });
 
+router.get("/getListByPage1", async (req, resp) => {
+    let pageResult = await ServiceFactory.createCommentInfoService().getListByPage(req.query);
+    resp.json(new ResultJson(true, "获取数据成功", pageResult));
+});
+
 router.get("/findById/:id", async (req, resp) => {
     let result = await ServiceFactory.createCommentInfoService().findById(req.params.id);
     resp.json(new ResultJson(Boolean(result), result ? "获取数据成功" : "获取数据失败", result));

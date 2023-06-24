@@ -73,6 +73,7 @@ app.use("/clubInfo",require("./router/clubInfoRouter"));
 app.use("/joinapplyInfo",require("./router/joinapplyInfoRouter"));
 app.use("/activityInfo",require("./router/activityRouter"));
 app.use("/commentInfo",require("./router/comentInfoRouter"));
+app.use("/dataView",require("./router/dataViewRouter"));
 
 
 

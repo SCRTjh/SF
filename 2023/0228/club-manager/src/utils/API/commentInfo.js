@@ -40,6 +40,13 @@ const commentInfo = {
                 pageIndex, activity_id, user_id, startTime, endTime
             }
         })
+    },
+    getListByPage1({ pageIndex, activity_id, startTime, endTime }){
+        return axiosInstance.get(`/commentInfo/getListByPage`,{
+            params:{
+                pageIndex, activity_id, startTime, endTime
+            }
+        })
     }
 
 

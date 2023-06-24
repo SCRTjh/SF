@@ -7,7 +7,7 @@
           <Fold class="hover:text-primaryColor transition-all"/>
         </el-icon>
 
-        <div class="history-list space-x-[5px]">
+        <!-- <div class="history-list space-x-[5px]">
           <router-link
               :to="{name:item.routeName}" custom v-for="item in historyList" :key="item.routeName"
               #default="{navigate,isActive}">
@@ -17,7 +17,7 @@
                     @click.stop="store.removeHisotryByRouteName(item.routeName)">x</span>
             </div>
           </router-link>
-        </div>
+        </div> -->
 
         <!-- 右边的用户下拉菜单 -->
         <el-dropdown @command="handleCommand">
@@ -55,7 +55,7 @@ import {useRouter} from "vue-router";
 
 const baseURL = inject("baseURL");
 const store = mainStore();
-const {isCollapse, historyList, userInfo} = storeToRefs(store);
+const {isCollapse, userInfo} = storeToRefs(store);
 const router = useRouter();
 
 

@@ -1,5 +1,6 @@
 export default [
     [
+        {index:"/Manager/DataView",title:"首页"},
         {index:"/Manager/AddClubInfo",title:"新增社团"},
         {index:"/Manager/addUserInfo",title:"新增用户"},
         {index:"/Manager/AddActivityInfo",title:"新增活动"},
@@ -13,6 +14,7 @@ export default [
         {index:"/Manager/UpdateUserPwd",title:"修改密码"},
     ],
     [
+        {index:"/Manager/DataView",title:"首页"},
         {index:"/Manager/AddClubInfo",title:"新增社团"},
         {index:"/Manager/AddActivityInfo",title:"新增活动"},
         {index:"/Manager/ActivityShow",title:"活动展示"},

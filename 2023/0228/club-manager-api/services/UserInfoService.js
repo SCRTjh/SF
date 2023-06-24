@@ -8,11 +8,11 @@ class UserInfoService extends BaseService {
         super("user_info")
     }
 
-    async add({user_name,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id}){
+    async add({id,user_name,user_photo,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id}){
         //md5加密加盐
         user_pwd = md5(user_pwd + AppConfig.salt);
-        let strSql = `insert into ${this.tableMap.userinfo} (user_name,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id) value (?,?,?,?,?,?,?,?);`;
-        let result = await this.executeSql(strSql,[user_name,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id]);
+        let strSql = `insert into ${this.tableMap.userinfo} (id,user_name,user_photo,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id) value (?,?,?,?,?,?,?,?,?,?);`;
+        let result = await this.executeSql(strSql,[id,user_name,user_photo,user_sex,user_institute,user_club,user_tel,user_pwd,user_email,role_id]);
         return result.affectedRows > 0;
     }
 
@@ -59,7 +59,7 @@ class UserInfoService extends BaseService {
     async getListByPage({pageIndex,user_sex,user_name,user_club}){
         let strSql = `select * from ${this.tableMap.userinfo} where isDel = false`;
         let countSql = `select count(*) totalCount from ${this.tableMap.userinfo} where isDel = false`;
-        let {strWhere,ps} = this.paramsInit().like(user_name,"user_name").like(user_sex,"user_sex").equal(user_club,"user_club");
+        let {strWhere,ps} = this.paramsInit().like(user_name,"user_name").like(user_sex,"user_sex").like(user_club,"user_club").ob("role_id","ASC");
 
         strSql += strWhere + ` limit ${(pageIndex - 1) * 10},10;`;
         countSql += strWhere;

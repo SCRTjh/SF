@@ -54,7 +54,7 @@
                             </el-button>
                             <el-popconfirm v-if="[1,0].includes(userInfo.role_id)" title="你确定要删除吗" @confirm="deleteCurrentItem(row.id)">
                                 <template #reference>
-                                    <el-button type="danger" size="small">删除</el-button>
+                                    <el-button type="danger" size="small">解散</el-button>
                                 </template>
                             </el-popconfirm>
                         </template>

@@ -7,6 +7,18 @@ class ActivityInfoService extends BaseService {
         super("activity_info")
     }
 
+    /**
+     * 根据id去查询
+     * @param {number} id 主键id 
+     * @returns {Promise<Object|undefined>}
+     */
+         async findById(id) {
+            let strSql = ` select * from ${this.currentTableName} where isDel = false and id = ? `;
+            let result = await this.executeSql(strSql, [id]);
+            console.log(result);
+            result[0].clubInfo = await this.executeSql(`select club_name from club_info where id = ? `,[result[0].club_id]);
+            return result[0];
+        }
 
     async add({activity_name,activity_desc,activity_area,activity_type,start_time,end_time,club_id}){
         let strSql = `insert into ${this.tableMap.activityinfo} (activity_name,activity_desc,activity_area,activity_type,start_time,end_time,club_id) value (?,?,?,?,?,?,?)`;
@@ -35,7 +47,7 @@ class ActivityInfoService extends BaseService {
 
     async getListByPage1({ pageIndex = 1, activity_name, club_id }) {
         let strSql = ` select * from ${this.tableMap.activityinfo} where isDel = false and status = 1`;
-        let countSql = `select count(*) totalCount from ${this.tableMap.activityinfo} where isDel = false and status = 1`;
+        let countSql = `select count(*) totalCount from ${this.tableMap.activityinfo}  where isDel = false and status = 1`;
 
         let { strWhere, ps } = this.paramsInit()
             .like(activity_name, "activity_name")
@@ -64,6 +76,7 @@ class ActivityInfoService extends BaseService {
         let { strWhere, ps } = this.paramsInit()
             .like(activity_name, "activity_name")
             .equal(club_id, "club_id")
+            .ob('status','ASC')
 
         strSql += strWhere + ` limit ${(pageIndex - 1) * 10} , 10 ;`;
         countSql += strWhere;

@@ -86,6 +86,7 @@ class JoinapplyInfoService extends BaseService {
             .equal(status, "status")
             .gte(startTime, "create_time")
             .lte(endTime, "create_time")
+            .ob('status','ASC')
 
             strSql +=  strWhere + ` limit ${(pageIndex - 1) * 10},10;`;
             countSql += strWhere;

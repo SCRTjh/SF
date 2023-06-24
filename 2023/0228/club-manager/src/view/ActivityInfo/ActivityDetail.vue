@@ -5,11 +5,14 @@
                 活动详情页
             </template>
             <div v-loading="isLoading.value">
-                <h2 class="text-center tracking-wider text-[36px]">{{ info.activity_name }}</h2>
-                <img v-if="info.activity_img" class="block w-[50%] m-auto " :src="baseURL + info.activity_img" alt="">
+                <h2 class="text-center tracking-wider text-[36px]">{{ info.data.activity_name }}</h2>
+                <img v-if="info.data.activity_img" class="block w-[50%] m-auto " :src="baseURL + info.data.activity_img" alt="">
                 <img v-else class="block w-[50%] m-auto " src="../../assets/img/s8.jpg" alt="">
-                <p class="indent-20 text-[24px]">{{ info.activity_desc }}</p>
-                <div class="flex justify-end items-center"><span class="flex text-[20px] items-center">活动地点:<p class="pl-5 text-[30px] ">{{ info.activity_area }}</p></span></div>
+                <p class="indent-20 text-[24px]">{{ info.data.activity_desc }}</p>
+                <div class="flex justify-between items-center mt-10">
+                    <span class="flex text-[20px] items-center">举办社团：<p class="pl-5 text-[30px] ">{{info.data?.clubInfo[0].club_name}}</p></span>
+                    <span class="flex text-[20px] items-center">活动地点:<p class="pl-5 text-[30px] ">{{ info.data.activity_area }}</p></span>
+                </div>
             </div>
         </el-card>
         <el-card v-loading="isLoading.value">
@@ -51,7 +54,7 @@ const store = mainStore();
 const { userInfo } = storeToRefs(store);
 const route = useRoute();
 
-let info = reactive({});
+let info = reactive({data:{clubInfo:[{club_name:""}]}});
 
 const resultData = reactive({
     listData: [],
@@ -74,12 +77,12 @@ const isLoading = ref(false);
 const queryData = () => {
     isLoading.value = true;
     API.activityInfo.findById(route.params.id).then(result => {
-        info = result
+        info.data = result
     }).finally(() => {
         isLoading.value = false;
     })
 
-    API.commentInfo.getListByPage(queryFormData)
+    API.commentInfo.getListByPage1(queryFormData)
         .then(result => {
             resultData.listData = result.listData;
             resultData.pageCount = result.pageCount;

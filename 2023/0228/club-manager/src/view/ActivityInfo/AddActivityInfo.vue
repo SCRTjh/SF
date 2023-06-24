@@ -32,7 +32,7 @@
                     <el-input placeholder="请输入活动名称" v-model="formInfoData.activity_name" />
                 </el-form-item>
                 <el-form-item label="活动描述" prop="activity_desc">
-                    <el-input placeholder="请输入活动描述" v-model="formInfoData.activity_desc" />
+                    <el-input placeholder="请输入活动描述" v-model="formInfoData.activity_desc" type="textarea" />
                 </el-form-item>
                 <el-form-item label="活动地点" prop="activity_area">
                     <el-input placeholder="请输入活动地点" v-model="formInfoData.activity_area" />
@@ -47,11 +47,11 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="评论时间">
-                    <el-date-picker v-model="formInfoData.dateRange" type="daterange" range-separator="To"
-                        start-placeholder="开始时间" end-placeholder="结束时间" value-format="YYYY-MM-DD" />
+                    <el-date-picker v-model="formInfoData.dateRange" type="datetimerange" range-separator="To"
+                        start-placeholder="开始时间" end-placeholder="结束时间" value-format="YYYY-MM-DD HH:mm:ss" />
                 </el-form-item>
                 <el-form-item label="社团">
-                    <el-select v-model="formInfoData.club_id" clearable>
+                    <el-select v-model="formInfoData.club_id"  clearable>
                         <el-option v-for="item in allClubInfoList" :key="item.id" :label="item.club_name" :value="item.id">
                             {{ item.club_name }}
                         </el-option>
@@ -70,6 +70,7 @@
 <script setup>
 import { ref, reactive, inject, watch } from "vue";
 import { mainStore } from "../../store/index.js";
+import { storeToRefs } from "pinia";
 import { PictureFilled, Loading } from "@element-plus/icons-vue";
 import { ElNotification } from "element-plus";
 import API from "@/utils/API/index.js";
@@ -79,6 +80,7 @@ const baseURL = inject("baseURL");
 const store = mainStore();
 
 const router = useRouter();
+const { userInfo } = storeToRefs(store);
 
 const formInfoData = reactive({
     activity_name: "",
@@ -181,7 +183,7 @@ const addActivityInfo = () => {
                 title: "保存成功",
                 message: "用户数据保存成功"
             });
-            router.replace({ name: "UserInfoList" })
+            // router.replace({ name: "ActivityInfoList" })
         })
         .finally(() => {
             isSubmiting.value = false;

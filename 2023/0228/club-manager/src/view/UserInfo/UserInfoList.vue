@@ -15,6 +15,9 @@
                         <el-option :value="'女'">女</el-option>
                     </el-select>
                 </el-form-item>
+                <el-form-item label="所在社团">
+                    <el-input placeholder="输入所在社团名称查询" v-model="queryFormData.user_club" />
+                </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="queryData" :isLoading="isLoading">
                         <el-icon>
@@ -31,7 +34,7 @@
                     <el-table-column label="用户性别" prop="user_sex" width="100"></el-table-column>
                     <el-table-column label="用户头像" width="120">
                         <template #default="{ row }">
-                            <el-image  v-if="row.user_photo" :src="baseURL + row.user_photo" lazy fit="contain"
+                            <el-image   :src="row?.user_photo?(baseURL + row.user_photo):'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'" lazy fit="contain"
                                 class="w-[100px] h-[100px]"></el-image>
                         </template>
                     </el-table-column>
@@ -81,6 +84,7 @@ const baseURL = inject("baseURL");
 const queryFormData = reactive({
     user_name: "",
     user_sex: "",
+    user_club:"",
     pageIndex: 1
 })
 const resultData = reactive({
@@ -90,12 +94,13 @@ const resultData = reactive({
 })
 
 const roleType = reactive(['danger','warning','success','']);
-const roleName = reactive(['超级管理员','管理员','社长','学生']);
+const roleName = reactive(['超级管理员','管理员','社团长','学生']);
 
 const isLoading = ref(false);
 const queryData = () => {
     isLoading.value = true;
     API.userInfo.getListByPage(queryFormData).then(result => {
+        console.log(result);
         resultData.listData = result.listData;
         resultData.pageCount = result.pageCount;
         resultData.totalCount = result.totalCount;

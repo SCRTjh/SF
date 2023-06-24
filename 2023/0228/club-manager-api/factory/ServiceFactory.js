@@ -35,6 +35,11 @@
         const CommentInfoService = require("../services/CommentInfoService");
         return new CommentInfoService();
     }
+    //数据展示
+    static createDataViewService(){
+        const DataViewService = require("../services/DataViewService");
+        return new DataViewService();
+    }
 }
 
 module.exports = ServiceFactory;
